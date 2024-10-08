@@ -1,6 +1,7 @@
 import User, { validateUser } from "../models/User.js";
 import { logError } from "../util/logging.js";
 import validationErrorMessage from "../util/validationErrorMessage.js";
+import bcrypt from "bcrypt";
 
 export const getUsers = async (req, res) => {
   try {
@@ -36,6 +37,7 @@ export const createUser = async (req, res) => {
         .status(400)
         .json({ success: false, msg: validationErrorMessage(errorList) });
     } else {
+      user.password = await hashPassword(user.password);
       const newUser = await User.create(user);
 
       res.status(201).json({ success: true, user: newUser });
@@ -46,4 +48,12 @@ export const createUser = async (req, res) => {
       .status(500)
       .json({ success: false, msg: "Unable to create user, try again later" });
   }
+};
+
+//Helper functions
+
+//Helper function to hash password
+const hashPassword = async (password) => {
+  const saltRounds = 10;
+  return await bcrypt.hash(password, saltRounds);
 };
