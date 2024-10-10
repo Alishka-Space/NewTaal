@@ -44,7 +44,8 @@ const SignInContainer = styled(Stack)(({ theme }) => ({
     padding: theme.spacing(4),
   },
   "&::before": {
-    content: "\"\"",
+    // eslint-disable-next-line quotes
+    content: '""',
     display: "block",
     position: "absolute",
     zIndex: -1,
