@@ -126,7 +126,7 @@ export const navigationCustomizations = {
         textDecoration: "none",
         width: "fit-content",
         "&::before": {
-          content: "",
+          content: "\"\"",
           position: "absolute",
           width: "100%",
           height: "1px",
