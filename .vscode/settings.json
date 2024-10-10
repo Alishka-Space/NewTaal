@@ -1,4 +1,10 @@
 {
   "editor.formatOnSave": true,
   "editor.tabSize": 2,
+  "cSpell.words": [
+    "autofix",
+    "elementid",
+    "postbuild",
+    "testid"
+  ],
 }
