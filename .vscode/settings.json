@@ -5,6 +5,7 @@
     "autofix",
     "elementid",
     "postbuild",
+    "signup",
     "testid"
   ],
 }

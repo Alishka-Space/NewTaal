@@ -1,4 +1,3 @@
-/* eslint-disable react/display-name */
 import * as React from "react";
 import { alpha } from "@mui/material/styles";
 
@@ -58,9 +57,9 @@ export const navigationCustomizations = {
   },
   MuiSelect: {
     defaultProps: {
-      IconComponent: React.forwardRef((props, ref) => (
-        <UnfoldMoreRoundedIcon fontSize="small" {...props} ref={ref} />
-      )),
+      IconComponent: React.forwardRef(function CustomSelectIcon(props, ref) {
+        return <UnfoldMoreRoundedIcon fontSize="small" {...props} ref={ref} />;
+      }),
     },
     styleOverrides: {
       root: ({ theme }) => ({
@@ -126,8 +125,7 @@ export const navigationCustomizations = {
         textDecoration: "none",
         width: "fit-content",
         "&::before": {
-          // eslint-disable-next-line quotes
-          content: '""',
+          content: "''",
           position: "absolute",
           width: "100%",
           height: "1px",
