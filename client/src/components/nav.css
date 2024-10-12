@@ -5,6 +5,7 @@
   display: flex;
   align-items: center;
   justify-content: space-around;
+  position: relative;
   padding: 0 5px;
 }
 
@@ -80,9 +81,8 @@
     top: 100%;
     right: 0;
     width: 100%;
+    background-color: white;
     clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
-    transition: all 1s ease;
-
     transition: all 1s ease;
   }
 
@@ -91,7 +91,6 @@
     align-items: flex-start;
     justify-content: center;
     padding-left: 50px;
-    color: #0a090b;
   }
 
   .navbar-link {
