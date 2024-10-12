@@ -14,6 +14,13 @@ import Stack from "@mui/material/Stack";
 import MuiCard from "@mui/material/Card";
 import PropTypes from "prop-types";
 import { createTheme, ThemeProvider, styled } from "@mui/material/styles";
+import MenuItem from "@mui/material/MenuItem";
+import Select from "@mui/material/Select";
+import { FormHelperText } from "@mui/material";
+import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { DateField } from "@mui/x-date-pickers/DateField";
 import getSignUpTheme from "../shared-theme/getSignUpTheme";
 import { GoogleIcon, FacebookIcon } from "../shared-theme/CustomIcons";
 
@@ -60,13 +67,41 @@ export default function SignUp() {
   const [emailErrorMessage, setEmailErrorMessage] = React.useState("");
   const [passwordError, setPasswordError] = React.useState(false);
   const [passwordErrorMessage, setPasswordErrorMessage] = React.useState("");
+  const [role, setRole] = React.useState("");
+  const [roleError, setRoleError] = React.useState(false);
+  const [roleErrorMessage, setRoleErrorMessage] = React.useState("");
+  const [dateOfBirth, setDateOfBirth] = React.useState(null);
+  const [dateOfBirthError, setDateOfBirthError] = React.useState(false);
+  const [dateOfBirthErrorMessage, setDateOfBirthErrorMessage] =
+    React.useState("");
+  const [nationalityError, setNationalityError] = React.useState(false);
+  const [nationalityErrorMessage, setNationalityErrorMessage] =
+    React.useState("");
+  const [languageProficiency, setLanguageProficiency] = React.useState("");
+  const [languageProficiencyError, setLanguageProficiencyError] =
+    React.useState(false);
+  const [languageProficiencyErrorMessage, setLanguageProficiencyErrorMessage] =
+    React.useState("");
 
   const validateInputs = () => {
+    const name = document.getElementById("name");
     const email = document.getElementById("email");
     const password = document.getElementById("password");
-    const name = document.getElementById("name");
+    const role = document.getElementById("role");
+    const dateOfBirth = document.getElementById("dateOfBirth");
+    const nationality = document.getElementById("nationality");
+    const languageProficiency = document.getElementById("languageProficiency");
 
     let isValid = true;
+
+    if (!name.value || name.value.length < 1) {
+      setNameError(true);
+      setNameErrorMessage("Name is required.");
+      isValid = false;
+    } else {
+      setNameError(false);
+      setNameErrorMessage("");
+    }
 
     if (!email.value || !/\S+@\S+\.\S+/.test(email.value)) {
       setEmailError(true);
@@ -86,23 +121,70 @@ export default function SignUp() {
       setPasswordErrorMessage("");
     }
 
-    if (!name.value || name.value.length < 1) {
-      setNameError(true);
-      setNameErrorMessage("Name is required.");
+    if (!role) {
+      setRoleError(true);
+      setRoleErrorMessage("Please select the role.");
       isValid = false;
     } else {
-      setNameError(false);
-      setNameErrorMessage("");
+      setRoleError(false);
+      setRoleErrorMessage("");
+    }
+
+    if (!dateOfBirth || dateOfBirth.value.length < 1) {
+      setDateOfBirthError(true);
+      setDateOfBirthErrorMessage("Please enter your date of birth.");
+      isValid = false;
+    } else {
+      setDateOfBirthError(false);
+      setDateOfBirthErrorMessage("");
+    }
+
+    if (!nationality || nationality.value.length < 1) {
+      setNationalityError(true);
+      setNationalityErrorMessage("Nationality is required.");
+      isValid = false;
+    } else {
+      setNationalityError(false);
+      setNationalityErrorMessage("");
+    }
+
+    if (!languageProficiency) {
+      setLanguageProficiencyError(true);
+      setLanguageProficiencyErrorMessage("Please select your proficiency.");
+      isValid = false;
+    } else {
+      setLanguageProficiencyError(false);
+      setLanguageProficiencyErrorMessage("");
     }
 
     return isValid;
   };
 
   const handleSubmit = (event) => {
-    if (nameError || emailError || passwordError) {
+    if (
+      nameError ||
+      emailError ||
+      passwordError ||
+      roleError ||
+      dateOfBirthError ||
+      nationalityError ||
+      languageProficiencyError
+    ) {
       event.preventDefault();
       return;
     }
+  };
+
+  const handleChangeRole = (event) => {
+    setRole(event.target.value);
+  };
+
+  const handleDateOfBirthChange = (date) => {
+    setDateOfBirth(date);
+  };
+
+  const handleChangeLanguageProficiency = (event) => {
+    setLanguageProficiency(event.target.value);
   };
 
   return (
@@ -124,7 +206,7 @@ export default function SignUp() {
               sx={{ display: "flex", flexDirection: "column", gap: 2 }}
             >
               <FormControl>
-                <FormLabel htmlFor="name">Full Name</FormLabel>
+                <FormLabel htmlFor="name">Name</FormLabel>
                 <TextField
                   autoComplete="name"
                   name="name"
@@ -135,17 +217,6 @@ export default function SignUp() {
                   error={nameError}
                   helperText={nameErrorMessage}
                   color={nameError ? "error" : "primary"}
-                />
-              </FormControl>
-              <FormControl>
-                <FormLabel htmlFor="user">User Name</FormLabel>
-                <TextField
-                  required
-                  fullWidth
-                  id="user"
-                  placeholder="JohnDoe123"
-                  name="user"
-                  variant="outlined"
                 />
               </FormControl>
               <FormControl>
@@ -179,20 +250,80 @@ export default function SignUp() {
                   color={passwordError ? "error" : "primary"}
                 />
               </FormControl>
+              <FormControl fullWidth>
+                <FormLabel htmlFor="roles">Role</FormLabel>
+                <Select
+                  id="roles"
+                  value={role}
+                  onChange={handleChangeRole}
+                  variant="outlined"
+                >
+                  <MenuItem value="">Select a Role</MenuItem>
+                  <MenuItem value="learner">Learner</MenuItem>
+                  <MenuItem value="coach">Coach</MenuItem>
+                </Select>
+                {roleError && (
+                  <FormHelperText style={{ color: "#B30000" }}>
+                    {roleErrorMessage}
+                  </FormHelperText>
+                )}
+              </FormControl>
+
               <FormControl>
-                <FormLabel htmlFor="confirmPassword">
-                  Confirm Password
-                </FormLabel>
+                <FormLabel htmlFor="dateOfBirth">Date of Birth</FormLabel>
+                <LocalizationProvider dateAdapter={AdapterDayjs}>
+                  <DemoContainer components={["DateField"]}>
+                    <DateField
+                      required
+                      fullWidth
+                      id="dateOfBirth"
+                      name="dateOfBirth"
+                      placeholder="MM/DD/YYYY"
+                      variant="outlined"
+                      value={dateOfBirth}
+                      onChange={handleDateOfBirthChange}
+                      error={dateOfBirthError}
+                      helperText={dateOfBirthErrorMessage}
+                      color={dateOfBirthError ? "error" : "primary"}
+                    />
+                  </DemoContainer>
+                </LocalizationProvider>
+              </FormControl>
+              <FormControl>
+                <FormLabel htmlFor="nationality">Nationality</FormLabel>
                 <TextField
                   required
                   fullWidth
-                  name="confirmPassword"
-                  placeholder="••••••"
-                  type="password"
-                  id="confirmPassword"
-                  autoComplete="new-password"
+                  id="nationality"
+                  placeholder=""
+                  name="nationality"
                   variant="outlined"
+                  error={nationalityError}
+                  helperText={nationalityErrorMessage}
+                  color={nationalityError ? "error" : "primary"}
                 />
+              </FormControl>
+
+              <FormControl fullWidth>
+                <FormLabel htmlFor="proficiency">
+                  Language Proficiency
+                </FormLabel>
+                <Select
+                  id="proficiency"
+                  value={languageProficiency}
+                  onChange={handleChangeLanguageProficiency}
+                  variant="outlined"
+                >
+                  <MenuItem value="">Select a Proficiency</MenuItem>
+                  <MenuItem value="beginner">Beginner</MenuItem>
+                  <MenuItem value="intermediate">Intermediate</MenuItem>
+                  <MenuItem value="advanced">Advanced</MenuItem>
+                </Select>
+                {languageProficiencyError && (
+                  <FormHelperText style={{ color: "#B30000" }}>
+                    {languageProficiencyErrorMessage}
+                  </FormHelperText>
+                )}
               </FormControl>
               <FormControlLabel
                 control={<Checkbox value="allowExtraEmails" color="primary" />}
