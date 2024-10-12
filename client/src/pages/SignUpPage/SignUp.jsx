@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useState } from "react";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Checkbox from "@mui/material/Checkbox";
@@ -21,6 +21,8 @@ import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { DateField } from "@mui/x-date-pickers/DateField";
+import Radio from "@mui/material/Radio";
+import RadioGroup from "@mui/material/RadioGroup";
 import getSignUpTheme from "../shared-theme/getSignUpTheme";
 import { GoogleIcon, FacebookIcon } from "../shared-theme/CustomIcons";
 
@@ -68,6 +70,7 @@ export default function SignUp() {
   const [passwordError, setPasswordError] = React.useState(false);
   const [passwordErrorMessage, setPasswordErrorMessage] = React.useState("");
   const [role, setRole] = React.useState("");
+  const [learnerSelected, setLearnerSelected] = useState(false);
   const [roleError, setRoleError] = React.useState(false);
   const [roleErrorMessage, setRoleErrorMessage] = React.useState("");
   const [dateOfBirth, setDateOfBirth] = React.useState(null);
@@ -82,6 +85,18 @@ export default function SignUp() {
     React.useState(false);
   const [languageProficiencyErrorMessage, setLanguageProficiencyErrorMessage] =
     React.useState("");
+  const [languageGoals, setLanguageGoals] = React.useState("");
+  const [languageGoalsError, setLanguageGoalsError] = React.useState(false);
+  const [languageGoalsErrorMessage, setLanguageGoalsErrorMessage] =
+    React.useState("");
+  const [selectedTopic, setSelectedTopic] = React.useState("");
+  const [selectedTopicError, setSelectedTopicError] = React.useState(false);
+  const [selectedTopicErrorMessage, setSelectedTopicErrorMessage] =
+    React.useState("");
+  const [teachingLevel, setTeachingLevel] = React.useState("");
+  const [teachingLevelError, setTeachingLevelError] = React.useState(false);
+  const [teachingLevelErrorMessage, setTeachingLevelErrorMessage] =
+    React.useState("");
 
   const validateInputs = () => {
     const name = document.getElementById("name");
@@ -91,6 +106,9 @@ export default function SignUp() {
     const dateOfBirth = document.getElementById("dateOfBirth");
     const nationality = document.getElementById("nationality");
     const languageProficiency = document.getElementById("languageProficiency");
+    const languageGoals = document.getElementById("languageGoals");
+    const selectedTopic = document.getElementById("selectedTopic");
+    const teachingLevel = document.getElementById("teachingLevel");
 
     let isValid = true;
 
@@ -157,6 +175,32 @@ export default function SignUp() {
       setLanguageProficiencyErrorMessage("");
     }
 
+    if (!languageGoals) {
+      setLanguageGoalsError(true);
+      setLanguageGoalsErrorMessage("Please select your goal.");
+      isValid = false;
+    } else {
+      setLanguageGoalsError(false);
+      setLanguageGoalsErrorMessage("");
+    }
+
+    if (!selectedTopic) {
+      setSelectedTopicError(true);
+      setSelectedTopicErrorMessage("Please select your topic.");
+      isValid = false;
+    } else {
+      setSelectedTopicError(false);
+      setSelectedTopicErrorMessage("");
+    }
+
+    if (!teachingLevel) {
+      setTeachingLevelError(true);
+      setTeachingLevelErrorMessage("Please select your teaching level.");
+      isValid = false;
+    } else {
+      setTeachingLevelError(false);
+      setTeachingLevelErrorMessage("");
+    }
     return isValid;
   };
 
@@ -168,7 +212,10 @@ export default function SignUp() {
       roleError ||
       dateOfBirthError ||
       nationalityError ||
-      languageProficiencyError
+      languageProficiencyError ||
+      languageGoalsError ||
+      selectedTopicError ||
+      teachingLevelError
     ) {
       event.preventDefault();
       return;
@@ -177,6 +224,11 @@ export default function SignUp() {
 
   const handleChangeRole = (event) => {
     setRole(event.target.value);
+    if (event.target.value === "learner") {
+      setLearnerSelected(true);
+    } else {
+      setLearnerSelected(false);
+    }
   };
 
   const handleDateOfBirthChange = (date) => {
@@ -185,6 +237,18 @@ export default function SignUp() {
 
   const handleChangeLanguageProficiency = (event) => {
     setLanguageProficiency(event.target.value);
+  };
+
+  const handleChangeLanguageGoals = (event) => {
+    setLanguageGoals(event.target.value);
+  };
+
+  const handleTopicSelection = (event) => {
+    setSelectedTopic(event.target.value);
+  };
+
+  const handleTeachingLevelChange = (event) => {
+    setTeachingLevel(event.target.value);
   };
 
   return (
@@ -210,6 +274,7 @@ export default function SignUp() {
                 <TextField
                   autoComplete="name"
                   name="name"
+                  autoFocus
                   required
                   fullWidth
                   id="name"
@@ -250,25 +315,6 @@ export default function SignUp() {
                   color={passwordError ? "error" : "primary"}
                 />
               </FormControl>
-              <FormControl fullWidth>
-                <FormLabel htmlFor="roles">Role</FormLabel>
-                <Select
-                  id="roles"
-                  value={role}
-                  onChange={handleChangeRole}
-                  variant="outlined"
-                >
-                  <MenuItem value="">Select a Role</MenuItem>
-                  <MenuItem value="learner">Learner</MenuItem>
-                  <MenuItem value="coach">Coach</MenuItem>
-                </Select>
-                {roleError && (
-                  <FormHelperText style={{ color: "#B30000" }}>
-                    {roleErrorMessage}
-                  </FormHelperText>
-                )}
-              </FormControl>
-
               <FormControl>
                 <FormLabel htmlFor="dateOfBirth">Date of Birth</FormLabel>
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
@@ -303,8 +349,35 @@ export default function SignUp() {
                   color={nationalityError ? "error" : "primary"}
                 />
               </FormControl>
-
-              <FormControl fullWidth>
+              <FormControl>
+                <FormLabel id="role-selection-label">
+                  Please select your role
+                </FormLabel>
+                <RadioGroup
+                  row
+                  aria-labelledby="role-selection-label"
+                  name="role-selection-group"
+                  value={role}
+                  onChange={handleChangeRole}
+                >
+                  <FormControlLabel
+                    value="learner"
+                    control={<Radio />}
+                    label="Learner"
+                  />
+                  <FormControlLabel
+                    value="coach"
+                    control={<Radio />}
+                    label="Coach"
+                  />
+                </RadioGroup>
+                {roleError && (
+                  <FormHelperText style={{ color: "#B30000" }}>
+                    {roleErrorMessage}
+                  </FormHelperText>
+                )}
+              </FormControl>
+              <FormControl fullWidth disabled={learnerSelected}>
                 <FormLabel htmlFor="proficiency">
                   Language Proficiency
                 </FormLabel>
@@ -322,6 +395,71 @@ export default function SignUp() {
                 {languageProficiencyError && (
                   <FormHelperText style={{ color: "#B30000" }}>
                     {languageProficiencyErrorMessage}
+                  </FormHelperText>
+                )}
+              </FormControl>
+              <FormControl fullWidth disabled={learnerSelected}>
+                <FormLabel htmlFor="teaching-level">
+                  Which level do you want to teach?
+                </FormLabel>
+                <Select
+                  id="teaching-level"
+                  value={teachingLevel}
+                  onChange={handleTeachingLevelChange}
+                  variant="outlined"
+                >
+                  <MenuItem value="">Select a Teaching Level</MenuItem>
+                  <MenuItem value="beginner">A1 - A2</MenuItem>
+                  <MenuItem value="intermediate">A2 - B1</MenuItem>
+                  <MenuItem value="advanced">B1 - B2</MenuItem>
+                  <MenuItem value="expert">B2 - C1</MenuItem>
+                </Select>
+                {teachingLevelError && (
+                  <FormHelperText style={{ color: "#B30000" }}>
+                    {teachingLevelErrorMessage}
+                  </FormHelperText>
+                )}
+              </FormControl>
+              <FormControl fullWidth>
+                <FormLabel htmlFor="goals">Language Learning Goals</FormLabel>
+                <Select
+                  id="goals"
+                  value={languageGoals}
+                  onChange={handleChangeLanguageGoals}
+                  variant="outlined"
+                >
+                  <MenuItem value="">Select Language Goals</MenuItem>
+                  <MenuItem value="academic">Academic Development</MenuItem>
+                  <MenuItem value="career">Career Advancement</MenuItem>
+                  <MenuItem value="personal">Personal Growth</MenuItem>
+                  <MenuItem value="hobbies">Hobbies and Interests</MenuItem>
+                </Select>
+                {languageGoalsError && (
+                  <FormHelperText style={{ color: "#B30000" }}>
+                    {languageGoalsErrorMessage}
+                  </FormHelperText>
+                )}
+              </FormControl>
+              <FormControl fullWidth>
+                <FormLabel htmlFor="conversation-topics">
+                  Conversation Topics
+                </FormLabel>
+                <Select
+                  id="conversation-topics"
+                  value={selectedTopic}
+                  onChange={handleTopicSelection}
+                  variant="outlined"
+                >
+                  <MenuItem value="">Select a Topic</MenuItem>
+                  <MenuItem value="daily">Daily Conversations</MenuItem>
+                  <MenuItem value="travel">Travel and Tourism</MenuItem>
+                  <MenuItem value="career">Work and Career</MenuItem>
+                  <MenuItem value="culture">Culture and Arts</MenuItem>
+                  <MenuItem value="health">Health and Sports</MenuItem>
+                </Select>
+                {selectedTopicError && (
+                  <FormHelperText style={{ color: "#B30000" }}>
+                    {selectedTopicErrorMessage}
                   </FormHelperText>
                 )}
               </FormControl>
