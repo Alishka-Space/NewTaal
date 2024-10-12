@@ -7,7 +7,7 @@ const Banner = () => {
     <div className="banner">
       <div className="banner-wrapper">
         <div className="banner-layout">
-          <h1 className="banner-layout-title">AaalCoach</h1>
+          <h1 className="banner-layout-title">TaalCoach</h1>
         </div>
         <img src={banner} alt="tall-banner" className="banner-img" />
       </div>
