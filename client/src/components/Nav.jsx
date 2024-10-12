@@ -12,7 +12,7 @@ const Nav = () => {
       <div className="logo">
         <img src={TallLogo} alt="logo" className="logo-img" />
         <div className="logo-text">
-          <b>Tall</b>
+          <b>Taal</b>
           <b>Coach</b>
         </div>
       </div>
