@@ -1,0 +1,16 @@
+.features-steps{
+  width: 100%;
+  background-color: #f8f9fa;
+  padding: 60px 0;
+
+}
+.step-title{
+  font-size: 30px;
+  font-weight: bold;
+  color: #531a85;
+  padding: 10px;
+  margin: 20px;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+}
