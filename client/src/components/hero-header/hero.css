@@ -1,23 +1,18 @@
-.hero-header{
-  background-color: #531a85;
+.hero-header {
+  background-image: url("../../images/artboard-12.webp");
+  background-size: cover;
   width: 100%;
-  height: calc(100vh - 200px);
-  padding: 5px;
-  border-top: 1px solid #b66ae5;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
+  height: 100vh;
 }
 
-.hero-title{
+.hero-title {
   font-size: 30px;
   font-weight: bold;
   color: #daeb3f;
   padding: 10px;
   margin: 20px;
 }
-.hero-btn{
+.hero-btn {
   background-color: #daeb3f;
   color: #141212;
   font-size: 20px;
@@ -29,22 +24,23 @@
   cursor: pointer;
   margin-top: 30px;
   transition: all 0.3s;
+  position: absolute;
+  left: 20%;
+  top: 60%;
 }
 
-.hero-btn:hover{
+.hero-btn:hover {
   cursor: pointer;
   transform: scale(1.1);
   border-color: #070606;
   background-color: #9c5be7;
-  
 }
 
-@media (max-width:720px){
-  .hero-title{
+@media (max-width: 720px) {
+  .hero-title {
     font-size: 20px;
     font-weight: bold;
     color: #daeb3f;
     margin: 20px;
-
   }
 }

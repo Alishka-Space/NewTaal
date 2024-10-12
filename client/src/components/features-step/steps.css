@@ -1,16 +1,35 @@
-.features-steps{
+.features-steps {
   width: 100%;
   background-color: #f8f9fa;
-  padding: 60px 0;
-
 }
-.step-title{
+
+.steps {
+  width: 100%;
+  height: 400px;
+  background-color: #f8f9fa;
+  padding: 20px 0;
+  display: flex;
+}
+
+.step-title {
   font-size: 30px;
   font-weight: bold;
   color: #531a85;
   padding: 10px;
   margin: 20px;
+  text-align: center;
+}
+
+.step {
+  width: 100%;
+  height: 90%;
+  padding: 20px;
+  border-radius: 20px;
+  background-color: #5c40d4;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   display: flex;
   text-align: center;
-  justify-content: center;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 10px;
 }

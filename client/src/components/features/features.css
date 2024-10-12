@@ -1,14 +1,11 @@
-
-
-
-.features{
+.features {
   width: 100%;
   background-color: #f8f9fa;
   padding: 60px 0;
   display: flex;
 }
 
-.feature-title{
+.feature-title {
   font-size: 30px;
   font-weight: bold;
   color: #531a85;
@@ -17,7 +14,7 @@
   text-align: center;
 }
 
-.feature{
+.feature {
   height: 200px;
   padding: 20px;
   border-radius: 20px;
@@ -28,11 +25,7 @@
   justify-content: space-around;
   align-items: center;
   margin: 20px;
-  
-
 }
-
-
 
 .feature h3 {
   margin-top: 10px;

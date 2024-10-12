@@ -7,6 +7,8 @@ import UserList from "./pages/User/UserList";
 import HeroHeader from "./components/hero-header/HeroHeader";
 import Features from "./components/features/Features";
 import Steps from "./components/features-step/Steps";
+import Footer from "../src/components/footer/Footer";
+import Banner from "../src/components/banner/Banner";
 
 const App = () => {
   return (
@@ -14,7 +16,9 @@ const App = () => {
       <Nav />
       <HeroHeader />
       <Features />
+      <Banner />
       <Steps />
+      <Footer />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/user" element={<UserList />} />
