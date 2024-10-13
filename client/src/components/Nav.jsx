@@ -4,8 +4,6 @@ import TallLogo from "../images/logo-1.png";
 import { useState } from "react";
 import "./nav.css";
 
-
-
 const Nav = () => {
   const [toggle, setToggle] = useState(false);
 
@@ -25,11 +23,11 @@ const Nav = () => {
         className="navbar"
       >
         <ul className="navbar-links">
-          <Link className="navbar-link">
+          <Link to="/" className="navbar-link">
             <i className="bi bi-house-fill"></i>
             Home
           </Link>
-          <Link className="navbar-link">
+          <Link to="/user" className="navbar-link">
             <i className="bi bi-person-plus-fill"></i>
             Users
           </Link>
@@ -45,9 +43,13 @@ const Nav = () => {
             <i className="bi bi-house-fill"></i>
             Pricing
           </Link>
-          <Link className="navbar-link">
+          <Link to="/signin" className="navbar-link">
             <i className="bi bi-arrow-right-square-fill"></i>
             Log-in
+          </Link>
+          <Link to="/signup" className="navbar-link">
+            <i className="bi bi-arrow-right-square-fill"></i>
+            sign-up
           </Link>
         </ul>
       </nav>
