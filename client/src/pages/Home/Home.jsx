@@ -1,16 +1,18 @@
 import React from "react";
+import Banner from "../../components/banner/Banner";
+import Features from "../../components/features/Features";
+import HeroHeader from "../../components/hero-header/HeroHeader";
+import Steps from "../../components/features-step/Steps";
 
 import TEST_ID from "./Home.testid";
 
 const Home = () => {
-  const headerStyle = {
-    background: "aqua",
-  };
-
   return (
     <div data-testid={TEST_ID.container}>
-      <h1 style={headerStyle}>This is the homepage</h1>
-      <p>Good luck with the project!</p>
+      <HeroHeader />
+      <Features />
+      <Banner />
+      <Steps />
     </div>
   );
 };

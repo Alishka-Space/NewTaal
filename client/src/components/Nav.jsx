@@ -1,60 +1,67 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { styled } from "@mui/material/styles";
-import Button from "@mui/material/Button";
-
-import TEST_ID from "./Nav.testid";
-
-const NavContainer = styled("ul")({
-  display: "flex",
-  listStyle: "none",
-  padding: 0,
-});
-
-const NavItem = styled("li")({
-  marginRight: "1rem",
-});
-
-const StyledLink = styled(Link)({
-  textDecoration: "none",
-  margin: "8px 0",
-});
-
-const StyledButton = styled(Button)({
-  backgroundColor: "#424242",
-  color: "#fff",
-  fontWeight: "bold",
-  padding: "4px 8px",
-  borderRadius: "4px",
-  "&:hover": {
-    backgroundColor: "#333",
-  },
-});
+import TallLogo from "../images/logo-1.png";
+import { useState } from "react";
+import "./nav.css";
 
 const Nav = () => {
+  const [toggle, setToggle] = useState(false);
+
   return (
-    <NavContainer>
-      <NavItem>
-        <StyledLink to="/" data-testid={TEST_ID.linkToHome}>
-          <StyledButton variant="contained">Home</StyledButton>
-        </StyledLink>
-      </NavItem>
-      <NavItem>
-        <StyledLink to="/user" data-testid={TEST_ID.linkToUsers}>
-          <StyledButton variant="contained">Users</StyledButton>
-        </StyledLink>
-      </NavItem>
-      <NavItem>
-        <StyledLink to="/signin">
-          <StyledButton variant="contained">Sign In</StyledButton>
-        </StyledLink>
-      </NavItem>
-      <NavItem>
-        <StyledLink to="/signup">
-          <StyledButton variant="contained">Sign Up</StyledButton>
-        </StyledLink>
-      </NavItem>
-    </NavContainer>
+    <header className="header">
+      <div className="logo">
+        <img src={TallLogo} alt="logo" className="logo-img" />
+        <div className="logo-text">
+          <b>Taal</b>
+          <b>Coach</b>
+        </div>
+      </div>
+      <nav
+        style={{
+          clipPath: toggle && "polygon(0 0, 100% 0, 100% 100%, 0 100%)",
+        }}
+        className="navbar"
+      >
+        <ul className="navbar-links">
+          <Link to="/" className="navbar-link">
+            <i className="bi bi-house-fill"></i>
+            Home
+          </Link>
+          <Link to="/user" className="navbar-link">
+            <i className="bi bi-person-plus-fill"></i>
+            Users
+          </Link>
+          <Link className="navbar-link">
+            <i className="bi bi-bank2"></i>
+            About us
+          </Link>
+          <Link className="navbar-link">
+            <i className="bi bi-person-plus-fill"></i>
+            Coaches
+          </Link>
+          <Link className="navbar-link">
+            <i className="bi bi-house-fill"></i>
+            Pricing
+          </Link>
+          <Link to="/signin" className="navbar-link">
+            <i className="bi bi-arrow-right-square-fill"></i>
+            Log-in
+          </Link>
+          <Link to="/signup" className="navbar-link">
+            <i className="bi bi-arrow-right-square-fill"></i>
+            sign-up
+          </Link>
+        </ul>
+      </nav>
+
+      <div onClick={() => setToggle((prev) => !prev)} className="header-menu">
+        {toggle ? (
+          <i className="bi bi-x-lg"></i>
+        ) : (
+          <i className="bi bi-list"></i>
+        )}
+      </div>
+    </header>
   );
 };
 
