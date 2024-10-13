@@ -9,6 +9,8 @@ import Features from "./components/features/Features";
 import Steps from "./components/features-step/Steps";
 import Footer from "../src/components/footer/Footer";
 import Banner from "../src/components/banner/Banner";
+import SignIn from "./pages/SignInPage/SignIn";
+import SignUp from "./pages/SignUpPage/SignUp";
 
 const App = () => {
   return (
@@ -23,6 +25,8 @@ const App = () => {
         <Route path="/" element={<Home />} />
         <Route path="/user" element={<UserList />} />
         <Route path="/user/create" element={<CreateUser />} />
+        <Route path="/signin" element={<SignIn />} />
+        <Route path="/signup" element={<SignUp />} />
       </Routes>
     </>
   );
