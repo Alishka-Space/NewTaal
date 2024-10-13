@@ -4,7 +4,8 @@ import Nav from "./components/Nav";
 import Home from "./pages/Home/Home";
 import CreateUser from "./pages/User/CreateUser";
 import UserList from "./pages/User/UserList";
-import SignIn from "./pages/SignInPage/Sign-In/SignIn";
+import SignIn from "./pages/SignInPage/SignIn";
+import SignUp from "./pages/SignUpPage/SignUp";
 
 const App = () => {
   return (
@@ -15,6 +16,7 @@ const App = () => {
         <Route path="/user" element={<UserList />} />
         <Route path="/user/create" element={<CreateUser />} />
         <Route path="/signin" element={<SignIn />} />
+        <Route path="/signup" element={<SignUp />} />
       </Routes>
     </>
   );
