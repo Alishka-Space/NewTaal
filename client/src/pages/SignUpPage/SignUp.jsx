@@ -25,6 +25,8 @@ import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
 import getSignUpTheme from "../shared-theme/getSignUpTheme";
 import { GoogleIcon, FacebookIcon } from "../shared-theme/CustomIcons";
+import useFetch from "../../hooks/useFetch";
+import { useNavigate } from "react-router-dom";
 
 const Card = styled(MuiCard)(({ theme }) => ({
   display: "flex",
@@ -86,29 +88,32 @@ export default function SignUp() {
   const [languageProficiencyErrorMessage, setLanguageProficiencyErrorMessage] =
     React.useState("");
   const [languageGoals, setLanguageGoals] = React.useState("");
-  const [languageGoalsError, setLanguageGoalsError] = React.useState(false);
-  const [languageGoalsErrorMessage, setLanguageGoalsErrorMessage] =
-    React.useState("");
+  const [languageGoalsError] = React.useState(false);
+  const [languageGoalsErrorMessage] = React.useState("");
   const [selectedTopic, setSelectedTopic] = React.useState("");
-  const [selectedTopicError, setSelectedTopicError] = React.useState(false);
-  const [selectedTopicErrorMessage, setSelectedTopicErrorMessage] =
-    React.useState("");
+  const [selectedTopicError] = React.useState(false);
+  const [selectedTopicErrorMessage] = React.useState("");
   const [teachingLevel, setTeachingLevel] = React.useState("");
-  const [teachingLevelError, setTeachingLevelError] = React.useState(false);
-  const [teachingLevelErrorMessage, setTeachingLevelErrorMessage] =
-    React.useState("");
+  const [teachingLevelError] = React.useState(false);
+  const [teachingLevelErrorMessage] = React.useState("");
+
+  const onSuccess = () => {
+    const navigate = useNavigate();
+    setTimeout(() => {
+      navigate("/signin");
+    }, 500);
+  };
+
+  const { performFetch, cancelFetch } = useFetch("/user/create", onSuccess);
 
   const validateInputs = () => {
     const name = document.getElementById("name");
     const email = document.getElementById("email");
     const password = document.getElementById("password");
-    const role = document.getElementById("role");
-    const dateOfBirth = document.getElementById("dateOfBirth");
     const nationality = document.getElementById("nationality");
-    const languageProficiency = document.getElementById("languageProficiency");
-    const languageGoals = document.getElementById("languageGoals");
-    const selectedTopic = document.getElementById("selectedTopic");
-    const teachingLevel = document.getElementById("teachingLevel");
+    // const languageGoals = document.getElementById("languageGoals");
+    // const selectedTopic = document.getElementById("selectedTopic");
+    // const teachingLevel = document.getElementById("teachingLevel");
 
     let isValid = true;
 
@@ -148,7 +153,7 @@ export default function SignUp() {
       setRoleErrorMessage("");
     }
 
-    if (!dateOfBirth || dateOfBirth.value.length < 1) {
+    if (!dateOfBirth) {
       setDateOfBirthError(true);
       setDateOfBirthErrorMessage("Please enter your date of birth.");
       isValid = false;
@@ -175,50 +180,62 @@ export default function SignUp() {
       setLanguageProficiencyErrorMessage("");
     }
 
-    if (!languageGoals) {
-      setLanguageGoalsError(true);
-      setLanguageGoalsErrorMessage("Please select your goal.");
-      isValid = false;
-    } else {
-      setLanguageGoalsError(false);
-      setLanguageGoalsErrorMessage("");
-    }
+    // if (!languageGoals) {
+    //   setLanguageGoalsError(true);
+    //   setLanguageGoalsErrorMessage("Please select your goal.");
+    //   isValid = false;
+    // } else {
+    //   setLanguageGoalsError(false);
+    //   setLanguageGoalsErrorMessage("");
+    // }
 
-    if (!selectedTopic) {
-      setSelectedTopicError(true);
-      setSelectedTopicErrorMessage("Please select your topic.");
-      isValid = false;
-    } else {
-      setSelectedTopicError(false);
-      setSelectedTopicErrorMessage("");
-    }
+    // if (!selectedTopic) {
+    //   setSelectedTopicError(true);
+    //   setSelectedTopicErrorMessage("Please select your topic.");
+    //   isValid = false;
+    // } else {
+    //   setSelectedTopicError(false);
+    //   setSelectedTopicErrorMessage("");
+    // }
 
-    if (!teachingLevel) {
-      setTeachingLevelError(true);
-      setTeachingLevelErrorMessage("Please select your teaching level.");
-      isValid = false;
-    } else {
-      setTeachingLevelError(false);
-      setTeachingLevelErrorMessage("");
-    }
+    // if (!teachingLevel) {
+    //   setTeachingLevelError(true);
+    //   setTeachingLevelErrorMessage("Please select your teaching level.");
+    //   isValid = false;
+    // } else {
+    //   setTeachingLevelError(false);
+    //   setTeachingLevelErrorMessage("");
+    // }
     return isValid;
   };
 
+  React.useEffect(() => {
+    return cancelFetch;
+  }, []);
+
   const handleSubmit = (event) => {
-    if (
-      nameError ||
-      emailError ||
-      passwordError ||
-      roleError ||
-      dateOfBirthError ||
-      nationalityError ||
-      languageProficiencyError ||
-      languageGoalsError ||
-      selectedTopicError ||
-      teachingLevelError
-    ) {
-      event.preventDefault();
-      return;
+    event.preventDefault();
+    if (validateInputs()) {
+      performFetch({
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify({
+          user: {
+            name: document.getElementById("name").value,
+            email: document.getElementById("email").value,
+            password: document.getElementById("password").value,
+            role: role,
+            dateOfBirth: dateOfBirth,
+            nationality: document.getElementById("nationality").value,
+            languageProficiency: languageProficiency,
+            // languageGoals: languageGoals,
+            // selectedTopic: selectedTopic,
+            // teachingLevel: teachingLevel,
+          },
+        }),
+      });
     }
   };
 
@@ -377,7 +394,7 @@ export default function SignUp() {
                   </FormHelperText>
                 )}
               </FormControl>
-              <FormControl fullWidth disabled={learnerSelected}>
+              <FormControl fullWidth>
                 <FormLabel htmlFor="proficiency">
                   Language Proficiency
                 </FormLabel>
