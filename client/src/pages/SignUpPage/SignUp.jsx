@@ -97,14 +97,16 @@ export default function SignUp() {
   const [teachingLevelError] = React.useState(false);
   const [teachingLevelErrorMessage] = React.useState("");
 
+  const navigate = useNavigate();
+
   const onSuccess = () => {
-    const navigate = useNavigate();
-    setTimeout(() => {
-      navigate("/signin");
-    }, 500);
+    navigate("/signin");
   };
 
-  const { performFetch, cancelFetch } = useFetch("/user/create", onSuccess);
+  const { error, performFetch, cancelFetch } = useFetch(
+    "/user/create",
+    onSuccess,
+  );
 
   const validateInputs = () => {
     const name = document.getElementById("name");
@@ -267,6 +269,10 @@ export default function SignUp() {
   const handleTeachingLevelChange = (event) => {
     setTeachingLevel(event.target.value);
   };
+
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
 
   return (
     <TemplateFrame>
