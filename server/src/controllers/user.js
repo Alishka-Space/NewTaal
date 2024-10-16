@@ -82,8 +82,10 @@ export const login = async (req, res) => {
     }
 
     const token = generateToken(userFromDb);
+    const userData = getUserFromToken(token);
+    const userInformation = await User.findOne({ email });
 
-    res.status(200).json({ success: true, token });
+    res.status(200).json({ success: true, token, userData, userInformation });
   } catch (error) {
     logError(error);
     res
@@ -137,4 +139,9 @@ const generateToken = (user) => {
 const extractToken = (req) => {
   const header = req.headers.authorization;
   return header.split(" ")[1];
+};
+
+// Helper function to get user from token
+const getUserFromToken = (token) => {
+  return jwt.verify(token, process.env.SECRET_KEY);
 };
