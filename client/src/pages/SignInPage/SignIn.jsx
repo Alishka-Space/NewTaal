@@ -17,6 +17,8 @@ import { createTheme, ThemeProvider, styled } from "@mui/material/styles";
 import getSignUpTheme from "../shared-theme/getSignUpTheme";
 import { GoogleIcon, FacebookIcon } from "../shared-theme/CustomIcons";
 import ForgotPassword from "./ForgotPassword";
+import useFetch from "../../hooks/useFetch";
+import { useNavigate } from "react-router-dom";
 
 const Card = styled(MuiCard)(({ theme }) => ({
   display: "flex",
@@ -70,11 +72,23 @@ TemplateFrame.propTypes = {
 export default function SignIn() {
   const SignUpTheme = createTheme(getSignUpTheme());
 
+  const [email, setEmail] = React.useState("");
+  const [password, setPassword] = React.useState("");
   const [emailError, setEmailError] = React.useState(false);
   const [emailErrorMessage, setEmailErrorMessage] = React.useState("");
   const [passwordError, setPasswordError] = React.useState(false);
   const [passwordErrorMessage, setPasswordErrorMessage] = React.useState("");
   const [open, setOpen] = React.useState(false);
+
+  const navigate = useNavigate();
+
+  const onSuccess = (response) => {
+    const { token } = response;
+    document.cookie = `jwt=${token}; max-age=1000; path=/`;
+    navigate("/userhome");
+  };
+
+  const { error, performFetch } = useFetch("/user/login", onSuccess);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -82,13 +96,6 @@ export default function SignIn() {
 
   const handleClose = () => {
     setOpen(false);
-  };
-
-  const handleSubmit = (event) => {
-    if (emailError || passwordError) {
-      event.preventDefault();
-      return;
-    }
   };
 
   const validateInputs = () => {
@@ -117,6 +124,23 @@ export default function SignIn() {
 
     return isValid;
   };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    if (validateInputs()) {
+      performFetch({
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password }),
+      });
+    }
+  };
+
+  if (error) {
+    alert(error);
+  }
 
   return (
     <TemplateFrame>
@@ -158,6 +182,8 @@ export default function SignIn() {
                   variant="outlined"
                   color={emailError ? "error" : "primary"}
                   sx={{ ariaLabel: "email" }}
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                 />
               </FormControl>
               <FormControl>
@@ -186,6 +212,9 @@ export default function SignIn() {
                   fullWidth
                   variant="outlined"
                   color={passwordError ? "error" : "primary"}
+                  sx={{ ariaLabel: "password" }}
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                 />
               </FormControl>
               <FormControlLabel
