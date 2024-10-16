@@ -7,6 +7,7 @@ import UserList from "./pages/User/UserList";
 import Footer from "../src/components/footer/Footer";
 import SignIn from "./pages/SignInPage/SignIn";
 import SignUp from "./pages/SignUpPage/SignUp";
+import HomeUser from "./components/home-page-user/HomeUser";
 
 const App = () => {
   return (
@@ -19,7 +20,9 @@ const App = () => {
         <Route path="/user/create" element={<CreateUser />} />
         <Route path="/signin" element={<SignIn />} />
         <Route path="/signup" element={<SignUp />} />
+        <Route path="/userhome" element={<HomeUser />} />
       </Routes>
+
       <Footer />
     </>
   );

@@ -1,0 +1,95 @@
+/* General Styling for User Homepage */
+.user-homepage-search {
+  padding: 40px 20px;
+  background-color: #324a8b;
+  text-align: center;
+}
+
+.greeting {
+  color: #daeb3f;
+  padding: 30px;
+  border-radius: 8px;
+  margin-bottom: 40px;
+}
+
+.greeting h1 {
+  font-size: 2.5em;
+  font-weight: 600;
+}
+
+/* Search and Filter Section */
+.search-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+/* Button Group for Three Primary Buttons */
+.button-group {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+/* Button Styles */
+button {
+  width: 200px;
+  background-color: #9c5be7;
+  font-size: 17px;
+  font-weight: bold;
+  padding: 10px 20px;
+  border: 2px solid #1c1d17;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+button:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 10px rgba(52, 104, 207, 0.1);
+}
+
+.find-button:hover {
+  background-color: #d356de;
+}
+
+.book-button:hover {
+  background-color: #d356de;
+}
+
+.visit-profile:hover {
+  background-color: #d356de;
+}
+
+/* Search and Filter Buttons */
+.filter-search-group {
+  display: flex;
+  gap: 20px;
+}
+
+.search-coaches {
+  flex: 1; /* Make the Search Coaches button wider */
+}
+
+.search-filter:hover {
+  background-color: #daeb3f;
+}
+
+.search-coaches:hover {
+  background-color: #daeb3f;
+}
+
+/* Responsive layout for smaller screens */
+@media screen and (max-width: 768px) {
+  .button-group,
+  .filter-search-group {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  button {
+    width: 100%;
+    max-width: 320px;
+  }
+}

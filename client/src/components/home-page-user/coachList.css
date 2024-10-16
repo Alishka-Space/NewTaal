@@ -1,0 +1,134 @@
+.coaches-list {
+  padding: 30px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  background-color: #7e70cc0d;
+}
+
+.coach-item {
+  width: 33%;
+  margin: 25px 10px;
+  border-radius: 10px;
+  background-color: white;
+  transition: all 0.5s ease;
+  position: relative;
+}
+.coach-item:hover {
+  background-color: snow;
+  box-shadow: 0 2px 15px rgba(191, 42, 224, 0.553);
+}
+
+.coach-item-img {
+  width: 100%;
+  height: 380px;
+  border-radius: 10px 10px 0;
+  object-fit: cover;
+}
+.coach-item-label {
+  position: absolute;
+  top: 360px;
+  left: 10px;
+  color: #dc62e5;
+  background-color: #05050594;
+  font-weight: 600;
+  padding: 6px 20px;
+  border-radius: 10px;
+}
+
+.coach-item-body {
+  padding: 15px 10px;
+  color: rgb(15, 13, 8);
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+.coach-item-name {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.coach-item-bio {
+  margin: 15px 0;
+  font-weight: 500;
+}
+.coach-item-price {
+  margin-top: 25px;
+  margin-bottom: 15px;
+  width: 100%;
+  color: #e5c962;
+}
+.coach-item-price strong {
+  font-size: 20px;
+  font-weight: 600;
+  color: #bf0202;
+}
+.coach-item-links {
+  display: flex;
+  justify-content: space-around;
+  text-align: center;
+  width: 100%;
+  border-radius: 12px;
+}
+.coach-item-link {
+  width: 44%;
+  margin: 5px 3px;
+  padding: 10px;
+  font-size: 14px;
+  transition: all 0.3s;
+}
+.coach-item-link:hover {
+  background-color: #daeb3f;
+  transform: scale(1.1);
+}
+
+/* Rating */
+.rating {
+  color: #e5c962;
+}
+.rating i {
+  font-size: 21px;
+  margin-right: 4px;
+}
+.rating span:first-of-type {
+  font-weight: 500;
+  color: var(--primary-text-color);
+  margin: 0 10px;
+}
+.rating span:last-of-type {
+  color: rgb(60, 37, 37);
+  font-size: 15px;
+  font-weight: 500;
+}
+
+/* Media Queries */
+@media (max-width: 980px) {
+  .coach-item {
+    width: 70%;
+  }
+  .coach-item-link {
+    margin: 5px 3px;
+    width: 44%;
+  }
+}
+
+@media (max-width: 720px) {
+  .coach-item {
+    width: 80%;
+  }
+  .coach-item-link {
+    margin: 5px 3px;
+    width: 40%;
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 520px) {
+  .coach-item {
+    width: 100%;
+  }
+}
