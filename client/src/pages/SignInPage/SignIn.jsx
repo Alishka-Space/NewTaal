@@ -19,6 +19,7 @@ import { GoogleIcon, FacebookIcon } from "../shared-theme/CustomIcons";
 import ForgotPassword from "./ForgotPassword";
 import useFetch from "../../hooks/useFetch";
 import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../../context/AuthContext";
 
 const Card = styled(MuiCard)(({ theme }) => ({
   display: "flex",
@@ -72,6 +73,7 @@ TemplateFrame.propTypes = {
 export default function SignIn() {
   const SignUpTheme = createTheme(getSignUpTheme());
 
+  const { login } = React.useContext(AuthContext);
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [emailError, setEmailError] = React.useState(false);
@@ -84,13 +86,12 @@ export default function SignIn() {
 
   const onSuccess = (response) => {
     const token = response.token;
-    const userName = response.userInformation.name;
-    const userRole = response.userInformation.role;
+    const user = response.userInformation.name;
+    const role = response.userInformation.role;
 
-    document.cookie = `userRole=${userRole}; path=/`;
-    document.cookie = `userName=${userName}; path=/`;
-    document.cookie = `jwt=${token}; path=/`;
-    if (userRole === "learner") navigate("/userhome");
+    login(token, user, role);
+
+    if (role === "learner") navigate("/userhome");
     else navigate("/coachhome");
   };
 
