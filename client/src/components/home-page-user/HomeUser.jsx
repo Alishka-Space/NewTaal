@@ -1,7 +1,19 @@
 import React from "react";
 import "./homeUser.css";
+import CoachList from "./CoachList";
+import Pagination from "../pagination/Pagination";
+import { useState } from "react";
+import { coachList } from "../../data";
 
 const HomeUser = () => {
+  const [currentPage, setCurrentPage] = useState(1);
+  const COACH_PER_PAGE = 4;
+
+  const pages = Math.ceil(coachList.length / COACH_PER_PAGE);
+  const startIndex = (currentPage - 1) * COACH_PER_PAGE;
+  const finishIndex = currentPage * COACH_PER_PAGE;
+
+  const coaches = coachList.slice(startIndex, finishIndex);
   return (
     <div>
       <div className="user-homepage-search">
@@ -26,6 +38,13 @@ const HomeUser = () => {
           </div>
         </section>
       </div>
+
+      <CoachList coachList={coaches} />
+      <Pagination
+        pages={pages}
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
+      />
     </div>
   );
 };
