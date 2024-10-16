@@ -1,37 +1,45 @@
-.features {
+.features-div {
   width: 100%;
+  height: 600px;
   background-color: #f8f9fa;
-  padding: 60px 0;
-  display: flex;
 }
-
 .feature-title {
   font-size: 30px;
   font-weight: bold;
   color: #531a85;
-  padding: 10px;
-  margin: 20px;
+  margin: 20px 0;
+
   text-align: center;
 }
 
-.feature {
-  height: 200px;
-  padding: 20px;
-  border-radius: 20px;
-  background-color: #5c40d4;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+.features {
+  background-image: url("../../../public/featuers-img/cleanbg.webp");
+  background-size: cover;
+  width: 100%;
+  height: 550px;
   display: flex;
-  text-align: center;
+  position: relative;
+}
+.feature {
+  width: 100%;
+  display: flex;
   justify-content: space-around;
   align-items: center;
-  margin: 20px;
+  flex-wrap: wrap;
 }
-
 .feature h3 {
-  margin-top: 10px;
-  font-size: 1.5em;
+  font-size: 20px;
+  font-weight: bold;
+  color: #111012;
+  padding: 20px;
+  text-align: center;
+  margin-bottom: 20px;
+  font-family: bauhaus;
 }
-
-.feature p {
-  margin-top: 10px;
+.about-img {
+  width: 400px;
+  height: 370px;
+  object-fit: cover;
+  position: absolute;
+  top: 200px;
 }
