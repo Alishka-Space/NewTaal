@@ -1,35 +1,35 @@
 .features-steps {
   width: 100%;
-  background-color: #f8f9fa;
+  background-color: #dfdbdb;
 }
 
 .steps {
   width: 100%;
-  height: 400px;
-  background-color: #f8f9fa;
-  padding: 20px 0;
+  height: 100%;
   display: flex;
-}
-
-.step-title {
-  font-size: 30px;
-  font-weight: bold;
-  color: #531a85;
-  padding: 10px;
-  margin: 20px;
-  text-align: center;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
 .step {
-  width: 100%;
-  height: 90%;
-  padding: 20px;
-  border-radius: 20px;
-  background-color: #5c40d4;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 630px;
+  height: 100%;
   display: flex;
+  flex-direction: column;
+  margin: 10px 5px;
+  padding: 10px;
+  border-radius: 40px;
+  background-color: #773baf;
+}
+.step span {
+  color: rgb(20, 18, 18);
+  font-size: 32px;
+  font-weight: bold;
   text-align: center;
-  justify-content: space-between;
-  align-items: center;
-  margin: 0 10px;
+}
+
+.step-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }

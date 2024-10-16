@@ -1,28 +1,26 @@
 .hero-header {
-  background-image: url("../../images/artboard-12.webp");
-  background-size: cover;
   width: 100%;
-  height: 100vh;
+  height: calc(100vh - 100px);
+  position: relative;
 }
 
-.hero-title {
-  font-size: 30px;
-  font-weight: bold;
-  color: #daeb3f;
-  padding: 10px;
-  margin: 20px;
+.hero-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
+
 .hero-btn {
   background-color: #daeb3f;
   color: #141212;
   font-size: 20px;
   text-decoration: none;
   font-weight: bold;
-  padding: 10px 20px;
+  padding: 30px 40px;
   border: 2px solid #1c1d17;
-  border-radius: 20px;
+  border-radius: 30px;
   cursor: pointer;
-  margin-top: 30px;
+  font-family: bauhaus;
   transition: all 0.3s;
   position: absolute;
   left: 20%;
@@ -37,10 +35,8 @@
 }
 
 @media (max-width: 720px) {
-  .hero-title {
+  .hero-btn {
     font-size: 20px;
-    font-weight: bold;
-    color: #daeb3f;
-    margin: 20px;
+    padding: 15px 20px;
   }
 }

@@ -1,5 +1,8 @@
 import React from "react";
 import "./features.css";
+import about from "../../../public/featuers-img/remove3.png";
+import abouta from "../../../public/featuers-img/remove1.png";
+import aboutb from "../../../public/featuers-img/remove2.png";
 
 const Features = () => {
   return (
@@ -7,19 +10,15 @@ const Features = () => {
       <h1 className="feature-title">Our Features</h1>
       <div className="features">
         <div className="feature">
-          <i className="bi bi-person-fill"></i>
-          <h3>1-on-1 Coaching</h3>
-          <p>Personalized sessions tailored to your learning style.</p>
+          <h3>1-on-1 Language Coaching</h3>
+          <img src={about} alt="about-img" className="about-img" />
         </div>
         <div className="feature">
-          <i className="bi bi-clock"></i>
-          <h3>Flexible Scheduling</h3>
-          <p>Learn at your own pace with flexible session timings.</p>
+          <img src={abouta} alt="about-img" className="about-img" />
         </div>
         <div className="feature">
-          <i className="bi bi-globe"></i>
-          <h3>Language Proficiency</h3>
-          <p>Improve your language skills with expert mentors.</p>
+          <h3>Professional Language Coaches</h3>
+          <img src={aboutb} alt="about-img" className="about-img" />
         </div>
       </div>
     </div>

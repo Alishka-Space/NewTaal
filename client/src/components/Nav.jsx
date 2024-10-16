@@ -39,10 +39,6 @@ const Nav = () => {
             <i className="bi bi-person-plus-fill"></i>
             Coaches
           </Link>
-          <Link className="navbar-link">
-            <i className="bi bi-house-fill"></i>
-            Pricing
-          </Link>
           <Link to="/signin" className="navbar-link">
             <i className="bi bi-arrow-right-square-fill"></i>
             Log-in
