@@ -83,9 +83,15 @@ export default function SignIn() {
   const navigate = useNavigate();
 
   const onSuccess = (response) => {
-    const { token } = response;
-    document.cookie = `jwt=${token}; max-age=1000; path=/`;
-    navigate("/userhome");
+    const token = response.token;
+    const userName = response.userInformation.name;
+    const userRole = response.userInformation.role;
+
+    document.cookie = `userRole=${userRole}; path=/`;
+    document.cookie = `userName=${userName}; path=/`;
+    document.cookie = `jwt=${token}; path=/`;
+    if (userRole === "learner") navigate("/userhome");
+    else navigate("/coachhome");
   };
 
   const { error, performFetch } = useFetch("/user/login", onSuccess);
