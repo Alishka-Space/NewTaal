@@ -53,20 +53,7 @@ export const createUser = async (req, res) => {
 
 export const login = async (req, res) => {
   try {
-    const { user } = req.body;
-
-    if (typeof user !== "object") {
-      res.status(400).json({
-        success: false,
-        msg: `You need to provide a 'user' object. Received: ${JSON.stringify(
-          user,
-        )}`,
-      });
-
-      return;
-    }
-
-    const { email, password } = user;
+    const { email, password } = req.body;
 
     if (!email || !password) {
       res.status(400).json({
