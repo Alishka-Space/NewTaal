@@ -1,6 +1,5 @@
 /* General Styling for User Homepage */
 
-
 .coach-homepage-search {
   padding: 40px 20px;
   text-align: center;
@@ -57,9 +56,7 @@
   border-radius: 8px;
   cursor: pointer;
   transition: all 0.3s;
-  
 }
-
 
 /* Responsive layout for smaller screens */
 @media screen and (max-width: 768px) {

@@ -1,14 +1,17 @@
-import React from "react"
-import "./traineeList.css"
-import PropTypes from "prop-types"
-
+import React from "react";
+import "./traineeList.css";
+import PropTypes from "prop-types";
 
 const TraineeList = ({ traineeList }) => {
   return (
     <div className="trainee-list">
-      {traineeList.map(student =>
+      {traineeList.map((student) => (
         <div className="student-item" key={student.id}>
-          <img src={student.image} alt={student.studentName} className='student-item-img' />
+          <img
+            src={student.image}
+            alt={student.studentName}
+            className="student-item-img"
+          />
           <div className="student-item-body">
             <div className="coach-item-name">
               {" "}
@@ -29,20 +32,14 @@ const TraineeList = ({ traineeList }) => {
               <button className="student-item-link">Send a Message</button>
             </div>
           </div>
-
         </div>
-
-      )}
-
-
-    </div >
-
-  )
-}
+      ))}
+    </div>
+  );
+};
 
 TraineeList.propTypes = {
   traineeList: PropTypes.array.isRequired,
-}
+};
 
-
-export default TraineeList
+export default TraineeList;

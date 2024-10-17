@@ -67,10 +67,10 @@
 .filter-search-group {
   display: flex;
   gap: 20px;
-  
 }
 
-.search-coaches , .search-filter{
+.search-coaches,
+.search-filter {
   width: 200px;
   background-color: #9c5be7;
   font-size: 17px;

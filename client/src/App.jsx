@@ -10,7 +10,6 @@ import SignUp from "./pages/SignUpPage/SignUp";
 import HomeUser from "./components/home-page-user/HomeUser";
 import HomeCoach from "./components/home-page-coach/HomeCoach";
 
-
 const App = () => {
   return (
     <>
@@ -25,8 +24,6 @@ const App = () => {
         <Route path="/userhome" element={<HomeUser />} />
         <Route path="/coachhome" element={<HomeCoach />} />
       </Routes>
-
-      
 
       <Footer />
     </>

@@ -70,8 +70,6 @@
   transform: scale(1.1);
 }
 
-
-
 /* Media Queries */
 @media (max-width: 980px) {
   .student-item {

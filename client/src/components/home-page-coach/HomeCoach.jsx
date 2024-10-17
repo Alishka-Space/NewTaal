@@ -1,8 +1,8 @@
-import React from "react"
-import "./homeCoach.css"
-import {traineeList} from "../../data";
+import React from "react";
+import "./homeCoach.css";
+import { traineeList } from "../../data";
 import TraineeList from "../home-page-coach/TraineeList";
-import {useState} from "react";
+import { useState } from "react";
 import Pagination from "../pagination/Pagination";
 
 const HomeCoach = () => {
@@ -44,10 +44,8 @@ const HomeCoach = () => {
         currentPage={currentPage}
         setCurrentPage={setCurrentPage}
       />
-
     </div>
+  );
+};
 
-  )
-}
-
-export default HomeCoach
+export default HomeCoach;
