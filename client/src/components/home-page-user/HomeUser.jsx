@@ -4,8 +4,10 @@ import CoachList from "./CoachList";
 import Pagination from "../pagination/Pagination";
 import { useState } from "react";
 import { coachList } from "../../data";
+import { AuthContext } from "../../context/AuthContext";
 
 const HomeUser = () => {
+  const { authState } = React.useContext(AuthContext);
   const [currentPage, setCurrentPage] = useState(1);
   const COACH_PER_PAGE = 4;
 
@@ -19,7 +21,7 @@ const HomeUser = () => {
       <div className="user-homepage-search">
         {/* Greeting Section */}
         <header className="greeting">
-          <h1>Hello , [User Name]</h1> {/* Dynamically insert user name */}
+          <h1>Hello , {authState.user}</h1> {/* Dynamically insert user name */}
         </header>
 
         {/* Search and Filter Section */}

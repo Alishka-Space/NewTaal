@@ -5,9 +5,9 @@ export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [authState, setAuthState] = useState({
-    token: null,
-    user: null,
-    role: null,
+    token: localStorage.getItem("token"),
+    user: localStorage.getItem("user"),
+    role: localStorage.getItem("role"),
   });
 
   useEffect(() => {
