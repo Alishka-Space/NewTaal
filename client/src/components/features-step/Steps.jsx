@@ -1,21 +1,23 @@
 import React from "react";
 import "./steps.css";
+import stepOne from "../../../public/steps/step1.png";
+import steptree from "../../../public/steps/step3.png";
+import stepFour from "../../../public/steps/step4.png";
 const Steps = () => {
   return (
     <div className="features-steps">
-      <h2 className="step-title">How It Works</h2>
       <div className="steps">
         <div className="step">
-          <i className="bi bi-person-plus-fill"></i>
-          <h3>Create Your Account</h3>
+          <img src={stepOne} alt="step-img" className="step-img" />
+          <span>Connect with a mentor</span>
         </div>
         <div className="step">
-          <i className="bi bi-people-fill"></i>
-          <h3>Connect with a Mentor</h3>
+          <img src={steptree} alt="step-img" className="step-img" />
+          <span>Book your session</span>
         </div>
         <div className="step">
-          <i className="bi bi-book"></i>
-          <h3>Start Learning</h3>
+          <span>Start Learning</span>
+          <img src={stepFour} alt="step-img" className="step-img" />
         </div>
       </div>
     </div>

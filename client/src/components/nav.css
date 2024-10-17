@@ -1,7 +1,7 @@
 .header {
   width: 100%;
   height: 100px;
-  background-color: #324a8b;
+  background-color: #773baf;
   display: flex;
   align-items: center;
   justify-content: space-around;
@@ -11,7 +11,7 @@
 
 /* Logo */
 .logo {
-  width: 170px;
+  width: 100px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -19,7 +19,6 @@
 
 .logo-img {
   width: 100px;
-  margin-top: 20px;
 }
 
 .logo-text {
@@ -27,7 +26,6 @@
   flex-direction: column;
   font-size: 20px;
   font-weight: bold;
-  margin: 20px;
 }
 
 .logo-text b {
@@ -35,6 +33,7 @@
   color: #050402;
   font-weight: 600;
   font-size: 26px;
+  font-family: bauhaus;
 }
 
 /* Nav */
@@ -45,7 +44,7 @@
 }
 
 .navbar-link {
-  margin: 0 17px;
+  margin: 0 10px;
   font-size: 20px;
   font-weight: 300;
   color: #dadac4;
@@ -73,7 +72,6 @@
   }
   .header-menu {
     display: block;
-    margin: 0 50px;
   }
 
   .navbar {
