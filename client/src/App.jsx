@@ -8,6 +8,7 @@ import Footer from "../src/components/footer/Footer";
 import SignIn from "./pages/SignInPage/SignIn";
 import SignUp from "./pages/SignUpPage/SignUp";
 import HomeUser from "./components/home-page-user/HomeUser";
+import PrivateRoute from "./components/PrivateRoute";
 
 const App = () => {
   return (
@@ -20,7 +21,9 @@ const App = () => {
         <Route path="/user/create" element={<CreateUser />} />
         <Route path="/signin" element={<SignIn />} />
         <Route path="/signup" element={<SignUp />} />
-        <Route path="/userhome" element={<HomeUser />} />
+        <Route element={<PrivateRoute />}>
+          <Route path="/userhome" element={<HomeUser />} />
+        </Route>
       </Routes>
 
       <Footer />
