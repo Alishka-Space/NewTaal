@@ -1,9 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
-import Checkbox from "@mui/material/Checkbox";
 import CssBaseline from "@mui/material/CssBaseline";
-import Divider from "@mui/material/Divider";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import FormLabel from "@mui/material/FormLabel";
 import FormControl from "@mui/material/FormControl";
@@ -24,7 +22,6 @@ import { DateField } from "@mui/x-date-pickers/DateField";
 import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
 import getSignUpTheme from "../shared-theme/getSignUpTheme";
-import { GoogleIcon, FacebookIcon } from "../shared-theme/CustomIcons";
 import useFetch from "../../hooks/useFetch";
 import { useNavigate } from "react-router-dom";
 
@@ -72,7 +69,7 @@ export default function SignUp() {
   const [passwordError, setPasswordError] = React.useState(false);
   const [passwordErrorMessage, setPasswordErrorMessage] = React.useState("");
   const [role, setRole] = React.useState("");
-  const [learnerSelected, setLearnerSelected] = useState(false);
+  // const [learnerSelected, setLearnerSelected] = useState(false);
   const [roleError, setRoleError] = React.useState(false);
   const [roleErrorMessage, setRoleErrorMessage] = React.useState("");
   const [dateOfBirth, setDateOfBirth] = React.useState(null);
@@ -87,19 +84,20 @@ export default function SignUp() {
     React.useState(false);
   const [languageProficiencyErrorMessage, setLanguageProficiencyErrorMessage] =
     React.useState("");
-  const [languageGoals, setLanguageGoals] = React.useState("");
-  const [languageGoalsError] = React.useState(false);
-  const [languageGoalsErrorMessage] = React.useState("");
-  const [selectedTopic, setSelectedTopic] = React.useState("");
-  const [selectedTopicError] = React.useState(false);
-  const [selectedTopicErrorMessage] = React.useState("");
-  const [teachingLevel, setTeachingLevel] = React.useState("");
-  const [teachingLevelError] = React.useState(false);
-  const [teachingLevelErrorMessage] = React.useState("");
+  // const [languageGoals, setLanguageGoals] = React.useState("");
+  // const [languageGoalsError] = React.useState(false);
+  // const [languageGoalsErrorMessage] = React.useState("");
+  // const [selectedTopic, setSelectedTopic] = React.useState("");
+  // const [selectedTopicError] = React.useState(false);
+  // const [selectedTopicErrorMessage] = React.useState("");
+  // const [teachingLevel, setTeachingLevel] = React.useState("");
+  // const [teachingLevelError] = React.useState(false);
+  // const [teachingLevelErrorMessage] = React.useState("");
 
   const navigate = useNavigate();
 
   const onSuccess = () => {
+    alert("Account created successfully. Please sign in.");
     navigate("/signin");
   };
 
@@ -243,11 +241,11 @@ export default function SignUp() {
 
   const handleChangeRole = (event) => {
     setRole(event.target.value);
-    if (event.target.value === "learner") {
-      setLearnerSelected(true);
-    } else {
-      setLearnerSelected(false);
-    }
+    // if (event.target.value === "learner") {
+    //   setLearnerSelected(true);
+    // } else {
+    //   setLearnerSelected(false);
+    // }
   };
 
   const handleDateOfBirthChange = (date) => {
@@ -258,17 +256,17 @@ export default function SignUp() {
     setLanguageProficiency(event.target.value);
   };
 
-  const handleChangeLanguageGoals = (event) => {
-    setLanguageGoals(event.target.value);
-  };
+  // const handleChangeLanguageGoals = (event) => {
+  //   setLanguageGoals(event.target.value);
+  // };
 
-  const handleTopicSelection = (event) => {
-    setSelectedTopic(event.target.value);
-  };
+  // const handleTopicSelection = (event) => {
+  //   setSelectedTopic(event.target.value);
+  // };
 
-  const handleTeachingLevelChange = (event) => {
-    setTeachingLevel(event.target.value);
-  };
+  // const handleTeachingLevelChange = (event) => {
+  //   setTeachingLevel(event.target.value);
+  // };
 
   if (error) {
     return <div>Error: {error}</div>;
@@ -372,6 +370,27 @@ export default function SignUp() {
                   color={nationalityError ? "error" : "primary"}
                 />
               </FormControl>
+              <FormControl fullWidth>
+                <FormLabel htmlFor="proficiency">
+                  Language Proficiency
+                </FormLabel>
+                <Select
+                  id="proficiency"
+                  value={languageProficiency}
+                  onChange={handleChangeLanguageProficiency}
+                  variant="outlined"
+                >
+                  <MenuItem value="">Select a Proficiency</MenuItem>
+                  <MenuItem value="beginner">Beginner</MenuItem>
+                  <MenuItem value="intermediate">Intermediate</MenuItem>
+                  <MenuItem value="advanced">Advanced</MenuItem>
+                </Select>
+                {languageProficiencyError && (
+                  <FormHelperText style={{ color: "#B30000" }}>
+                    {languageProficiencyErrorMessage}
+                  </FormHelperText>
+                )}
+              </FormControl>
               <FormControl>
                 <FormLabel id="role-selection-label">
                   Please select your role
@@ -400,28 +419,7 @@ export default function SignUp() {
                   </FormHelperText>
                 )}
               </FormControl>
-              <FormControl fullWidth>
-                <FormLabel htmlFor="proficiency">
-                  Language Proficiency
-                </FormLabel>
-                <Select
-                  id="proficiency"
-                  value={languageProficiency}
-                  onChange={handleChangeLanguageProficiency}
-                  variant="outlined"
-                >
-                  <MenuItem value="">Select a Proficiency</MenuItem>
-                  <MenuItem value="beginner">Beginner</MenuItem>
-                  <MenuItem value="intermediate">Intermediate</MenuItem>
-                  <MenuItem value="advanced">Advanced</MenuItem>
-                </Select>
-                {languageProficiencyError && (
-                  <FormHelperText style={{ color: "#B30000" }}>
-                    {languageProficiencyErrorMessage}
-                  </FormHelperText>
-                )}
-              </FormControl>
-              <FormControl fullWidth disabled={learnerSelected}>
+              {/* <FormControl fullWidth disabled={learnerSelected}>
                 <FormLabel htmlFor="teaching-level">
                   Which level do you want to teach?
                 </FormLabel>
@@ -442,8 +440,8 @@ export default function SignUp() {
                     {teachingLevelErrorMessage}
                   </FormHelperText>
                 )}
-              </FormControl>
-              <FormControl fullWidth>
+              </FormControl> */}
+              {/* <FormControl fullWidth>
                 <FormLabel htmlFor="goals">Language Learning Goals</FormLabel>
                 <Select
                   id="goals"
@@ -489,7 +487,7 @@ export default function SignUp() {
               <FormControlLabel
                 control={<Checkbox value="allowExtraEmails" color="primary" />}
                 label="I want to receive updates via email."
-              />
+              /> */}
               <Button
                 type="submit"
                 fullWidth
@@ -510,27 +508,6 @@ export default function SignUp() {
                   </Link>
                 </span>
               </Typography>
-            </Box>
-            <Divider>
-              <Typography sx={{ color: "text.secondary" }}>or</Typography>
-            </Divider>
-            <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
-              <Button
-                fullWidth
-                variant="outlined"
-                onClick={() => alert("Sign up with Google")}
-                startIcon={<GoogleIcon />}
-              >
-                Sign up with Google
-              </Button>
-              <Button
-                fullWidth
-                variant="outlined"
-                onClick={() => alert("Sign up with Facebook")}
-                startIcon={<FacebookIcon />}
-              >
-                Sign up with Facebook
-              </Button>
             </Box>
           </Card>
         </SignUpContainer>
