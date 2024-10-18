@@ -1,13 +1,13 @@
 /* General Styling for User Homepage */
-.user-homepage-search {
-  padding: 40px 20px;
-  background-color: #442fb80d;
-  margin: 10px;
 
+.coach-homepage-search {
+  padding: 40px 20px;
   text-align: center;
+  background-color: #442fb80d;
+  margin: 15px;
 }
 
-.greeting {
+.greeting-coach {
   color: #daeb3f;
   padding: 30px;
   border-radius: 8px;
@@ -20,7 +20,7 @@
 }
 
 /* Search and Filter Section */
-.search-section {
+.search-section-coach {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -28,72 +28,40 @@
 }
 
 /* Button Group for Three Primary Buttons */
-.button-group {
+.button-group-coach {
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
   gap: 20px;
 }
 
 /* Button Styles */
-.button-group button {
+.button-group-coach button {
   width: 200px;
   background-color: #9c5be7;
   font-size: 17px;
   font-weight: bold;
   padding: 10px 20px;
-  border-radius: 10px;
+  border-radius: 8px;
   cursor: pointer;
   transition: all 0.3s;
 }
 
-.button-group .button:hover {
-  transform: scale(1.1);
-  box-shadow: 0 4px 10px rgba(52, 104, 207, 0.1);
-}
-
-.find-button:hover {
-  background-color: #d356de;
-}
-
-.book-button:hover {
-  background-color: #d356de;
-}
-
-.visit-profile:hover {
-  background-color: #d356de;
-}
-
-/* Search and Filter Buttons */
-.filter-search-group {
-  display: flex;
-  gap: 20px;
-}
-
-.search-coaches,
-.search-filter {
-  width: 200px;
+.search-filter-coach {
+  width: 250px;
   background-color: #9c5be7;
   font-size: 17px;
   font-weight: bold;
   padding: 10px 20px;
-  border-radius: 10px;
+  border-radius: 8px;
   cursor: pointer;
   transition: all 0.3s;
-  flex: 1; /* Make the Search Coaches button wider */
-}
-
-.search-filter:hover {
-  background-color: #daeb3f;
-}
-
-.search-coaches:hover {
-  background-color: #daeb3f;
 }
 
 /* Responsive layout for smaller screens */
 @media screen and (max-width: 768px) {
-  .button-group,
-  .filter-search-group {
+  .button-group-coach,
+  .filter-search-group-coach {
     flex-direction: column;
     gap: 10px;
   }

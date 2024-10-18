@@ -8,6 +8,7 @@ import Footer from "../src/components/footer/Footer";
 import SignIn from "./pages/SignInPage/SignIn";
 import SignUp from "./pages/SignUpPage/SignUp";
 import HomeUser from "./components/home-page-user/HomeUser";
+import HomeCoach from "./components/home-page-coach/HomeCoach";
 import PrivateRoute from "./components/PrivateRoute";
 
 const App = () => {
@@ -23,6 +24,7 @@ const App = () => {
         <Route path="/signup" element={<SignUp />} />
         <Route element={<PrivateRoute />}>
           <Route path="/userhome" element={<HomeUser />} />
+          <Route path="/coachhome" element={<HomeCoach />} />
         </Route>
       </Routes>
 
