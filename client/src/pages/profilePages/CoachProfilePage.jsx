@@ -17,7 +17,7 @@ const CoachProfilePage = () => {
   useEffect(() => {
     if (id) {
       //Get data later from backend
-      setCoachData(coachList.find((c) => c.id === parseInt(id)));
+      setCoachData(coachList.find((c) => c.id == id));
     }
   }, []);
   return (
