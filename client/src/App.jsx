@@ -11,6 +11,7 @@ import HomeUser from "./components/home-page-user/HomeUser";
 import HomeCoach from "./components/home-page-coach/HomeCoach";
 import PrivateRoute from "./components/PrivateRoute";
 import Profile from "./pages/profilePages/CoachProfilePage";
+import About from "./pages/About/About";
 
 const App = () => {
   return (
@@ -23,6 +24,7 @@ const App = () => {
         <Route path="/user/create" element={<CreateUser />} />
         <Route path="/signin" element={<SignIn />} />
         <Route path="/signup" element={<SignUp />} />
+        <Route path="/about" element={<About />} />
         <Route element={<PrivateRoute />}>
           <Route path="/userhome" element={<HomeUser />} />
           <Route path="/coachhome" element={<HomeCoach />} />
