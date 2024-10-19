@@ -57,6 +57,32 @@
   cursor: pointer;
   transition: all 0.3s;
 }
+.filters-container {
+  display: flex;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.search-filter-coach {
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.hide-filter-button {
+  padding: 10px;
+  background-color: #d9534f;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.hide-filter-button:hover {
+  background-color: #c9302c;
+}
 
 /* Responsive layout for smaller screens */
 @media screen and (max-width: 768px) {
