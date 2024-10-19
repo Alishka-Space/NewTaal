@@ -1,4 +1,3 @@
-/* General styling for the About section */
 .about-section {
   position: relative;
   background: url("../../../public/photo/about-web.webp") no-repeat center
@@ -11,7 +10,6 @@
   color: white;
 }
 
-/* Background overlay to improve text readability */
 .about-section::before {
   content: "";
   position: absolute;
@@ -19,22 +17,17 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.209); /* Dark overlay */
+  background-color: rgba(0, 0, 0, 0.209);
   z-index: 1;
 }
 
 /* Text content styling */
 .about-content {
   position: relative;
-  z-index: 2; /* Place it above the overlay */
+  z-index: 2;
   max-width: 800px;
   padding: 40px;
-  background-color: rgba(
-    255,
-    255,
-    255,
-    0.1
-  ); /* Optional translucent background */
+  background-color: rgba(255, 255, 255, 0.1);
   border-radius: 10px;
   text-align: center;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
@@ -43,7 +36,7 @@
 .about-title {
   font-size: 2.5rem;
   margin-bottom: 20px;
-  color: #daeb3f; /* Adjust text color for better contrast */
+  color: #daeb3f;
 }
 
 .about-text {
