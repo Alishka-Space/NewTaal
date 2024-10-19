@@ -12,6 +12,7 @@ import HomeCoach from "./components/home-page-coach/HomeCoach";
 import PrivateRoute from "./components/PrivateRoute";
 import CoachProfile from "./pages/profilePages/CoachProfilePage";
 import LearnerProfile from "./pages/profilePages/LearnerProfilePage";
+import About from "./pages/About/About";
 
 const App = () => {
   return (
@@ -24,6 +25,7 @@ const App = () => {
         <Route path="/user/create" element={<CreateUser />} />
         <Route path="/signin" element={<SignIn />} />
         <Route path="/signup" element={<SignUp />} />
+        <Route path="/about" element={<About />} />
         <Route element={<PrivateRoute />}>
           <Route path="/userhome" element={<HomeUser />} />
           <Route path="/coachhome" element={<HomeCoach />} />

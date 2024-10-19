@@ -31,7 +31,7 @@ const Nav = () => {
             <i className="bi bi-person-plus-fill"></i>
             Users
           </Link>
-          <Link className="navbar-link">
+          <Link to="/about" className="navbar-link">
             <i className="bi bi-bank2"></i>
             About us
           </Link>
