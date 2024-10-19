@@ -86,8 +86,9 @@ export default function SignIn() {
     const token = response.token;
     const user = response.userInformation.name;
     const role = response.userInformation.role;
+    const id = response.userInformation._id;
 
-    login(token, user, role);
+    login(token, user, role, id);
 
     if (role === "learner") navigate("/userhome");
     else navigate("/coachhome");
