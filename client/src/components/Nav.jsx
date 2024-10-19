@@ -47,9 +47,13 @@ const Nav = () => {
             <i className="bi bi-arrow-right-square-fill"></i>
             sign-up
           </Link>
-          <Link to="/profile" className="navbar-link">
+          <Link to="/coachProfile" className="navbar-link">
             <i className="bi bi-arrow-right-square-fill"></i>
-            Profile
+            Coach Profile
+          </Link>
+          <Link to="/learnerProfile" className="navbar-link">
+            <i className="bi bi-arrow-right-square-fill"></i>
+            Learner Profile
           </Link>
         </ul>
       </nav>

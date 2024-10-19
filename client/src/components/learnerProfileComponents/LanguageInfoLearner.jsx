@@ -18,20 +18,16 @@ const Item = styled(Paper)(({ theme }) => ({
   }),
 }));
 
-const PersonalInfo = (props) => {
+const LanguageInfoLearner = (props) => {
   const [isEdit, setIsEdit] = useState(false);
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [nationality, setNationality] = useState("");
-  const [dateOfBirth, setDateOfBirth] = useState("");
-  const [rate, setRate] = useState("");
-
+  const [language, setLanguage] = useState("");
+  const [proficiency, setProficiency] = useState("");
+  const [teachLevel, setTeachLevel] = useState("");
+  const [conversationTopics, setConversationTopics] = useState("");
   const handleEdit = () => {
     setIsEdit(true);
   };
-
   const handleSave = () => {
-    //send new name to the backend use props.data.id
     setIsEdit(false);
   };
 
@@ -45,13 +41,13 @@ const PersonalInfo = (props) => {
           mt: 4,
           mb: 1,
           minWidth: 800,
-          height: 460,
+          height: 400,
         }}
         variant="elevation"
         elevation={20}
       >
         <Card sx={{ p: 1, borderRadius: "10px", bgcolor: "#f0f0f0" }}>
-          <Typography fontWeight="bold"> Personal Information</Typography>
+          <Typography fontWeight="bold"> Language Information</Typography>
         </Card>
 
         <div>
@@ -63,16 +59,18 @@ const PersonalInfo = (props) => {
                 }}
               >
                 <Stack spacing={2}>
-                  <Item sx={{ height: 45, fontWeight: "bold" }}>Name</Item>
-                  <Item sx={{ height: 45, fontWeight: "bold" }}>E-mail</Item>
                   <Item sx={{ height: 45, fontWeight: "bold" }}>
-                    Nationality
+                    Language(s)
                   </Item>
                   <Item sx={{ height: 45, fontWeight: "bold" }}>
-                    Date of Birth
+                    Proficiency
                   </Item>
                   <Item sx={{ height: 45, fontWeight: "bold" }}>
-                    Rate (€/hour)
+                    Learning Purpose(s)
+                  </Item>
+
+                  <Item sx={{ height: 45, fontWeight: "bold" }}>
+                    Conversation Topic(s)
                   </Item>
                 </Stack>
               </Box>
@@ -89,7 +87,7 @@ const PersonalInfo = (props) => {
                     {" "}
                     {!isEdit && (
                       <Typography width="100%" variant="h8">
-                        {props?.data?.coachName}
+                        {props?.data?.language}
                       </Typography>
                     )}
                     {isEdit && (
@@ -101,8 +99,8 @@ const PersonalInfo = (props) => {
                           variant="standard"
                           color="secondary"
                           size="small"
-                          value={name}
-                          onChange={(e) => setName(e.target.value)}
+                          value={language}
+                          onChange={(e) => setLanguage(e.target.value)}
                         ></TextField>
                       </Stack>
                     )}
@@ -112,7 +110,7 @@ const PersonalInfo = (props) => {
                     {" "}
                     {!isEdit && (
                       <Typography width="100%" variant="h8">
-                        {props?.data?.email}
+                        {props?.data?.proficiency}
                       </Typography>
                     )}
                     {isEdit && (
@@ -123,8 +121,8 @@ const PersonalInfo = (props) => {
                           variant="standard"
                           color="secondary"
                           size="small"
-                          value={email}
-                          onChange={(e) => setEmail(e.target.value)}
+                          value={proficiency}
+                          onChange={(e) => setProficiency(e.target.value)}
                         ></TextField>
                       </Stack>
                     )}
@@ -132,7 +130,7 @@ const PersonalInfo = (props) => {
                   <Item sx={{ height: 45 }}>
                     {!isEdit && (
                       <Typography width="100%" variant="h8">
-                        {props?.data?.nationality}
+                        {props?.data?.learningPurposes}
                       </Typography>
                     )}
                     {isEdit && (
@@ -143,29 +141,8 @@ const PersonalInfo = (props) => {
                           variant="standard"
                           color="secondary"
                           size="small"
-                          value={nationality}
-                          onChange={(e) => setNationality(e.target.value)}
-                        ></TextField>
-                      </Stack>
-                    )}
-                  </Item>
-                  <Item sx={{ height: 45 }}>
-                    {" "}
-                    {!isEdit && (
-                      <Typography width="100%" variant="h8">
-                        {props?.data?.dateOfBirth}
-                      </Typography>
-                    )}
-                    {isEdit && (
-                      <Stack>
-                        <TextField
-                          hiddenLabel
-                          fullWidth
-                          variant="standard"
-                          color="secondary"
-                          size="small"
-                          value={dateOfBirth}
-                          onChange={(e) => setDateOfBirth(e.target.value)}
+                          value={teachLevel}
+                          onChange={(e) => setTeachLevel(e.target.value)}
                         ></TextField>
                       </Stack>
                     )}
@@ -174,7 +151,7 @@ const PersonalInfo = (props) => {
                     {" "}
                     {!isEdit && (
                       <Typography width="100%" variant="h8">
-                        {props?.data?.rate}
+                        {props?.data?.conversationTopics}
                       </Typography>
                     )}
                     {isEdit && (
@@ -185,8 +162,10 @@ const PersonalInfo = (props) => {
                           variant="standard"
                           color="secondary"
                           size="small"
-                          value={rate}
-                          onChange={(e) => setRate(e.target.value)}
+                          value={conversationTopics}
+                          onChange={(e) =>
+                            setConversationTopics(e.target.value)
+                          }
                         ></TextField>
                       </Stack>
                     )}
@@ -213,14 +192,13 @@ const PersonalInfo = (props) => {
   );
 };
 
-PersonalInfo.propTypes = {
+LanguageInfoLearner.propTypes = {
   data: PropTypes.shape({
-    coachName: PropTypes.string,
-    email: PropTypes.string,
-    nationality: PropTypes.string,
-    dateOfBirth: PropTypes.string,
-    rate: PropTypes.number,
+    language: PropTypes.string,
+    proficiency: PropTypes.string,
+    learningPurposes: PropTypes.string,
+    conversationTopics: PropTypes.string,
   }).isRequired,
 };
 
-export default PersonalInfo;
+export default LanguageInfoLearner;

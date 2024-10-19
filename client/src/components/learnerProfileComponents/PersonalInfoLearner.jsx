@@ -18,15 +18,17 @@ const Item = styled(Paper)(({ theme }) => ({
   }),
 }));
 
-const LanguageInfo = (props) => {
+const PersonalInfoLearner = (props) => {
   const [isEdit, setIsEdit] = useState(false);
-  const [language, setLanguage] = useState("");
-  const [proficiency, setProficiency] = useState("");
-  const [teachLevel, setTeachLevel] = useState("");
-  const [conversationTopics, setConversationTopics] = useState("");
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [nationality, setNationality] = useState("");
+  const [dateOfBirth, setDateOfBirth] = useState("");
+
   const handleEdit = () => {
     setIsEdit(true);
   };
+
   const handleSave = () => {
     setIsEdit(false);
   };
@@ -47,7 +49,7 @@ const LanguageInfo = (props) => {
         elevation={20}
       >
         <Card sx={{ p: 1, borderRadius: "10px", bgcolor: "#f0f0f0" }}>
-          <Typography fontWeight="bold"> Language Information</Typography>
+          <Typography fontWeight="bold"> Personal Information</Typography>
         </Card>
 
         <div>
@@ -59,18 +61,15 @@ const LanguageInfo = (props) => {
                 }}
               >
                 <Stack spacing={2}>
+                  <Item sx={{ height: 45, fontWeight: "bold" }}>Name</Item>
+                  <Item sx={{ height: 45, fontWeight: "bold" }}>E-mail</Item>
                   <Item sx={{ height: 45, fontWeight: "bold" }}>
-                    Language(s)
+                    {" "}
+                    Nationality{" "}
                   </Item>
                   <Item sx={{ height: 45, fontWeight: "bold" }}>
-                    Proficiency
-                  </Item>
-                  <Item sx={{ height: 45, fontWeight: "bold" }}>
-                    Teach Level(s)
-                  </Item>
-
-                  <Item sx={{ height: 45, fontWeight: "bold" }}>
-                    Conversation Topic(s)
+                    {" "}
+                    Date of Birth{" "}
                   </Item>
                 </Stack>
               </Box>
@@ -87,7 +86,7 @@ const LanguageInfo = (props) => {
                     {" "}
                     {!isEdit && (
                       <Typography width="100%" variant="h8">
-                        {props?.data?.language}
+                        {props?.data?.studentName}
                       </Typography>
                     )}
                     {isEdit && (
@@ -99,8 +98,8 @@ const LanguageInfo = (props) => {
                           variant="standard"
                           color="secondary"
                           size="small"
-                          value={language}
-                          onChange={(e) => setLanguage(e.target.value)}
+                          value={name}
+                          onChange={(e) => setName(e.target.value)}
                         ></TextField>
                       </Stack>
                     )}
@@ -110,7 +109,7 @@ const LanguageInfo = (props) => {
                     {" "}
                     {!isEdit && (
                       <Typography width="100%" variant="h8">
-                        {props?.data?.proficiency}
+                        {props?.data?.email}
                       </Typography>
                     )}
                     {isEdit && (
@@ -121,8 +120,8 @@ const LanguageInfo = (props) => {
                           variant="standard"
                           color="secondary"
                           size="small"
-                          value={proficiency}
-                          onChange={(e) => setProficiency(e.target.value)}
+                          value={email}
+                          onChange={(e) => setEmail(e.target.value)}
                         ></TextField>
                       </Stack>
                     )}
@@ -130,7 +129,7 @@ const LanguageInfo = (props) => {
                   <Item sx={{ height: 45 }}>
                     {!isEdit && (
                       <Typography width="100%" variant="h8">
-                        {props?.data?.teachLevel}
+                        {props?.data?.nationality}
                       </Typography>
                     )}
                     {isEdit && (
@@ -141,8 +140,8 @@ const LanguageInfo = (props) => {
                           variant="standard"
                           color="secondary"
                           size="small"
-                          value={teachLevel}
-                          onChange={(e) => setTeachLevel(e.target.value)}
+                          value={nationality}
+                          onChange={(e) => setNationality(e.target.value)}
                         ></TextField>
                       </Stack>
                     )}
@@ -151,7 +150,7 @@ const LanguageInfo = (props) => {
                     {" "}
                     {!isEdit && (
                       <Typography width="100%" variant="h8">
-                        {props?.data?.conversationTopics}
+                        {props?.data?.dateOfBirth}
                       </Typography>
                     )}
                     {isEdit && (
@@ -162,10 +161,8 @@ const LanguageInfo = (props) => {
                           variant="standard"
                           color="secondary"
                           size="small"
-                          value={conversationTopics}
-                          onChange={(e) =>
-                            setConversationTopics(e.target.value)
-                          }
+                          value={dateOfBirth}
+                          onChange={(e) => setDateOfBirth(e.target.value)}
                         ></TextField>
                       </Stack>
                     )}
@@ -192,13 +189,14 @@ const LanguageInfo = (props) => {
   );
 };
 
-LanguageInfo.propTypes = {
+PersonalInfoLearner.propTypes = {
   data: PropTypes.shape({
-    language: PropTypes.string,
-    proficiency: PropTypes.string,
-    teachLevel: PropTypes.string,
-    conversationTopics: PropTypes.string,
+    studentName: PropTypes.string,
+    email: PropTypes.string,
+    nationality: PropTypes.string,
+    dateOfBirth: PropTypes.string,
+    rate: PropTypes.number,
   }).isRequired,
 };
 
-export default LanguageInfo;
+export default PersonalInfoLearner;

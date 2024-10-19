@@ -65,31 +65,31 @@ const MatchedLearners = (props) => {
                 <Stack spacing={2}>
                   <Item sx={{ height: 45 }}>
                     <Typography width="100%" variant="h8">
-                      {props?.data?.learner}
+                      {props?.data?.matchedLearner}
                     </Typography>
                   </Item>
 
                   <Item sx={{ height: 45 }}>
                     <Typography width="100%" variant="h8">
-                      {props?.data?.learner}
+                      {props?.data?.matchedLearner}
                     </Typography>
                   </Item>
 
                   <Item sx={{ height: 45 }}>
                     <Typography width="100%" variant="h8">
-                      {props?.data?.learner}
+                      {props?.data?.matchedLearner}
                     </Typography>
                   </Item>
 
                   <Item sx={{ height: 45 }}>
                     <Typography width="100%" variant="h8">
-                      {props?.data?.learner}
+                      {props?.data?.matchedLearner}
                     </Typography>
                   </Item>
 
                   <Item sx={{ height: 45 }}>
                     <Typography width="100%" variant="h8">
-                      {props?.data?.learner}
+                      {props?.data?.matchedLearner}
                     </Typography>
                   </Item>
                 </Stack>
@@ -104,7 +104,7 @@ const MatchedLearners = (props) => {
 
 MatchedLearners.propTypes = {
   data: PropTypes.shape({
-    learner: PropTypes.string,
+    matchedLearner: PropTypes.string,
   }).isRequired,
 };
 
