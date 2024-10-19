@@ -60,7 +60,7 @@ const HomeCoach = () => {
           <div className="filter-search-group-coach">
             <button
               className="search-filter-coach"
-              onClick={() => setShowFilters(true)} // Show filters when clicked
+              onClick={() => setShowFilters(true)}
             >
               Search for Trainee
             </button>
@@ -90,10 +90,10 @@ const HomeCoach = () => {
                 <option value="Advanced">Advanced</option>
               </select>
 
-              {/* Hide Filters Button to apply filters and trigger search */}
+              {}
               <button
                 className="hide-filter-button"
-                onClick={handleFilterApply} // Trigger search when clicked
+                onClick={handleFilterApply}
               >
                 Filter & Apply
               </button>
