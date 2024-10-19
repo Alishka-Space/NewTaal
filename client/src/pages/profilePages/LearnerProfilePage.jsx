@@ -15,7 +15,7 @@ const LearnerProfilePage = () => {
   useEffect(() => {
     if (id) {
       //Get data later from backend
-      setCoachData(traineeList.find((c) => c.id === parseInt(id)));
+      setCoachData(traineeList.find((c) => c.id == id));
     }
   }, []);
   return (
