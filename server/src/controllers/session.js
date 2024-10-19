@@ -8,9 +8,10 @@ export const getSessions = async (req, res) => {
     res.status(200).json({ success: true, result: sessions });
   } catch (error) {
     logError(error);
-    res
-      .status(500)
-      .json({ success: false, msg: "Unable to get sessions, try again later" });
+    res.status(500).json({
+      success: false,
+      msg: "Unable to get sessions, try again later",
+    });
   }
 };
 
@@ -25,25 +26,25 @@ export const createSession = async (req, res) => {
           session,
         )}`,
       });
-
       return;
     }
 
     const errorList = validateSession(session);
 
     if (errorList.length > 0) {
-      res
-        .status(400)
-        .json({ success: false, msg: validationErrorMessage(errorList) });
+      res.status(400).json({
+        success: false,
+        msg: validationErrorMessage(errorList),
+      });
     } else {
       const newSession = await Session.create(session);
-
       res.status(201).json({ success: true, session: newSession });
     }
   } catch (error) {
     logError(error);
-    res
-      .status(500)
-      .json({ success: false, msg: "Unable to create session, try again later" });
+    res.status(500).json({
+      success: false,
+      msg: "Unable to create session, try again later",
+    });
   }
 };
