@@ -172,7 +172,7 @@ export const traineeList = [
     email: "anna23@gmail.com",
     proficiency: "Advanced",
     matchedCoach: "Anna",
-    learningPurposes: "Academic Development",
+    learningPurposes: "fun",
     conversationTopics: "Health and Sports, Culture and Arts",
     days: {
       date: "11/11/2024",

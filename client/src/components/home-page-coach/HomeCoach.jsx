@@ -29,11 +29,12 @@ const HomeCoach = () => {
   // Apply filter logic when the "Hide Filters" button is clicked
   const handleFilterApply = () => {
     const filtered = traineeList.filter((trainee) => {
-      const matchPurpose =
-        selectedPurpose === "" || trainee.purpose === selectedPurpose;
-      const matchLevel =
-        selectedLevel === "" || trainee.level === selectedLevel;
-      return matchPurpose && matchLevel;
+      const matchLearningPurposes =
+        selectedPurpose === "" || trainee.learningPurposes === selectedPurpose;
+      const matchProficiency =
+        selectedLevel === "" || trainee.proficiency === selectedLevel;
+
+      return matchLearningPurposes && matchProficiency;
     });
     setFilteredTrainees(filtered);
     setShowFilters(false); // Hide filters after applying
