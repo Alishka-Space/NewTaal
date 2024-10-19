@@ -10,7 +10,8 @@ import SignUp from "./pages/SignUpPage/SignUp";
 import HomeUser from "./components/home-page-user/HomeUser";
 import HomeCoach from "./components/home-page-coach/HomeCoach";
 import PrivateRoute from "./components/PrivateRoute";
-import Profile from "./pages/profilePages/CoachProfilePage";
+import CoachProfile from "./pages/profilePages/CoachProfilePage";
+import LearnerProfile from "./pages/profilePages/LearnerProfilePage";
 import About from "./pages/About/About";
 
 const App = () => {
@@ -28,7 +29,8 @@ const App = () => {
         <Route element={<PrivateRoute />}>
           <Route path="/userhome" element={<HomeUser />} />
           <Route path="/coachhome" element={<HomeCoach />} />
-          <Route path="/profile/:id" element={<Profile />} />
+          <Route path="/coachProfile/:id" element={<CoachProfile />} />
+          <Route path="/learnerProfile/:id" element={<LearnerProfile />} />
         </Route>
       </Routes>
 

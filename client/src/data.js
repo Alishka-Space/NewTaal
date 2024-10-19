@@ -15,7 +15,7 @@ export const coachList = [
     language: "Dutch, English",
     rate: 11.44,
     image: "/teacher/teacher-pro-6.png",
-    learner: "Paul",
+    matchedLearner: "Isabel",
     review:
       "Anna is an amazing coach! Her teaching style is engaging and effective. I have seen tremendous improvement in my Dutch speaking skills since I started taking lessons with her. She is patient, knowledgeable, and always encouraging. ",
     days: {
@@ -44,7 +44,7 @@ export const coachList = [
     language: "Dutch, French",
     rate: 10.44,
     image: "/teacher/teacher-pro-5.png",
-    learner: "Ron",
+    matchedLearner: "Mark",
     review:
       "Mary is an amazing coach! Her teaching style is engaging and effective. I have seen tremendous improvement in my Dutch speaking skills since I started taking lessons with her. She is patient, knowledgeable, and always encouraging. ",
     days: {
@@ -162,19 +162,41 @@ export const coachList = [
 export const traineeList = [
   {
     id: 1,
-    studentName: "Anna",
+    studentName: "Isabel",
     bio: "Eager to learn conversational Dutch for travel purposes.",
     availability: "Monday - Friday, 9:00 AM - 12:00 PM",
     language: "Dutch, English",
     image: "/student/student-1.png",
+    dateOfBirth: "20/08/2000",
+    nationality: "Italian",
+    email: "anna23@gmail.com",
+    proficiency: "Advanced",
+    matchedCoach: "Anna",
+    learningPurposes: "Academic Development",
+    conversationTopics: "Health and Sports, Culture and Arts",
+    days: {
+      date: "11/11/2024",
+      time: ["12:00-14:00", "16:00-18:00", "18:00-20:00", "22:00-24:00"],
+    },
   },
   {
     id: 2,
     studentName: "Mark",
     bio: "Interested in improving French for work communication.",
     availability: "Weekends, 2:00 PM - 6:00 PM",
-    language: "French, Dutch",
+    language: "English, French",
     image: "/student/student-2.png",
+    dateOfBirth: "09/08/1989",
+    nationality: "English",
+    email: "mark33@gmail.com",
+    proficiency: "Intermediate",
+    matchedCoach: "Mary",
+    learningPurposes: "Hobbies and Interests",
+    conversationTopics: "Daily Conversations, Travel and Tourism",
+    days: {
+      date: "11/11/2024",
+      time: ["18:00-20:00", "16:00-18:00", "22:00-24:00"],
+    },
   },
   {
     id: 3,

@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import ProfileHeader from "../../components/profileComponents/ProfileHeader";
-import PersonalInfo from "../../components/profileComponents/PersonalInfo";
-import LanguageInfo from "../../components/profileComponents/LanguageInfo";
-import Availability from "../../components/profileComponents/Availability";
-import MatchedLearners from "../../components/profileComponents/MatchedLearners";
-import Reviews from "../../components/profileComponents/Reviews";
+import ProfileHeaderCoach from "../../components/coachProfileComponents/ProfileHeaderCoach";
+import PersonalInfoCoach from "../../components/coachProfileComponents/PersonalInfoCoach";
+import LanguageInfoCoach from "../../components/coachProfileComponents/LanguageInfoCoach";
+import Availability from "../../components/coachProfileComponents/Availability";
+import MatchedLearners from "../../components/coachProfileComponents/MatchedLearners";
+import Reviews from "../../components/coachProfileComponents/Reviews";
 import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
 import { useParams } from "react-router-dom";
@@ -29,9 +29,9 @@ const CoachProfilePage = () => {
             paddingBottom: "100px",
           }}
         >
-          <ProfileHeader data={coachData} />
-          <PersonalInfo data={coachData} />
-          <LanguageInfo data={coachData} />
+          <ProfileHeaderCoach data={coachData} />
+          <PersonalInfoCoach data={coachData} />
+          <LanguageInfoCoach data={coachData} />
           <Availability data={coachData} />
           <MatchedLearners data={coachData} />
           <Reviews data={coachData} />

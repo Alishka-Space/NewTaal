@@ -18,7 +18,7 @@ const Item = styled(Paper)(({ theme }) => ({
   }),
 }));
 
-const ProfileHeader = (props) => {
+const ProfileHeaderCoach = (props) => {
   const { data } = props;
   const [value, setValue] = useState(0);
 
@@ -100,7 +100,7 @@ const ProfileHeader = (props) => {
   );
 };
 
-ProfileHeader.propTypes = {
+ProfileHeaderCoach.propTypes = {
   data: PropTypes.shape({
     rating: PropTypes.number,
     image: PropTypes.string,
@@ -109,4 +109,4 @@ ProfileHeader.propTypes = {
   }).isRequired,
 };
 
-export default ProfileHeader;
+export default ProfileHeaderCoach;
