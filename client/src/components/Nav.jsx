@@ -8,7 +8,15 @@ import { AuthContext } from "../context/AuthContext";
 const Nav = () => {
   const [toggle, setToggle] = useState(false);
 
-  const { authState } = React.useContext(AuthContext);
+  const { authState, logout } = React.useContext(AuthContext);
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+    localStorage.removeItem("role");
+    localStorage.removeItem("id");
+    logout();
+  };
 
   return (
     <header className="header">
@@ -45,7 +53,7 @@ const Nav = () => {
                 About us
               </Link>
               <Link
-                to={`/userProfile/:${authState.id}`}
+                to={`/learnerProfile/${authState.id}`}
                 className="navbar-link"
               >
                 <i className="bi bi-arrow-right-square-fill"></i>
@@ -99,7 +107,7 @@ const Nav = () => {
               </Link>
             </>
           ) : (
-            <Link to="/signout" className="navbar-link">
+            <Link to="/" className="navbar-link" onClick={handleLogout}>
               <i className="bi bi-arrow-right-square-fill"></i>
               Log-out
             </Link>
