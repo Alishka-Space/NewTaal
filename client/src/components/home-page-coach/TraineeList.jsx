@@ -28,7 +28,7 @@ const TraineeList = () => {
     <div className="trainee-list">
       {users &&
         users.map((student) => (
-          <div className="student-item" key={student.id}>
+          <div className="student-item" key={student.user_id}>
             <img
               src={student.image}
               alt={student.username}
