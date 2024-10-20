@@ -53,7 +53,7 @@ const Nav = () => {
                 About us
               </Link>
               <Link
-                to={`/userProfile/:${authState.id}`}
+                to={`/learnerProfile/${authState.id}`}
                 className="navbar-link"
               >
                 <i className="bi bi-arrow-right-square-fill"></i>
