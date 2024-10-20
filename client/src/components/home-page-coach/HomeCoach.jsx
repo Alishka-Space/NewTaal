@@ -1,11 +1,16 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import "./homeCoach.css";
 import { traineeList } from "../../data";
 import TraineeList from "../home-page-coach/TraineeList";
-import { useState } from "react";
 import Pagination from "../pagination/Pagination";
+import { AuthContext } from "../../context/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 const HomeCoach = () => {
+  const { authState } = useContext(AuthContext);
+
+  const navigate = useNavigate();
+
   const [currentPage, setCurrentPage] = useState(1);
   const TRAINEE_PER_PAGE = 4;
 
@@ -40,12 +45,16 @@ const HomeCoach = () => {
     setShowFilters(false); // Hide filters after applying
   };
 
+  const handleVisitProfile = () => {
+    navigate(`/coachProfile/${authState.id}`);
+  };
+
   return (
     <div className="coach-home-page">
       <div className="coach-homepage-search">
         {/* Greeting Section */}
         <header className="greeting-coach">
-          <h1>Hello , [coach Name]</h1> {/* Dynamically insert user name */}
+          <h1>Hello, {authState.user}</h1> {/* Dynamically insert user name */}
         </header>
 
         {/* Search and Filter Section */}
@@ -53,7 +62,12 @@ const HomeCoach = () => {
           {/* Primary Buttons */}
           <div className="button-group-coach">
             <button className="book-button-coach">Book a Session</button>
-            <button className="visit-profile-coach">Visit Profile</button>
+            <button
+              className="visit-profile-coach"
+              onClick={handleVisitProfile}
+            >
+              Visit Profile
+            </button>
           </div>
 
           {/* Filter Button */}
@@ -89,8 +103,6 @@ const HomeCoach = () => {
                 <option value="Intermediate">Intermediate</option>
                 <option value="Advanced">Advanced</option>
               </select>
-
-              {}
               <button
                 className="hide-filter-button"
                 onClick={handleFilterApply}

@@ -13,9 +13,20 @@ export const getCoaches = async (req, res) => {
   }
 };
 
-export const createCoach = async (userId, req, res) => {
+export const createCoach = async (user, req, res) => {
   try {
-    await Coach.create({ user_id: userId });
+    await Coach.create({
+      user_id: user._id,
+      username: user.name,
+      email: user.email,
+      role: user.role,
+      languageProficiency: user.language,
+      nationality: user.nationality,
+      teachingLevel: "",
+      bio: "",
+      rate: 0,
+      availability: "",
+    });
   } catch (error) {
     logError(error);
     res.status(500).json({

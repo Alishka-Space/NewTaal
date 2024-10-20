@@ -12,6 +12,13 @@ const coachSchema = new mongoose.Schema({
       "https://e7.pngegg.com/pngimages/178/595/png-clipart-user-profile-computer-icons-login-user-avatars-monochrome-black-thumbnail.png",
   },
   teachingLevel: { type: String },
+  username: { type: String },
+  email: { type: String },
+  role: { type: String },
+  languageProficiency: { type: String },
+  nationality: { type: String },
+  availability: { type: String },
+  rate: { type: Number },
 });
 
 const Coach = mongoose.model("coaches", coachSchema);
