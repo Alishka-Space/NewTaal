@@ -54,7 +54,7 @@ const Nav = () => {
             </>
           ) : authState.role === "coach" ? (
             <>
-              <Link to={"/coachProfile"} className="navbar-link">
+              <Link to={"/coachhome"} className="navbar-link">
                 <i className="bi bi-house-fill"></i>
                 Home
               </Link>
@@ -66,7 +66,7 @@ const Nav = () => {
                 <i className="bi bi-bank2"></i>
                 About us
               </Link>
-              <Link to="/coachProfile" className="navbar-link">
+              <Link to={`coachProfile/${authState.id}`} className="navbar-link">
                 <i className="bi bi-arrow-right-square-fill"></i>
                 Profile
               </Link>
