@@ -4,6 +4,9 @@ import validationErrorMessage from "../util/validationErrorMessage.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
+import { createCoach } from "./coach.js";
+import { createLearner } from "./learner.js";
+
 export const getUsers = async (req, res) => {
   try {
     const users = await User.find();
@@ -40,6 +43,14 @@ export const createUser = async (req, res) => {
     } else {
       user.password = await hashPassword(user.password);
       const newUser = await User.create(user);
+
+      if (user.role === "learner") {
+        await createLearner(newUser._id, req, res);
+      }
+
+      if (user.role === "coach") {
+        await createCoach(newUser._id, req, res);
+      }
 
       res.status(201).json({ success: true, user: newUser });
     }
