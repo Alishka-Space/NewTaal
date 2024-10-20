@@ -11,6 +11,12 @@ const learnerSchema = new mongoose.Schema({
     default:
       "https://e7.pngegg.com/pngimages/178/595/png-clipart-user-profile-computer-icons-login-user-avatars-monochrome-black-thumbnail.png",
   },
+  username: { type: String },
+  email: { type: String },
+  role: { type: String },
+  languageProficiency: { type: String },
+  nationality: { type: String },
+  teachingLevel: { type: String },
 });
 
 const Learner = mongoose.model("learners", learnerSchema);

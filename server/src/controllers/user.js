@@ -45,11 +45,11 @@ export const createUser = async (req, res) => {
       const newUser = await User.create(user);
 
       if (user.role === "learner") {
-        await createLearner(newUser._id, req, res);
+        await createLearner(newUser, req, res);
       }
 
       if (user.role === "coach") {
-        await createCoach(newUser._id, req, res);
+        await createCoach(newUser, req, res);
       }
 
       res.status(201).json({ success: true, user: newUser });

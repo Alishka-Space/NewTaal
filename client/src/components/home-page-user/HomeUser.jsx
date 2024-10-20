@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import "./homeUser.css";
 import CoachList from "./CoachList";
 import Pagination from "../pagination/Pagination";
-import { useState } from "react";
 import { coachList } from "../../data";
 import { AuthContext } from "../../context/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 const HomeUser = () => {
   const { authState } = React.useContext(AuthContext);
@@ -15,13 +15,19 @@ const HomeUser = () => {
   const startIndex = (currentPage - 1) * COACH_PER_PAGE;
   const finishIndex = currentPage * COACH_PER_PAGE;
 
+  const navigate = useNavigate();
+
   const coaches = coachList.slice(startIndex, finishIndex);
+
+  const handleVisitProfile = () => {
+    navigate(`/learnerProfile/${authState.id}`);
+  };
   return (
     <div>
       <div className="user-homepage-search">
         {/* Greeting Section */}
         <header className="greeting">
-          <h1>Hello , {authState.user}</h1> {/* Dynamically insert user name */}
+          <h1>Hello, {authState.user}</h1> {/* Dynamically insert user name */}
         </header>
 
         {/* Search and Filter Section */}
@@ -30,7 +36,9 @@ const HomeUser = () => {
           <div className="button-group">
             <button className="find-button">Find Coach</button>
             <button className="book-button">Book a Session</button>
-            <button className="visit-profile">Visit Profile</button>
+            <button className="visit-profile" onClick={handleVisitProfile}>
+              Visit Profile
+            </button>
           </div>
 
           {/* Filter and Search Buttons */}
