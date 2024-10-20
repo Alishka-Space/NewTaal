@@ -3,12 +3,6 @@ import mongoose from "mongoose";
 import validateAllowedFields from "../util/validateAllowedFields.js";
 
 const learnerSchema = new mongoose.Schema({
-  learner_id: {
-    type: String,
-    required: true,
-    unique: true,
-    default: () => new mongoose.Types.ObjectId().toString(),
-  },
   user_id: { type: String, required: true, ref: "users" },
   bio: { type: String },
   purpose: { type: String },
