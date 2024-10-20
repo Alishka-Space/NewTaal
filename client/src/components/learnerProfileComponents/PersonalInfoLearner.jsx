@@ -86,7 +86,7 @@ const PersonalInfoLearner = (props) => {
                     {" "}
                     {!isEdit && (
                       <Typography width="100%" variant="h8">
-                        {props?.data?.studentName}
+                        {props?.data?.username}
                       </Typography>
                     )}
                     {isEdit && (
@@ -191,7 +191,7 @@ const PersonalInfoLearner = (props) => {
 
 PersonalInfoLearner.propTypes = {
   data: PropTypes.shape({
-    studentName: PropTypes.string,
+    username: PropTypes.string,
     email: PropTypes.string,
     nationality: PropTypes.string,
     dateOfBirth: PropTypes.string,

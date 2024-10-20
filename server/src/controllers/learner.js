@@ -33,3 +33,16 @@ export const createLearner = async (user, req, res) => {
     });
   }
 };
+
+export const getLearner = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const learner = await Learner.findOne({ user_id: id });
+    res.status(200).json({ success: true, result: learner });
+  } catch (error) {
+    logError(error);
+    res
+      .status(500)
+      .json({ success: false, msg: "Unable to get learner, try again later" });
+  }
+};
