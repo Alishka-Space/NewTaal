@@ -88,7 +88,7 @@ const PersonalInfoCoach = (props) => {
                     {" "}
                     {!isEdit && (
                       <Typography width="100%" variant="h8">
-                        {props?.data?.coachName}
+                        {props?.data?.username}
                       </Typography>
                     )}
                     {isEdit && (
@@ -214,7 +214,7 @@ const PersonalInfoCoach = (props) => {
 
 PersonalInfoCoach.propTypes = {
   data: PropTypes.shape({
-    coachName: PropTypes.string,
+    username: PropTypes.string,
     email: PropTypes.string,
     nationality: PropTypes.string,
     dateOfBirth: PropTypes.string,
