@@ -20,10 +20,10 @@ const Item = styled(Paper)(({ theme }) => ({
 
 const LanguageInfoCoach = (props) => {
   const [isEdit, setIsEdit] = useState(false);
-  const [language, setLanguage] = useState("");
+  // const [language, setLanguage] = useState("");
   const [proficiency, setProficiency] = useState("");
   const [teachLevel, setTeachLevel] = useState("");
-  const [conversationTopics, setConversationTopics] = useState("");
+  // const [conversationTopics, setConversationTopics] = useState("");
   const handleEdit = () => {
     setIsEdit(true);
   };
@@ -59,9 +59,9 @@ const LanguageInfoCoach = (props) => {
                 }}
               >
                 <Stack spacing={2}>
-                  <Item sx={{ height: 45, fontWeight: "bold" }}>
+                  {/* <Item sx={{ height: 45, fontWeight: "bold" }}>
                     Language(s)
-                  </Item>
+                  </Item> */}
                   <Item sx={{ height: 45, fontWeight: "bold" }}>
                     Proficiency
                   </Item>
@@ -69,9 +69,9 @@ const LanguageInfoCoach = (props) => {
                     Teach Level(s)
                   </Item>
 
-                  <Item sx={{ height: 45, fontWeight: "bold" }}>
+                  {/* <Item sx={{ height: 45, fontWeight: "bold" }}>
                     Conversation Topic(s)
-                  </Item>
+                  </Item> */}
                 </Stack>
               </Box>
             </Grid>
@@ -83,7 +83,7 @@ const LanguageInfoCoach = (props) => {
                 }}
               >
                 <Stack spacing={2}>
-                  <Item sx={{ height: 45 }}>
+                  {/* <Item sx={{ height: 45 }}>
                     {" "}
                     {!isEdit && (
                       <Typography width="100%" variant="h8">
@@ -104,13 +104,13 @@ const LanguageInfoCoach = (props) => {
                         ></TextField>
                       </Stack>
                     )}
-                  </Item>
+                  </Item> */}
 
                   <Item sx={{ height: 45 }}>
                     {" "}
                     {!isEdit && (
                       <Typography width="100%" variant="h8">
-                        {props?.data?.proficiency}
+                        {props?.data?.languageProficiency}
                       </Typography>
                     )}
                     {isEdit && (
@@ -130,7 +130,7 @@ const LanguageInfoCoach = (props) => {
                   <Item sx={{ height: 45 }}>
                     {!isEdit && (
                       <Typography width="100%" variant="h8">
-                        {props?.data?.teachLevel}
+                        {props?.data?.teachingLevel}
                       </Typography>
                     )}
                     {isEdit && (
@@ -147,7 +147,7 @@ const LanguageInfoCoach = (props) => {
                       </Stack>
                     )}
                   </Item>
-                  <Item sx={{ height: 45 }}>
+                  {/* <Item sx={{ height: 45 }}>
                     {" "}
                     {!isEdit && (
                       <Typography width="100%" variant="h8">
@@ -169,7 +169,7 @@ const LanguageInfoCoach = (props) => {
                         ></TextField>
                       </Stack>
                     )}
-                  </Item>
+                  </Item> */}
                 </Stack>
               </Box>
             </Grid>
@@ -195,8 +195,8 @@ const LanguageInfoCoach = (props) => {
 LanguageInfoCoach.propTypes = {
   data: PropTypes.shape({
     language: PropTypes.string,
-    proficiency: PropTypes.string,
-    teachLevel: PropTypes.string,
+    languageProficiency: PropTypes.string,
+    teachingLevel: PropTypes.string,
     conversationTopics: PropTypes.string,
   }).isRequired,
 };

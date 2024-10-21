@@ -8,18 +8,27 @@ import Reviews from "../../components/coachProfileComponents/Reviews";
 import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
 import { useParams } from "react-router-dom";
-import { coachList } from "../../data";
+import useFetch from "../../hooks/useFetch";
 
 const CoachProfilePage = () => {
   const { id } = useParams();
   const [coachData, setCoachData] = useState({});
 
+  const { performFetch, cancelFetch } = useFetch(
+    `/coach/profile/${id}`,
+    (response) => {
+      setCoachData(response.result);
+    },
+  );
+
   useEffect(() => {
-    if (id) {
-      //Get data later from backend
-      setCoachData(coachList.find((c) => c.id == id));
-    }
+    performFetch({
+      method: "POST",
+      param: id,
+    });
+    return cancelFetch;
   }, []);
+
   return (
     <div style={{ backgroundColor: "#e6e6fa", position: "relative" }}>
       <Container maxWidth="md" style={{ position: "relative" }}>

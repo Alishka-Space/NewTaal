@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import Grid from "@mui/material/Grid2";
 import Paper from "@mui/material/Paper";
@@ -20,17 +20,17 @@ const Item = styled(Paper)(({ theme }) => ({
 
 const ProfileHeaderCoach = (props) => {
   const { data } = props;
-  const [value, setValue] = useState(0);
+  // const [value, setValue] = useState(0);
 
-  useEffect(() => {
-    if (data.rating) {
-      setValue(data.rating);
-    }
-  }, [data.rating]);
+  // useEffect(() => {
+  //   if (data.rating) {
+  //     setValue(data.rating);
+  //   }
+  // }, [data.rating]);
 
-  const handleRatingChange = (event, newValue) => {
-    setValue(newValue);
-  };
+  // const handleRatingChange = (event, newValue) => {
+  //   setValue(newValue);
+  // };
 
   return (
     <Grid container>
@@ -70,10 +70,9 @@ const ProfileHeaderCoach = (props) => {
               >
                 <Rating
                   name="read-only"
-                  value={value}
+                  value={props?.data?.rating}
                   precision={0.5}
                   readOnly
-                  onChange={handleRatingChange}
                 />
               </Item>
 
@@ -81,7 +80,7 @@ const ProfileHeaderCoach = (props) => {
                 sx={{ height: 40, backgroundColor: "#E1D5E7", borderRadius: 1 }}
               >
                 <Typography fontWeight="bold" width="100%" variant="h6">
-                  {props?.data?.coachName}
+                  {props?.data?.username}
                 </Typography>
               </Item>
 
@@ -104,7 +103,7 @@ ProfileHeaderCoach.propTypes = {
   data: PropTypes.shape({
     rating: PropTypes.number,
     image: PropTypes.string,
-    coachName: PropTypes.string,
+    username: PropTypes.string,
     bio: PropTypes.string,
   }).isRequired,
 };
