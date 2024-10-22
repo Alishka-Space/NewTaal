@@ -37,7 +37,7 @@ export const createSession = async (req, res) => {
       coach_id,
       day,
       time,
-      status: "Scheduled",
+      status: "scheduled",
     });
 
     res.status(201).json({ success: true, result: session });
@@ -109,6 +109,24 @@ export const rescheduleSession = async (req, res) => {
     res.status(500).json({
       success: false,
       msg: "Unable to reschedule session, try again later.",
+    });
+  }
+};
+
+export const getUserSessions = async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const sessions = await Session.find({
+      $or: [{ learner_id: id }, { coach_id: id }],
+    });
+
+    res.status(200).json({ success: true, result: sessions });
+  } catch (error) {
+    logError(error);
+    res.status(500).json({
+      success: false,
+      msg: "Unable to get sessions, try again later.",
     });
   }
 };
