@@ -3,28 +3,44 @@ import mongoose from "mongoose";
 import validateAllowedFields from "../util/validateAllowedFields.js";
 
 const sessionSchema = new mongoose.Schema({
-  session_id: {
+  learner_id: {
+    type: mongoose.Schema.Types.ObjectId,
+    required: true,
+    ref: "learners",
+  },
+  coach_id: {
+    type: mongoose.Schema.Types.ObjectId,
+    required: true,
+    ref: "coaches",
+  },
+  time: { type: String, required: true },
+  day: { type: String, required: true },
+  status: {
     type: String,
     required: true,
-    unique: true,
-    default: () => new mongoose.Types.ObjectId().toString(),
+    default: "scheduled",
+    enum: ["scheduled", "completed", "cancelled", "rescheduled"],
   },
-  learner_id: { type: String, required: true, ref: "learners" },
-  coach_id: { type: String, required: true, ref: "coaches" },
-  date: { type: Date, required: true },
-  time: { type: String, required: true },
-  status: { type: String, required: true, default: "Scheduled" },
+  createdAt: { type: Date, default: Date.now },
+  updatedAt: { type: Date },
   review_id: { type: String, ref: "reviews" },
 });
 
 const Session = mongoose.model("sessions", sessionSchema);
+
+sessionSchema.pre("save", function (next) {
+  if (this.isNew || this.isModified("status")) {
+    this.updatedAt = Date.now();
+  }
+  next();
+});
 
 export const validateSession = (sessionObject) => {
   const errorList = [];
   const allowedKeys = [
     "learner_id",
     "coach_id",
-    "date",
+    "day",
     "time",
     "status",
     "review_id",
@@ -48,9 +64,10 @@ export const validateSession = (sessionObject) => {
     errorList.push("status is a required field");
   }
   if (
-    sessionObject.status !== "Scheduled" &&
-    sessionObject.status !== "Completed" &&
-    sessionObject.status !== "Cancelled"
+    sessionObject.status !== "scheduled" &&
+    sessionObject.status !== "completed" &&
+    sessionObject.status !== "cancelled" &&
+    sessionObject.status !== "rescheduled"
   ) {
     errorList.push(
       "status must be either 'Scheduled' or 'Completed' or 'Cancelled'",
