@@ -13,6 +13,7 @@ import PrivateRoute from "./components/PrivateRoute";
 import CoachProfile from "./pages/profilePages/CoachProfilePage";
 import LearnerProfile from "./pages/profilePages/LearnerProfilePage";
 import About from "./pages/About/About";
+import SessionPage from "./pages/Session/SessionPage";
 
 const App = () => {
   return (
@@ -31,6 +32,7 @@ const App = () => {
           <Route path="/coachhome" element={<HomeCoach />} />
           <Route path="/coachProfile/:id" element={<CoachProfile />} />
           <Route path="/learnerProfile/:id" element={<LearnerProfile />} />
+          <Route path="/session/:id" element={<SessionPage />} />
         </Route>
       </Routes>
 
