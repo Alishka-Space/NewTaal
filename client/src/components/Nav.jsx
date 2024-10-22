@@ -59,6 +59,10 @@ const Nav = () => {
                 <i className="bi bi-arrow-right-square-fill"></i>
                 Profile
               </Link>
+              <Link to={`/session/${authState.id}`} className="navbar-link">
+                <i className="bi bi-calendar3"></i>
+                Sessions
+              </Link>
             </>
           ) : authState.role === "coach" ? (
             <>
@@ -77,6 +81,10 @@ const Nav = () => {
               <Link to={`coachProfile/${authState.id}`} className="navbar-link">
                 <i className="bi bi-arrow-right-square-fill"></i>
                 Profile
+              </Link>
+              <Link to={`/session/${authState.id}`} className="navbar-link">
+                <i className="bi bi-calendar3"></i>
+                Sessions
               </Link>
             </>
           ) : (
