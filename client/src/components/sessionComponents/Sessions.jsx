@@ -68,12 +68,16 @@ const Sessions = () => {
               >
                 <Stack spacing={2}>
                   <Item sx={{ height: 45, fontWeight: "bold" }}>
-                    Learner Name
+                    {authState.role === "learner"
+                      ? "Coach Name"
+                      : "Learner Name"}
                   </Item>
                   {data?.map((item) => (
                     <Item sx={{ height: 45 }} key={item._id}>
                       <Typography width="100%" variant="h8">
-                        {item.learnerName}
+                        {authState.role === "coach"
+                          ? item.learnerName
+                          : item.coachName}
                       </Typography>
                     </Item>
                   ))}
