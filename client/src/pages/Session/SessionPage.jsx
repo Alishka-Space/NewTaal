@@ -3,7 +3,8 @@ import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
 import SessionHeaderCoach from "../../components/sessionComponents/SessionHeaderCoach";
 import SessionHeaderLearner from "../../components/sessionComponents/SessionHeaderLearner";
-import Sessions from "../../components/sessionComponents/Sessions";
+import ScheduledSessions from "../../components/sessionComponents/ScheduledSessions";
+import PreviousSessions from "../../components/sessionComponents/PreviousSessions";
 import { AuthContext } from "../../context/AuthContext";
 
 const SessionPage = () => {
@@ -23,7 +24,8 @@ const SessionPage = () => {
           ) : (
             <SessionHeaderCoach />
           )}
-          <Sessions />
+          <ScheduledSessions />
+          <PreviousSessions />
         </Box>
       </Container>
     </div>
