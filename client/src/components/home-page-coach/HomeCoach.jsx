@@ -76,7 +76,6 @@ const HomeCoach = () => {
         <section className="search-section-coach">
           {/* Primary Buttons */}
           <div className="button-group-coach">
-            <button className="book-button-coach">Book a Session</button>
             <button
               className="visit-profile-coach"
               onClick={handleVisitProfile}
