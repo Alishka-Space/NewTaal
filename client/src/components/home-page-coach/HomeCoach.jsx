@@ -8,7 +8,6 @@ import { useNavigate } from "react-router-dom";
 
 const HomeCoach = () => {
   const { authState } = useContext(AuthContext);
-
   const navigate = useNavigate();
 
   const [currentPage, setCurrentPage] = useState(1);
@@ -22,7 +21,7 @@ const HomeCoach = () => {
   const [showFilters, setShowFilters] = useState(false);
 
   // State to store the final filtered list after search
-  const [filteredTrainees, setFilteredTrainees] = useState(traineeList);
+  const [filteredTrainees, setFilteredTrainees] = useState([]);
 
   // Pagination Logic
   const pages = Math.ceil(traineeList.length / TRAINEE_PER_PAGE);
