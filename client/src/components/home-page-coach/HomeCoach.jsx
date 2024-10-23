@@ -99,17 +99,17 @@ const HomeCoach = () => {
             <div className="filters-container">
               <select
                 value={selectedPurpose}
-                onChange={(e) => setSelectedPurpose(e.target.learningPurposes)}
+                onChange={(e) => setSelectedPurpose(e.target.value)} // Fix here
                 className="search-filter-coach"
               >
-                <option value="">learning Purposes</option>
+                <option value="">Learning Purposes</option>
                 <option value="Fun">Fun</option>
                 <option value="Culture">Culture</option>
                 <option value="Work">Work</option>
               </select>
               <select
                 value={selectedLevel}
-                onChange={(e) => setSelectedLevel(e.target.proficiency)}
+                onChange={(e) => setSelectedLevel(e.target.value)} // Fix here
                 className="search-filter-coach"
               >
                 <option value="">Select Level</option>
