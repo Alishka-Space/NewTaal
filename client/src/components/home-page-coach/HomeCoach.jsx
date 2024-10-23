@@ -1,4 +1,5 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
+import useFetch from "../../hooks/useFetch";
 import "./homeCoach.css";
 import { traineeList } from "../../data";
 import TraineeList from "../home-page-coach/TraineeList";
@@ -8,7 +9,6 @@ import { useNavigate } from "react-router-dom";
 
 const HomeCoach = () => {
   const { authState } = useContext(AuthContext);
-
   const navigate = useNavigate();
 
   const [currentPage, setCurrentPage] = useState(1);
@@ -22,7 +22,19 @@ const HomeCoach = () => {
   const [showFilters, setShowFilters] = useState(false);
 
   // State to store the final filtered list after search
-  const [filteredTrainees, setFilteredTrainees] = useState(traineeList);
+  const [filteredTrainees, setFilteredTrainees] = useState([]);
+
+  // Fetch Data from Backend
+  const { isLoading, error, performFetch } = useFetch(
+    "/learner",
+    (response) => {
+      setFilteredTrainees(response.result);
+    },
+  );
+
+  useEffect(() => {
+    performFetch();
+  }, []);
 
   // Pagination Logic
   const pages = Math.ceil(traineeList.length / TRAINEE_PER_PAGE);
@@ -31,9 +43,9 @@ const HomeCoach = () => {
 
   const trainees = filteredTrainees.slice(startIndex, finishIndex);
 
-  // Apply filter logic when the "Hide Filters" button is clicked
+  // Apply filter logic when the "Filter & Apply" button is clicked
   const handleFilterApply = () => {
-    const filtered = traineeList.filter((trainee) => {
+    const filtered = filteredTrainees.filter((trainee) => {
       const matchLearningPurposes =
         selectedPurpose === "" || trainee.learningPurposes === selectedPurpose;
       const matchProficiency =
@@ -44,6 +56,9 @@ const HomeCoach = () => {
     setFilteredTrainees(filtered);
     setShowFilters(false); // Hide filters after applying
   };
+
+  if (isLoading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error.toString()}</div>;
 
   const handleVisitProfile = () => {
     navigate(`/coachProfile/${authState.id}`);
@@ -61,7 +76,6 @@ const HomeCoach = () => {
         <section className="search-section-coach">
           {/* Primary Buttons */}
           <div className="button-group-coach">
-            <button className="book-button-coach">Book a Session</button>
             <button
               className="visit-profile-coach"
               onClick={handleVisitProfile}
@@ -85,17 +99,17 @@ const HomeCoach = () => {
             <div className="filters-container">
               <select
                 value={selectedPurpose}
-                onChange={(e) => setSelectedPurpose(e.target.learningPurposes)}
+                onChange={(e) => setSelectedPurpose(e.target.value)} // Fix here
                 className="search-filter-coach"
               >
-                <option value="">learning Purposes</option>
+                <option value="">Learning Purposes</option>
                 <option value="Fun">Fun</option>
                 <option value="Culture">Culture</option>
                 <option value="Work">Work</option>
               </select>
               <select
                 value={selectedLevel}
-                onChange={(e) => setSelectedLevel(e.target.proficiency)}
+                onChange={(e) => setSelectedLevel(e.target.value)} // Fix here
                 className="search-filter-coach"
               >
                 <option value="">Select Level</option>
