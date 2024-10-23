@@ -13,6 +13,8 @@ const sessionSchema = new mongoose.Schema({
     required: true,
     ref: "coaches",
   },
+  learner_name: { type: String },
+  coach_name: { type: String },
   time: { type: String, required: true },
   day: { type: String, required: true },
   status: {
@@ -28,18 +30,13 @@ const sessionSchema = new mongoose.Schema({
 
 const Session = mongoose.model("sessions", sessionSchema);
 
-sessionSchema.pre("save", function (next) {
-  if (this.isNew || this.isModified("status")) {
-    this.updatedAt = Date.now();
-  }
-  next();
-});
-
 export const validateSession = (sessionObject) => {
   const errorList = [];
   const allowedKeys = [
     "learner_id",
     "coach_id",
+    "learner_name",
+    "coach_name",
     "day",
     "time",
     "status",

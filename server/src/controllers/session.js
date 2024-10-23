@@ -1,5 +1,7 @@
 import Session from "../models/Session.js";
 import { logError } from "../util/logging.js";
+import Learner from "../models/Learner.js";
+import Coach from "../models/Coach.js";
 
 export const getSessions = async (req, res) => {
   try {
@@ -16,6 +18,13 @@ export const getSessions = async (req, res) => {
 
 export const createSession = async (req, res) => {
   const { learner_id, coach_id, day, time } = req.body;
+
+  // find learner and coach by id
+
+  const learner = await Learner.findOne({ user_id: learner_id }).select(
+    "username",
+  );
+  const coach = await Coach.findOne({ user_id: coach_id }).select("username");
 
   try {
     const existingSession = await Session.findOne({
@@ -35,6 +44,8 @@ export const createSession = async (req, res) => {
     const session = await Session.create({
       learner_id,
       coach_id,
+      learner_name: learner.username,
+      coach_name: coach.username,
       day,
       time,
       status: "scheduled",
