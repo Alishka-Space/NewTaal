@@ -5,7 +5,7 @@ import useFetch from "../../hooks/useFetch";
 const TraineeList = () => {
   const [users, setUsers] = useState(null);
   const { isLoading, error, performFetch, cancelFetch } = useFetch(
-    "/coach",
+    "/learner",
     (response) => {
       setUsers(response.result);
     },
@@ -40,15 +40,14 @@ const TraineeList = () => {
                 <b> Name :</b> <span>{student.username}</span>{" "}
               </div>
               <div className="student-item-bio">
-                <b>Bio :</b>
-                <span>{student.bio}</span>{" "}
+                <b>Bio:</b> <span>{student.bio}</span>
               </div>
               <div className="coach-item-availability">
-                <b>Language Level :</b>
-                <span>{student.languageProficiency}</span>{" "}
+                <b>Language Level:</b>
+                <span>{student.proficiency}</span>
               </div>
               <div className="student-item-languages">
-                <b>Purpose :</b> <span>{student.purpose}</span>{" "}
+                <b>Purpose:</b> <span>{student.learningPurposes}</span>
               </div>
               <div className="student-item-links">
                 <button className="student-item-link">Send a Message</button>
