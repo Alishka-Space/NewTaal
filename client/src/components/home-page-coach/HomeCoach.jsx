@@ -1,4 +1,5 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
+import useFetch from "../../hooks/useFetch";
 import "./homeCoach.css";
 import { traineeList } from "../../data";
 import TraineeList from "../home-page-coach/TraineeList";
@@ -23,6 +24,18 @@ const HomeCoach = () => {
   // State to store the final filtered list after search
   const [filteredTrainees, setFilteredTrainees] = useState([]);
 
+  // Fetch Data from Backend
+  const { isLoading, error, performFetch } = useFetch(
+    "/learner",
+    (response) => {
+      setFilteredTrainees(response.result);
+    },
+  );
+
+  useEffect(() => {
+    performFetch();
+  }, []);
+
   // Pagination Logic
   const pages = Math.ceil(traineeList.length / TRAINEE_PER_PAGE);
   const startIndex = (currentPage - 1) * TRAINEE_PER_PAGE;
@@ -30,9 +43,9 @@ const HomeCoach = () => {
 
   const trainees = filteredTrainees.slice(startIndex, finishIndex);
 
-  // Apply filter logic when the "Hide Filters" button is clicked
+  // Apply filter logic when the "Filter & Apply" button is clicked
   const handleFilterApply = () => {
-    const filtered = traineeList.filter((trainee) => {
+    const filtered = filteredTrainees.filter((trainee) => {
       const matchLearningPurposes =
         selectedPurpose === "" || trainee.learningPurposes === selectedPurpose;
       const matchProficiency =
@@ -43,6 +56,9 @@ const HomeCoach = () => {
     setFilteredTrainees(filtered);
     setShowFilters(false); // Hide filters after applying
   };
+
+  if (isLoading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error.toString()}</div>;
 
   const handleVisitProfile = () => {
     navigate(`/coachProfile/${authState.id}`);
