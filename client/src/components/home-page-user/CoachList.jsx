@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./coachList.css";
 import Rating from "../home-page-user/Rating";
 import useFetch from "../../hooks/useFetch";
+import { useNavigate } from "react-router-dom";
 
 const CoachList = () => {
   const [users, setUsers] = useState(null);
@@ -11,6 +12,12 @@ const CoachList = () => {
       setUsers(response.result);
     },
   );
+
+  const navigate = useNavigate();
+
+  const handleBookASession = (coach) => {
+    navigate("/bookasession", { state: { coach } });
+  };
 
   useEffect(() => {
     performFetch();
@@ -51,13 +58,18 @@ const CoachList = () => {
               <span>{coach.availability}</span>{" "}
             </div> */}
               <div className="coach-item-languages">
-                <b>Languages :</b> <span>{coach.teachLevel}</span>{" "}
+                <b>Language Level:</b> <span>{coach.teachingLevel}</span>
               </div>
               <div className="coach-item-price">
                 <strong>From ${coach.rate}</strong> per class
               </div>
               <div className="coach-item-links">
-                <button className="coach-item-link">Book a Session</button>
+                <button
+                  className="coach-item-link"
+                  onClick={() => handleBookASession(coach)}
+                >
+                  Book a Session
+                </button>
                 <button className="coach-item-link">Send a Message</button>
               </div>
             </div>
