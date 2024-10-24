@@ -58,7 +58,7 @@ const CoachList = () => {
               <span>{coach.availability}</span>{" "}
             </div> */}
               <div className="coach-item-languages">
-                <b>Languages :</b> <span>{coach.teachLevel}</span>{" "}
+                <b>Language Level:</b> <span>{coach.teachingLevel}</span>
               </div>
               <div className="coach-item-price">
                 <strong>From ${coach.rate}</strong> per class

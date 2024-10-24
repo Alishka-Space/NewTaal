@@ -11,7 +11,10 @@ const BookASession = () => {
   const location = useLocation();
   const coach = location.state.coach || {};
 
-  const { error, isLoading, performFetch } = useFetch("/session/create");
+  const { error, isLoading, performFetch } = useFetch(
+    "/session/create",
+    () => {},
+  );
 
   const [day, setDay] = useState("monday");
   const [time, setTime] = useState("morning");
@@ -41,7 +44,7 @@ const BookASession = () => {
   }
 
   if (error) {
-    alert(error);
+    alert("Error: " + error);
   }
 
   return (
