@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from "react";
 import useFetch from "../../hooks/useFetch";
 import "./homeCoach.css";
-import { traineeList } from "../../data";
+
 import TraineeList from "../home-page-coach/TraineeList";
 import Pagination from "../pagination/Pagination";
 import { AuthContext } from "../../context/AuthContext";
@@ -22,13 +22,29 @@ const HomeCoach = () => {
   const [showFilters, setShowFilters] = useState(false);
 
   // State to store the final filtered list after search
+  const [learners, setLearners] = useState([]);
   const [filteredTrainees, setFilteredTrainees] = useState([]);
+  const [learningPurposes, setLearningPurposes] = useState([]);
+  const [proficiencyLevels, setProficiencyLevels] = useState([]);
 
   // Fetch Data from Backend
   const { isLoading, error, performFetch } = useFetch(
     "/learner",
     (response) => {
-      setFilteredTrainees(response.result);
+      const learnersData = response.result;
+      setLearners(learnersData); // Store all learners
+      setFilteredTrainees(learnersData); // Initially display all learners
+
+      // Extract unique learning purposes and proficiency levels
+      const uniqueLearningPurposes = [
+        ...new Set(learnersData.map((learner) => learner.purpose)),
+      ];
+      const uniqueProficiencyLevels = [
+        ...new Set(learnersData.map((learner) => learner.languageProficiency)),
+      ];
+
+      setLearningPurposes(uniqueLearningPurposes);
+      setProficiencyLevels(uniqueProficiencyLevels);
     },
   );
 
@@ -37,22 +53,26 @@ const HomeCoach = () => {
   }, []);
 
   // Pagination Logic
-  const pages = Math.ceil(traineeList.length / TRAINEE_PER_PAGE);
+  const pages = Math.ceil(filteredTrainees.length / TRAINEE_PER_PAGE);
   const startIndex = (currentPage - 1) * TRAINEE_PER_PAGE;
   const finishIndex = currentPage * TRAINEE_PER_PAGE;
-
   const trainees = filteredTrainees.slice(startIndex, finishIndex);
 
   // Apply filter logic when the "Filter & Apply" button is clicked
   const handleFilterApply = () => {
-    const filtered = filteredTrainees.filter((trainee) => {
-      const matchLearningPurposes =
-        selectedPurpose === "" || trainee.learningPurposes === selectedPurpose;
+    const filtered = learners.filter((trainee) => {
+      const matchPurpose =
+        selectedPurpose === "" || trainee.purpose === selectedPurpose;
       const matchProficiency =
-        selectedLevel === "" || trainee.proficiency === selectedLevel;
+        selectedLevel === "" || trainee.languageProficiency === selectedLevel;
 
-      return matchLearningPurposes && matchProficiency;
+      return matchPurpose && matchProficiency;
     });
+
+    if (filtered.length === 0) {
+      alert("No trainees matched your filter criteria.");
+    }
+
     setFilteredTrainees(filtered);
     setShowFilters(false); // Hide filters after applying
   };
@@ -99,23 +119,27 @@ const HomeCoach = () => {
             <div className="filters-container">
               <select
                 value={selectedPurpose}
-                onChange={(e) => setSelectedPurpose(e.target.value)} // Fix here
+                onChange={(e) => setSelectedPurpose(e.target.value)}
                 className="search-filter-coach"
               >
                 <option value="">Learning Purposes</option>
-                <option value="Fun">Fun</option>
-                <option value="Culture">Culture</option>
-                <option value="Work">Work</option>
+                {learningPurposes.map((purpose, index) => (
+                  <option key={index} value={purpose}>
+                    {purpose}
+                  </option>
+                ))}
               </select>
               <select
                 value={selectedLevel}
-                onChange={(e) => setSelectedLevel(e.target.value)} // Fix here
+                onChange={(e) => setSelectedLevel(e.target.value)}
                 className="search-filter-coach"
               >
                 <option value="">Select Level</option>
-                <option value="Basic">Basic</option>
-                <option value="Intermediate">Intermediate</option>
-                <option value="Advanced">Advanced</option>
+                {proficiencyLevels.map((level, index) => (
+                  <option key={index} value={level}>
+                    {level}
+                  </option>
+                ))}
               </select>
               <button
                 className="hide-filter-button"
