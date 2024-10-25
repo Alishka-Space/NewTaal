@@ -34,18 +34,16 @@ const HomeUser = () => {
         <section className="search-section">
           {/* Primary Buttons */}
           <div className="button-group">
-            <button className="find-button">Find Coach</button>
-            <button className="book-button">Book a Session</button>
             <button className="visit-profile" onClick={handleVisitProfile}>
               Visit Profile
             </button>
           </div>
 
           {/* Filter and Search Buttons */}
-          <div className="filter-search-group">
+          {/* <div className="filter-search-group">
             <button className="search-filter">Filter </button>
             <button className="search-coaches">Search for a Coach</button>
-          </div>
+          </div> */}
         </section>
       </div>
 

@@ -53,10 +53,6 @@ const CoachList = () => {
                 <span>{coach.bio}</span>{" "}
               </div>
               <Rating rating={coach.rating} />
-              {/* <div className="coach-item-availability">
-              <b>Availability :</b>
-              <span>{coach.availability}</span>{" "}
-            </div> */}
               <div className="coach-item-languages">
                 <b>Language Level:</b> <span>{coach.teachingLevel}</span>
               </div>
