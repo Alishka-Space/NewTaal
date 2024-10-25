@@ -1,0 +1,39 @@
+.sort-input-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 66px;
+  margin: 20px;
+}
+
+.available-profiles {
+  font-size: 21px;
+  color: #131312;
+}
+
+.sort-input-container select {
+  padding: 10px 17px;
+  font-size: 16px;
+  border: 1px solid #d1d1d1;
+  border-radius: 7px;
+  font-weight: 500;
+}
+.sort-input-container select:focus {
+  outline: none;
+}
+
+.sort-input-container select option {
+  padding: 10px;
+}
+
+@media (max-width: 520px) {
+  .sort-input-container {
+    align-items: flex-start;
+    flex-direction: column-reverse;
+  }
+
+  .available-profiles {
+    margin-top: 15px;
+    padding-left: 5px;
+  }
+}

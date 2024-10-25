@@ -5,6 +5,7 @@ import Pagination from "../pagination/Pagination";
 import { coachList } from "../../data";
 import { AuthContext } from "../../context/AuthContext";
 import { useNavigate } from "react-router-dom";
+import SortInput from "../sort-input/SortInput";
 
 const HomeUser = () => {
   const { authState } = React.useContext(AuthContext);
@@ -38,15 +39,9 @@ const HomeUser = () => {
               Visit Profile
             </button>
           </div>
-
-          {/* Filter and Search Buttons */}
-          {/* <div className="filter-search-group">
-            <button className="search-filter">Filter </button>
-            <button className="search-coaches">Search for a Coach</button>
-          </div> */}
         </section>
       </div>
-
+      <SortInput coachesLength={coaches.length} />
       <CoachList coachList={coaches} />
       <Pagination
         pages={pages}
