@@ -1,39 +1,57 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./homeUser.css";
 import CoachList from "./CoachList";
 import Pagination from "../pagination/Pagination";
-import { coachList } from "../../data";
 import { AuthContext } from "../../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import SortInput from "../sort-input/SortInput";
+import useFetch from "../../hooks/useFetch";
 
 const HomeUser = () => {
   const { authState } = React.useContext(AuthContext);
   const [currentPage, setCurrentPage] = useState(1);
-  const COACH_PER_PAGE = 4;
+  const [sortItem, setSortItem] = useState("recommended");
+  const [coaches, setCoaches] = useState([]);
 
-  const pages = Math.ceil(coachList.length / COACH_PER_PAGE);
-  const startIndex = (currentPage - 1) * COACH_PER_PAGE;
-  const finishIndex = currentPage * COACH_PER_PAGE;
+  const COACHES_PER_PAGE = 4;
+
+  // Fetch coaches from backend
+  const { performFetch } = useFetch("/coach", (response) => {
+    setCoaches(response.result);
+  });
+
+  useEffect(() => {
+    performFetch();
+  }, []);
+
+  // Sorting Logic based on sortItem
+  const sortedCoaches = [...coaches].sort((a, b) => {
+    if (sortItem === "low") return a.rate - b.rate;
+    if (sortItem === "high") return b.rate - a.rate;
+    return b.rating - a.rating;
+  });
+
+  // Pagination Logic
+  const pages = Math.ceil(sortedCoaches.length / COACHES_PER_PAGE);
+  const startIndex = (currentPage - 1) * COACHES_PER_PAGE;
+  const orderedCoachList = sortedCoaches.slice(
+    startIndex,
+    startIndex + COACHES_PER_PAGE,
+  );
 
   const navigate = useNavigate();
-
-  const coaches = coachList.slice(startIndex, finishIndex);
 
   const handleVisitProfile = () => {
     navigate(`/learnerProfile/${authState.id}`);
   };
+
   return (
     <div>
       <div className="user-homepage-search">
-        {/* Greeting Section */}
         <header className="greeting">
-          <h1>Hello, {authState.user}</h1> {/* Dynamically insert user name */}
+          <h1>Hello, {authState.user}</h1>
         </header>
-
-        {/* Search and Filter Section */}
         <section className="search-section">
-          {/* Primary Buttons */}
           <div className="button-group">
             <button className="visit-profile" onClick={handleVisitProfile}>
               Visit Profile
@@ -41,8 +59,12 @@ const HomeUser = () => {
           </div>
         </section>
       </div>
-      <SortInput coachesLength={coaches.length} />
-      <CoachList coachList={coaches} />
+      <SortInput
+        setSortItem={setSortItem}
+        sortItem={sortItem}
+        coachesLength={coaches.length}
+      />
+      <CoachList coachList={orderedCoachList} />
       <Pagination
         pages={pages}
         currentPage={currentPage}
