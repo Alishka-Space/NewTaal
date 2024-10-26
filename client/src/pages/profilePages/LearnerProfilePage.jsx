@@ -22,7 +22,7 @@ const LearnerProfilePage = () => {
   useEffect(() => {
     performFetch({
       method: "POST",
-      param: id,
+      params: id,
     });
     return cancelFetch;
   }, []);

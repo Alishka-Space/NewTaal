@@ -52,7 +52,7 @@ const LanguageInfoLearner = (props) => {
 
         <div>
           <Grid container p={4} spacing={2}>
-            <Grid item>
+            <Grid>
               <Box
                 sx={{
                   width: 200,
@@ -76,7 +76,7 @@ const LanguageInfoLearner = (props) => {
               </Box>
             </Grid>
 
-            <Grid item>
+            <Grid>
               <Box
                 sx={{
                   width: 500,
@@ -118,12 +118,13 @@ const LanguageInfoLearner = (props) => {
                         <TextField
                           hiddenLabel
                           fullWidth
+                          autoFocus
                           variant="standard"
                           color="secondary"
                           size="small"
                           value={proficiency}
                           onChange={(e) => setProficiency(e.target.value)}
-                        ></TextField>
+                        />
                       </Stack>
                     )}
                   </Item>
@@ -143,7 +144,7 @@ const LanguageInfoLearner = (props) => {
                           size="small"
                           value={teachLevel}
                           onChange={(e) => setTeachLevel(e.target.value)}
-                        ></TextField>
+                        />
                       </Stack>
                     )}
                   </Item>
@@ -175,7 +176,7 @@ const LanguageInfoLearner = (props) => {
             </Grid>
           </Grid>
           <Grid container justifyContent="flex-end">
-            <Grid item>
+            <Grid>
               <Button
                 color="secondary"
                 variant="contained"

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import ProfileHeaderCoach from "../../components/coachProfileComponents/ProfileHeaderCoach";
 import PersonalInfoCoach from "../../components/coachProfileComponents/PersonalInfoCoach";
 import LanguageInfoCoach from "../../components/coachProfileComponents/LanguageInfoCoach";
@@ -9,11 +9,12 @@ import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
 import { useParams } from "react-router-dom";
 import useFetch from "../../hooks/useFetch";
+import { AuthContext } from "../../context/AuthContext";
 
 const CoachProfilePage = () => {
   const { id } = useParams();
   const [coachData, setCoachData] = useState({});
-
+  const { authState } = useContext(AuthContext);
   const { performFetch, cancelFetch } = useFetch(
     `/coach/profile/${id}`,
     (response) => {
@@ -39,10 +40,14 @@ const CoachProfilePage = () => {
           }}
         >
           <ProfileHeaderCoach data={coachData} />
-          <PersonalInfoCoach data={coachData} />
-          <LanguageInfoCoach data={coachData} />
-          <Availability data={coachData} />
-          <MatchedLearners data={coachData} />
+          {authState.role === "coach" && (
+            <>
+              <PersonalInfoCoach data={coachData} />
+              <LanguageInfoCoach data={coachData} />
+              <Availability data={coachData} />
+              <MatchedLearners data={coachData} />
+            </>
+          )}
           <Reviews data={coachData} />
         </Box>
       </Container>

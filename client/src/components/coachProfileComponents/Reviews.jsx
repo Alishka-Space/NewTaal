@@ -1,24 +1,63 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React, { useEffect, useState } from "react";
 import Grid from "@mui/material/Grid2";
 import Paper from "@mui/material/Paper";
-import Stack from "@mui/material/Stack";
-import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import { Card, Typography } from "@mui/material";
+import { useParams } from "react-router-dom";
+import { DataGrid } from "@mui/x-data-grid";
+import useFetch from "../../hooks/useFetch";
 
-const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: "#fff",
-  ...theme.typography.body2,
-  padding: theme.spacing(1),
-  textAlign: "left",
-  color: theme.palette.text.secondary,
-  ...theme.applyStyles("dark", {
-    backgroundColor: "#1A2027",
-  }),
-}));
+const Reviews = () => {
+  const { id } = useParams();
+  const [reviewsData, setReviewsData] = useState();
 
-const Reviews = (props) => {
+  const { performFetch, cancelFetch } = useFetch(
+    `/session/user/${id}`,
+    (response) => {
+      setReviewsData(response.result);
+    },
+  );
+
+  useEffect(() => {
+    performFetch({
+      method: "GET",
+      params: id,
+    });
+    return cancelFetch;
+  }, []);
+
+  const columns = [
+    {
+      field: "day",
+      headerName: "Session Date",
+      width: 100,
+      sortable: false,
+      resizable: false,
+    },
+    {
+      field: "learner_name",
+      headerName: "Learner Name",
+      width: 150,
+      sortable: false,
+      resizable: false,
+    },
+    {
+      field: "rating",
+      headerName: "Rating",
+      width: 80,
+      type: "number",
+      sortable: false,
+      resizable: false,
+    },
+    {
+      field: "review",
+      headerName: "Review",
+      width: 500,
+      sortable: false,
+      resizable: false,
+    },
+  ];
+
   return (
     <Grid container>
       <Paper
@@ -29,69 +68,39 @@ const Reviews = (props) => {
           mt: 4,
           mb: 1,
           minWidth: 800,
-          height: 460,
+          height: 500,
         }}
         variant="elevation"
         elevation={20}
       >
-        <Card sx={{ p: 1, borderRadius: "10px", bgcolor: "#f0f0f0" }}>
+        <Card sx={{ p: 1, borderRadius: "10px", bgcolor: "#f0f0f0", my: 2 }}>
           <Typography fontWeight="bold">Reviews</Typography>
         </Card>
-
-        <div>
-          <Grid container p={4} spacing={2}>
-            <Grid item>
-              <Box
-                sx={{
-                  width: 200,
+        <Box>
+          {reviewsData && reviewsData.length > 0 && (
+            <Paper sx={{ height: 400, width: "100%" }}>
+              <DataGrid
+                rows={
+                  reviewsData.map((s) => {
+                    return { ...s, id: s._id };
+                  }) ?? []
+                }
+                columns={columns}
+                initialState={{
+                  pagination: {
+                    paginationModel: {
+                      pageSize: 15,
+                    },
+                  },
                 }}
-              >
-                <Stack spacing={2}>
-                  <Item sx={{ height: 100, fontWeight: "bold" }}>Review 1</Item>
-                  <Item sx={{ height: 100, fontWeight: "bold" }}>Review 2</Item>
-                  <Item sx={{ height: 100, fontWeight: "bold" }}>Review 3</Item>
-                </Stack>
-              </Box>
-            </Grid>
-
-            <Grid item>
-              <Box
-                sx={{
-                  width: 500,
-                }}
-              >
-                <Stack spacing={2}>
-                  <Item sx={{ height: 100 }}>
-                    <Typography width="100%" variant="h8">
-                      {props?.data?.review}
-                    </Typography>
-                  </Item>
-
-                  <Item sx={{ height: 100 }}>
-                    <Typography width="100%" variant="h8">
-                      {props?.data?.review}
-                    </Typography>
-                  </Item>
-
-                  <Item sx={{ height: 100 }}>
-                    <Typography width="100%" variant="h8">
-                      {props?.data?.review}
-                    </Typography>
-                  </Item>
-                </Stack>
-              </Box>
-            </Grid>
-          </Grid>
-        </div>
+                pageSizeOptions={[5, 10, 15]}
+              />
+            </Paper>
+          )}
+        </Box>
       </Paper>
     </Grid>
   );
-};
-
-Reviews.propTypes = {
-  data: PropTypes.shape({
-    review: PropTypes.string,
-  }).isRequired,
 };
 
 export default Reviews;
