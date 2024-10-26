@@ -8,19 +8,28 @@ const About = () => {
         <div className="about-content">
           <h1 className="about-title">About TaalCoach</h1>
           <p className="about-text">
-            TaalCoach is a personalized language learning platform that connects
-            learners with professional language coaches from around the world.
-            Whether you are looking to learn a new language for travel, work, or
-            personal growth, TaalCoach offers an accessible and flexible way to
-            achieve your goals through tailored, 1-on-1 coaching sessions.
+            For Coaches Coaches at TaalCoach Our dedicated coaches are
+            experienced professionals, each bringing a unique approach to
+            language learning. Whether you are aiming to master conversational
+            language, prepare for exams, or improve your business communication,
+            cultural immersion, and accent reduction. Each coach`s profile
+            highlights their language proficiency, teaching experience,
+            availability, and pricing, allowing you to find the right match for
+            your needs and budget. Our coaches also regularly update their
+            schedules to provide flexible session options, so learning can
+            easily fit into your life.
           </p>
           <p className="about-text">
-            Through TaalCoach, users can easily search for coaches by language,
-            experience, and availability, making it simple to find the right
-            fit. Each coach brings a unique set of skills, ranging from
-            conversational language learning to business communication, exam
-            preparation, and more. You can book lessons based on your schedule
-            and budget, ensuring that learning fits into your life seamlessly.
+            For Trainees Trainees at TaalCoach Our trainees are passionate
+            individuals eager to improve their language skills, whether for
+            travel, work, cultural exploration, or personal growth. TaalCoach
+            offers a seamless way for learners to connect with coaches who align
+            with their learning goals and language levels. Each trainee can
+            browse available coaches, review profiles, and select a language
+            coach based on proficiency and teaching style. The platform`s
+            flexible scheduling,TaalCoach empowers learners to reach their
+            language potential through 1-on-1 sessions designed to be as unique
+            as each individual.
           </p>
         </div>
       </section>
