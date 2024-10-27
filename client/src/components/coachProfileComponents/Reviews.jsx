@@ -4,7 +4,12 @@ import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
 import { Card, Typography } from "@mui/material";
 import { useParams } from "react-router-dom";
-import { DataGrid } from "@mui/x-data-grid";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
 import useFetch from "../../hooks/useFetch";
 
 const Reviews = () => {
@@ -26,38 +31,6 @@ const Reviews = () => {
     return cancelFetch;
   }, []);
 
-  const columns = [
-    {
-      field: "day",
-      headerName: "Session Date",
-      width: 100,
-      sortable: false,
-      resizable: false,
-    },
-    {
-      field: "learner_name",
-      headerName: "Learner Name",
-      width: 150,
-      sortable: false,
-      resizable: false,
-    },
-    {
-      field: "rating",
-      headerName: "Rating",
-      width: 80,
-      type: "number",
-      sortable: false,
-      resizable: false,
-    },
-    {
-      field: "review",
-      headerName: "Review",
-      width: 500,
-      sortable: false,
-      resizable: false,
-    },
-  ];
-
   return (
     <Grid container>
       <Paper
@@ -77,26 +50,38 @@ const Reviews = () => {
           <Typography fontWeight="bold">Reviews</Typography>
         </Card>
         <Box>
-          {reviewsData && reviewsData.length > 0 && (
-            <Paper sx={{ height: 400, width: "100%" }}>
-              <DataGrid
-                rows={
-                  reviewsData.map((s) => {
-                    return { ...s, id: s._id };
-                  }) ?? []
-                }
-                columns={columns}
-                initialState={{
-                  pagination: {
-                    paginationModel: {
-                      pageSize: 15,
-                    },
-                  },
-                }}
-                pageSizeOptions={[5, 10, 15]}
-              />
-            </Paper>
-          )}
+          <TableContainer component={Paper}>
+            <Table sx={{ minWidth: 650 }} aria-label="simple table">
+              <TableHead>
+                <TableRow>
+                  <TableCell></TableCell>
+                  <TableCell>Learner Name</TableCell>
+                  <TableCell>Day of Sessions</TableCell>
+                  <TableCell>Time of Sessions</TableCell>
+                  <TableCell>Rating</TableCell>
+                  <TableCell>Review</TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {reviewsData &&
+                  reviewsData.map((row, index) => (
+                    <TableRow
+                      key={index}
+                      sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                    >
+                      <TableCell component="th" scope="row">
+                        {row.name}
+                      </TableCell>
+                      <TableCell>{row.learner_name}</TableCell>
+                      <TableCell>{row.day}</TableCell>
+                      <TableCell>{row.time}</TableCell>
+                      <TableCell>{row.rating}</TableCell>
+                      <TableCell>{row.review}</TableCell>
+                    </TableRow>
+                  ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
         </Box>
       </Paper>
     </Grid>

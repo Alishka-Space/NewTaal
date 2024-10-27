@@ -2,6 +2,12 @@ import React, { useEffect, useState } from "react";
 import Grid from "@mui/material/Grid2";
 import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
 import {
   Button,
   Card,
@@ -15,7 +21,6 @@ import {
   Typography,
 } from "@mui/material";
 import { useNavigate, useParams } from "react-router-dom";
-import { DataGrid } from "@mui/x-data-grid";
 import useFetch from "../../hooks/useFetch";
 
 const ScheduledSessions = () => {
@@ -56,74 +61,6 @@ const ScheduledSessions = () => {
     setSelectedSession(sessionsData[rowIndex]);
   };
 
-  const columns = [
-    {
-      field: "learner_name",
-      headerName: "Learner Name",
-      width: 150,
-      sortable: false,
-    },
-    {
-      field: "coach_name",
-      headerName: "Coach name",
-      width: 180,
-      sortable: false,
-      renderCell: (params) => (
-        <Typography
-          variant="body2"
-          onClick={() => navigate(`/coachProfile/${params.row.coach_id}`)}
-          sx={{
-            fontSize: 13,
-            fontWeight: "normal",
-            color: "text.primary",
-            marginTop: 1,
-            textAlign: "left",
-            paddingTop: 1,
-          }}
-        >
-          {params.value}
-        </Typography>
-      ),
-    },
-    {
-      field: "day",
-      headerName: "Date",
-      width: 110,
-      sortable: false,
-    },
-    {
-      field: "time",
-      headerName: "Time",
-      width: 110,
-      sortable: false,
-    },
-    {
-      field: "status",
-      headerName: "Session Status",
-      width: 160,
-      sortable: false,
-    },
-
-    {
-      field: "review",
-      headerName: "Review",
-      width: 80,
-      sortable: false,
-      renderCell: (params) => (
-        <strong>
-          <Button
-            color="secondary"
-            variant="contained"
-            size="small"
-            onClick={() => handleButtonAction(params.rowIndex)}
-          >
-            {editRowIndex === params.rowIndex ? "Edit" : "Add"}
-          </Button>
-        </strong>
-      ),
-    },
-  ];
-
   return (
     <Grid container>
       <Paper
@@ -144,28 +81,69 @@ const ScheduledSessions = () => {
         </Card>
 
         <Box>
-          {sessionsData && sessionsData.length > 0 && (
-            <Paper sx={{ height: 400, width: "100%" }}>
-              <DataGrid
-                rows={
-                  sessionsData.map((s) => {
-                    return { ...s, id: s._id };
-                  }) ?? []
-                }
-                columns={columns}
-                initialState={{
-                  pagination: {
-                    paginationModel: {
-                      pageSize: 5,
-                    },
-                  },
-                }}
-                pageSizeOptions={[5, 10, 15]}
-              />
-            </Paper>
-          )}
+          <TableContainer component={Paper}>
+            <Table sx={{ minWidth: 650 }} aria-label="simple table">
+              <TableHead>
+                <TableRow>
+                  <TableCell></TableCell>
+                  <TableCell>Learner Name</TableCell>
+                  <TableCell>Coach Name</TableCell>
+                  <TableCell>Day of Sessions</TableCell>
+                  <TableCell>Time of Sessions</TableCell>
+                  <TableCell>Session Status</TableCell>
+                  <TableCell>Review</TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {sessionsData &&
+                  sessionsData.map((row, index) => (
+                    <TableRow
+                      key={index}
+                      sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                    >
+                      <TableCell component="th" scope="row">
+                        {row.name}
+                      </TableCell>
+                      <TableCell>{row.learner_name}</TableCell>
+                      <TableCell>
+                        <Typography
+                          variant="body2"
+                          onClick={() =>
+                            navigate(`/coachProfile/${row.coach_id}`)
+                          }
+                          sx={{
+                            fontSize: 13,
+                            fontWeight: "normal",
+                            color: "text.primary",
+                            marginTop: 1,
+                            textAlign: "left",
+                            paddingTop: 1,
+                          }}
+                        >
+                          {row.coach_name}
+                        </Typography>
+                      </TableCell>
+                      <TableCell>{row.day}</TableCell>
+                      <TableCell>{row.time}</TableCell>
+                      <TableCell>{row.status}</TableCell>
+                      <TableCell>
+                        <strong>
+                          <Button
+                            color="secondary"
+                            variant="contained"
+                            size="small"
+                            onClick={() => handleButtonAction(index)}
+                          >
+                            {editRowIndex === index ? "Edit" : "Add"}
+                          </Button>
+                        </strong>
+                      </TableCell>
+                    </TableRow>
+                  ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
         </Box>
-
         <Dialog
           open={reviewDialogOpen}
           onClose={() => setReviewDialogOpen(false)}
