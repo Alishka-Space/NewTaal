@@ -70,7 +70,7 @@ const ProfileHeaderCoach = (props) => {
               >
                 <Rating
                   name="read-only"
-                  value={props?.data?.rating}
+                  value={props?.data?.rating || 0}
                   precision={0.5}
                   readOnly
                 />

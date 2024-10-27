@@ -1,24 +1,36 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React, { useEffect, useState } from "react";
 import Grid from "@mui/material/Grid2";
 import Paper from "@mui/material/Paper";
-import Stack from "@mui/material/Stack";
-import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import { Card, Typography } from "@mui/material";
+import { useParams } from "react-router-dom";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
+import useFetch from "../../hooks/useFetch";
 
-const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: "#fff",
-  ...theme.typography.body2,
-  padding: theme.spacing(1),
-  textAlign: "left",
-  color: theme.palette.text.secondary,
-  ...theme.applyStyles("dark", {
-    backgroundColor: "#1A2027",
-  }),
-}));
+const Reviews = () => {
+  const { id } = useParams();
+  const [reviewsData, setReviewsData] = useState();
 
-const Reviews = (props) => {
+  const { performFetch, cancelFetch } = useFetch(
+    `/session/user/${id}`,
+    (response) => {
+      setReviewsData(response.result);
+    },
+  );
+
+  useEffect(() => {
+    performFetch({
+      method: "GET",
+      params: id,
+    });
+    return cancelFetch;
+  }, []);
+
   return (
     <Grid container>
       <Paper
@@ -29,69 +41,51 @@ const Reviews = (props) => {
           mt: 4,
           mb: 1,
           minWidth: 800,
-          height: 460,
+          height: 500,
         }}
         variant="elevation"
         elevation={20}
       >
-        <Card sx={{ p: 1, borderRadius: "10px", bgcolor: "#f0f0f0" }}>
+        <Card sx={{ p: 1, borderRadius: "10px", bgcolor: "#f0f0f0", my: 2 }}>
           <Typography fontWeight="bold">Reviews</Typography>
         </Card>
-
-        <div>
-          <Grid container p={4} spacing={2}>
-            <Grid item>
-              <Box
-                sx={{
-                  width: 200,
-                }}
-              >
-                <Stack spacing={2}>
-                  <Item sx={{ height: 100, fontWeight: "bold" }}>Review 1</Item>
-                  <Item sx={{ height: 100, fontWeight: "bold" }}>Review 2</Item>
-                  <Item sx={{ height: 100, fontWeight: "bold" }}>Review 3</Item>
-                </Stack>
-              </Box>
-            </Grid>
-
-            <Grid item>
-              <Box
-                sx={{
-                  width: 500,
-                }}
-              >
-                <Stack spacing={2}>
-                  <Item sx={{ height: 100 }}>
-                    <Typography width="100%" variant="h8">
-                      {props?.data?.review}
-                    </Typography>
-                  </Item>
-
-                  <Item sx={{ height: 100 }}>
-                    <Typography width="100%" variant="h8">
-                      {props?.data?.review}
-                    </Typography>
-                  </Item>
-
-                  <Item sx={{ height: 100 }}>
-                    <Typography width="100%" variant="h8">
-                      {props?.data?.review}
-                    </Typography>
-                  </Item>
-                </Stack>
-              </Box>
-            </Grid>
-          </Grid>
-        </div>
+        <Box>
+          <TableContainer component={Paper}>
+            <Table sx={{ minWidth: 650 }} aria-label="simple table">
+              <TableHead>
+                <TableRow>
+                  <TableCell></TableCell>
+                  <TableCell>Learner Name</TableCell>
+                  <TableCell>Day of Sessions</TableCell>
+                  <TableCell>Time of Sessions</TableCell>
+                  <TableCell>Rating</TableCell>
+                  <TableCell>Review</TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {reviewsData &&
+                  reviewsData.map((row, index) => (
+                    <TableRow
+                      key={index}
+                      sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                    >
+                      <TableCell component="th" scope="row">
+                        {row.name}
+                      </TableCell>
+                      <TableCell>{row.learner_name}</TableCell>
+                      <TableCell>{row.day}</TableCell>
+                      <TableCell>{row.time}</TableCell>
+                      <TableCell>{row.rating}</TableCell>
+                      <TableCell>{row.review}</TableCell>
+                    </TableRow>
+                  ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
+        </Box>
       </Paper>
     </Grid>
   );
-};
-
-Reviews.propTypes = {
-  data: PropTypes.shape({
-    review: PropTypes.string,
-  }).isRequired,
 };
 
 export default Reviews;

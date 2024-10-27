@@ -54,7 +54,7 @@ const PersonalInfoLearner = (props) => {
 
         <div>
           <Grid container p={4} spacing={2}>
-            <Grid item>
+            <Grid>
               <Box
                 sx={{
                   width: 200,
@@ -75,7 +75,7 @@ const PersonalInfoLearner = (props) => {
               </Box>
             </Grid>
 
-            <Grid item>
+            <Grid>
               <Box
                 sx={{
                   width: 500,
@@ -100,7 +100,7 @@ const PersonalInfoLearner = (props) => {
                           size="small"
                           value={name}
                           onChange={(e) => setName(e.target.value)}
-                        ></TextField>
+                        />
                       </Stack>
                     )}
                   </Item>
@@ -122,7 +122,7 @@ const PersonalInfoLearner = (props) => {
                           size="small"
                           value={email}
                           onChange={(e) => setEmail(e.target.value)}
-                        ></TextField>
+                        />
                       </Stack>
                     )}
                   </Item>
@@ -142,7 +142,7 @@ const PersonalInfoLearner = (props) => {
                           size="small"
                           value={nationality}
                           onChange={(e) => setNationality(e.target.value)}
-                        ></TextField>
+                        />
                       </Stack>
                     )}
                   </Item>
@@ -163,7 +163,7 @@ const PersonalInfoLearner = (props) => {
                           size="small"
                           value={dateOfBirth}
                           onChange={(e) => setDateOfBirth(e.target.value)}
-                        ></TextField>
+                        />
                       </Stack>
                     )}
                   </Item>
@@ -172,7 +172,7 @@ const PersonalInfoLearner = (props) => {
             </Grid>
           </Grid>
           <Grid container justifyContent="flex-end">
-            <Grid item>
+            <Grid>
               <Button
                 color="secondary"
                 variant="contained"
