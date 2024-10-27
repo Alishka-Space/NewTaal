@@ -1,10 +1,11 @@
-/* General Styling for User Homepage */
-
 .coach-homepage-search {
-  padding: 40px 20px;
+  padding: 45px 0;
+  height: 55vh;
   text-align: center;
-  background-color: #442fb80d;
-  margin: 15px;
+  background-image: url("../../../public/photo/cach2.webp");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
 }
 
 .greeting-coach {

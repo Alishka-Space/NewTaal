@@ -1,9 +1,9 @@
 /* General Styling for User Homepage */
 .user-homepage-search {
   padding: 40px 20px;
-  background-color: #442fb80d;
-  margin: 10px;
-
+  height: 50vh;
+  background-image: url("../../../public/photo/trainees1.webp");
+  background-size: cover;
   text-align: center;
 }
 
