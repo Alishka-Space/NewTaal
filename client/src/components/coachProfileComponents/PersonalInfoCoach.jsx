@@ -6,6 +6,7 @@ import Stack from "@mui/material/Stack";
 import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import { Button, Card, TextField, Typography } from "@mui/material";
+import useFetch from "../../hooks/useFetch";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: "#fff",
@@ -19,6 +20,11 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 const PersonalInfoCoach = (props) => {
+  const { performFetch } = useFetch(
+    `/coach/update/${props.data._id}`,
+    () => {},
+  );
+
   const [isEdit, setIsEdit] = useState(false);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -31,6 +37,15 @@ const PersonalInfoCoach = (props) => {
   };
 
   const handleSave = () => {
+    performFetch({
+      method: "PATCH",
+      body: JSON.stringify({
+        username: name,
+        rate: rate,
+        dateOfBirth: dateOfBirth,
+        nationality: nationality,
+      }),
+    });
     setIsEdit(false);
   };
 
@@ -100,7 +115,7 @@ const PersonalInfoCoach = (props) => {
                           variant="standard"
                           color="secondary"
                           size="small"
-                          value={name}
+                          value={name ? name : props?.data?.username}
                           onChange={(e) => setName(e.target.value)}
                         ></TextField>
                       </Stack>
@@ -122,7 +137,7 @@ const PersonalInfoCoach = (props) => {
                           variant="standard"
                           color="secondary"
                           size="small"
-                          value={email}
+                          value={email ? email : props?.data?.email}
                           onChange={(e) => setEmail(e.target.value)}
                         ></TextField>
                       </Stack>
@@ -142,7 +157,9 @@ const PersonalInfoCoach = (props) => {
                           variant="standard"
                           color="secondary"
                           size="small"
-                          value={nationality}
+                          value={
+                            nationality ? nationality : props?.data.nationality
+                          }
                           onChange={(e) => setNationality(e.target.value)}
                         ></TextField>
                       </Stack>
@@ -163,7 +180,9 @@ const PersonalInfoCoach = (props) => {
                           variant="standard"
                           color="secondary"
                           size="small"
-                          value={dateOfBirth}
+                          value={
+                            dateOfBirth ? dateOfBirth : props?.data.dateOfBirth
+                          }
                           onChange={(e) => setDateOfBirth(e.target.value)}
                         ></TextField>
                       </Stack>
@@ -184,7 +203,7 @@ const PersonalInfoCoach = (props) => {
                           variant="standard"
                           color="secondary"
                           size="small"
-                          value={rate}
+                          value={rate ? rate : props?.data?.rate}
                           onChange={(e) => setRate(e.target.value)}
                         ></TextField>
                       </Stack>
@@ -219,6 +238,7 @@ PersonalInfoCoach.propTypes = {
     nationality: PropTypes.string,
     dateOfBirth: PropTypes.string,
     rate: PropTypes.number,
+    _id: PropTypes.string,
   }).isRequired,
 };
 

@@ -6,6 +6,7 @@ import Stack from "@mui/material/Stack";
 import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import { Button, Card, TextField, Typography } from "@mui/material";
+import useFetch from "../../hooks/useFetch";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: "#fff",
@@ -19,6 +20,11 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 const PersonalInfoLearner = (props) => {
+  const { performFetch } = useFetch(
+    `/learner/update/${props.data._id}`,
+    () => {},
+  );
+
   const [isEdit, setIsEdit] = useState(false);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -30,6 +36,15 @@ const PersonalInfoLearner = (props) => {
   };
 
   const handleSave = () => {
+    performFetch({
+      method: "PATCH",
+      body: JSON.stringify({
+        username: name,
+        email: email,
+        nationality: nationality,
+        dateOfBirth: dateOfBirth,
+      }),
+    });
     setIsEdit(false);
   };
 
@@ -98,7 +113,7 @@ const PersonalInfoLearner = (props) => {
                           variant="standard"
                           color="secondary"
                           size="small"
-                          value={name}
+                          value={name ? name : props?.data?.username}
                           onChange={(e) => setName(e.target.value)}
                         />
                       </Stack>
@@ -120,7 +135,7 @@ const PersonalInfoLearner = (props) => {
                           variant="standard"
                           color="secondary"
                           size="small"
-                          value={email}
+                          value={email ? email : props?.data?.email}
                           onChange={(e) => setEmail(e.target.value)}
                         />
                       </Stack>
@@ -140,7 +155,9 @@ const PersonalInfoLearner = (props) => {
                           variant="standard"
                           color="secondary"
                           size="small"
-                          value={nationality}
+                          value={
+                            nationality ? nationality : props?.data?.nationality
+                          }
                           onChange={(e) => setNationality(e.target.value)}
                         />
                       </Stack>
@@ -161,7 +178,9 @@ const PersonalInfoLearner = (props) => {
                           variant="standard"
                           color="secondary"
                           size="small"
-                          value={dateOfBirth}
+                          value={
+                            dateOfBirth ? dateOfBirth : props?.data?.dateOfBirth
+                          }
                           onChange={(e) => setDateOfBirth(e.target.value)}
                         />
                       </Stack>
@@ -196,6 +215,7 @@ PersonalInfoLearner.propTypes = {
     nationality: PropTypes.string,
     dateOfBirth: PropTypes.string,
     rate: PropTypes.number,
+    _id: PropTypes.string,
   }).isRequired,
 };
 

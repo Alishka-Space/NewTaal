@@ -16,7 +16,6 @@ const learnerSchema = new mongoose.Schema({
   role: { type: String },
   languageProficiency: { type: String },
   nationality: { type: String },
-  teachingLevel: { type: String },
 });
 
 const Learner = mongoose.model("learners", learnerSchema);

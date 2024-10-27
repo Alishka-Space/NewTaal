@@ -49,7 +49,8 @@ export const getLearner = async (req, res) => {
 
 export const updateLearner = async (req, res) => {
   const { id } = req.params;
-  const { purpose, bio } = req.body;
+  const { purpose, bio, languageProficiency, username, nationality, email } =
+    req.body;
 
   const learner = await Learner.findOne({ _id: id });
 
@@ -57,18 +58,30 @@ export const updateLearner = async (req, res) => {
     return res.status(404).json({ success: false, msg: "Learner not found" });
   }
 
-  if (!purpose && !bio) {
-    return res
-      .status(400)
-      .json({ success: false, msg: "Please provide purpose and bio" });
+  if (
+    !purpose &&
+    !bio &&
+    !languageProficiency &&
+    !username &&
+    !nationality &&
+    !email
+  ) {
+    return res.status(400).json({
+      success: false,
+      msg: "Please provide at least one field to update",
+    });
   }
 
   try {
     await Learner.findOneAndUpdate(
       { _id: id },
       {
+        languageProficiency,
         purpose,
         bio,
+        username,
+        nationality,
+        email,
       },
     );
     res.status(200).json({

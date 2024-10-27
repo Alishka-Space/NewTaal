@@ -6,6 +6,7 @@ import Stack from "@mui/material/Stack";
 import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import { Button, Card, TextField, Typography } from "@mui/material";
+import useFetch from "../../hooks/useFetch";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: "#fff",
@@ -19,15 +20,25 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 const LanguageInfoCoach = (props) => {
+  const { performFetch } = useFetch(
+    `/coach/update/${props.data._id}`,
+    () => {},
+  );
+
   const [isEdit, setIsEdit] = useState(false);
-  // const [language, setLanguage] = useState("");
   const [proficiency, setProficiency] = useState("");
   const [teachLevel, setTeachLevel] = useState("");
-  // const [conversationTopics, setConversationTopics] = useState("");
   const handleEdit = () => {
     setIsEdit(true);
   };
   const handleSave = () => {
+    performFetch({
+      method: "PATCH",
+      body: JSON.stringify({
+        languageProficiency: proficiency,
+        teachingLevel: teachLevel,
+      }),
+    });
     setIsEdit(false);
   };
 
@@ -59,19 +70,12 @@ const LanguageInfoCoach = (props) => {
                 }}
               >
                 <Stack spacing={2}>
-                  {/* <Item sx={{ height: 45, fontWeight: "bold" }}>
-                    Language(s)
-                  </Item> */}
                   <Item sx={{ height: 45, fontWeight: "bold" }}>
                     Proficiency
                   </Item>
                   <Item sx={{ height: 45, fontWeight: "bold" }}>
                     Teach Level(s)
                   </Item>
-
-                  {/* <Item sx={{ height: 45, fontWeight: "bold" }}>
-                    Conversation Topic(s)
-                  </Item> */}
                 </Stack>
               </Box>
             </Grid>
@@ -83,29 +87,6 @@ const LanguageInfoCoach = (props) => {
                 }}
               >
                 <Stack spacing={2}>
-                  {/* <Item sx={{ height: 45 }}>
-                    {" "}
-                    {!isEdit && (
-                      <Typography width="100%" variant="h8">
-                        {props?.data?.language}
-                      </Typography>
-                    )}
-                    {isEdit && (
-                      <Stack>
-                        <TextField
-                          hiddenLabel
-                          fullWidth
-                          autoFocus
-                          variant="standard"
-                          color="secondary"
-                          size="small"
-                          value={language}
-                          onChange={(e) => setLanguage(e.target.value)}
-                        ></TextField>
-                      </Stack>
-                    )}
-                  </Item> */}
-
                   <Item sx={{ height: 45 }}>
                     {" "}
                     {!isEdit && (
@@ -121,7 +102,11 @@ const LanguageInfoCoach = (props) => {
                           variant="standard"
                           color="secondary"
                           size="small"
-                          value={proficiency}
+                          value={
+                            proficiency
+                              ? proficiency
+                              : props?.data?.languageProficiency
+                          }
                           onChange={(e) => setProficiency(e.target.value)}
                         ></TextField>
                       </Stack>
@@ -141,35 +126,14 @@ const LanguageInfoCoach = (props) => {
                           variant="standard"
                           color="secondary"
                           size="small"
-                          value={teachLevel}
+                          value={
+                            teachLevel ? teachLevel : props?.data?.teachingLevel
+                          }
                           onChange={(e) => setTeachLevel(e.target.value)}
                         ></TextField>
                       </Stack>
                     )}
                   </Item>
-                  {/* <Item sx={{ height: 45 }}>
-                    {" "}
-                    {!isEdit && (
-                      <Typography width="100%" variant="h8">
-                        {props?.data?.conversationTopics}
-                      </Typography>
-                    )}
-                    {isEdit && (
-                      <Stack>
-                        <TextField
-                          hiddenLabel
-                          fullWidth
-                          variant="standard"
-                          color="secondary"
-                          size="small"
-                          value={conversationTopics}
-                          onChange={(e) =>
-                            setConversationTopics(e.target.value)
-                          }
-                        ></TextField>
-                      </Stack>
-                    )}
-                  </Item> */}
                 </Stack>
               </Box>
             </Grid>
@@ -198,6 +162,7 @@ LanguageInfoCoach.propTypes = {
     languageProficiency: PropTypes.string,
     teachingLevel: PropTypes.string,
     conversationTopics: PropTypes.string,
+    _id: PropTypes.string,
   }).isRequired,
 };
 
