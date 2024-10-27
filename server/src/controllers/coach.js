@@ -48,3 +48,25 @@ export const getCoach = async (req, res) => {
       .json({ success: false, msg: "Unable to get coach, try again later" });
   }
 };
+
+export const updateCoach = async (req, res) => {
+  const { id } = req.params;
+  const { languageProficiency, teachingLevel, bio, rate } = req.body;
+  try {
+    await Coach.findOneAndUpdate(
+      { user_id: id },
+      {
+        languageProficiency,
+        teachingLevel,
+        bio,
+        rate,
+      },
+    );
+    res.status(200).json({ success: true, msg: "Coach updated successfully" });
+  } catch (error) {
+    logError(error);
+    res
+      .status(500)
+      .json({ success: false, msg: "Unable to update coach, try again later" });
+  }
+};

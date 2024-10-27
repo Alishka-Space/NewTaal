@@ -46,3 +46,26 @@ export const getLearner = async (req, res) => {
       .json({ success: false, msg: "Unable to get learner, try again later" });
   }
 };
+
+export const updateLearner = async (req, res) => {
+  const { id } = req.params;
+  const { purpose, bio } = req.body;
+  try {
+    await Learner.findOneAndUpdate(
+      { user_id: id },
+      {
+        purpose,
+        bio,
+      },
+    );
+    res
+      .status(200)
+      .json({ success: true, msg: "Learner updated successfully" });
+  } catch (error) {
+    logError(error);
+    res.status(500).json({
+      success: false,
+      msg: "Unable to update learner, try again later",
+    });
+  }
+};
