@@ -19,6 +19,7 @@ const coachSchema = new mongoose.Schema({
   nationality: { type: String },
   availability: { type: String },
   rate: { type: Number },
+  dateOfBirth: { type: Date },
 });
 
 const Coach = mongoose.model("coaches", coachSchema);

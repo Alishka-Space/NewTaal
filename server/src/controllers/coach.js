@@ -26,6 +26,7 @@ export const createCoach = async (user, req, res) => {
       bio: "",
       rate: 0,
       availability: "",
+      dateOfBirth: user.dateOfBirth,
     });
   } catch (error) {
     logError(error);
@@ -51,15 +52,48 @@ export const getCoach = async (req, res) => {
 
 export const updateCoach = async (req, res) => {
   const { id } = req.params;
-  const { languageProficiency, teachingLevel, bio, rate } = req.body;
+  const {
+    username,
+    languageProficiency,
+    teachingLevel,
+    bio,
+    rate,
+    nationality,
+    datOfBirth,
+  } = req.body;
+
+  const coach = await Coach.findOne({ _id: id });
+
+  if (!coach) {
+    return res.status(404).json({ success: false, msg: "Coach not found" });
+  }
+
+  if (
+    !username &&
+    !languageProficiency &&
+    !teachingLevel &&
+    !bio &&
+    !rate &&
+    !nationality &&
+    !datOfBirth
+  ) {
+    return res.status(400).json({
+      success: false,
+      msg: "Please provide at least one field to update",
+    });
+  }
+
   try {
     await Coach.findOneAndUpdate(
-      { user_id: id },
+      { _id: id },
       {
         languageProficiency,
         teachingLevel,
         bio,
         rate,
+        username,
+        nationality,
+        datOfBirth,
       },
     );
     res.status(200).json({ success: true, msg: "Coach updated successfully" });
