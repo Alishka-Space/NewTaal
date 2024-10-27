@@ -50,17 +50,32 @@ export const getLearner = async (req, res) => {
 export const updateLearner = async (req, res) => {
   const { id } = req.params;
   const { purpose, bio } = req.body;
+
+  const learner = await Learner.findOne({ _id: id });
+
+  if (!learner) {
+    return res.status(404).json({ success: false, msg: "Learner not found" });
+  }
+
+  if (!purpose && !bio) {
+    return res
+      .status(400)
+      .json({ success: false, msg: "Please provide purpose and bio" });
+  }
+
   try {
     await Learner.findOneAndUpdate(
-      { user_id: id },
+      { _id: id },
       {
         purpose,
         bio,
       },
     );
-    res
-      .status(200)
-      .json({ success: true, msg: "Learner updated successfully" });
+    res.status(200).json({
+      success: true,
+      msg: "Learner updated successfully",
+      result: learner,
+    });
   } catch (error) {
     logError(error);
     res.status(500).json({
