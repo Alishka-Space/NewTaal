@@ -107,6 +107,8 @@ export const rescheduleSession = async (req, res) => {
     const session = new Session({
       learner_id: existingSession.learner_id,
       coach_id: existingSession.coach_id,
+      learner_name: existingSession.learner_name,
+      coach_name: existingSession.coach_name,
       day,
       time,
       status: "scheduled",
