@@ -6,6 +6,7 @@ import Stack from "@mui/material/Stack";
 import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import { Button, Card, TextField, Typography } from "@mui/material";
+import useFetch from "../../hooks/useFetch";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: "#fff",
@@ -19,15 +20,25 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 const LanguageInfoLearner = (props) => {
+  const { performFetch } = useFetch(
+    `/learner/update/${props.data._id}`,
+    () => {},
+  );
+
   const [isEdit, setIsEdit] = useState(false);
-  // const [language, setLanguage] = useState("");
   const [proficiency, setProficiency] = useState("");
-  const [teachLevel, setTeachLevel] = useState("");
-  // const [conversationTopics, setConversationTopics] = useState("");
+  const [purpose, setPurpose] = useState("");
   const handleEdit = () => {
     setIsEdit(true);
   };
   const handleSave = () => {
+    performFetch({
+      method: "PATCH",
+      body: JSON.stringify({
+        languageProficiency: proficiency,
+        purpose: purpose,
+      }),
+    });
     setIsEdit(false);
   };
 
@@ -142,8 +153,8 @@ const LanguageInfoLearner = (props) => {
                           variant="standard"
                           color="secondary"
                           size="small"
-                          value={teachLevel}
-                          onChange={(e) => setTeachLevel(e.target.value)}
+                          value={purpose}
+                          onChange={(e) => setPurpose(e.target.value)}
                         />
                       </Stack>
                     )}
@@ -200,6 +211,7 @@ LanguageInfoLearner.propTypes = {
     purpose: PropTypes.string,
     conversationTopics: PropTypes.string,
     languageProficiency: PropTypes.string,
+    _id: PropTypes.string,
   }).isRequired,
 };
 
