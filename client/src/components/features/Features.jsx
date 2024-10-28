@@ -7,17 +7,21 @@ import aboutb from "../../../public/featuers-img/remove2.png";
 const Features = () => {
   return (
     <div className="features-div">
-      <h1 className="feature-title">Our Features</h1>
       <div className="features">
+        <b className="feature-title">Our Features</b>
         <div className="feature">
-          <h3>1-on-1 Language Coaching</h3>
+          <span>1-on-1 Language Coaching</span>
           <img src={about} alt="about-img" className="about-img" />
         </div>
         <div className="feature">
+          <div className="feature-text">
+            <span>Flexible Scheduling</span>
+            <p>Learn / Speak at your own pace</p>
+          </div>
           <img src={abouta} alt="about-img" className="about-img" />
         </div>
         <div className="feature">
-          <h3>Professional Language Coaches</h3>
+          <span>Professional Language Coaches</span>
           <img src={aboutb} alt="about-img" className="about-img" />
         </div>
       </div>
