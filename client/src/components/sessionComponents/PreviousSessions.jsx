@@ -1,44 +1,40 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import Grid from "@mui/material/Grid2";
 import Paper from "@mui/material/Paper";
-import { Card, Typography } from "@mui/material";
-import Stack from "@mui/material/Stack";
-import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
+import { Card, Typography } from "@mui/material";
+import Pagination from "@mui/material/Pagination";
+import Stack from "@mui/material/Stack";
+
 import useFetch from "../../hooks/useFetch";
 import { AuthContext } from "../../context/AuthContext";
 
-const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: "#fff",
-  ...theme.typography.body2,
-  padding: theme.spacing(1),
-  textAlign: "left",
-  color: theme.palette.text.secondary,
-  ...theme.applyStyles("dark", {
-    backgroundColor: "#1A2027",
-  }),
-}));
-
 const PreviousSessions = () => {
   const { authState } = useContext(AuthContext);
-
-  const [data, setData] = useState(null);
+  const [sessionsData, setSessionsData] = useState();
 
   const { performFetch, cancelFetch } = useFetch(
     `/session/user/${authState.id}`,
     (response) => {
       const scheduledSessions = response.result.filter(
-        (item) => item.status !== "scheduled",
+        (item) => item.status === "cancelled" || item.status === "completed",
       );
-      setData(scheduledSessions);
+      setSessionsData(scheduledSessions);
     },
   );
 
   useEffect(() => {
     performFetch({
       method: "GET",
-      param: authState.id,
+      params: authState.id,
     });
+
     return cancelFetch;
   }, []);
 
@@ -51,106 +47,82 @@ const PreviousSessions = () => {
           p: 2,
           mt: 4,
           mb: 1,
-          minWidth: 1000,
-          height: 460,
+          minWidth: 800,
+          height: 500,
         }}
         variant="elevation"
         elevation={20}
       >
-        <Card sx={{ p: 1, borderRadius: "10px", bgcolor: "#f0f0f0" }}>
+        <Card sx={{ p: 1, borderRadius: "10px", bgcolor: "#f0f0f0", my: 2 }}>
           <Typography fontWeight="bold">
             Previous and Cancelled Sessions
           </Typography>
         </Card>
 
-        <div>
-          <Grid container p={3} spacing={2}>
-            <Grid item>
-              <Box
-                sx={{
-                  width: 150,
-                }}
-              >
-                <Stack spacing={2}>
-                  <Item sx={{ height: 45, fontWeight: "bold" }}>
+        <Box>
+          <TableContainer component={Paper}>
+            <Table sx={{ minWidth: 650 }} aria-label="simple table">
+              <TableHead>
+                <TableRow>
+                  <TableCell></TableCell>
+                  <TableCell sx={{ fontWeight: "bold" }}>
                     {authState.role === "learner"
                       ? "Coach Name"
                       : "Learner Name"}
-                  </Item>
-                  {data?.map((item) => (
-                    <Item sx={{ height: 45 }} key={item._id}>
-                      <Typography width="100%" variant="h8">
+                  </TableCell>
+
+                  <TableCell sx={{ fontWeight: "bold" }}>
+                    Day of Sessions
+                  </TableCell>
+                  <TableCell sx={{ fontWeight: "bold" }}>
+                    Time of Sessions
+                  </TableCell>
+                  <TableCell sx={{ fontWeight: "bold" }}>
+                    Session Status
+                  </TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {sessionsData &&
+                  sessionsData.map((row) => (
+                    <TableRow
+                      key={row._id}
+                      sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                    >
+                      <TableCell component="th" scope="row">
+                        {row.name}
+                      </TableCell>
+                      <TableCell>
                         {authState.role === "coach"
-                          ? item.learner_name
-                          : item.coach_name}
-                      </Typography>
-                    </Item>
+                          ? row.learner_name
+                          : row.coach_name}
+                      </TableCell>
+                      <TableCell>{row.day}</TableCell>
+                      <TableCell>{row.time}</TableCell>
+                      <TableCell>{row.status}</TableCell>
+                    </TableRow>
                   ))}
-                </Stack>
-              </Box>
-            </Grid>
-
-            <Grid item>
-              <Box
-                sx={{
-                  width: 200,
-                }}
-              >
-                <Stack spacing={2}>
-                  <Item sx={{ height: 45, fontWeight: "bold" }}>
-                    Day of Session
-                  </Item>
-                  {data?.map((item) => (
-                    <Item sx={{ height: 45 }} key={item._id}>
-                      <Typography width="100%" variant="h8">
-                        {item.day}
-                      </Typography>
-                    </Item>
-                  ))}
-                </Stack>
-              </Box>
-            </Grid>
-
-            <Grid item>
-              <Box
-                sx={{
-                  width: 250,
-                }}
-              >
-                <Stack spacing={2}>
-                  <Item sx={{ height: 45, fontWeight: "bold" }}>
-                    Time of Session
-                  </Item>
-                  {data?.map((item) => (
-                    <Item sx={{ height: 45 }} key={item._id}>
-                      <Typography width="100%" variant="h8">
-                        {item.time}
-                      </Typography>
-                    </Item>
-                  ))}
-                </Stack>
-              </Box>
-            </Grid>
-            <Grid item>
-              <Box
-                sx={{
-                  width: 250,
-                }}
-              >
-                <Stack spacing={2}>
-                  <Item sx={{ height: 45, fontWeight: "bold" }}>Status</Item>
-                  {data?.map((item) => (
-                    <Item sx={{ height: 45 }} key={item._id}>
-                      <Typography width="100%" variant="h8">
-                        {item.status}
-                      </Typography>
-                    </Item>
-                  ))}
-                </Stack>
-              </Box>
-            </Grid>
-          </Grid>
-        </div>
+              </TableBody>
+            </Table>
+          </TableContainer>
+          <Stack
+            spacing={2}
+            sx={{
+              marginTop: 2,
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <Pagination
+              count={3}
+              color="secondary"
+              size="small"
+              variant="outlined"
+              shape="rounded"
+            />
+          </Stack>
+        </Box>
       </Paper>
     </Grid>
   );
