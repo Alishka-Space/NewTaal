@@ -2,13 +2,13 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 40px 20px;
+  padding: 20px;
 }
 
 .steps {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 20px;
+
   width: 100%;
 }
 
@@ -24,27 +24,34 @@
   color: white;
   font-weight: bold;
   text-align: center;
-  background-size: 120%;
   background-position: center;
   background-repeat: no-repeat;
   width: 100%;
   height: 250px;
-  padding: 20px;
+  padding: 10px;
   transition: transform 0.3s ease;
 }
 
 /* Background images */
 .step-one {
-  background-image: url("../../../public/step-web/step2-removebg-preview.webp");
+  position: relative;
+  background-image: url("../../../public/step-web/step3-removebg-preview.webp");
+  background-size: 120%;
 }
 .step-two {
-  background-image: url("../../../public/step-web/step1-removebg-preview.webp");
+  position: relative;
+  background-image: url("../../../public/step-web/step2-removebg-preview.webp");
+  background-size: 120%;
 }
 .step-three {
-  background-image: url("../../../public/step-web/step3-removebg-preview.webp");
+  position: relative;
+  background-image: url("../../../public/step-web/step1-removebg-preview.webp");
+  background-size: 120%;
 }
 .step-four {
+  position: relative;
   background-image: url("../../../public/step-web/step4-removebg-preview.webp");
+  background-size: 120%;
 }
 
 /* Title Styling */
@@ -54,27 +61,78 @@
   color: black;
 }
 
-/* Description Styling */
 .steps p {
   font-size: 1rem;
   font-weight: normal;
-  margin: 0;
+  margin: 30px;
   padding: 5px 10px;
   line-height: 1.5;
-  background-color: rgba(
-    0,
-    0,
-    0,
-    0.294
-  ); /* Optional background for better readability */
+  background-color: rgba(0, 0, 0, 0.294);
   border-radius: 8px;
   color: #f0f0f0;
   max-width: 50%;
 }
 
-/* Hover effect */
 .steps div:hover {
   transform: scale(1.05);
+}
+
+.steps .step-one span {
+  position: absolute;
+  top: 20px;
+  left: 150px;
+  font-size: 1.2rem;
+  text-decoration: underline;
+}
+.steps .step-one p {
+  position: absolute;
+  bottom: 40px;
+  left: 30px;
+  font-size: 1rem;
+}
+
+.steps .step-two span {
+  position: absolute;
+  top: 20px;
+  left: 160px;
+  font-size: 1.2rem;
+  text-decoration: underline;
+}
+
+.steps .step-two p {
+  position: absolute;
+  bottom: 40px;
+  left: 40px;
+  font-size: 1rem;
+}
+
+.steps .step-three span {
+  position: absolute;
+  top: 10px;
+  left: 210px;
+  font-size: 1.2rem;
+  text-decoration: underline;
+}
+.steps .step-three p {
+  position: absolute;
+  bottom: 20px;
+  left: 190px;
+  font-size: 1rem;
+}
+
+.steps .step-four span {
+  position: absolute;
+  top: 0px;
+  left: 170px;
+  font-size: 1.2rem;
+  text-decoration: underline;
+}
+
+.steps .step-four p {
+  position: absolute;
+  bottom: 20px;
+  left: 130px;
+  font-size: 1rem;
 }
 
 /* Responsive adjustments */

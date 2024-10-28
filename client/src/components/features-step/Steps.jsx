@@ -7,19 +7,19 @@ const Steps = () => {
       <div className="steps">
         <div className="step-one">
           <span>Create Your Account</span>
-          <p>Sign up to get started with your personalized learning journey.</p>
+          <p>Sign up to get started with your journey.</p>
         </div>
         <div className="step-two">
           <span>Connect with a Mentor</span>
-          <p>Find a mentor that aligns with your goals and preferences.</p>
+          <p>Find a mentor that aligns with your goals.</p>
         </div>
         <div className="step-three">
-          <span>Book Your Session</span>
-          <p>Schedule a time that works best for you to begin learning.</p>
+          <span className="title-step-three">Book Your Session</span>
+          <p>Schedule a time that works best for you .</p>
         </div>
         <div className="step-four">
-          <span>Start Learning</span>
-          <p>Engage in interactive lessons tailored just for you.</p>
+          <span className="title-step-four">Start Learning</span>
+          <p>Engage in interactive lessons just for you.</p>
         </div>
       </div>
     </div>
