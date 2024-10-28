@@ -9,15 +9,16 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import { Card, Typography } from "@mui/material";
-import Pagination from "@mui/material/Pagination";
+import TablePagination from "@mui/material/TablePagination";
 import Stack from "@mui/material/Stack";
-
 import useFetch from "../../hooks/useFetch";
 import { AuthContext } from "../../context/AuthContext";
 
 const PreviousSessions = () => {
   const { authState } = useContext(AuthContext);
   const [sessionsData, setSessionsData] = useState();
+  const [page, setPage] = useState(0);
+  const [rowsPerPage, setRowsPerPage] = useState(5);
 
   const { performFetch, cancelFetch } = useFetch(
     `/session/user/${authState.id}`,
@@ -37,6 +38,15 @@ const PreviousSessions = () => {
 
     return cancelFetch;
   }, []);
+
+  const handleChangePage = (event, newPage) => {
+    setPage(newPage);
+  };
+
+  const handleChangeRowsPerPage = (event) => {
+    setRowsPerPage(parseInt(event.target.value, 10));
+    setPage(0);
+  };
 
   return (
     <Grid container>
@@ -114,12 +124,14 @@ const PreviousSessions = () => {
               alignItems: "center",
             }}
           >
-            <Pagination
-              count={3}
-              color="secondary"
-              size="small"
-              variant="outlined"
-              shape="rounded"
+            <TablePagination
+              rowsPerPageOptions={[5, 10, 25]}
+              component="div"
+              count={sessionsData ? sessionsData.length : 0}
+              rowsPerPage={rowsPerPage}
+              page={page}
+              onPageChange={handleChangePage}
+              onRowsPerPageChange={handleChangeRowsPerPage}
             />
           </Stack>
         </Box>

@@ -81,3 +81,30 @@ const BookASession = () => {
 };
 
 export default BookASession;
+
+{
+  /* <MenuItem value="00:00 - 01:00">00:00 - 01:00</MenuItem>
+<MenuItem value="01:00 - 02:00">01:00 - 02:00</MenuItem>
+<MenuItem value="02:00 - 03:00">02:00 - 03:00</MenuItem>
+<MenuItem value="03:00 - 04:00">03:00 - 04:00</MenuItem>
+<MenuItem value="04:00 - 05:00">04:00 - 05:00</MenuItem>
+<MenuItem value="05:00 - 06:00">05:00 - 06:00</MenuItem>
+<MenuItem value="06:00 - 07:00">06:00 - 07:00</MenuItem>
+<MenuItem value="07:00 - 08:00">07:00 - 08:00</MenuItem>
+<MenuItem value="08:00 - 09:00">08:00 - 09:00</MenuItem>
+<MenuItem value="09:00 - 10:00">09:00 - 10:00</MenuItem>
+<MenuItem value="10:00 - 11:00">10:00 - 11:00</MenuItem>
+<MenuItem value="11:00 - 12:00">11:00 - 12:00</MenuItem>
+<MenuItem value="12:00 - 13:00">12:00 - 13:00</MenuItem>
+<MenuItem value="13:00 - 14:00">13:00 - 14:00</MenuItem>
+<MenuItem value="14:00 - 15:00">14:00 - 15:00</MenuItem>
+<MenuItem value="15:00 - 16:00">15:00 - 16:00</MenuItem>
+<MenuItem value="16:00 - 17:00">16:00 - 17:00</MenuItem>
+<MenuItem value="17:00 - 18:00">17:00 - 18:00</MenuItem>
+<MenuItem value="18:00 - 19:00">18:00 - 19:00</MenuItem>
+<MenuItem value="19:00 - 20:00">19:00 - 20:00</MenuItem>
+<MenuItem value="20:00 - 21:00">20:00 - 21:00</MenuItem>
+<MenuItem value="21:00 - 22:00">21:00 - 22:00</MenuItem>
+<MenuItem value="22:00 - 23:00">22:00 - 23:00</MenuItem>
+<MenuItem value="23:00 - 00:00">23:00 - 00:00</MenuItem> */
+}

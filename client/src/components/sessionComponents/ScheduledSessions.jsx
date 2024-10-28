@@ -9,20 +9,20 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import { Button, Card, Typography } from "@mui/material";
-import Pagination from "@mui/material/Pagination";
+import TablePagination from "@mui/material/TablePagination";
 import Stack from "@mui/material/Stack";
-import FormControl from "@mui/material/FormControl";
-import NativeSelect from "@mui/material/NativeSelect";
+import { useNavigate } from "react-router-dom";
 import useFetch from "../../hooks/useFetch";
 import { AuthContext } from "../../context/AuthContext";
 
 const ScheduledSessions = () => {
   const { authState } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const [page, setPage] = useState(0);
+  const [rowsPerPage, setRowsPerPage] = useState(5);
+
   const [sessionsData, setSessionsData] = useState();
-  const [editRowIndex, setEditRowIndex] = useState(null);
-  const [day, setDay] = useState("");
-  const [time, setTime] = useState("");
-  const [status, setStatus] = useState("");
+  //const [editRowIndex, setEditRowIndex] = useState(null);
 
   const { performFetch, cancelFetch } = useFetch(
     `/session/user/${authState.id}`,
@@ -43,24 +43,17 @@ const ScheduledSessions = () => {
     return cancelFetch;
   }, []);
 
-  const handleEdit = (row) => {
-    setEditRowIndex(row._id);
-    setDay(row.day);
-    setDay(row.time);
-    setDay(row.status);
+  const handleEditASession = (row) => {
+    navigate("/editasession", { state: { coach: row } });
   };
 
-  const handleSave = () => {
-    performFetch({
-      method: "PATCH",
-      body: JSON.stringify({
-        day: day,
-        time: time,
-        status: status,
-      }),
-    });
+  const handleChangePage = (event, newPage) => {
+    setPage(newPage);
+  };
 
-    setEditRowIndex(null);
+  const handleChangeRowsPerPage = (event) => {
+    setRowsPerPage(parseInt(event.target.value, 10));
+    setPage(0);
   };
 
   return (
@@ -73,7 +66,7 @@ const ScheduledSessions = () => {
           mt: 4,
           mb: 1,
           minWidth: 800,
-          height: 500,
+          height: 540,
         }}
         variant="elevation"
         elevation={20}
@@ -121,151 +114,19 @@ const ScheduledSessions = () => {
                           ? row.learner_name
                           : row.coach_name}
                       </TableCell>
+                      <TableCell>{row.day}</TableCell>
+                      <TableCell>{row.time}</TableCell>
+                      <TableCell>{row.status}</TableCell>
 
-                      <TableCell>
-                        {editRowIndex === row._id ? (
-                          <Stack direction="row" spacing={1}>
-                            <FormControl sx={{ minWidth: 120 }}>
-                              <NativeSelect
-                                id="day-select"
-                                value={day}
-                                onChange={(e) => setDay(e.target.value)}
-                              >
-                                <option value="Monday">Monday</option>
-                                <option value="Tuesday">Tuesday</option>
-                                <option value="Wednesday">Wednesday</option>
-                                <option value="Thursday">Thursday</option>
-                                <option value="Friday">Friday</option>
-                                <option value="Saturday">Saturday</option>
-                                <option value="Sunday">Sunday</option>
-                              </NativeSelect>
-                            </FormControl>
-                          </Stack>
-                        ) : (
-                          <Typography>{row.day}</Typography>
-                        )}
-                      </TableCell>
-
-                      <TableCell>
-                        {editRowIndex === row._id ? (
-                          <Stack direction="row" spacing={1}>
-                            <FormControl sx={{ minWidth: 120 }}>
-                              <NativeSelect
-                                id="time-select"
-                                value={time}
-                                onChange={(e) => setTime(e.target.value)}
-                              >
-                                <option value="00:00 - 01:00">
-                                  00:00 - 01:00
-                                </option>
-                                <option value="01:00 - 02:00">
-                                  01:00 - 02:00
-                                </option>
-                                <option value="02:00 - 03:00">
-                                  02:00 - 03:00
-                                </option>
-                                <option value="03:00 - 04:00">
-                                  03:00 - 04:00
-                                </option>
-                                <option value="04:00 - 05:00">
-                                  04:00 - 05:00
-                                </option>
-                                <option value="05:00 - 06:00">
-                                  05:00 - 06:00
-                                </option>
-                                <option value="06:00 - 07:00">
-                                  06:00 - 07:00
-                                </option>
-                                <option value="07:00 - 08:00">
-                                  07:00 - 08:00
-                                </option>
-                                <option value="08:00 - 09:00">
-                                  08:00 - 09:00
-                                </option>
-                                <option value="09:00 - 10:00">
-                                  09:00 - 10:00
-                                </option>
-                                <option value="10:00 - 11:00">
-                                  10:00 - 11:00
-                                </option>
-                                <option value="11:00 - 12:00">
-                                  11:00 - 12:00
-                                </option>
-                                <option value="12:00 - 13:00">
-                                  12:00 - 13:00
-                                </option>
-                                <option value="13:00 - 14:00">
-                                  13:00 - 14:00
-                                </option>
-                                <option value="14:00 - 15:00">
-                                  14:00 - 15:00
-                                </option>
-                                <option value="15:00 - 16:00">
-                                  15:00 - 16:00
-                                </option>
-                                <option value="16:00 - 17:00">
-                                  16:00 - 17:00
-                                </option>
-                                <option value="17:00 - 18:00">
-                                  17:00 - 18:00
-                                </option>
-                                <option value="18:00 - 19:00">
-                                  18:00 - 19:00
-                                </option>
-                                <option value="19:00 - 20:00">
-                                  19:00 - 20:00
-                                </option>
-                                <option value="20:00 - 21:00">
-                                  20:00 - 21:00
-                                </option>
-                                <option value="21:00 - 22:00">
-                                  21:00 - 22:00
-                                </option>
-                                <option value="22:00 - 23:00">
-                                  22:00 - 23:00
-                                </option>
-                                <option value="23:00 - 00:00">
-                                  23:00 - 00:00
-                                </option>
-                              </NativeSelect>
-                            </FormControl>
-                          </Stack>
-                        ) : (
-                          <Typography>{row.time}</Typography>
-                        )}
-                      </TableCell>
-
-                      <TableCell>
-                        {editRowIndex === row._id ? (
-                          <Stack direction="row" spacing={1}>
-                            <FormControl sx={{ minWidth: 120 }}>
-                              <NativeSelect
-                                id="status-select"
-                                value={status}
-                                onChange={(e) => setStatus(e.target.value)}
-                              >
-                                <option value="Canceled">Canceled</option>
-                                <option value="Completed">Completed</option>
-                              </NativeSelect>
-                            </FormControl>
-                          </Stack>
-                        ) : (
-                          <Typography>{row.status}</Typography>
-                        )}
-                      </TableCell>
                       <TableCell>
                         <strong>
                           <Button
                             color="secondary"
                             variant="contained"
                             size="small"
-                            onClick={() =>
-                              editRowIndex === row._id
-                                ? handleSave(row)
-                                : handleEdit(row)
-                            }
+                            onClick={() => handleEditASession(row)}
                           >
-                            {editRowIndex === row._id ? "Save" : "Edit"}
+                            Edit
                           </Button>
                         </strong>
                       </TableCell>
@@ -283,12 +144,14 @@ const ScheduledSessions = () => {
               alignItems: "center",
             }}
           >
-            <Pagination
-              count={3}
-              color="secondary"
-              size="small"
-              variant="outlined"
-              shape="rounded"
+            <TablePagination
+              rowsPerPageOptions={[5, 10, 25]}
+              component="div"
+              count={sessionsData ? sessionsData.length : 0}
+              rowsPerPage={rowsPerPage}
+              page={page}
+              onPageChange={handleChangePage}
+              onRowsPerPageChange={handleChangeRowsPerPage}
             />
           </Stack>
         </Box>

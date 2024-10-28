@@ -49,7 +49,7 @@ const SessionHeaderLearner = () => {
             mt: 4,
             mb: 1,
             minWidth: 800,
-            height: 300,
+            height: 230,
             bgcolor: "#C0C0C0",
           }}
           variant="elevation"
