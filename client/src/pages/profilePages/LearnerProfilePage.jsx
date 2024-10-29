@@ -2,11 +2,11 @@ import React, { useEffect, useState } from "react";
 import ProfileHeaderLearner from "../../components/learnerProfileComponents/ProfileHeaderLearner";
 import PersonalInfoLearner from "../../components/learnerProfileComponents/PersonalInfoLearner";
 import LanguageInfoLearner from "../../components/learnerProfileComponents/LanguageInfoLearner";
-import ScheduledSessions from "../../components/learnerProfileComponents/ScheduledSessions";
 import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
 import { useParams } from "react-router-dom";
 import useFetch from "../../hooks/useFetch";
+import PreviousSessions from "../../components/sessionComponents/PreviousSessions";
 
 const LearnerProfilePage = () => {
   const { id } = useParams();
@@ -38,7 +38,7 @@ const LearnerProfilePage = () => {
           <ProfileHeaderLearner data={learnerData} />
           <PersonalInfoLearner data={learnerData} />
           <LanguageInfoLearner data={learnerData} />
-          <ScheduledSessions data={learnerData} />
+          <PreviousSessions data={learnerData} />
         </Box>
       </Container>
     </div>
