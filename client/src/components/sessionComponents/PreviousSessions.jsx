@@ -10,7 +10,6 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import { Card, Typography } from "@mui/material";
 import TablePagination from "@mui/material/TablePagination";
-import Stack from "@mui/material/Stack";
 import useFetch from "../../hooks/useFetch";
 import { AuthContext } from "../../context/AuthContext";
 
@@ -71,7 +70,7 @@ const PreviousSessions = () => {
 
         <Box>
           <TableContainer component={Paper}>
-            <Table sx={{ minWidth: 650 }} aria-label="simple table">
+            <Table sx={{ minWidth: 650 }} aria-label="sticky table">
               <TableHead>
                 <TableRow>
                   <TableCell></TableCell>
@@ -94,46 +93,41 @@ const PreviousSessions = () => {
               </TableHead>
               <TableBody>
                 {sessionsData &&
-                  sessionsData.map((row) => (
-                    <TableRow
-                      key={row._id}
-                      sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-                    >
-                      <TableCell component="th" scope="row">
-                        {row.name}
-                      </TableCell>
-                      <TableCell>
-                        {authState.role === "coach"
-                          ? row.learner_name
-                          : row.coach_name}
-                      </TableCell>
-                      <TableCell>{row.day}</TableCell>
-                      <TableCell>{row.time}</TableCell>
-                      <TableCell>{row.status}</TableCell>
-                    </TableRow>
-                  ))}
+                  sessionsData
+                    .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                    .map((row, index) => (
+                      <TableRow
+                        key={index}
+                        sx={{
+                          "&:last-child td, &:last-child th": { border: 0 },
+                        }}
+                      >
+                        <TableCell component="th" scope="row">
+                          {row.name}
+                        </TableCell>
+                        <TableCell>
+                          {authState.role === "coach"
+                            ? row.learner_name
+                            : row.coach_name}
+                        </TableCell>
+                        <TableCell>{row.day}</TableCell>
+                        <TableCell>{row.time}</TableCell>
+                        <TableCell>{row.status}</TableCell>
+                      </TableRow>
+                    ))}
               </TableBody>
             </Table>
           </TableContainer>
-          <Stack
-            spacing={2}
-            sx={{
-              marginTop: 2,
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          >
-            <TablePagination
-              rowsPerPageOptions={[5, 10, 25]}
-              component="div"
-              count={sessionsData ? sessionsData.length : 0}
-              rowsPerPage={rowsPerPage}
-              page={page}
-              onPageChange={handleChangePage}
-              onRowsPerPageChange={handleChangeRowsPerPage}
-            />
-          </Stack>
+
+          <TablePagination
+            rowsPerPageOptions={[5, 10, 25]}
+            component="div"
+            count={sessionsData ? sessionsData.length : 0}
+            rowsPerPage={rowsPerPage}
+            page={page}
+            onPageChange={handleChangePage}
+            onRowsPerPageChange={handleChangeRowsPerPage}
+          />
         </Box>
       </Paper>
     </Grid>
