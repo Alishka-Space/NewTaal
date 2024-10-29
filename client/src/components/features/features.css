@@ -1,33 +1,37 @@
 .features-div {
   width: 100%;
   height: 600px;
-  background-color: #f8f9fa;
 }
 .feature-title {
-  font-size: 30px;
+  width: 750px;
+  height: 100px;
+  padding: 20px 0;
+  font-size: 40px;
   font-weight: bold;
-  color: #531a85;
-  margin: 20px 0;
-
+  color: #2a1d36;
+  font-family: bauhaus;
   text-align: center;
+  position: absolute;
+  top: 15px;
+  left: -140px;
 }
 
 .features {
   background-image: url("../../../public/featuers-img/cleanbg.webp");
   background-size: cover;
   width: 100%;
-  height: 550px;
+  height: 600px;
   display: flex;
   position: relative;
 }
-.feature {
+.features .feature {
   width: 100%;
   display: flex;
   justify-content: space-around;
   align-items: center;
   flex-wrap: wrap;
 }
-.feature h3 {
+.feature span {
   font-size: 20px;
   font-weight: bold;
   color: #111012;
@@ -37,9 +41,17 @@
   font-family: bauhaus;
 }
 .about-img {
-  width: 400px;
+  width: 150px;
   height: 370px;
   object-fit: cover;
   position: absolute;
-  top: 200px;
+  top: 220px;
+}
+
+.feature-text {
+  width: 250px;
+  height: 250px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }

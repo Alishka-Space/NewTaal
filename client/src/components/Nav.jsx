@@ -41,64 +41,51 @@ const Nav = () => {
           {authState.role === "learner" ? (
             <>
               <Link to="/userhome" className="navbar-link">
-                <i className="bi bi-house-fill"></i>
                 Home
               </Link>
               <Link to="/user" className="navbar-link">
-                <i className="bi bi-person-plus-fill"></i>
                 Users
               </Link>
               <Link to="/about" className="navbar-link">
-                <i className="bi bi-bank2"></i>
                 About us
               </Link>
               <Link
                 to={`/learnerProfile/${authState.id}`}
                 className="navbar-link"
               >
-                <i className="bi bi-arrow-right-square-fill"></i>
                 Profile
               </Link>
               <Link to={`/session/${authState.id}`} className="navbar-link">
-                <i className="bi bi-calendar3"></i>
                 Sessions
               </Link>
             </>
           ) : authState.role === "coach" ? (
             <>
               <Link to={"/coachhome"} className="navbar-link">
-                <i className="bi bi-house-fill"></i>
                 Home
               </Link>
               <Link to="/user" className="navbar-link">
-                <i className="bi bi-person-plus-fill"></i>
                 Users
               </Link>
               <Link to="/about" className="navbar-link">
-                <i className="bi bi-bank2"></i>
                 About us
               </Link>
               <Link to={`coachProfile/${authState.id}`} className="navbar-link">
-                <i className="bi bi-arrow-right-square-fill"></i>
                 Profile
               </Link>
               <Link to={`/session/${authState.id}`} className="navbar-link">
-                <i className="bi bi-calendar3"></i>
                 Sessions
               </Link>
             </>
           ) : (
             <>
               <Link to="/" className="navbar-link">
-                <i className="bi bi-house-fill"></i>
                 Home
               </Link>
               <Link to="/user" className="navbar-link">
-                <i className="bi bi-person-plus-fill"></i>
                 Users
               </Link>
               <Link to="/about" className="navbar-link">
-                <i className="bi bi-bank2"></i>
                 About us
               </Link>
             </>
@@ -116,7 +103,6 @@ const Nav = () => {
             </>
           ) : (
             <Link to="/" className="navbar-link" onClick={handleLogout}>
-              <i className="bi bi-arrow-right-square-fill"></i>
               Log-out
             </Link>
           )}

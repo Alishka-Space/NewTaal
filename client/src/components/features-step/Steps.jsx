@@ -1,23 +1,25 @@
 import React from "react";
 import "./steps.css";
-import stepOne from "../../../public/steps/step1.png";
-import steptree from "../../../public/steps/step3.png";
-import stepFour from "../../../public/steps/step4.png";
+
 const Steps = () => {
   return (
     <div className="features-steps">
       <div className="steps">
-        <div className="step">
-          <img src={stepOne} alt="step-img" className="step-img" />
-          <span>Connect with a mentor</span>
+        <div className="step-one">
+          <span>Create Your Account</span>
+          <p>Sign up to get started with your journey.</p>
         </div>
-        <div className="step">
-          <img src={steptree} alt="step-img" className="step-img" />
-          <span>Book your session</span>
+        <div className="step-two">
+          <span>Connect with a Mentor</span>
+          <p>Find a mentor that aligns with your goals.</p>
         </div>
-        <div className="step">
-          <span>Start Learning</span>
-          <img src={stepFour} alt="step-img" className="step-img" />
+        <div className="step-three">
+          <span className="title-step-three">Book Your Session</span>
+          <p>Schedule a time that works best for you .</p>
+        </div>
+        <div className="step-four">
+          <span className="title-step-four">Start Learning</span>
+          <p>Engage in interactive lessons just for you.</p>
         </div>
       </div>
     </div>

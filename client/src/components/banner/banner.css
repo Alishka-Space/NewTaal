@@ -33,7 +33,7 @@
 .banner-layout-title {
   font-size: 40px;
   color: rgb(255, 255, 255);
-  font-family: "Roboto", sans-serif;
+  font-family: bauhaus;
 }
 
 @media (max-width: 720px) {
