@@ -23,7 +23,7 @@ const PreviousSessions = () => {
     `/session/user/${authState.id}`,
     (response) => {
       const scheduledSessions = response.result.filter(
-        (item) => item.status === "scheduled",
+        (item) => item.status !== "scheduled",
       );
       setSessionsData(scheduledSessions);
     },

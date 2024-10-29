@@ -43,7 +43,7 @@ const ScheduledSessions = () => {
   }, []);
 
   const handleEditASession = (row) => {
-    navigate("/editasession", { state: { coach: row } });
+    navigate("/editasession", { state: { session: row } });
   };
 
   const handleChangePage = (event, newPage) => {
