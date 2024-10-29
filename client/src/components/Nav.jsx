@@ -43,9 +43,6 @@ const Nav = () => {
               <Link to="/userhome" className="navbar-link">
                 Home
               </Link>
-              <Link to="/user" className="navbar-link">
-                Users
-              </Link>
               <Link to="/about" className="navbar-link">
                 About us
               </Link>
