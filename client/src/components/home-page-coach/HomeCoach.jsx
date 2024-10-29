@@ -1,37 +1,12 @@
-import React, { useContext, useState, useEffect } from "react";
-import useFetch from "../../hooks/useFetch";
+import React, { useContext } from "react";
 import "./homeCoach.css";
-import TraineeList from "../home-page-coach/TraineeList";
-import Pagination from "../pagination/Pagination";
 import { AuthContext } from "../../context/AuthContext";
 import { useNavigate } from "react-router-dom";
+import ScheduledSessions from "../sessionComponents/ScheduledSessions";
 
 const HomeCoach = () => {
   const { authState } = useContext(AuthContext);
   const navigate = useNavigate();
-
-  const [currentPage, setCurrentPage] = useState(1);
-  const TRAINEE_PER_PAGE = 4;
-  const [learners, setLearners] = useState([]); // all trainee data
-
-  // Fetch Data from Backend
-  const { isLoading, error, performFetch } = useFetch(
-    "/learner",
-    (response) => {
-      setLearners(response.result);
-    },
-  );
-
-  useEffect(() => {
-    performFetch();
-  }, []);
-
-  const pages = Math.ceil(learners.length / TRAINEE_PER_PAGE);
-  const startIndex = (currentPage - 1) * TRAINEE_PER_PAGE;
-  const trainees = learners.slice(startIndex, startIndex + TRAINEE_PER_PAGE);
-
-  if (isLoading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error.toString()}</div>;
 
   const handleVisitProfile = () => {
     navigate(`/coachProfile/${authState.id}`);
@@ -53,15 +28,8 @@ const HomeCoach = () => {
         </section>
       </div>
 
-      {/* Trainee List */}
-      <TraineeList traineeList={trainees} />
-
-      {/* Pagination */}
-      <Pagination
-        pages={pages}
-        currentPage={currentPage}
-        setCurrentPage={setCurrentPage}
-      />
+      {/* Scheduled Sessions */}
+      <ScheduledSessions />
     </div>
   );
 };
