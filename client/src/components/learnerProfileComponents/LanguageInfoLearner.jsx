@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import PropTypes from "prop-types";
 import Grid from "@mui/material/Grid2";
 import Paper from "@mui/material/Paper";
@@ -7,6 +7,7 @@ import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import { Button, Card, TextField, Typography } from "@mui/material";
 import useFetch from "../../hooks/useFetch";
+import { AuthContext } from "../../context/AuthContext";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: "#fff",
@@ -20,6 +21,8 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 const LanguageInfoLearner = (props) => {
+  const { authState } = useContext(AuthContext);
+
   const { performFetch } = useFetch(
     `/learner/update/${props.data._id}`,
     () => {},
@@ -140,14 +143,16 @@ const LanguageInfoLearner = (props) => {
           </Grid>
           <Grid container justifyContent="flex-end">
             <Grid>
-              <Button
-                color="secondary"
-                variant="contained"
-                size="small"
-                onClick={isEdit ? handleSave : handleEdit}
-              >
-                {isEdit ? "Save" : "Edit"}
-              </Button>
+              {authState.role === "learner" && (
+                <Button
+                  color="secondary"
+                  variant="contained"
+                  size="small"
+                  onClick={isEdit ? handleSave : handleEdit}
+                >
+                  {isEdit ? "Save" : "Edit"}
+                </Button>
+              )}
             </Grid>
           </Grid>
         </div>
