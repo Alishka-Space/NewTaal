@@ -1,28 +1,27 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import Grid from "@mui/material/Grid2";
 import Paper from "@mui/material/Paper";
-import { Card, Typography } from "@mui/material";
-import Stack from "@mui/material/Stack";
-import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
+import { Button, Card, Typography } from "@mui/material";
+import TablePagination from "@mui/material/TablePagination";
+import { useNavigate } from "react-router-dom";
 import useFetch from "../../hooks/useFetch";
 import { AuthContext } from "../../context/AuthContext";
 
-const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: "#fff",
-  ...theme.typography.body2,
-  padding: theme.spacing(1),
-  textAlign: "left",
-  color: theme.palette.text.secondary,
-  ...theme.applyStyles("dark", {
-    backgroundColor: "#1A2027",
-  }),
-}));
-
 const ScheduledSessions = () => {
   const { authState } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const [page, setPage] = useState(0);
+  const [rowsPerPage, setRowsPerPage] = useState(5);
 
-  const [data, setData] = useState(null);
+  const [sessionsData, setSessionsData] = useState();
+  //const [editRowIndex, setEditRowIndex] = useState(null);
 
   const { performFetch, cancelFetch } = useFetch(
     `/session/user/${authState.id}`,
@@ -30,17 +29,31 @@ const ScheduledSessions = () => {
       const scheduledSessions = response.result.filter(
         (item) => item.status === "scheduled",
       );
-      setData(scheduledSessions);
+      setSessionsData(scheduledSessions);
     },
   );
 
   useEffect(() => {
     performFetch({
       method: "GET",
-      param: authState.id,
+      params: authState.id,
     });
+
     return cancelFetch;
   }, []);
+
+  const handleEditASession = (row) => {
+    navigate("/editasession", { state: { coach: row } });
+  };
+
+  const handleChangePage = (event, newPage) => {
+    setPage(newPage);
+  };
+
+  const handleChangeRowsPerPage = (event) => {
+    setRowsPerPage(parseInt(event.target.value, 10));
+    setPage(0);
+  };
 
   return (
     <Grid container>
@@ -51,104 +64,90 @@ const ScheduledSessions = () => {
           p: 2,
           mt: 4,
           mb: 1,
-          minWidth: 1000,
-          height: 460,
+          minWidth: 800,
+          height: 540,
         }}
         variant="elevation"
         elevation={20}
       >
-        <Card sx={{ p: 1, borderRadius: "10px", bgcolor: "#f0f0f0" }}>
+        <Card sx={{ p: 1, borderRadius: "10px", bgcolor: "#f0f0f0", my: 2 }}>
           <Typography fontWeight="bold">Scheduled Sessions</Typography>
         </Card>
 
-        <div>
-          <Grid container p={3} spacing={2}>
-            <Grid item>
-              <Box
-                sx={{
-                  width: 150,
-                }}
-              >
-                <Stack spacing={2}>
-                  <Item sx={{ height: 45, fontWeight: "bold" }}>
+        <Box>
+          <TableContainer component={Paper}>
+            <Table sx={{ minWidth: 650 }} aria-label="sticky table">
+              <TableHead>
+                <TableRow>
+                  <TableCell></TableCell>
+                  <TableCell sx={{ fontWeight: "bold" }}>
                     {authState.role === "learner"
                       ? "Coach Name"
                       : "Learner Name"}
-                  </Item>
-                  {data?.map((item) => (
-                    <Item sx={{ height: 45 }} key={item._id}>
-                      <Typography width="100%" variant="h8">
-                        {authState.role === "coach"
-                          ? item.learner_name
-                          : item.coach_name}
-                      </Typography>
-                    </Item>
-                  ))}
-                </Stack>
-              </Box>
-            </Grid>
+                  </TableCell>
 
-            <Grid item>
-              <Box
-                sx={{
-                  width: 200,
-                }}
-              >
-                <Stack spacing={2}>
-                  <Item sx={{ height: 45, fontWeight: "bold" }}>
-                    Day of Session
-                  </Item>
-                  {data?.map((item) => (
-                    <Item sx={{ height: 45 }} key={item._id}>
-                      <Typography width="100%" variant="h8">
-                        {item.day}
-                      </Typography>
-                    </Item>
-                  ))}
-                </Stack>
-              </Box>
-            </Grid>
+                  <TableCell sx={{ fontWeight: "bold" }}>
+                    Day of Sessions
+                  </TableCell>
+                  <TableCell sx={{ fontWeight: "bold" }}>
+                    Time of Sessions
+                  </TableCell>
+                  <TableCell sx={{ fontWeight: "bold" }}>
+                    Session Status
+                  </TableCell>
+                  <TableCell></TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {sessionsData &&
+                  sessionsData
+                    .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                    .map((row, index) => (
+                      <TableRow
+                        key={index}
+                        sx={{
+                          "&:last-child td, &:last-child th": { border: 0 },
+                        }}
+                      >
+                        <TableCell component="th" scope="row">
+                          {row.name}
+                        </TableCell>
+                        <TableCell>
+                          {authState.role === "coach"
+                            ? row.learner_name
+                            : row.coach_name}
+                        </TableCell>
+                        <TableCell>{row.day}</TableCell>
+                        <TableCell>{row.time}</TableCell>
+                        <TableCell>{row.status}</TableCell>
 
-            <Grid item>
-              <Box
-                sx={{
-                  width: 250,
-                }}
-              >
-                <Stack spacing={2}>
-                  <Item sx={{ height: 45, fontWeight: "bold" }}>
-                    Time of Session
-                  </Item>
-                  {data?.map((item) => (
-                    <Item sx={{ height: 45 }} key={item._id}>
-                      <Typography width="100%" variant="h8">
-                        {item.time}
-                      </Typography>
-                    </Item>
-                  ))}
-                </Stack>
-              </Box>
-            </Grid>
-            <Grid item>
-              <Box
-                sx={{
-                  width: 250,
-                }}
-              >
-                <Stack spacing={2}>
-                  <Item sx={{ height: 45, fontWeight: "bold" }}>Status</Item>
-                  {data?.map((item) => (
-                    <Item sx={{ height: 45 }} key={item._id}>
-                      <Typography width="100%" variant="h8">
-                        {item.status}
-                      </Typography>
-                    </Item>
-                  ))}
-                </Stack>
-              </Box>
-            </Grid>
-          </Grid>
-        </div>
+                        <TableCell>
+                          <strong>
+                            <Button
+                              color="secondary"
+                              variant="contained"
+                              size="small"
+                              onClick={() => handleEditASession(row)}
+                            >
+                              Edit
+                            </Button>
+                          </strong>
+                        </TableCell>
+                      </TableRow>
+                    ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
+          <TablePagination
+            rowsPerPageOptions={[5, 10, 25]}
+            component="div"
+            count={sessionsData ? sessionsData.length : 0}
+            rowsPerPage={rowsPerPage}
+            page={page}
+            onPageChange={handleChangePage}
+            onRowsPerPageChange={handleChangeRowsPerPage}
+          />
+        </Box>
       </Paper>
     </Grid>
   );

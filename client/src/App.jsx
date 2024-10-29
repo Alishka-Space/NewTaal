@@ -15,6 +15,7 @@ import LearnerProfile from "./pages/profilePages/LearnerProfilePage";
 import About from "./pages/About/About";
 import SessionPage from "./pages/Session/SessionPage";
 import BookASession from "./pages/BookaSession/BookASession";
+import EditASession from "./pages/BookaSession/EditASession";
 
 const App = () => {
   return (
@@ -35,6 +36,7 @@ const App = () => {
           <Route path="/learnerProfile/:id" element={<LearnerProfile />} />
           <Route path="/session/:id" element={<SessionPage />} />
           <Route path="/bookasession" element={<BookASession />} />
+          <Route path="/editasession" element={<EditASession />} />
         </Route>
       </Routes>
 
