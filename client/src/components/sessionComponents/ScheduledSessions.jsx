@@ -13,6 +13,7 @@ import TablePagination from "@mui/material/TablePagination";
 import { useNavigate } from "react-router-dom";
 import useFetch from "../../hooks/useFetch";
 import { AuthContext } from "../../context/AuthContext";
+import { Link } from "react-router-dom";
 
 const ScheduledSessions = () => {
   const { authState } = useContext(AuthContext);
@@ -113,9 +114,17 @@ const ScheduledSessions = () => {
                           {row.name}
                         </TableCell>
                         <TableCell>
-                          {authState.role === "coach"
-                            ? row.learner_name
-                            : row.coach_name}
+                          {authState.role === "coach" ? (
+                            <Link to={`/learnerProfile/${row.learner_id}`}>
+                              {" "}
+                              {row.learner_name}{" "}
+                            </Link>
+                          ) : (
+                            <Link to={`/coachProfile/${row.coach_id}`}>
+                              {" "}
+                              {row.coach_name}{" "}
+                            </Link>
+                          )}
                         </TableCell>
                         <TableCell>{row.day}</TableCell>
                         <TableCell>{row.time}</TableCell>
