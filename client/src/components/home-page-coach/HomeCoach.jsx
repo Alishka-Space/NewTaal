@@ -2,7 +2,8 @@ import React, { useContext } from "react";
 import "./homeCoach.css";
 import { AuthContext } from "../../context/AuthContext";
 import { useNavigate } from "react-router-dom";
-import ScheduledSessions from "../sessionComponents/ScheduledSessions";
+import ScheduledSessions from "./ScheduledSessions";
+import Container from "@mui/material/Container";
 
 const HomeCoach = () => {
   const { authState } = useContext(AuthContext);
@@ -13,7 +14,14 @@ const HomeCoach = () => {
   };
 
   return (
-    <div className="coach-home-page">
+    <div
+      className="coach-home-page"
+      style={{
+        backgroundColor: "#e6e6fa",
+        position: "relative",
+        paddingBottom: "100px",
+      }}
+    >
       <div className="coach-homepage-search">
         {/* Greeting Section */}
         <header className="greeting-coach">
@@ -27,9 +35,9 @@ const HomeCoach = () => {
           </button>
         </section>
       </div>
-
-      {/* Scheduled Sessions */}
-      <ScheduledSessions />
+      <Container maxWidth="md" style={{ position: "relative" }}>
+        <ScheduledSessions />
+      </Container>
     </div>
   );
 };
