@@ -91,7 +91,7 @@ const BookASession = () => {
                 paddingBottom: 2,
               }}
             >
-              Edit the Session
+              Book a Session
             </Typography>
 
             <Box

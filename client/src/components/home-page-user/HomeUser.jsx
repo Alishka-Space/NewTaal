@@ -46,30 +46,39 @@ const HomeUser = () => {
   };
 
   return (
-    <div>
-      <div className="user-homepage-search">
-        <header className="greeting">
-          <h1>Hello, {authState.user}</h1>
-        </header>
-        <section className="search-section">
-          <div className="button-group">
-            <button className="visit-profile" onClick={handleVisitProfile}>
-              Visit Profile
-            </button>
-          </div>
-        </section>
+    <div
+      className="coach-home-page"
+      style={{
+        backgroundColor: "#e6e6fa",
+        position: "relative",
+        paddingBottom: "100px",
+      }}
+    >
+      <div>
+        <div className="user-homepage-search">
+          <header className="greeting">
+            <h1>Hello, {authState.user}</h1>
+          </header>
+          <section className="search-section">
+            <div className="button-group">
+              <button className="visit-profile" onClick={handleVisitProfile}>
+                Visit Profile
+              </button>
+            </div>
+          </section>
+        </div>
+        <SortInput
+          setSortItem={setSortItem}
+          sortItem={sortItem}
+          coachesLength={coaches.length}
+        />
+        <CoachList coachList={orderedCoachList} />
+        <Pagination
+          pages={pages}
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
+        />
       </div>
-      <SortInput
-        setSortItem={setSortItem}
-        sortItem={sortItem}
-        coachesLength={coaches.length}
-      />
-      <CoachList coachList={orderedCoachList} />
-      <Pagination
-        pages={pages}
-        currentPage={currentPage}
-        setCurrentPage={setCurrentPage}
-      />
     </div>
   );
 };
