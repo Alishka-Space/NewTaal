@@ -45,7 +45,7 @@ const CoachProfilePage = () => {
               <PersonalInfoCoach data={coachData} />
               <LanguageInfoCoach data={coachData} />
               <Availability data={coachData} />
-              <MatchedLearners data={coachData} />
+              <MatchedLearners />
             </>
           )}
           <Reviews data={coachData} />
