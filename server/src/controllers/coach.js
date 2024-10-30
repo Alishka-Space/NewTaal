@@ -104,3 +104,7 @@ export const updateCoach = async (req, res) => {
       .json({ success: false, msg: "Unable to update coach, try again later" });
   }
 };
+
+export const updateCoachRating = async (coachId, rating) => {
+  await Coach.findOneAndUpdate({ user_id: coachId }, { rating });
+};
