@@ -1,6 +1,6 @@
 .coach-homepage-search {
-  padding: 45px 0;
-  height: 55vh;
+  padding: 60px 0;
+  height: 45vh;
   text-align: center;
   background-image: url("../../../public/photo/cach2.webp");
   background-repeat: no-repeat;
@@ -9,7 +9,7 @@
 }
 
 .greeting-coach {
-  color: #daeb3f;
+  color: #0c0c0c;
   padding: 30px;
   border-radius: 8px;
   margin-bottom: 40px;
@@ -58,6 +58,7 @@
   cursor: pointer;
   transition: all 0.3s;
 }
+
 .filters-container {
   display: flex;
   gap: 15px;

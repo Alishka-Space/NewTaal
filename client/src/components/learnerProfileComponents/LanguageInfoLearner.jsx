@@ -56,7 +56,7 @@ const LanguageInfoLearner = (props) => {
           mt: 4,
           mb: 1,
           minWidth: 800,
-          height: 400,
+          height: 280,
         }}
         variant="elevation"
         elevation={20}
