@@ -1,4 +1,4 @@
-import * as React from "react";
+import * as React from "react"; 
 import { useState, useContext } from "react";
 import {
   Box,
@@ -12,10 +12,10 @@ import {
   TextField,
   Typography,
   Stack,
-  Card as MuiCard,
+  Card as MuiCard
 } from "@mui/material";
 import { styled, createTheme, ThemeProvider } from "@mui/material/styles";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify"; 
 import "react-toastify/dist/ReactToastify.css";
 import getSignUpTheme from "../shared-theme/getSignUpTheme";
 import ForgotPassword from "./ForgotPassword";
@@ -35,7 +35,7 @@ const Card = styled(MuiCard)(({ theme }) => ({
     "hsla(220, 30%, 5%, 0.05) 0px 5px 15px 0px, hsla(220, 25%, 10%, 0.05) 0px 15px 35px -5px",
   [theme.breakpoints.up("sm")]: {
     maxWidth: "450px",
-  },
+  }
 }));
 
 const SignInContainer = styled(Stack)(({ theme }) => ({
@@ -48,7 +48,7 @@ const SignInContainer = styled(Stack)(({ theme }) => ({
     zIndex: -1,
     inset: 0,
     backgroundImage:
-      "radial-gradient(ellipse at 50% 50%, hsl(210, 100%, 97%), hsl(0, 0%, 100%))",
+      "radial-gradient(ellipse at 50% 50%, hsl(210, 100%, 97%), hsl(0, 0%, 100%))"
   },
 }));
 
