@@ -4,6 +4,7 @@ import validateAllowedFields from "../util/validateAllowedFields.js";
 
 const reviewSchema = new mongoose.Schema({
   learner_id: { type: String, required: true, ref: "learners" },
+  learner_name: { type: String },
   coach_id: { type: String, required: true, ref: "coaches" },
   session_id: { type: String, required: true, ref: "sessions" },
   rating: { type: Number, required: true, min: 0, max: 5 },
@@ -17,6 +18,7 @@ export const validateReview = (reviewObject) => {
   const errorList = [];
   const allowedKeys = [
     "learner_id",
+    "learner_name",
     "coach_id",
     "rating",
     "comments",

@@ -32,6 +32,7 @@ export const createReview = async (req, res) => {
     }
     const reviewObject = {
       learner_id: session.learner_id,
+      learner_name: session.learner_name,
       coach_id: session.coach_id,
       session_id: id,
       rating,

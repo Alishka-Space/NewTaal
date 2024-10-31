@@ -17,7 +17,7 @@ const Reviews = () => {
   const [reviewsData, setReviewsData] = useState();
 
   const { performFetch, cancelFetch } = useFetch(
-    `/session/user/${id}`,
+    `/review/coach/${id}`,
     (response) => {
       setReviewsData(response.result);
     },
@@ -56,10 +56,8 @@ const Reviews = () => {
                 <TableRow>
                   <TableCell></TableCell>
                   <TableCell>Learner Name</TableCell>
-                  <TableCell>Day of Sessions</TableCell>
-                  <TableCell>Time of Sessions</TableCell>
                   <TableCell>Rating</TableCell>
-                  <TableCell>Review</TableCell>
+                  <TableCell>Comments</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
@@ -73,10 +71,8 @@ const Reviews = () => {
                         {row.name}
                       </TableCell>
                       <TableCell>{row.learner_name}</TableCell>
-                      <TableCell>{row.day}</TableCell>
-                      <TableCell>{row.time}</TableCell>
                       <TableCell>{row.rating}</TableCell>
-                      <TableCell>{row.review}</TableCell>
+                      <TableCell>{row.comments}</TableCell>
                     </TableRow>
                   ))}
               </TableBody>
