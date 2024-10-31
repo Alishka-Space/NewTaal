@@ -8,7 +8,7 @@
 }
 
 .greeting {
-  color: #daeb3f;
+  color: #0c0c0c;
   padding: 30px;
   border-radius: 8px;
   margin-bottom: 40px;
@@ -79,7 +79,8 @@
   border-radius: 10px;
   cursor: pointer;
   transition: all 0.3s;
-  flex: 1; /* Make the Search Coaches button wider */
+  flex: 1;
+  /* Make the Search Coaches button wider */
 }
 
 .search-filter:hover {
