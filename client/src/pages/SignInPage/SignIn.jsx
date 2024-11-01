@@ -110,19 +110,23 @@ export default function SignIn() {
     if (!email.value || !/\S+@\S+\.\S+/.test(email.value)) {
       setEmailError(true);
       setEmailErrorMessage("Invalid email format");
+      toast.error("Invalid email format");
       isValid = false;
     } else {
       setEmailError(false);
       setEmailErrorMessage("");
     }
+    
 
     if (!password.value || password.value.length < 6) {
       setPasswordError(true);
       setPasswordErrorMessage("Password must be at least 6 characters");
+      toast.error("Password must be at least 6 characters long");
       isValid = false;
     } else {
       setPasswordError(false);
       setPasswordErrorMessage("");
+    
     }
 
     return isValid;
