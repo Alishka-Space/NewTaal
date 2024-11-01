@@ -1,46 +1,51 @@
-import * as React from "react"; 
-import { useState, useContext } from "react";
-import {
-  Box,
-  Button,
-  Checkbox,
-  CssBaseline,
-  FormControl,
-  FormControlLabel,
-  FormLabel,
-  Link,
-  TextField,
-  Typography,
-  Stack,
-  Card as MuiCard
-} from "@mui/material";
-import { styled, createTheme, ThemeProvider } from "@mui/material/styles";
-import { ToastContainer, toast } from "react-toastify"; 
-import "react-toastify/dist/ReactToastify.css";
+import * as React from "react";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import Checkbox from "@mui/material/Checkbox";
+import CssBaseline from "@mui/material/CssBaseline";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import FormLabel from "@mui/material/FormLabel";
+import FormControl from "@mui/material/FormControl";
+import Link from "@mui/material/Link";
+import TextField from "@mui/material/TextField";
+import Typography from "@mui/material/Typography";
+import Stack from "@mui/material/Stack";
+import MuiCard from "@mui/material/Card";
+import PropTypes from "prop-types";
+import { createTheme, ThemeProvider, styled } from "@mui/material/styles";
 import getSignUpTheme from "../shared-theme/getSignUpTheme";
 import ForgotPassword from "./ForgotPassword";
 import useFetch from "../../hooks/useFetch";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
-// Styled Components
 const Card = styled(MuiCard)(({ theme }) => ({
   display: "flex",
   flexDirection: "column",
+  alignSelf: "center",
   width: "100%",
   padding: theme.spacing(4),
   gap: theme.spacing(2),
   margin: "auto",
-  boxShadow:
-    "hsla(220, 30%, 5%, 0.05) 0px 5px 15px 0px, hsla(220, 25%, 10%, 0.05) 0px 15px 35px -5px",
   [theme.breakpoints.up("sm")]: {
     maxWidth: "450px",
-  }
+  },
+  boxShadow:
+    "hsla(220, 30%, 5%, 0.05) 0px 5px 15px 0px, hsla(220, 25%, 10%, 0.05) 0px 15px 35px -5px",
+  ...theme.applyStyles("dark", {
+    boxShadow:
+      "hsla(220, 30%, 5%, 0.5) 0px 5px 15px 0px, hsla(220, 25%, 10%, 0.08) 0px 15px 35px -5px",
+  }),
 }));
 
 const SignInContainer = styled(Stack)(({ theme }) => ({
   minHeight: "100%",
   padding: theme.spacing(2),
+  [theme.breakpoints.up("sm")]: {
+    padding: theme.spacing(4),
+  },
   "&::before": {
     content: "''",
     display: "block",
@@ -48,43 +53,71 @@ const SignInContainer = styled(Stack)(({ theme }) => ({
     zIndex: -1,
     inset: 0,
     backgroundImage:
-      "radial-gradient(ellipse at 50% 50%, hsl(210, 100%, 97%), hsl(0, 0%, 100%))"
+      "radial-gradient(ellipse at 50% 50%, hsl(210, 100%, 97%), hsl(0, 0%, 100%))",
+    backgroundRepeat: "no-repeat",
+    ...theme.applyStyles("dark", {
+      backgroundImage:
+        "radial-gradient(at 50% 50%, hsla(210, 100%, 16%, 0.5), hsl(220, 30%, 5%))",
+    }),
   },
 }));
 
+function TemplateFrame({ children }) {
+  return children;
+}
+
+TemplateFrame.propTypes = {
+  children: PropTypes.node,
+};
+
 export default function SignIn() {
   const SignUpTheme = createTheme(getSignUpTheme());
-  const { login } = useContext(AuthContext);
+  const { login } = React.useContext(AuthContext);
+  const [email, setEmail] = React.useState("");
+  const [password, setPassword] = React.useState("");
+  // const [emailError, setEmailError] = React.useState(false);
+  // const [emailErrorMessage, setEmailErrorMessage] = React.useState("");
+  // const [passwordError, setPasswordError] = React.useState(false);
+  // const [passwordErrorMessage, setPasswordErrorMessage] = React.useState("");
+  const [open, setOpen] = React.useState(false);
   const navigate = useNavigate();
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [open, setOpen] = useState(false);
+  const onSuccess = (response) => {
+    const token = response.token;
+    const user = response.userInformation.name;
+    const role = response.userInformation.role;
+    const id = response.userInformation._id;
+    login(token, user, role, id);
+    if (role === "learner") navigate("/userhome");
+    else navigate("/coachhome");
+  };
 
-  const { error, performFetch } = useFetch("/user/login", (response) => {
-    const { token, userInformation } = response;
-    const { name, role, _id } = userInformation;
+  const { error, performFetch } = useFetch("/user/login", onSuccess);
 
-    login(token, name, role, _id);
-    navigate(role === "learner" ? "/userhome" : "/coachhome");
-  });
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
 
-  const notifyError = (message) => toast.error(message);
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   const validateInputs = () => {
-    if (!email) {
-      notifyError("Email is required");
-      return false;
+    const email = document.getElementById("email");
+    const password = document.getElementById("password");
+    let isValid = true;
+
+    if (!email.value || !/\S+@\S+\.\S+/.test(email.value)) {
+      toast.error("Invalid email format");
+      isValid = false;
     }
-    if (!/\S+@\S+\.\S+/.test(email)) {
-      notifyError("Invalid email format");
-      return false;
+
+    if (!password.value || password.value.length < 6) {
+      toast.error("Password must be at least 6 characters long");
+      isValid = false;
     }
-    if (!password || password.length < 6) {
-      notifyError("Password must be at least 6 characters");
-      return false;
-    }
-    return true;
+
+    return isValid;
   };
 
   const handleSubmit = (event) => {
@@ -92,16 +125,18 @@ export default function SignIn() {
     if (validateInputs()) {
       performFetch({
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+        },
         body: JSON.stringify({ email, password }),
       });
     }
   };
 
-  if (error) notifyError(error);
+  if (error) toast.error(error);
 
   return (
-    <>
+    <TemplateFrame>
       <ToastContainer theme="colored" />
       <ThemeProvider theme={SignUpTheme}>
         <CssBaseline />
@@ -128,6 +163,8 @@ export default function SignIn() {
               <FormControl>
                 <FormLabel htmlFor="email">Email</FormLabel>
                 <TextField
+                  // error={emailError}
+                  // helperText={emailErrorMessage}
                   id="email"
                   type="email"
                   name="email"
@@ -137,6 +174,8 @@ export default function SignIn() {
                   required
                   fullWidth
                   variant="outlined"
+                  // color={emailError ? "error" : "primary"}
+                  sx={{ ariaLabel: "email" }}
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                 />
@@ -147,7 +186,7 @@ export default function SignIn() {
                   <Link
                     component="button"
                     type="button"
-                    onClick={() => setOpen(true)}
+                    onClick={handleClickOpen}
                     variant="body2"
                     sx={{ alignSelf: "baseline" }}
                   >
@@ -155,6 +194,8 @@ export default function SignIn() {
                   </Link>
                 </Box>
                 <TextField
+                  // error={passwordError}
+                  // helperText={passwordErrorMessage}
                   name="password"
                   placeholder="••••••"
                   type="password"
@@ -163,6 +204,8 @@ export default function SignIn() {
                   required
                   fullWidth
                   variant="outlined"
+                  // color={passwordError ? "error" : "primary"}
+                  sx={{ ariaLabel: "password" }}
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                 />
@@ -171,20 +214,26 @@ export default function SignIn() {
                 control={<Checkbox value="remember" color="primary" />}
                 label="Remember me"
               />
-              <ForgotPassword open={open} handleClose={() => setOpen(false)} />
+              <ForgotPassword open={open} handleClose={handleClose} />
               <Button type="submit" fullWidth variant="contained">
                 Sign in
               </Button>
               <Typography sx={{ textAlign: "center" }}>
                 Don&apos;t have an account?{" "}
-                <Link href="/signup/" variant="body2">
-                  Sign up
-                </Link>
+                <span>
+                  <Link
+                    href="/signup/"
+                    variant="body2"
+                    sx={{ alignSelf: "center" }}
+                  >
+                    Sign up
+                  </Link>
+                </span>
               </Typography>
             </Box>
           </Card>
         </SignInContainer>
       </ThemeProvider>
-    </>
+    </TemplateFrame>
   );
 }
