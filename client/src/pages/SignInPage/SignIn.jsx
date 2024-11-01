@@ -75,10 +75,10 @@ export default function SignIn() {
   const { login } = React.useContext(AuthContext);
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
-  // const [emailError, setEmailError] = React.useState(false);
-  // const [emailErrorMessage, setEmailErrorMessage] = React.useState("");
-  // const [passwordError, setPasswordError] = React.useState(false);
-  // const [passwordErrorMessage, setPasswordErrorMessage] = React.useState("");
+  const [emailError, setEmailError] = React.useState(false);
+  const [emailErrorMessage, setEmailErrorMessage] = React.useState("");
+  const [passwordError, setPasswordError] = React.useState(false);
+  const [passwordErrorMessage, setPasswordErrorMessage] = React.useState("");
   const [open, setOpen] = React.useState(false);
   const navigate = useNavigate();
 
@@ -108,13 +108,21 @@ export default function SignIn() {
     let isValid = true;
 
     if (!email.value || !/\S+@\S+\.\S+/.test(email.value)) {
-      toast.error("Invalid email format");
+      setEmailError(true);
+      setEmailErrorMessage("Invalid email format");
       isValid = false;
+    } else {
+      setEmailError(false);
+      setEmailErrorMessage("");
     }
 
     if (!password.value || password.value.length < 6) {
-      toast.error("Password must be at least 6 characters long");
+      setPasswordError(true);
+      setPasswordErrorMessage("Password must be at least 6 characters");
       isValid = false;
+    } else {
+      setPasswordError(false);
+      setPasswordErrorMessage("");
     }
 
     return isValid;
@@ -163,8 +171,8 @@ export default function SignIn() {
               <FormControl>
                 <FormLabel htmlFor="email">Email</FormLabel>
                 <TextField
-                  // error={emailError}
-                  // helperText={emailErrorMessage}
+                  error={emailError}
+                  helperText={emailErrorMessage}
                   id="email"
                   type="email"
                   name="email"
@@ -174,7 +182,7 @@ export default function SignIn() {
                   required
                   fullWidth
                   variant="outlined"
-                  // color={emailError ? "error" : "primary"}
+                  color={emailError ? "error" : "primary"}
                   sx={{ ariaLabel: "email" }}
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
@@ -194,8 +202,8 @@ export default function SignIn() {
                   </Link>
                 </Box>
                 <TextField
-                  // error={passwordError}
-                  // helperText={passwordErrorMessage}
+                  error={passwordError}
+                  helperText={passwordErrorMessage}
                   name="password"
                   placeholder="••••••"
                   type="password"
@@ -204,7 +212,7 @@ export default function SignIn() {
                   required
                   fullWidth
                   variant="outlined"
-                  // color={passwordError ? "error" : "primary"}
+                  color={passwordError ? "error" : "primary"}
                   sx={{ ariaLabel: "password" }}
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
