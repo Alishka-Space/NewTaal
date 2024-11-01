@@ -18,8 +18,8 @@ import ForgotPassword from "./ForgotPassword";
 import useFetch from "../../hooks/useFetch";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
-// import { ToastContainer, toast } from "react-toastify";
-// import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Card = styled(MuiCard)(({ theme }) => ({
   display: "flex",
@@ -110,7 +110,7 @@ export default function SignIn() {
     if (!email.value || !/\S+@\S+\.\S+/.test(email.value)) {
       setEmailError(true);
       setEmailErrorMessage("Invalid email format");
-      // toast.error("Invalid email format");
+      toast.error("Invalid email format");
       isValid = false;
     } else {
       setEmailError(false);
@@ -120,7 +120,7 @@ export default function SignIn() {
     if (!password.value || password.value.length < 6) {
       setPasswordError(true);
       setPasswordErrorMessage("Password must be at least 6 characters");
-      // toast.error("Password must be at least 6 characters long");
+      toast.error("Password must be at least 6 characters long");
       isValid = false;
     } else {
       setPasswordError(false);
@@ -143,14 +143,14 @@ export default function SignIn() {
     }
   };
 
-  // if (error) toast.error(error);
+  if (error) toast.error(error);
   if (error) {
     alert(error);
   }
 
   return (
     <TemplateFrame>
-      {/* <ToastContainer theme="colored" /> */}
+      <ToastContainer theme="colored" />
       <ThemeProvider theme={SignUpTheme}>
         <CssBaseline />
         <SignInContainer direction="column" justifyContent="space-between">
