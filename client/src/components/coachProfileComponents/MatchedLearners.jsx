@@ -68,7 +68,7 @@ const MatchedLearners = () => {
 
         <div>
           <Grid container p={4} spacing={2}>
-            <Grid item>
+            <Grid>
               <Box
                 sx={{
                   width: 200,
@@ -86,7 +86,7 @@ const MatchedLearners = () => {
               </Box>
             </Grid>
 
-            <Grid item>
+            <Grid>
               <Box
                 sx={{
                   width: 500,
