@@ -22,7 +22,7 @@ const Item = styled(Paper)(({ theme }) => ({
 const PersonalInfoCoach = (props) => {
   const { performFetch } = useFetch(
     `/coach/update/${props.data._id}`,
-    () => {},
+    () => { },
   );
 
   const [isEdit, setIsEdit] = useState(false);
@@ -70,7 +70,7 @@ const PersonalInfoCoach = (props) => {
 
         <div>
           <Grid container p={4} spacing={2}>
-            <Grid item>
+            <Grid>
               <Box
                 sx={{
                   width: 200,
@@ -92,7 +92,7 @@ const PersonalInfoCoach = (props) => {
               </Box>
             </Grid>
 
-            <Grid item>
+            <Grid>
               <Box
                 sx={{
                   width: 500,
@@ -214,7 +214,7 @@ const PersonalInfoCoach = (props) => {
             </Grid>
           </Grid>
           <Grid container justifyContent="flex-end">
-            <Grid item>
+            <Grid>
               <Button
                 color="secondary"
                 variant="contained"

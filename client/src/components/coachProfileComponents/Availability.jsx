@@ -49,7 +49,7 @@ const Availability = () => {
 
         <div>
           <Grid container p={4} spacing={3}>
-            <Grid item>
+            <Grid>
               <Box
                 sx={{
                   width: 120,
@@ -67,7 +67,7 @@ const Availability = () => {
               </Box>
             </Grid>
 
-            <Grid item>
+            <Grid>
               <Box
                 sx={{
                   width: 50,
@@ -85,7 +85,7 @@ const Availability = () => {
               </Box>
             </Grid>
 
-            <Grid item>
+            <Grid>
               <Box
                 sx={{
                   width: 50,
@@ -103,7 +103,7 @@ const Availability = () => {
               </Box>
             </Grid>
 
-            <Grid item>
+            <Grid>
               <Box
                 sx={{
                   width: 50,
@@ -121,7 +121,7 @@ const Availability = () => {
               </Box>
             </Grid>
 
-            <Grid item>
+            <Grid>
               <Box
                 sx={{
                   width: 50,
@@ -139,7 +139,7 @@ const Availability = () => {
               </Box>
             </Grid>
 
-            <Grid item>
+            <Grid>
               <Box
                 sx={{
                   width: 50,
@@ -157,7 +157,7 @@ const Availability = () => {
               </Box>
             </Grid>
 
-            <Grid item>
+            <Grid>
               <Box
                 sx={{
                   width: 50,
@@ -175,7 +175,7 @@ const Availability = () => {
               </Box>
             </Grid>
 
-            <Grid item>
+            <Grid>
               <Box
                 sx={{
                   width: 50,
@@ -193,7 +193,7 @@ const Availability = () => {
               </Box>
             </Grid>
 
-            <Grid item>
+            <Grid>
               <Box
                 sx={{
                   width: 50,
@@ -212,7 +212,7 @@ const Availability = () => {
             </Grid>
           </Grid>
           <Grid container justifyContent="flex-end">
-            <Grid item>
+            <Grid>
               <Button
                 color="secondary"
                 variant="contained"

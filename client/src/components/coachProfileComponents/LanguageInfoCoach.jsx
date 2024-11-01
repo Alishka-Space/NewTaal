@@ -22,7 +22,7 @@ const Item = styled(Paper)(({ theme }) => ({
 const LanguageInfoCoach = (props) => {
   const { performFetch } = useFetch(
     `/coach/update/${props.data._id}`,
-    () => {},
+    () => { },
   );
 
   const [isEdit, setIsEdit] = useState(false);
@@ -52,7 +52,7 @@ const LanguageInfoCoach = (props) => {
           mt: 4,
           mb: 1,
           minWidth: 800,
-          height: 400,
+          height: 280,
         }}
         variant="elevation"
         elevation={20}
@@ -63,7 +63,7 @@ const LanguageInfoCoach = (props) => {
 
         <div>
           <Grid container p={4} spacing={2}>
-            <Grid item>
+            <Grid>
               <Box
                 sx={{
                   width: 200,
@@ -80,7 +80,7 @@ const LanguageInfoCoach = (props) => {
               </Box>
             </Grid>
 
-            <Grid item>
+            <Grid>
               <Box
                 sx={{
                   width: 500,
@@ -139,7 +139,7 @@ const LanguageInfoCoach = (props) => {
             </Grid>
           </Grid>
           <Grid container justifyContent="flex-end">
-            <Grid item>
+            <Grid>
               <Button
                 color="secondary"
                 variant="contained"
