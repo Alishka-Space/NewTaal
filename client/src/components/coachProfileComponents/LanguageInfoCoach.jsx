@@ -22,7 +22,7 @@ const Item = styled(Paper)(({ theme }) => ({
 const LanguageInfoCoach = (props) => {
   const { performFetch } = useFetch(
     `/coach/update/${props.data._id}`,
-    () => { },
+    () => {},
   );
 
   const [isEdit, setIsEdit] = useState(false);
