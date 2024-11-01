@@ -12,7 +12,6 @@ import { AuthContext } from "../../context/AuthContext";
 const LearnerProfilePage = () => {
   const { id } = useParams();
   const [learnerData, setLearnerData] = useState({});
-
   const { authState } = useContext(AuthContext);
 
   const { performFetch, cancelFetch } = useFetch(
@@ -29,6 +28,7 @@ const LearnerProfilePage = () => {
     });
     return cancelFetch;
   }, []);
+
   return (
     <div style={{ backgroundColor: "#e6e6fa", position: "relative" }}>
       <Container maxWidth="md" style={{ position: "relative" }}>
@@ -39,13 +39,17 @@ const LearnerProfilePage = () => {
           }}
         >
           <ProfileHeaderLearner data={learnerData} />
-          {authState.role === "learner" && (
+          {(authState.role === "learner" && (
             <>
               <PersonalInfoLearner data={learnerData} />
+              <LanguageInfoLearner data={learnerData} />
               <PreviousSessions data={learnerData} />
             </>
+          )) || (
+            <>
+              <LanguageInfoLearner data={learnerData} />
+            </>
           )}
-          <LanguageInfoLearner data={learnerData} />
         </Box>
       </Container>
     </div>
