@@ -116,7 +116,6 @@ export default function SignIn() {
       setEmailError(false);
       setEmailErrorMessage("");
     }
-    
 
     if (!password.value || password.value.length < 6) {
       setPasswordError(true);
@@ -126,7 +125,6 @@ export default function SignIn() {
     } else {
       setPasswordError(false);
       setPasswordErrorMessage("");
-    
     }
 
     return isValid;
