@@ -14,7 +14,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 0 20px;
+  margin: 0 50px;
 }
 
 .logo-img {
@@ -26,7 +26,7 @@
 .logo-text {
   display: flex;
   flex-direction: column;
-  font-size: 20px;
+  font-size: 31px;
   font-weight: bold;
 }
 
@@ -34,7 +34,7 @@
   margin-left: 10px;
   color: #e8dcee;
   font-weight: 600;
-  font-size: 26px;
+  font-size: 36px;
   font-family: bauhaus;
 }
 
@@ -46,19 +46,27 @@
 }
 
 .navbar-link {
-  margin: 0 10px;
-  box-shadow: 3px 2px 7px #d59bc8;
+  margin: 0 5px;
+  /* box-shadow: 3px 2px 7px #d59bc8; */
   font-size: 20px;
-  font-weight: 600;
+  font-weight: 500;
   border-radius: 14px;
   color: #e8dcee;
   cursor: pointer;
   text-decoration: none;
-  padding: 4px 12px;
+  padding: 7px;
+  width: 120px;
+  text-align: center;
+  background: linear-gradient(
+    90deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(39, 167, 243, 1) 35%,
+    rgb(39, 39, 153) 100%
+  );
 }
 
 .navbar-link:hover {
-  background: #3941a8;
+  background: rgb(57, 65, 168);
   color: #d96acc;
 }
 
