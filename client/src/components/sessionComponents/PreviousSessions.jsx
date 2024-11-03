@@ -8,7 +8,18 @@ import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
-import { Card, Typography } from "@mui/material";
+import {
+  Card,
+  Typography,
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+  MenuItem,
+  Select,
+  TextField,
+} from "@mui/material";
 import TablePagination from "@mui/material/TablePagination";
 import useFetch from "../../hooks/useFetch";
 import { AuthContext } from "../../context/AuthContext";
@@ -18,16 +29,49 @@ const PreviousSessions = () => {
   const [sessionsData, setSessionsData] = useState();
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
+  const [editRowIndex, setEditRowIndex] = useState(-1);
+  const [reviewDialogOpen, setReviewDialogOpen] = useState(false);
+  const [selectedSession, setSelectedSession] = useState();
+  const [rating, setRating] = useState(1);
+  const [comments, setComments] = useState("");
+  const [session_id, setSessionId] = useState();
 
   const { performFetch, cancelFetch } = useFetch(
     `/session/user/${authState.id}`,
     (response) => {
       const scheduledSessions = response.result.filter(
-        (item) => item.status === "scheduled",
+        (item) => item.status !== "scheduled",
       );
       setSessionsData(scheduledSessions);
     },
   );
+
+  const createReview = useFetch(`/review/create/${session_id}`, () => {});
+
+  const handleButtonAction = (rowIndex) => {
+    setEditRowIndex((prevEditIndex) =>
+      prevEditIndex === rowIndex ? -1 : rowIndex,
+    );
+    setReviewDialogOpen(true);
+    setSelectedSession(sessionsData[rowIndex]);
+    setSessionId(sessionsData[rowIndex]._id);
+  };
+
+  const handleChange = (event) => {
+    setRating(event.target.value);
+  };
+
+  const handleSubmitReview = () => {
+    createReview.performFetch({
+      method: "POST",
+      params: session_id,
+      body: JSON.stringify({
+        rating: rating,
+        comments: comments,
+      }),
+    });
+    setReviewDialogOpen(false);
+  };
 
   useEffect(() => {
     performFetch({
@@ -89,6 +133,7 @@ const PreviousSessions = () => {
                   <TableCell sx={{ fontWeight: "bold" }}>
                     Session Status
                   </TableCell>
+                  <TableCell sx={{ fontWeight: "bold" }}>Add Review</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
@@ -113,6 +158,18 @@ const PreviousSessions = () => {
                         <TableCell>{row.day}</TableCell>
                         <TableCell>{row.time}</TableCell>
                         <TableCell>{row.status}</TableCell>
+                        <TableCell>
+                          <strong>
+                            <Button
+                              color="secondary"
+                              variant="contained"
+                              size="small"
+                              onClick={() => handleButtonAction(index)}
+                            >
+                              {editRowIndex === index ? "Edit" : "Add"}
+                            </Button>
+                          </strong>
+                        </TableCell>
                       </TableRow>
                     ))}
               </TableBody>
@@ -129,6 +186,82 @@ const PreviousSessions = () => {
             onRowsPerPageChange={handleChangeRowsPerPage}
           />
         </Box>
+        <Dialog
+          open={reviewDialogOpen}
+          onClose={() => setReviewDialogOpen(false)}
+          aria-labelledby="responsive-dialog-title"
+          style={{ minWidth: "500px", height: "500px" }}
+        >
+          <DialogTitle id="responsive-dialog-title">
+            Session Feedback and Ratings
+          </DialogTitle>
+          <DialogContent
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              gap: "1rem",
+              minWidth: "400px",
+            }}
+          >
+            <div style={{ border: "1px solid #ccc", padding: "0.5rem" }}>
+              <span>Coach Name : </span>
+              <span>{selectedSession?.coach_name}</span>
+            </div>
+            <div style={{ border: "1px solid #ccc", padding: "0.5rem" }}>
+              <span>Session Day:</span>
+              <span>{selectedSession?.day}</span>
+            </div>
+            <div style={{ border: "1px solid #ccc", padding: "0.5rem" }}>
+              <span>Learner Name</span>
+              <span>{selectedSession?.learner_name}</span>
+            </div>
+            <div
+              style={{
+                border: "1px solid #ccc",
+                padding: "0.5rem",
+                display: "flex",
+                alignItems: "center",
+              }}
+            >
+              <span style={{ marginRight: "1rem" }}>Rating</span>
+              <Select
+                style={{ flex: 1 }}
+                value={rating}
+                label="Rating"
+                onChange={handleChange}
+              >
+                <MenuItem value={1}>1</MenuItem>
+                <MenuItem value={2}>2</MenuItem>
+                <MenuItem value={3}>3</MenuItem>
+                <MenuItem value={4}>4</MenuItem>
+                <MenuItem value={5}>5</MenuItem>
+              </Select>
+            </div>
+            <TextField
+              style={{ width: "100%", marginTop: "0.5rem" }}
+              label="Review"
+              value={comments}
+              onChange={(event) => {
+                setComments(event.target.value);
+              }}
+              multiline
+              rows={4}
+            />
+          </DialogContent>
+          <DialogActions>
+            <Button autoFocus onClick={() => setReviewDialogOpen(false)}>
+              Cancel
+            </Button>
+            <Button
+              onClick={() => {
+                handleSubmitReview();
+              }}
+              autoFocus
+            >
+              Add Review
+            </Button>
+          </DialogActions>
+        </Dialog>
       </Paper>
     </Grid>
   );

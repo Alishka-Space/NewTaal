@@ -8,12 +8,12 @@ import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
-import { Button, Card, Typography } from "@mui/material";
+import { Card, Typography } from "@mui/material";
+import Link from "@mui/material/Link";
 import TablePagination from "@mui/material/TablePagination";
 import { useNavigate } from "react-router-dom";
 import useFetch from "../../hooks/useFetch";
 import { AuthContext } from "../../context/AuthContext";
-import { Link } from "react-router-dom";
 
 const ScheduledSessions = () => {
   const { authState } = useContext(AuthContext);
@@ -43,10 +43,6 @@ const ScheduledSessions = () => {
     return cancelFetch;
   }, []);
 
-  const handleEditASession = (row) => {
-    navigate("/editasession", { state: { session: row } });
-  };
-
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
   };
@@ -66,13 +62,15 @@ const ScheduledSessions = () => {
           mt: 4,
           mb: 1,
           minWidth: 800,
-          height: 540,
+          height: 500,
         }}
         variant="elevation"
         elevation={20}
       >
         <Card sx={{ p: 1, borderRadius: "10px", bgcolor: "#f0f0f0", my: 2 }}>
-          <Typography fontWeight="bold">Scheduled Sessions</Typography>
+          <Typography fontWeight="bold" textAlign="center">
+            Scheduled Sessions
+          </Typography>
         </Card>
 
         <Box>
@@ -82,21 +80,14 @@ const ScheduledSessions = () => {
                 <TableRow>
                   <TableCell></TableCell>
                   <TableCell sx={{ fontWeight: "bold" }}>
-                    {authState.role === "learner"
-                      ? "Coach Name"
-                      : "Learner Name"}
+                    Learner Name
                   </TableCell>
-
                   <TableCell sx={{ fontWeight: "bold" }}>
                     Day of Sessions
                   </TableCell>
                   <TableCell sx={{ fontWeight: "bold" }}>
                     Time of Sessions
                   </TableCell>
-                  <TableCell sx={{ fontWeight: "bold" }}>
-                    Session Status
-                  </TableCell>
-                  <TableCell></TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
@@ -114,34 +105,24 @@ const ScheduledSessions = () => {
                           {row.name}
                         </TableCell>
                         <TableCell>
-                          {authState.role === "coach" ? (
-                            <Link to={`/learnerProfile/${row.learner_id}`}>
-                              {" "}
-                              {row.learner_name}{" "}
-                            </Link>
-                          ) : (
-                            <Link to={`/coachProfile/${row.coach_id}`}>
-                              {" "}
-                              {row.coach_name}{" "}
-                            </Link>
-                          )}
+                          <Typography
+                            variant="body2"
+                            onClick={() =>
+                              navigate(`/learnerProfile/${row.learner_id}`)
+                            }
+                            sx={{
+                              fontSize: 14,
+                              fontWeight: "normal",
+                              color: "text.primary",
+                              textAlign: "left",
+                              paddingTop: 1,
+                            }}
+                          >
+                            <Link href="#">{row.learner_name}</Link>
+                          </Typography>
                         </TableCell>
                         <TableCell>{row.day}</TableCell>
                         <TableCell>{row.time}</TableCell>
-                        <TableCell>{row.status}</TableCell>
-
-                        <TableCell>
-                          <strong>
-                            <Button
-                              color="secondary"
-                              variant="contained"
-                              size="small"
-                              onClick={() => handleEditASession(row)}
-                            >
-                              Edit
-                            </Button>
-                          </strong>
-                        </TableCell>
                       </TableRow>
                     ))}
               </TableBody>

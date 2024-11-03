@@ -1,11 +1,13 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React, { useContext, useState, useEffect } from "react";
 import Grid from "@mui/material/Grid2";
 import Paper from "@mui/material/Paper";
 import Stack from "@mui/material/Stack";
 import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import { Card, Typography } from "@mui/material";
+import { AuthContext } from "../../context/AuthContext";
+import useFetch from "../../hooks/useFetch";
+import { Link } from "react-router-dom";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: "#fff",
@@ -18,7 +20,33 @@ const Item = styled(Paper)(({ theme }) => ({
   }),
 }));
 
-const MatchedLearners = (props) => {
+const MatchedLearners = () => {
+  const [matchedLearners, setMatchedLearners] = useState([]);
+  const { authState } = useContext(AuthContext);
+  const { performFetch, cancelFetch } = useFetch(
+    `/session/user/${authState.id}`,
+    (response) => {
+      const learners = response.result.map((item) => ({
+        learner_name: item.learner_name,
+        learner_id: item.learner_id,
+      }));
+      const uniqueLearners = [
+        ...new Map(
+          learners.map((learner) => [learner.learner_id, learner]),
+        ).values(),
+      ];
+      setMatchedLearners(uniqueLearners);
+    },
+  );
+
+  useEffect(() => {
+    performFetch({
+      method: "GET",
+      params: authState.id,
+    });
+    return cancelFetch;
+  }, []);
+
   return (
     <Grid container>
       <Paper
@@ -40,58 +68,40 @@ const MatchedLearners = (props) => {
 
         <div>
           <Grid container p={4} spacing={2}>
-            <Grid item>
+            <Grid>
               <Box
                 sx={{
                   width: 200,
                 }}
               >
                 <Stack spacing={2}>
-                  <Item sx={{ height: 45, fontWeight: "bold" }}>Learner 1</Item>
-                  <Item sx={{ height: 45, fontWeight: "bold" }}>Learner 2</Item>
-                  <Item sx={{ height: 45, fontWeight: "bold" }}>Learner 3</Item>
-                  <Item sx={{ height: 45, fontWeight: "bold" }}>Learner 4</Item>
-                  <Item sx={{ height: 45, fontWeight: "bold" }}>Learner 5</Item>
+                  {matchedLearners.map((learner, index) => (
+                    <Item sx={{ height: 45, fontWeight: "bold" }} key={index}>
+                      <Typography width="100%" variant="h8">
+                        Learner {index + 1}
+                      </Typography>
+                    </Item>
+                  ))}
                 </Stack>
               </Box>
             </Grid>
 
-            <Grid item>
+            <Grid>
               <Box
                 sx={{
                   width: 500,
                 }}
               >
                 <Stack spacing={2}>
-                  <Item sx={{ height: 45 }}>
-                    <Typography width="100%" variant="h8">
-                      {props?.data?.matchedLearner}
-                    </Typography>
-                  </Item>
-
-                  <Item sx={{ height: 45 }}>
-                    <Typography width="100%" variant="h8">
-                      {props?.data?.matchedLearner}
-                    </Typography>
-                  </Item>
-
-                  <Item sx={{ height: 45 }}>
-                    <Typography width="100%" variant="h8">
-                      {props?.data?.matchedLearner}
-                    </Typography>
-                  </Item>
-
-                  <Item sx={{ height: 45 }}>
-                    <Typography width="100%" variant="h8">
-                      {props?.data?.matchedLearner}
-                    </Typography>
-                  </Item>
-
-                  <Item sx={{ height: 45 }}>
-                    <Typography width="100%" variant="h8">
-                      {props?.data?.matchedLearner}
-                    </Typography>
-                  </Item>
+                  {matchedLearners.map((learner) => (
+                    <Item sx={{ height: 45 }} key={learner.learner_id}>
+                      <Typography width="100%" variant="h8">
+                        <Link to={`/learnerprofile/${learner.learner_id}`}>
+                          {learner.learner_name}
+                        </Link>
+                      </Typography>
+                    </Item>
+                  ))}
                 </Stack>
               </Box>
             </Grid>
@@ -100,12 +110,6 @@ const MatchedLearners = (props) => {
       </Paper>
     </Grid>
   );
-};
-
-MatchedLearners.propTypes = {
-  data: PropTypes.shape({
-    matchedLearner: PropTypes.string,
-  }).isRequired,
 };
 
 export default MatchedLearners;

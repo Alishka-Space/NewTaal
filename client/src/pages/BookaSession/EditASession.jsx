@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
@@ -10,7 +10,6 @@ import MuiCard from "@mui/material/Card";
 import { styled } from "@mui/material/styles";
 import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
-import { AuthContext } from "../../context/AuthContext";
 import useFetch from "../../hooks/useFetch";
 import { useLocation } from "react-router-dom";
 
@@ -30,19 +29,19 @@ const Card = styled(MuiCard)(({ theme }) => ({
 }));
 
 const EditASession = () => {
-  const { authState } = useContext(AuthContext);
-
   const location = useLocation();
-  const coach = location.state.coach || {};
+  const session = location.state.session || {};
+
+  const id = session._id;
 
   const { error, isLoading, performFetch } = useFetch(
-    "/session/create",
+    `/session/reschedule/${id}`,
     () => {},
   );
 
-  const [day, setDay] = useState(coach.day || "");
-  const [time, setTime] = useState(coach.time || "");
-  const [status, setStatus] = useState(coach.status || "");
+  const [day, setDay] = useState(session.day || "");
+  const [time, setTime] = useState(session.time || "");
+  // const [status, setStatus] = useState(session.status || "");
 
   const handleDayChange = (e) => {
     setDay(e.target.value);
@@ -52,18 +51,16 @@ const EditASession = () => {
     setTime(e.target.value);
   };
 
-  const handleStatusChange = (e) => {
-    setStatus(e.target.value);
-  };
+  // const handleStatusChange = (e) => {
+  //   setStatus(e.target.value);
+  // };
 
   const handleSubmit = () => {
     performFetch({
-      method: "POST",
+      method: "PATCH",
       body: JSON.stringify({
         day,
         time,
-        learner_id: authState.id,
-        coach_id: coach.user_id,
       }),
     });
   };
@@ -106,7 +103,14 @@ const EditASession = () => {
             >
               <FormControl>
                 <FormLabel htmlFor="coachName">Coach Name</FormLabel>
-                <TextField value={coach.coach_name} name="name" id="name" />
+                <TextField
+                  value={session.coach_name}
+                  name="name"
+                  id="name"
+                  InputProps={{
+                    readOnly: true,
+                  }}
+                />
               </FormControl>
 
               <FormControl fullWidth>
@@ -135,9 +139,6 @@ const EditASession = () => {
                   onChange={handleTimeChange}
                   variant="outlined"
                 >
-                  <MenuItem value="morning">Morning</MenuItem>
-                  <MenuItem value="afternoon">Afternoon</MenuItem>
-                  <MenuItem value="evening">Evening</MenuItem>
                   <MenuItem value="00:00 - 01:00">00:00 - 01:00</MenuItem>
                   <MenuItem value="01:00 - 02:00">01:00 - 02:00</MenuItem>
                   <MenuItem value="02:00 - 03:00">02:00 - 03:00</MenuItem>
@@ -166,17 +167,15 @@ const EditASession = () => {
               </FormControl>
 
               <FormControl>
-                <FormLabel htmlFor="status">Status</FormLabel>
-                <Select
-                  id="status"
-                  value={status}
-                  onChange={handleStatusChange}
-                  variant="outlined"
-                >
-                  <MenuItem value="scheduled">Scheduled</MenuItem>
-                  <MenuItem value="completed">Completed</MenuItem>
-                  <MenuItem value="cancelled">Cancelled</MenuItem>
-                </Select>
+                <FormLabel htmlFor="coachName">Session Status</FormLabel>
+                <TextField
+                  value={session.status}
+                  name="name"
+                  id="name"
+                  InputProps={{
+                    readOnly: true,
+                  }}
+                />
               </FormControl>
 
               <Button
