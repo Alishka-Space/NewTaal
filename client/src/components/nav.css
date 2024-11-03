@@ -78,6 +78,7 @@
   }
   .header-menu {
     display: block;
+    padding-right: 10px;
   }
 
   .navbar {
