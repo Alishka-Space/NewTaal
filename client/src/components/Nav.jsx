@@ -21,11 +21,11 @@ const Nav = () => {
   return (
     <header className="header">
       <div className="logo">
-        <Link to="/" className="navbar-link">
+        <Link to="/">
           <img src={TallLogo} alt="logo" className="logo-img" />
         </Link>
         <div className="logo-text">
-          <Link to="/" className="navbar-link">
+          <Link to="/">
             <b>Taal</b>
             <b>Coach</b>
           </Link>
