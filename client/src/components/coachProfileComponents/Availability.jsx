@@ -1,11 +1,13 @@
 import React, { useState } from "react";
-import PropTypes from "prop-types";
 import Grid from "@mui/material/Grid2";
 import Paper from "@mui/material/Paper";
+import Box from "@mui/material/Box";
+import FormControl from "@mui/material/FormControl";
+import Select from "@mui/material/Select";
+import MenuItem from "@mui/material/MenuItem";
+import { Button, Card, Typography } from "@mui/material";
 import Stack from "@mui/material/Stack";
 import { styled } from "@mui/material/styles";
-import Box from "@mui/material/Box";
-import { Button, Card, Typography } from "@mui/material";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: "#fff",
@@ -19,13 +21,21 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 const Availability = () => {
-  const [isEdit, setIsEdit] = useState(false);
+  const [selectedSlot, setSelectedSlot] = useState(["", ""]);
+  const [selectedDay, selectedTime] = selectedSlot;
+  const [timeDropdownOpen, setTimeDropdownOpen] = useState(false);
 
-  const handleEdit = () => {
-    setIsEdit(true);
+  const handleDayChange = (day) => {
+    setSelectedSlot([day, ""]);
+    setTimeDropdownOpen(true);
   };
-  const handleSave = () => {
-    setIsEdit(false);
+
+  const handleTimeChange = (time) => {
+    setSelectedSlot([selectedDay, time]);
+  };
+
+  const handleSubmit = () => {
+    // console.log("Selected Day and Time Slot:", selectedSlot);
   };
 
   return (
@@ -38,7 +48,7 @@ const Availability = () => {
           mt: 4,
           mb: 1,
           minWidth: 800,
-          height: 600,
+          height: 350,
         }}
         variant="elevation"
         elevation={20}
@@ -47,190 +57,104 @@ const Availability = () => {
           <Typography fontWeight="bold">Availability</Typography>
         </Card>
 
-        <div>
-          <Grid container p={4} spacing={3}>
-            <Grid>
-              <Box
-                sx={{
-                  width: 120,
-                }}
-              >
-                <Stack spacing={2}>
-                  <Item sx={{ height: 45, fontWeight: "bold" }}>Monday</Item>
-                  <Item sx={{ height: 45, fontWeight: "bold" }}>Tuesday</Item>
-                  <Item sx={{ height: 45, fontWeight: "bold" }}>Wednesday</Item>
-                  <Item sx={{ height: 45, fontWeight: "bold" }}>Thursday</Item>
-                  <Item sx={{ height: 45, fontWeight: "bold" }}>Friday</Item>
-                  <Item sx={{ height: 45, fontWeight: "bold" }}>Saturday</Item>
-                  <Item sx={{ height: 45, fontWeight: "bold" }}>Sunday</Item>
-                </Stack>
-              </Box>
-            </Grid>
+        <Box sx={{ bgcolor: "#f0f0f0", margin: 4 }}>
+          <Box sx={{ display: "flex", justifyContent: "center" }}>
+            <Stack direction="row">
+              <Stack spacing={0} p={4}>
+                <Item
+                  sx={{
+                    width: 450,
+                    fontWeight: "bold",
+                    textAlign: "center",
+                    bgcolor: "#333333",
+                    color: "#ffffff",
+                  }}
+                >
+                  Choose a day
+                </Item>
+                <FormControl fullWidth>
+                  <Select
+                    value={selectedDay}
+                    onChange={(e) => handleDayChange(e.target.value)}
+                    variant="outlined"
+                  >
+                    <MenuItem value="">Select a day</MenuItem>
+                    <MenuItem value="monday">Monday</MenuItem>
+                    <MenuItem value="tuesday">Tuesday</MenuItem>
+                    <MenuItem value="wednesday">Wednesday</MenuItem>
+                    <MenuItem value="thursday">Thursday</MenuItem>
+                    <MenuItem value="friday">Friday</MenuItem>
+                  </Select>
+                </FormControl>
+              </Stack>
 
-            <Grid>
-              <Box
-                sx={{
-                  width: 50,
-                }}
-              >
-                <Stack spacing={2}>
-                  <Item sx={{ height: 45, fontSize: 12 }}>08:00-10:00</Item>
-                  <Item sx={{ height: 45, fontSize: 12 }}>08:00-10:00</Item>
-                  <Item sx={{ height: 45, fontSize: 12 }}>08:00-10:00</Item>
-                  <Item sx={{ height: 45, fontSize: 12 }}>08:00-10:00</Item>
-                  <Item sx={{ height: 45, fontSize: 12 }}>08:00-10:00</Item>
-                  <Item sx={{ height: 45, fontSize: 12 }}>08:00-10:00</Item>
-                  <Item sx={{ height: 45, fontSize: 12 }}>08:00-10:00</Item>
+              {timeDropdownOpen && selectedDay && (
+                <Stack spacing={0} p={4}>
+                  <Item
+                    sx={{
+                      width: 150,
+                      fontWeight: "bold",
+                      textAlign: "center",
+                      bgcolor: "#333333",
+                      color: "#ffffff",
+                    }}
+                  >
+                    Choose a time slot
+                  </Item>
+                  <FormControl fullWidth>
+                    <Select
+                      value={selectedTime}
+                      onChange={(e) => handleTimeChange(e.target.value)}
+                      variant="outlined"
+                    >
+                      <MenuItem value="01:00 - 02:00">01:00 - 02:00</MenuItem>
+                      <MenuItem value="02:00 - 03:00">02:00 - 03:00</MenuItem>
+                      <MenuItem value="03:00 - 04:00">03:00 - 04:00</MenuItem>
+                      <MenuItem value="04:00 - 05:00">04:00 - 05:00</MenuItem>
+                      <MenuItem value="05:00 - 06:00">05:00 - 06:00</MenuItem>
+                      <MenuItem value="05:00 - 06:00">05:00 - 06:00</MenuItem>
+                      <MenuItem value="06:00 - 07:00">06:00 - 07:00</MenuItem>
+                      <MenuItem value="07:00 - 08:00">07:00 - 08:00</MenuItem>
+                      <MenuItem value="08:00 - 09:00">08:00 - 09:00</MenuItem>
+                      <MenuItem value="09:00 - 10:00">09:00 - 10:00</MenuItem>
+                      <MenuItem value="10:00 - 11:00">10:00 - 11:00</MenuItem>
+                      <MenuItem value="11:00 - 12:00">11:00 - 12:00</MenuItem>
+                      <MenuItem value="12:00 - 13:00">12:00 - 13:00</MenuItem>
+                      <MenuItem value="13:00 - 14:00">13:00 - 14:00</MenuItem>
+                      <MenuItem value="14:00 - 15:00">14:00 - 15:00</MenuItem>
+                      <MenuItem value="15:00 - 16:00">15:00 - 16:00</MenuItem>
+                      <MenuItem value="16:00 - 17:00">16:00 - 17:00</MenuItem>
+                      <MenuItem value="17:00 - 18:00">17:00 - 18:00</MenuItem>
+                      <MenuItem value="18:00 - 19:00">18:00 - 19:00</MenuItem>
+                      <MenuItem value="19:00 - 20:00">19:00 - 20:00</MenuItem>
+                      <MenuItem value="20:00 - 21:00">20:00 - 21:00</MenuItem>
+                      <MenuItem value="21:00 - 22:00">21:00 - 22:00</MenuItem>
+                      <MenuItem value="22:00 - 23:00">22:00 - 23:00</MenuItem>
+                      <MenuItem value="23:00 - 00:00">23:00 - 00:00</MenuItem>
+                      <MenuItem value="00:00 - 01:00">00:00 - 01:00</MenuItem>
+                    </Select>
+                  </FormControl>
                 </Stack>
-              </Box>
-            </Grid>
-
-            <Grid>
-              <Box
-                sx={{
-                  width: 50,
-                }}
-              >
-                <Stack spacing={2}>
-                  <Item sx={{ height: 45, fontSize: 12 }}>10:00-12:00</Item>
-                  <Item sx={{ height: 45, fontSize: 12 }}>10:00-12:00</Item>
-                  <Item sx={{ height: 45, fontSize: 12 }}>10:00-12:00</Item>
-                  <Item sx={{ height: 45, fontSize: 12 }}>10:00-12:00</Item>
-                  <Item sx={{ height: 45, fontSize: 12 }}>10:00-12:00</Item>
-                  <Item sx={{ height: 45, fontSize: 12 }}>10:00-12:00</Item>
-                  <Item sx={{ height: 45, fontSize: 12 }}>10:00-12:00</Item>
-                </Stack>
-              </Box>
-            </Grid>
-
-            <Grid>
-              <Box
-                sx={{
-                  width: 50,
-                }}
-              >
-                <Stack spacing={2}>
-                  <Item sx={{ height: 45, fontSize: 12 }}>12:00-14:00</Item>
-                  <Item sx={{ height: 45, fontSize: 12 }}>12:00-14:00</Item>
-                  <Item sx={{ height: 45, fontSize: 12 }}>12:00-14:00</Item>
-                  <Item sx={{ height: 45, fontSize: 12 }}>12:00-14:00</Item>
-                  <Item sx={{ height: 45, fontSize: 12 }}>12:00-14:00</Item>
-                  <Item sx={{ height: 45, fontSize: 12 }}>12:00-14:00</Item>
-                  <Item sx={{ height: 45, fontSize: 12 }}>12:00-14:00</Item>
-                </Stack>
-              </Box>
-            </Grid>
-
-            <Grid>
-              <Box
-                sx={{
-                  width: 50,
-                }}
-              >
-                <Stack spacing={2}>
-                  <Item sx={{ height: 45, fontSize: 12 }}>14:00-16:00</Item>
-                  <Item sx={{ height: 45, fontSize: 12 }}>14:00-16:00</Item>
-                  <Item sx={{ height: 45, fontSize: 12 }}>14:00-16:00</Item>
-                  <Item sx={{ height: 45, fontSize: 12 }}>14:00-16:00</Item>
-                  <Item sx={{ height: 45, fontSize: 12 }}>14:00-16:00</Item>
-                  <Item sx={{ height: 45, fontSize: 12 }}>14:00-16:00</Item>
-                  <Item sx={{ height: 45, fontSize: 12 }}>14:00-16:00</Item>
-                </Stack>
-              </Box>
-            </Grid>
-
-            <Grid>
-              <Box
-                sx={{
-                  width: 50,
-                }}
-              >
-                <Stack spacing={2}>
-                  <Item sx={{ height: 45, fontSize: 12 }}>16:00-18:00</Item>
-                  <Item sx={{ height: 45, fontSize: 12 }}>16:00-18:00</Item>
-                  <Item sx={{ height: 45, fontSize: 12 }}>16:00-18:00</Item>
-                  <Item sx={{ height: 45, fontSize: 12 }}>16:00-18:00</Item>
-                  <Item sx={{ height: 45, fontSize: 12 }}>16:00-18:00</Item>
-                  <Item sx={{ height: 45, fontSize: 12 }}>16:00-18:00</Item>
-                  <Item sx={{ height: 45, fontSize: 12 }}>16:00-18:00</Item>
-                </Stack>
-              </Box>
-            </Grid>
-
-            <Grid>
-              <Box
-                sx={{
-                  width: 50,
-                }}
-              >
-                <Stack spacing={2}>
-                  <Item sx={{ height: 45, fontSize: 12 }}>18:00-20:00</Item>
-                  <Item sx={{ height: 45, fontSize: 12 }}>18:00-20:00</Item>
-                  <Item sx={{ height: 45, fontSize: 12 }}>18:00-20:00</Item>
-                  <Item sx={{ height: 45, fontSize: 12 }}>18:00-20:00</Item>
-                  <Item sx={{ height: 45, fontSize: 12 }}>18:00-20:00</Item>
-                  <Item sx={{ height: 45, fontSize: 12 }}>18:00-20:00</Item>
-                  <Item sx={{ height: 45, fontSize: 12 }}>18:00-20:00</Item>
-                </Stack>
-              </Box>
-            </Grid>
-
-            <Grid>
-              <Box
-                sx={{
-                  width: 50,
-                }}
-              >
-                <Stack spacing={2}>
-                  <Item sx={{ height: 45, fontSize: 12 }}>20:00-22:00</Item>
-                  <Item sx={{ height: 45, fontSize: 12 }}>20:00-22:00</Item>
-                  <Item sx={{ height: 45, fontSize: 12 }}>20:00-22:00</Item>
-                  <Item sx={{ height: 45, fontSize: 12 }}>20:00-22:00</Item>
-                  <Item sx={{ height: 45, fontSize: 12 }}>20:00-22:00</Item>
-                  <Item sx={{ height: 45, fontSize: 12 }}>20:00-22:00</Item>
-                  <Item sx={{ height: 45, fontSize: 12 }}>20:00-22:00</Item>
-                </Stack>
-              </Box>
-            </Grid>
-
-            <Grid>
-              <Box
-                sx={{
-                  width: 50,
-                }}
-              >
-                <Stack spacing={2}>
-                  <Item sx={{ height: 45, fontSize: 12 }}>22:00-24:00</Item>
-                  <Item sx={{ height: 45, fontSize: 12 }}>22:00-24:00</Item>
-                  <Item sx={{ height: 45, fontSize: 12 }}>22:00-24:00</Item>
-                  <Item sx={{ height: 45, fontSize: 12 }}>22:00-24:00</Item>
-                  <Item sx={{ height: 45, fontSize: 12 }}>22:00-24:00</Item>
-                  <Item sx={{ height: 45, fontSize: 12 }}>22:00-24:00</Item>
-                  <Item sx={{ height: 45, fontSize: 12 }}>22:00-24:00</Item>
-                </Stack>
-              </Box>
-            </Grid>
+              )}
+            </Stack>
+          </Box>
+        </Box>
+        <Grid container justifyContent="flex-end">
+          <Grid>
+            <Button
+              onClick={handleSubmit}
+              fullWidth
+              variant="contained"
+              color="secondary"
+              size="medium"
+            >
+              Save
+            </Button>
           </Grid>
-          <Grid container justifyContent="flex-end">
-            <Grid>
-              <Button
-                color="secondary"
-                variant="contained"
-                size="small"
-                onClick={isEdit ? handleSave : handleEdit}
-              >
-                {isEdit ? "Save" : "Edit"}
-              </Button>
-            </Grid>
-          </Grid>
-        </div>
+        </Grid>
       </Paper>
     </Grid>
   );
-};
-
-Availability.propTypes = {
-  data: PropTypes.shape({}).isRequired,
 };
 
 export default Availability;
