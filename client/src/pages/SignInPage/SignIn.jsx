@@ -144,9 +144,9 @@ export default function SignIn() {
   };
 
   if (error) toast.error(error);
-  if (error) {
-    alert(error);
-  }
+  // if (error) {
+  //   alert(error);
+  // }
 
   return (
     <>
