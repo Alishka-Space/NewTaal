@@ -11,7 +11,7 @@ import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
 import MuiCard from "@mui/material/Card";
-import PropTypes from "prop-types";
+// import PropTypes from "prop-types";
 import { createTheme, ThemeProvider, styled } from "@mui/material/styles";
 import getSignUpTheme from "../shared-theme/getSignUpTheme";
 import ForgotPassword from "./ForgotPassword";
@@ -62,13 +62,13 @@ const SignInContainer = styled(Stack)(({ theme }) => ({
   },
 }));
 
-function TemplateFrame({ children }) {
-  return children;
-}
+// function TemplateFrame({ children }) {
+//   return children;
+// }
 
-TemplateFrame.propTypes = {
-  children: PropTypes.node,
-};
+// TemplateFrame.propTypes = {
+//   children: PropTypes.node,
+// };
 
 export default function SignIn() {
   const SignUpTheme = createTheme(getSignUpTheme());
@@ -149,7 +149,7 @@ export default function SignIn() {
   }
 
   return (
-    <TemplateFrame>
+    <>
       <ToastContainer theme="colored" />
       <ThemeProvider theme={SignUpTheme}>
         <CssBaseline />
@@ -247,6 +247,6 @@ export default function SignIn() {
           </Card>
         </SignInContainer>
       </ThemeProvider>
-    </TemplateFrame>
+    </>
   );
 }
