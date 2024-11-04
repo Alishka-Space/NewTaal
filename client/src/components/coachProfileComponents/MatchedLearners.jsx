@@ -8,6 +8,7 @@ import { Card, Typography } from "@mui/material";
 import { AuthContext } from "../../context/AuthContext";
 import useFetch from "../../hooks/useFetch";
 import { Link } from "react-router-dom";
+import TablePagination from "@mui/material/TablePagination";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: "#fff",
@@ -23,6 +24,8 @@ const Item = styled(Paper)(({ theme }) => ({
 const MatchedLearners = () => {
   const [matchedLearners, setMatchedLearners] = useState([]);
   const { authState } = useContext(AuthContext);
+  const [page, setPage] = useState(0);
+  const [rowsPerPage, setRowsPerPage] = useState(5);
   const { performFetch, cancelFetch } = useFetch(
     `/session/user/${authState.id}`,
     (response) => {
@@ -46,6 +49,15 @@ const MatchedLearners = () => {
     });
     return cancelFetch;
   }, []);
+
+  const handleChangePage = (event, newPage) => {
+    setPage(newPage);
+  };
+
+  const handleChangeRowsPerPage = (event) => {
+    setRowsPerPage(parseInt(event.target.value, 10));
+    setPage(0);
+  };
 
   return (
     <Grid container>
@@ -77,7 +89,12 @@ const MatchedLearners = () => {
                 <Stack spacing={2}>
                   {matchedLearners.map((learner, index) => (
                     <Item sx={{ height: 45, fontWeight: "bold" }} key={index}>
-                      <Typography width="100%" variant="h8">
+                      <Typography
+                        width="100%"
+                        fontSize={16}
+                        fontWeight="bold"
+                        color="secondary"
+                      >
                         Learner {index + 1}
                       </Typography>
                     </Item>
@@ -106,6 +123,15 @@ const MatchedLearners = () => {
               </Box>
             </Grid>
           </Grid>
+          <TablePagination
+            rowsPerPageOptions={[5, 10, 25]}
+            component="div"
+            count={matchedLearners.length}
+            page={page}
+            onPageChange={handleChangePage}
+            rowsPerPage={rowsPerPage}
+            onRowsPerPageChange={handleChangeRowsPerPage}
+          />
         </div>
       </Paper>
     </Grid>
