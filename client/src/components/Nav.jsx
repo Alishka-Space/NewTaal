@@ -84,11 +84,9 @@ const Nav = () => {
           {!authState.token ? (
             <>
               <Link to="/signin" className="navbar-link">
-                <i className="bi bi-arrow-right-square-fill"></i>
                 Log-in
               </Link>
               <Link to="/signup" className="navbar-link">
-                <i className="bi bi-arrow-right-square-fill"></i>
                 sign-up
               </Link>
             </>
