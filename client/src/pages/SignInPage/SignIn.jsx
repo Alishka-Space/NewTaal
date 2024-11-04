@@ -11,13 +11,15 @@ import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
 import MuiCard from "@mui/material/Card";
-import PropTypes from "prop-types";
+// import PropTypes from "prop-types";
 import { createTheme, ThemeProvider, styled } from "@mui/material/styles";
 import getSignUpTheme from "../shared-theme/getSignUpTheme";
 import ForgotPassword from "./ForgotPassword";
 import useFetch from "../../hooks/useFetch";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Card = styled(MuiCard)(({ theme }) => ({
   display: "flex",
@@ -60,17 +62,16 @@ const SignInContainer = styled(Stack)(({ theme }) => ({
   },
 }));
 
-function TemplateFrame({ children }) {
-  return children;
-}
+// function TemplateFrame({ children }) {
+//   return children;
+// }
 
-TemplateFrame.propTypes = {
-  children: PropTypes.node,
-};
+// TemplateFrame.propTypes = {
+//   children: PropTypes.node,
+// };
 
 export default function SignIn() {
   const SignUpTheme = createTheme(getSignUpTheme());
-
   const { login } = React.useContext(AuthContext);
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
@@ -79,7 +80,6 @@ export default function SignIn() {
   const [passwordError, setPasswordError] = React.useState(false);
   const [passwordErrorMessage, setPasswordErrorMessage] = React.useState("");
   const [open, setOpen] = React.useState(false);
-
   const navigate = useNavigate();
 
   const onSuccess = (response) => {
@@ -87,9 +87,7 @@ export default function SignIn() {
     const user = response.userInformation.name;
     const role = response.userInformation.role;
     const id = response.userInformation._id;
-
     login(token, user, role, id);
-
     if (role === "learner") navigate("/userhome");
     else navigate("/coachhome");
   };
@@ -107,12 +105,12 @@ export default function SignIn() {
   const validateInputs = () => {
     const email = document.getElementById("email");
     const password = document.getElementById("password");
-
     let isValid = true;
 
     if (!email.value || !/\S+@\S+\.\S+/.test(email.value)) {
       setEmailError(true);
-      setEmailErrorMessage("Please enter a valid email address.");
+      setEmailErrorMessage("Invalid email format");
+      toast.error("Invalid email format");
       isValid = false;
     } else {
       setEmailError(false);
@@ -121,7 +119,8 @@ export default function SignIn() {
 
     if (!password.value || password.value.length < 6) {
       setPasswordError(true);
-      setPasswordErrorMessage("Password must be at least 6 characters long.");
+      setPasswordErrorMessage("Password must be at least 6 characters");
+      toast.error("Password must be at least 6 characters long");
       isValid = false;
     } else {
       setPasswordError(false);
@@ -144,12 +143,14 @@ export default function SignIn() {
     }
   };
 
-  if (error) {
-    alert(error);
-  }
+  if (error) toast.error(error);
+  // if (error) {
+  //   alert(error);
+  // }
 
   return (
-    <TemplateFrame>
+    <>
+      <ToastContainer theme="colored" />
       <ThemeProvider theme={SignUpTheme}>
         <CssBaseline />
         <SignInContainer direction="column" justifyContent="space-between">
@@ -213,7 +214,6 @@ export default function SignIn() {
                   type="password"
                   id="password"
                   autoComplete="current-password"
-                  autoFocus
                   required
                   fullWidth
                   variant="outlined"
@@ -228,12 +228,7 @@ export default function SignIn() {
                 label="Remember me"
               />
               <ForgotPassword open={open} handleClose={handleClose} />
-              <Button
-                type="submit"
-                fullWidth
-                variant="contained"
-                onClick={validateInputs}
-              >
+              <Button type="submit" fullWidth variant="contained">
                 Sign in
               </Button>
               <Typography sx={{ textAlign: "center" }}>
@@ -252,6 +247,6 @@ export default function SignIn() {
           </Card>
         </SignInContainer>
       </ThemeProvider>
-    </TemplateFrame>
+    </>
   );
 }
