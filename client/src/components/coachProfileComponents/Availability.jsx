@@ -8,6 +8,8 @@ import MenuItem from "@mui/material/MenuItem";
 import { Button, Card, Typography } from "@mui/material";
 import Stack from "@mui/material/Stack";
 import { styled } from "@mui/material/styles";
+import Checkbox from "@mui/material/Checkbox";
+import Chip from "@mui/material/Chip";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: "#fff",
@@ -21,21 +23,23 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 const Availability = () => {
-  const [selectedSlot, setSelectedSlot] = useState(["", ""]);
-  const [selectedDay, selectedTime] = selectedSlot;
+  const [selectedSlot, setSelectedSlot] = useState([[], []]);
+  const [selectedDays, selectedTimes] = selectedSlot;
+  const [, setDayDropdownOpen] = useState(true);
   const [timeDropdownOpen, setTimeDropdownOpen] = useState(false);
 
-  const handleDayChange = (day) => {
-    setSelectedSlot([day, ""]);
+  const handleDayChange = (days) => {
+    setSelectedSlot([days, []]);
+    setDayDropdownOpen(false);
     setTimeDropdownOpen(true);
   };
 
-  const handleTimeChange = (time) => {
-    setSelectedSlot([selectedDay, time]);
+  const handleTimeChange = (times) => {
+    setSelectedSlot([selectedDays, times]);
   };
 
   const handleSubmit = () => {
-    // console.log("Selected Day and Time Slot:", selectedSlot);
+    //console.log("Selected Days and Time Slots:", selectedSlot);
   };
 
   return (
@@ -47,8 +51,8 @@ const Availability = () => {
           p: 2,
           mt: 4,
           mb: 1,
-          minWidth: 800,
-          height: 350,
+          width: 800,
+          height: 500,
         }}
         variant="elevation"
         elevation={20}
@@ -57,87 +61,250 @@ const Availability = () => {
           <Typography fontWeight="bold">Availability</Typography>
         </Card>
 
-        <Box sx={{ bgcolor: "#f0f0f0", margin: 4 }}>
-          <Box sx={{ display: "flex", justifyContent: "center" }}>
-            <Stack direction="row">
+        <Box
+          sx={{
+            height: 320,
+            bgcolor: "#f0f0f0",
+            margin: 4,
+            display: "flex",
+            justifyContent: "center",
+          }}
+        >
+          <Stack direction="row">
+            <Stack spacing={0} p={4}>
+              <Item
+                sx={{
+                  width: 290,
+                  fontWeight: "bold",
+                  textAlign: "center",
+                  bgcolor: "#333333",
+                  color: "#ffffff",
+                }}
+              >
+                Choose day(s)
+              </Item>
+              <FormControl sx={{ width: 290 }}>
+                <Select
+                  value={selectedDays}
+                  onChange={(e) => handleDayChange(e.target.value)}
+                  variant="outlined"
+                  multiple
+                  renderValue={(selected) => (
+                    <Box sx={{ display: "flex", flexWrap: "wrap", gap: 0.5 }}>
+                      {selected.map((value) => (
+                        <Chip key={value} label={value} />
+                      ))}
+                    </Box>
+                  )}
+                >
+                  <MenuItem value="Monday">
+                    <Checkbox checked={selectedDays.includes("Monday")} />
+                    Monday
+                  </MenuItem>
+                  <MenuItem value="Tuesday">
+                    <Checkbox checked={selectedDays.includes("Tuesday")} />
+                    Tuesday
+                  </MenuItem>
+                  <MenuItem value="Wednesday">
+                    <Checkbox checked={selectedDays.includes("Wednesday")} />
+                    Wednesday
+                  </MenuItem>
+                  <MenuItem value="Thursday">
+                    <Checkbox checked={selectedDays.includes("Thursday")} />
+                    Thursday
+                  </MenuItem>
+                  <MenuItem value="Friday">
+                    <Checkbox checked={selectedDays.includes("Friday")} />
+                    Friday
+                  </MenuItem>
+                  <MenuItem value="Saturday">
+                    <Checkbox checked={selectedDays.includes("Saturday")} />
+                    Saturday
+                  </MenuItem>
+                  <MenuItem value="Sunday">
+                    <Checkbox checked={selectedDays.includes("Sunday")} />
+                    Sunday
+                  </MenuItem>
+                </Select>
+              </FormControl>
+            </Stack>
+
+            {timeDropdownOpen && selectedDays.length > 0 && (
               <Stack spacing={0} p={4}>
                 <Item
                   sx={{
-                    width: 450,
+                    width: 290,
                     fontWeight: "bold",
                     textAlign: "center",
                     bgcolor: "#333333",
                     color: "#ffffff",
                   }}
                 >
-                  Choose a day
+                  Choose time slot(s)
                 </Item>
-                <FormControl fullWidth>
+                <FormControl sx={{ width: 290 }}>
                   <Select
-                    value={selectedDay}
-                    onChange={(e) => handleDayChange(e.target.value)}
+                    value={selectedTimes}
+                    onChange={(e) => handleTimeChange(e.target.value)}
                     variant="outlined"
+                    multiple
+                    renderValue={(selected) => (
+                      <Box sx={{ display: "flex", flexWrap: "wrap", gap: 0.5 }}>
+                        {selected.map((value) => (
+                          <Chip key={value} label={value} />
+                        ))}
+                      </Box>
+                    )}
                   >
-                    <MenuItem value="">Select a day</MenuItem>
-                    <MenuItem value="monday">Monday</MenuItem>
-                    <MenuItem value="tuesday">Tuesday</MenuItem>
-                    <MenuItem value="wednesday">Wednesday</MenuItem>
-                    <MenuItem value="thursday">Thursday</MenuItem>
-                    <MenuItem value="friday">Friday</MenuItem>
+                    <MenuItem value="00:00 - 01:00">
+                      <Checkbox
+                        checked={selectedTimes.includes("00:00 - 01:00")}
+                      />
+                      00:00 - 01:00
+                    </MenuItem>
+                    <MenuItem value="01:00 - 02:00">
+                      <Checkbox
+                        checked={selectedTimes.includes("01:00 - 02:00")}
+                      />
+                      01:00 - 02:00
+                    </MenuItem>
+                    <MenuItem value="02:00 - 03:00">
+                      <Checkbox
+                        checked={selectedTimes.includes("02:00 - 03:00")}
+                      />
+                      02:00 - 03:00
+                    </MenuItem>
+                    <MenuItem value="03:00 - 04:00">
+                      <Checkbox
+                        checked={selectedTimes.includes("03:00 - 04:00")}
+                      />
+                      03:00 - 04:00
+                    </MenuItem>
+                    <MenuItem value="04:00 - 05:00">
+                      <Checkbox
+                        checked={selectedTimes.includes("04:00 - 05:00")}
+                      />
+                      04:00 - 05:00
+                    </MenuItem>
+                    <MenuItem value="05:00 - 06:00">
+                      <Checkbox
+                        checked={selectedTimes.includes("05:00 - 06:00")}
+                      />
+                      05:00 - 06:00
+                    </MenuItem>
+                    <MenuItem value="06:00 - 07:00">
+                      <Checkbox
+                        checked={selectedTimes.includes("06:00 - 07:00")}
+                      />
+                      06:00 - 07:00
+                    </MenuItem>
+                    <MenuItem value="07:00 - 08:00">
+                      <Checkbox
+                        checked={selectedTimes.includes("07:00 - 08:00")}
+                      />
+                      07:00 - 08:00
+                    </MenuItem>
+                    <MenuItem value="08:00 - 09:00">
+                      <Checkbox
+                        checked={selectedTimes.includes("08:00 - 09:00")}
+                      />
+                      08:00 - 09:00
+                    </MenuItem>
+                    <MenuItem value="09:00 - 10:00">
+                      <Checkbox
+                        checked={selectedTimes.includes("09:00 - 10:00")}
+                      />
+                      09:00 - 10:00
+                    </MenuItem>
+                    <MenuItem value="10:00 - 11:00">
+                      <Checkbox
+                        checked={selectedTimes.includes("10:00 - 11:00")}
+                      />
+                      10:00 - 11:00
+                    </MenuItem>
+                    <MenuItem value="11:00 - 12:00">
+                      <Checkbox
+                        checked={selectedTimes.includes("11:00 - 12:00")}
+                      />
+                      11:00 - 12:00
+                    </MenuItem>
+                    <MenuItem value="12:00 - 13:00">
+                      <Checkbox
+                        checked={selectedTimes.includes("12:00 - 13:00")}
+                      />
+                      12:00 - 13:00
+                    </MenuItem>
+                    <MenuItem value="13:00 - 14:00">
+                      <Checkbox
+                        checked={selectedTimes.includes("13:00 - 14:00")}
+                      />
+                      13:00 - 14:00
+                    </MenuItem>
+                    <MenuItem value="14:00 - 15:00">
+                      <Checkbox
+                        checked={selectedTimes.includes("14:00 - 15:00")}
+                      />
+                      14:00 - 15:00
+                    </MenuItem>
+                    <MenuItem value="15:00 - 16:00">
+                      <Checkbox
+                        checked={selectedTimes.includes("15:00 - 16:00")}
+                      />
+                      15:00 - 16:00
+                    </MenuItem>
+                    <MenuItem value="16:00 - 17:00">
+                      <Checkbox
+                        checked={selectedTimes.includes("16:00 - 17:00")}
+                      />
+                      16:00 - 17:00
+                    </MenuItem>
+                    <MenuItem value="17:00 - 18:00">
+                      <Checkbox
+                        checked={selectedTimes.includes("17:00 - 18:00")}
+                      />
+                      17:00 - 18:00
+                    </MenuItem>
+                    <MenuItem value="18:00 - 19:00">
+                      <Checkbox
+                        checked={selectedTimes.includes("18:00 - 19:00")}
+                      />
+                      18:00 - 19:00
+                    </MenuItem>
+                    <MenuItem value="19:00 - 20:00">
+                      <Checkbox
+                        checked={selectedTimes.includes("19:00 - 20:00")}
+                      />
+                      19:00 - 20:00
+                    </MenuItem>
+                    <MenuItem value="20:00 - 21:00">
+                      <Checkbox
+                        checked={selectedTimes.includes("20:00 - 21:00")}
+                      />
+                      20:00 - 21:00
+                    </MenuItem>
+                    <MenuItem value="21:00 - 22:00">
+                      <Checkbox
+                        checked={selectedTimes.includes("21:00 - 22:00")}
+                      />
+                      21:00 - 22:00
+                    </MenuItem>
+                    <MenuItem value="22:00 - 23:00">
+                      <Checkbox
+                        checked={selectedTimes.includes("22:00 - 23:00")}
+                      />
+                      22:00 - 23:00
+                    </MenuItem>
+                    <MenuItem value="23:00 - 00:00">
+                      <Checkbox
+                        checked={selectedTimes.includes("23:00 - 00:00")}
+                      />
+                      23:00 - 00:00
+                    </MenuItem>
                   </Select>
                 </FormControl>
               </Stack>
-
-              {timeDropdownOpen && selectedDay && (
-                <Stack spacing={0} p={4}>
-                  <Item
-                    sx={{
-                      width: 150,
-                      fontWeight: "bold",
-                      textAlign: "center",
-                      bgcolor: "#333333",
-                      color: "#ffffff",
-                    }}
-                  >
-                    Choose a time slot
-                  </Item>
-                  <FormControl fullWidth>
-                    <Select
-                      value={selectedTime}
-                      onChange={(e) => handleTimeChange(e.target.value)}
-                      variant="outlined"
-                    >
-                      <MenuItem value="01:00 - 02:00">01:00 - 02:00</MenuItem>
-                      <MenuItem value="02:00 - 03:00">02:00 - 03:00</MenuItem>
-                      <MenuItem value="03:00 - 04:00">03:00 - 04:00</MenuItem>
-                      <MenuItem value="04:00 - 05:00">04:00 - 05:00</MenuItem>
-                      <MenuItem value="05:00 - 06:00">05:00 - 06:00</MenuItem>
-                      <MenuItem value="05:00 - 06:00">05:00 - 06:00</MenuItem>
-                      <MenuItem value="06:00 - 07:00">06:00 - 07:00</MenuItem>
-                      <MenuItem value="07:00 - 08:00">07:00 - 08:00</MenuItem>
-                      <MenuItem value="08:00 - 09:00">08:00 - 09:00</MenuItem>
-                      <MenuItem value="09:00 - 10:00">09:00 - 10:00</MenuItem>
-                      <MenuItem value="10:00 - 11:00">10:00 - 11:00</MenuItem>
-                      <MenuItem value="11:00 - 12:00">11:00 - 12:00</MenuItem>
-                      <MenuItem value="12:00 - 13:00">12:00 - 13:00</MenuItem>
-                      <MenuItem value="13:00 - 14:00">13:00 - 14:00</MenuItem>
-                      <MenuItem value="14:00 - 15:00">14:00 - 15:00</MenuItem>
-                      <MenuItem value="15:00 - 16:00">15:00 - 16:00</MenuItem>
-                      <MenuItem value="16:00 - 17:00">16:00 - 17:00</MenuItem>
-                      <MenuItem value="17:00 - 18:00">17:00 - 18:00</MenuItem>
-                      <MenuItem value="18:00 - 19:00">18:00 - 19:00</MenuItem>
-                      <MenuItem value="19:00 - 20:00">19:00 - 20:00</MenuItem>
-                      <MenuItem value="20:00 - 21:00">20:00 - 21:00</MenuItem>
-                      <MenuItem value="21:00 - 22:00">21:00 - 22:00</MenuItem>
-                      <MenuItem value="22:00 - 23:00">22:00 - 23:00</MenuItem>
-                      <MenuItem value="23:00 - 00:00">23:00 - 00:00</MenuItem>
-                      <MenuItem value="00:00 - 01:00">00:00 - 01:00</MenuItem>
-                    </Select>
-                  </FormControl>
-                </Stack>
-              )}
-            </Stack>
-          </Box>
+            )}
+          </Stack>
         </Box>
         <Grid container justifyContent="flex-end">
           <Grid>
