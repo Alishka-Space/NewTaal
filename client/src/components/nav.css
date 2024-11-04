@@ -104,10 +104,11 @@
 @media (max-width: 820px) {
   .navbar-link {
     margin: 0 5px;
-    font-size: 1.2em;
-    font-weight: 300;
+    font-size: 1.1em;
+    font-weight: 400;
     padding: 7px;
     width: 5.5em;
+    line-height: 1.2em;
   }
   .logo-text b {
     font-size: 1.4em;
@@ -122,6 +123,7 @@
   .header-menu {
     display: block;
     padding-right: 10px;
+    
   }
 
   .navbar {
@@ -133,6 +135,7 @@
     transition: all 1s ease;
     z-index: 1;
     border: 1px solid #9c11e2;
+    
   }
 
   .navbar-links {
@@ -144,11 +147,11 @@
 
   .navbar-link {
     margin: 15px 0;
-    color: #d96acc;
+    color: #e8dcee;
   }
 
   .logo-text b {
-    color: #0a090b;
+    color: #e8dcee;
     font-size: 2em;
     font-family: cursive;
   }
