@@ -41,7 +41,13 @@ const CoachList = ({ coachList }) => {
             image={coach.image}
             title={coach.username}
           />
-          <CardContent sx={{ color: "text.secondary" }}>
+          <CardContent
+            sx={{
+              color: "text.secondary",
+              height: "250px",
+              overflow: "hidden",
+            }}
+          >
             <Typography variant="h6" component="div">
               <b>Coach:</b> {coach.username}
             </Typography>
@@ -64,7 +70,7 @@ const CoachList = ({ coachList }) => {
               <strong>From ${coach.rate}</strong> per class
             </Typography>
           </CardContent>
-          <CardActions sx={{ justifyContent: "center" }}>
+          <CardActions sx={{ justifyContent: "center", margin: 1 }}>
             <Button
               onClick={() => handleBookASession(coach)}
               size="small"
