@@ -83,7 +83,7 @@ const LanguageInfoCoach = (props) => {
             <Grid>
               <Box
                 sx={{
-                  width: 400,
+                  width: 480,
                 }}
               >
                 <Stack spacing={2}>
