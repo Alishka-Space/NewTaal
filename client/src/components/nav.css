@@ -123,7 +123,6 @@
   .header-menu {
     display: block;
     padding-right: 10px;
-    
   }
 
   .navbar {
@@ -135,7 +134,6 @@
     transition: all 1s ease;
     z-index: 1;
     border: 1px solid #9c11e2;
-    
   }
 
   .navbar-links {
