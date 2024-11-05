@@ -21,11 +21,11 @@ const Nav = () => {
   return (
     <header className="header">
       <div className="logo">
-        <Link to="/" className="navbar-link">
+        <Link to="/">
           <img src={TallLogo} alt="logo" className="logo-img" />
         </Link>
         <div className="logo-text">
-          <Link to="/" className="navbar-link">
+          <Link to="/">
             <b>Taal</b>
             <b>Coach</b>
           </Link>
@@ -84,11 +84,9 @@ const Nav = () => {
           {!authState.token ? (
             <>
               <Link to="/signin" className="navbar-link">
-                <i className="bi bi-arrow-right-square-fill"></i>
                 Log-in
               </Link>
               <Link to="/signup" className="navbar-link">
-                <i className="bi bi-arrow-right-square-fill"></i>
                 sign-up
               </Link>
             </>
