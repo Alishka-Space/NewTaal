@@ -83,7 +83,7 @@ const MatchedLearners = () => {
             <Grid>
               <Box
                 sx={{
-                  width: 200,
+                  width: 180,
                 }}
               >
                 <Stack spacing={2}>
@@ -97,7 +97,7 @@ const MatchedLearners = () => {
                       }}
                       key={index}
                     >
-                      <Typography width="100%" fontSize={16} fontWeight="bold">
+                      <Typography width="100%" fontSize={15} fontWeight="bold">
                         Learner {index + 1}
                       </Typography>
                     </Item>
@@ -118,7 +118,7 @@ const MatchedLearners = () => {
                       sx={{ height: 45, bgcolor: "#f0f0f0" }}
                       key={learner.learner_id}
                     >
-                      <Typography width="100%" variant="h8">
+                      <Typography width="100%" fontSize={15} fontWeight="bold">
                         <Link to={`/learnerprofile/${learner.learner_id}`}>
                           {learner.learner_name}
                         </Link>
