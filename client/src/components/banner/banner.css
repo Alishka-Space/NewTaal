@@ -34,6 +34,13 @@
   font-size: 40px;
   color: rgb(255, 255, 255);
   font-family: bauhaus;
+  letter-spacing: 5px;
+  transition: all 0.25s linear;
+}
+.banner-layout-title:hover {
+  letter-spacing: 9px;
+  transform: scale(1.1);
+  border-bottom: 3px solid #9a0d8f;
 }
 
 @media (max-width: 720px) {
