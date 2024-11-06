@@ -11,27 +11,36 @@
 }
 
 .hero-btn {
-  background-color: #daeb3f;
-  color: #141212;
-  font-size: 20px;
+  background: linear-gradient(
+    90deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(39, 167, 243, 1) 35%,
+    rgb(39, 39, 153) 100%
+  );
+  vertical-align: middle;
+  line-height: 1.1em;
+  border-bottom: 2px solid #060606;
+  box-shadow: -0.2em 0.2em 0 #333333a8;
+  color: #e8dcee;
+  font-size: 1.6rem;
   text-decoration: none;
-  font-weight: bold;
-  padding: 30px 40px;
+  font-weight: 800;
+  padding: 20px 40px;
   border: 2px solid #1c1d17;
   border-radius: 30px;
   cursor: pointer;
   font-family: bauhaus;
-  transition: all 0.3s;
+  transition: all 0.25s linear;
   position: absolute;
-  left: 20%;
+  left: 10%;
   top: 60%;
 }
 
 .hero-btn:hover {
   cursor: pointer;
   transform: scale(1.1);
-  border-color: #070606;
-  background-color: #9c5be7;
+  border-color: #2b1872;
+  background: #a62eb6;
 }
 
 @media (max-width: 720px) {
