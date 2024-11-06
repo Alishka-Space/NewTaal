@@ -68,7 +68,7 @@ const MatchedLearners = () => {
           p: 2,
           mt: 4,
           mb: 1,
-          minWidth: 800,
+          width: 800,
           height: 460,
         }}
         variant="elevation"
@@ -83,18 +83,21 @@ const MatchedLearners = () => {
             <Grid>
               <Box
                 sx={{
-                  width: 200,
+                  width: 180,
                 }}
               >
                 <Stack spacing={2}>
                   {matchedLearners.map((learner, index) => (
-                    <Item sx={{ height: 45, fontWeight: "bold" }} key={index}>
-                      <Typography
-                        width="100%"
-                        fontSize={16}
-                        fontWeight="bold"
-                        color="secondary"
-                      >
+                    <Item
+                      sx={{
+                        height: 45,
+                        textAlign: "center",
+                        bgcolor: "#333333",
+                        color: "#ffffff",
+                      }}
+                      key={index}
+                    >
+                      <Typography width="100%" fontSize={15} fontWeight="bold">
                         Learner {index + 1}
                       </Typography>
                     </Item>
@@ -106,13 +109,16 @@ const MatchedLearners = () => {
             <Grid>
               <Box
                 sx={{
-                  width: 500,
+                  width: 480,
                 }}
               >
                 <Stack spacing={2}>
                   {matchedLearners.map((learner) => (
-                    <Item sx={{ height: 45 }} key={learner.learner_id}>
-                      <Typography width="100%" variant="h8">
+                    <Item
+                      sx={{ height: 45, bgcolor: "#f0f0f0" }}
+                      key={learner.learner_id}
+                    >
+                      <Typography width="100%" fontSize={15} fontWeight="bold">
                         <Link to={`/learnerprofile/${learner.learner_id}`}>
                           {learner.learner_name}
                         </Link>

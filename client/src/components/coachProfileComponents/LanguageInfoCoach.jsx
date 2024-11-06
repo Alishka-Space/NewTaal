@@ -51,7 +51,7 @@ const LanguageInfoCoach = (props) => {
           p: 2,
           mt: 4,
           mb: 1,
-          minWidth: 800,
+          width: 800,
           height: 280,
         }}
         variant="elevation"
@@ -83,7 +83,7 @@ const LanguageInfoCoach = (props) => {
             <Grid>
               <Box
                 sx={{
-                  width: 500,
+                  width: 480,
                 }}
               >
                 <Stack spacing={2}>
