@@ -53,13 +53,13 @@ const Reviews = () => {
           p: 2,
           mt: 4,
           mb: 1,
-          minWidth: 800,
+          width: 800,
           height: 500,
         }}
         variant="elevation"
         elevation={20}
       >
-        <Card sx={{ p: 1, borderRadius: "10px", bgcolor: "#f0f0f0", my: 2 }}>
+        <Card sx={{ p: 1, borderRadius: "10px", bgcolor: "#f0f0f0", mb: 4 }}>
           <Typography fontWeight="bold">Reviews</Typography>
         </Card>
 
@@ -68,13 +68,35 @@ const Reviews = () => {
             <Table sx={{ minWidth: 650 }} aria-label="simple table">
               <TableHead>
                 <TableRow>
-                  <TableCell sx={{ fontWeight: "bold", width: 180 }}>
+                  <TableCell
+                    sx={{
+                      bgcolor: "#333333",
+                      color: "#ffffff",
+                      fontWeight: "bold",
+                      width: 180,
+                    }}
+                  >
                     Learner Name
                   </TableCell>
-                  <TableCell sx={{ fontWeight: "bold", width: 4 }}>
+                  <TableCell
+                    sx={{
+                      bgcolor: "#333333",
+                      color: "#ffffff",
+                      fontWeight: "bold",
+                      width: 4,
+                    }}
+                  >
                     Rating
                   </TableCell>
-                  <TableCell sx={{ fontWeight: "bold" }}>Comments</TableCell>
+                  <TableCell
+                    sx={{
+                      bgcolor: "#333333",
+                      color: "#ffffff",
+                      fontWeight: "bold",
+                    }}
+                  >
+                    Comments
+                  </TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
@@ -88,19 +110,23 @@ const Reviews = () => {
                           "&:last-child td, &:last-child th": { border: 0 },
                         }}
                       >
-                        <TableCell sx={{ bgcolor: "#e1bee7" }}>
+                        <TableCell
+                          sx={{
+                            bgcolor: "#f0f0f0",
+                          }}
+                        >
                           {row.learner_name}
                         </TableCell>
                         <TableCell
                           sx={{
                             textAlign: "center",
-                            bgcolor: "#e6e6fa",
+                            bgcolor: "#f0f0f0",
                             fontWeight: "bold",
                           }}
                         >
                           {row.rating}
                         </TableCell>
-                        <TableCell sx={{ bgcolor: "#e6e6fa" }}>
+                        <TableCell sx={{ bgcolor: "#f0f0f0" }}>
                           {row.comments}
                         </TableCell>
                       </TableRow>
