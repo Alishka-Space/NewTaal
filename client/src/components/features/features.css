@@ -40,7 +40,6 @@
   align-items: center;
   text-align: center;
   position: relative;
-
 }
 
 .feature span {
@@ -74,7 +73,6 @@
   object-fit: cover;
   position: absolute;
   bottom: -110px;
-
 }
 
 .feature-text {
