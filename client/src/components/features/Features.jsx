@@ -11,7 +11,7 @@ const Features = () => {
         <b className="feature-title">Our Features</b>
         <div className="feature">
           <div className="feature-text">
-            <span>1-on-1 sessions</span>
+            <span>Individual sessions</span>
             <p>Learn & Speak at your own pace</p>
           </div>
           <img src={about} alt="about-img" className="about-img" />
@@ -25,8 +25,8 @@ const Features = () => {
         </div>
         <div className="feature">
           <div className="feature-text">
-            <span>Professional Language Coaches</span>
-            <p>designed to be as unique as each individual</p>
+            <span>Professional Coaches</span>
+            <p>designed to be as unique as individual</p>
           </div>
           <img src={aboutb} alt="about-img" className="about-img" />
         </div>
