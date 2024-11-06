@@ -10,10 +10,10 @@ const Features = () => {
       <div className="features">
         <b className="feature-title">Our Features</b>
         <div className="feature">
-        <div className="feature-text">
-          <span>1-on-1 Language Coaching</span>
-          <p>Learn / Speak at your own pace</p>
-        </div>
+          <div className="feature-text">
+            <span>1-on-1 Language Coaching</span>
+            <p>Learn / Speak at your own pace</p>
+          </div>
           <img src={about} alt="about-img" className="about-img" />
         </div>
         <div className="feature">
@@ -24,10 +24,10 @@ const Features = () => {
           <img src={abouta} alt="about-img" className="about-img" />
         </div>
         <div className="feature">
-        <div className="feature-text">
-          <span>Professional Language Coaches</span>
-          <p>Learn / Speak at your own pace</p>
-        </div>
+          <div className="feature-text">
+            <span>Professional Language Coaches</span>
+            <p>Learn / Speak at your own pace</p>
+          </div>
           <img src={aboutb} alt="about-img" className="about-img" />
         </div>
       </div>

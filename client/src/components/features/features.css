@@ -49,15 +49,14 @@
   font-weight: 700;
   color: #e3d5f1;
   padding: 10px 10px;
-  margin:30px 0;
+  margin: 30px 0;
   font-family: bauhaus;
   background-color: rgba(90, 42, 187, 0.585);
   line-height: 1.2;
   border-radius: 5px;
   letter-spacing: 2px;
-  
 }
-.feature p{
+.feature p {
   font-size: 1rem;
   font-weight: 500;
   color: #111012;
@@ -98,7 +97,8 @@
     width: 60%;
   }
 
-  .feature span, .feature p {
+  .feature span,
+  .feature p {
     font-size: 1rem;
     padding: 8px;
   }
