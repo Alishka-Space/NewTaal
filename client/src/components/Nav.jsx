@@ -29,8 +29,7 @@ const Nav = () => {
         </Link>
         <div className="logo-text">
           <Link to="/" onClick={handleLinkClick}>
-            <b>Taal</b>
-            <b>Coach</b>
+            <b>TaalCoach</b>
           </Link>
         </div>
       </div>
