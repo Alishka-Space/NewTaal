@@ -85,7 +85,11 @@ const ProfileHeaderCoach = (props) => {
               </Item>
 
               <Item
-                sx={{ height: 60, backgroundColor: "#E1D5E7", borderRadius: 2 }}
+                sx={{
+                  height: 100,
+                  backgroundColor: "#E1D5E7",
+                  borderRadius: 2,
+                }}
               >
                 <Typography width="100%" fontWeight="bold" variant="h8">
                   {props?.data?.bio}
