@@ -26,8 +26,7 @@ const Nav = () => {
         </Link>
         <div className="logo-text">
           <Link to="/">
-            <b>Taal</b>
-            <b>Coach</b>
+            <b>TaalCoach</b>
           </Link>
         </div>
       </div>
