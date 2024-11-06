@@ -49,7 +49,9 @@ const CoachList = ({ coachList }) => {
           >
             <Typography variant="h6" component="div">
               <b>Coach:</b>{" "}
-              <Link to={`/coachProfile/${coach._id}`}>{coach.username}</Link>
+              <Link to={`/coachProfile/${coach.user_id}`}>
+                {coach.username}
+              </Link>
             </Typography>
 
             <Rating

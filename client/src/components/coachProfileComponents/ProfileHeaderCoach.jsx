@@ -1,11 +1,12 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React, { useState, useEffect, useContext } from "react";
 import Grid from "@mui/material/Grid2";
 import Paper from "@mui/material/Paper";
 import { Avatar, Typography } from "@mui/material";
 import Rating from "@mui/material/Rating";
 import Stack from "@mui/material/Stack";
 import { styled } from "@mui/material/styles";
+import useFetch from "../../hooks/useFetch";
+import { AuthContext } from "../../context/AuthContext";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: "#fff",
@@ -18,98 +19,103 @@ const Item = styled(Paper)(({ theme }) => ({
   }),
 }));
 
-const ProfileHeaderCoach = (props) => {
-  const { data } = props;
-  // const [value, setValue] = useState(0);
+const ProfileHeaderCoach = () => {
+  const { authState } = useContext(AuthContext);
+  const [data, setData] = useState(null);
 
-  // useEffect(() => {
-  //   if (data.rating) {
-  //     setValue(data.rating);
-  //   }
-  // }, [data.rating]);
+  const { performFetch, cancelFetch } = useFetch(
+    `/coach/profile/${authState.id}`,
+    (response) => {
+      setData(response.result);
+    },
+  );
 
-  // const handleRatingChange = (event, newValue) => {
-  //   setValue(newValue);
-  // };
+  useEffect(() => {
+    performFetch({
+      method: "POST",
+      param: authState.id,
+    });
+    return cancelFetch;
+  }, []);
 
   return (
-    <Grid container>
-      <Paper
-        sx={{
-          userSelect: "none",
-          borderRadius: 20,
-          p: 2,
-          mt: 4,
-          mb: 1,
-          width: 800,
-          height: 300,
-          bgcolor: "#C0C0C0",
-        }}
-        variant="elevation"
-        elevation={20}
-      >
-        <Typography
-          textAlign="center"
-          fontWeight="bold"
-          variant="h5"
-          color="secondary"
+    data && (
+      <Grid container>
+        <Paper
+          sx={{
+            userSelect: "none",
+            borderRadius: 20,
+            p: 2,
+            mt: 4,
+            mb: 1,
+            minWidth: 800,
+            height: 300,
+            bgcolor: "#C0C0C0",
+          }}
+          variant="elevation"
+          elevation={20}
         >
-          {" "}
-          Coach Profile
-        </Typography>
+          <Typography
+            textAlign="center"
+            fontWeight="bold"
+            variant="h5"
+            color="secondary"
+          >
+            {" "}
+            Coach Profile
+          </Typography>
+          <div>
+            <Grid container p={2} alignItems={"center"} spacing={2}>
+              <Stack direction="row">
+                <Avatar sx={{ width: 150, height: 150 }} src={data.image} />
+              </Stack>
 
-        <div>
-          <Grid container p={2} alignItems={"center"} spacing={2}>
-            <Stack direction="row">
-              <Avatar sx={{ width: 150, height: 150 }} src={data.image} />
-            </Stack>
+              <Stack width={500} spacing={1} justifyContent="center">
+                <Item
+                  sx={{
+                    height: 40,
+                    backgroundColor: "#E1D5E7",
+                    borderRadius: 1,
+                  }}
+                >
+                  <Rating
+                    name="read-only"
+                    value={data.rating}
+                    precision={0.5}
+                    readOnly
+                  />
+                </Item>
 
-            <Stack width={500} spacing={1} justifyContent="center">
-              <Item
-                sx={{ height: 40, backgroundColor: "#E1D5E7", borderRadius: 1 }}
-              >
-                <Rating
-                  name="read-only"
-                  value={props?.data?.rating || 0}
-                  precision={0.5}
-                  readOnly
-                />
-              </Item>
+                <Item
+                  sx={{
+                    height: 40,
+                    backgroundColor: "#E1D5E7",
+                    borderRadius: 1,
+                  }}
+                >
+                  <Typography fontWeight="bold" width="100%" variant="h6">
+                    {data?.username}
+                  </Typography>
+                </Item>
 
-              <Item
-                sx={{ height: 40, backgroundColor: "#E1D5E7", borderRadius: 1 }}
-              >
-                <Typography fontWeight="bold" width="100%" variant="h6">
-                  {props?.data?.username}
-                </Typography>
-              </Item>
-
-              <Item
-                sx={{
-                  height: 100,
-                  backgroundColor: "#E1D5E7",
-                  borderRadius: 2,
-                }}
-              >
-                <Typography width="100%" fontWeight="bold" variant="h8">
-                  {props?.data?.bio}
-                </Typography>
-              </Item>
-            </Stack>
-          </Grid>
-        </div>
-      </Paper>
-    </Grid>
+                <Item
+                  sx={{
+                    height: 100,
+                    backgroundColor: "#E1D5E7",
+                    borderRadius: 2,
+                  }}
+                >
+                  <Typography width="100%" fontWeight="bold" variant="h8">
+                    {data?.bio}
+                  </Typography>
+                </Item>
+              </Stack>
+            </Grid>
+          </div>
+        </Paper>
+      </Grid>
+    )
   );
-};
-
-ProfileHeaderCoach.propTypes = {
-  data: PropTypes.shape({
-    rating: PropTypes.number,
-    image: PropTypes.string,
-    username: PropTypes.string,
-    bio: PropTypes.string,
-  }).isRequired,
 };
 
 export default ProfileHeaderCoach;

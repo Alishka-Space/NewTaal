@@ -49,7 +49,7 @@ const SessionHeaderLearner = () => {
             mt: 4,
             mb: 1,
             minWidth: 800,
-            height: 230,
+            height: 300,
             bgcolor: "#C0C0C0",
           }}
           variant="elevation"
@@ -88,7 +88,7 @@ const SessionHeaderLearner = () => {
 
                 <Item
                   sx={{
-                    height: 60,
+                    height: 100,
                     backgroundColor: "#E1D5E7",
                     borderRadius: 2,
                   }}
