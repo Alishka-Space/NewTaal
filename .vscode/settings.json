@@ -17,6 +17,7 @@
     "postbuild",
     "signup",
     "testid",
+    "toastify",
     "userhome"
   ],
 }
