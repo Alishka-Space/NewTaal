@@ -101,7 +101,7 @@ const Nav = () => {
                 className="navbar-link"
                 onClick={handleLinkClick}
               >
-                sign-up
+                Sign-up
               </Link>
             </>
           ) : (
