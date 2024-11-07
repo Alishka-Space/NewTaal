@@ -8,10 +8,9 @@ import {
   Typography,
 } from "@mui/material";
 import Rating from "@mui/material/Rating";
-//import Rating from "../home-page-user/Rating";
 import PropTypes from "prop-types";
 import { useNavigate } from "react-router-dom";
-//import "./coachList.css";
+import { Link } from "react-router-dom";
 
 const CoachList = ({ coachList }) => {
   const navigate = useNavigate();
@@ -49,7 +48,10 @@ const CoachList = ({ coachList }) => {
             }}
           >
             <Typography variant="h6" component="div">
-              <b>Coach:</b> {coach.username}
+              <b>Coach:</b>{" "}
+              <Link to={`/coachProfile/${coach.user_id}`}>
+                {coach.username}
+              </Link>
             </Typography>
 
             <Rating
