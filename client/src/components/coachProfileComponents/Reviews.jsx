@@ -2,8 +2,11 @@ import React, { useEffect, useState } from "react";
 import Grid from "@mui/material/Grid2";
 import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
+import Rating from "@mui/material/Rating";
 import { Card, Typography } from "@mui/material";
 import { useParams } from "react-router-dom";
+import IconButton from "@mui/material/IconButton";
+import DeleteIcon from "@mui/icons-material/Delete";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -11,14 +14,13 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import TablePagination from "@mui/material/TablePagination";
-
 import useFetch from "../../hooks/useFetch";
 
 const Reviews = () => {
   const { id } = useParams();
   const [reviewsData, setReviewsData] = useState();
   const [page, setPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(5);
+  const [rowsPerPage, setRowsPerPage] = useState(10);
 
   const { performFetch, cancelFetch } = useFetch(
     `/review/coach/${id}`,
@@ -44,6 +46,11 @@ const Reviews = () => {
     setPage(0);
   };
 
+  const deleteReview = (index) => {
+    const updatedReviews = reviewsData.filter((review, i) => i !== index);
+    setReviewsData(updatedReviews);
+  };
+
   return (
     <Grid container>
       <Paper
@@ -54,7 +61,7 @@ const Reviews = () => {
           mt: 4,
           mb: 1,
           width: 800,
-          height: 500,
+          height: 820,
         }}
         variant="elevation"
         elevation={20}
@@ -84,6 +91,7 @@ const Reviews = () => {
                       color: "#ffffff",
                       fontWeight: "bold",
                       width: 4,
+                      textAlign: "center",
                     }}
                   >
                     Rating
@@ -97,6 +105,15 @@ const Reviews = () => {
                   >
                     Comments
                   </TableCell>
+                  <TableCell
+                    sx={{
+                      bgcolor: "#333333",
+                      color: "#ffffff",
+                      fontWeight: "bold",
+                      width: 4,
+                      textAlign: "center",
+                    }}
+                  ></TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
@@ -124,10 +141,31 @@ const Reviews = () => {
                             fontWeight: "bold",
                           }}
                         >
-                          {row.rating}
+                          <Rating
+                            name="read-only"
+                            value={row.rating}
+                            precision={0.5}
+                            size="small"
+                            readOnly
+                          />
                         </TableCell>
                         <TableCell sx={{ bgcolor: "#f0f0f0" }}>
                           {row.comments}
+                        </TableCell>
+                        <TableCell
+                          sx={{
+                            textAlign: "center",
+                            bgcolor: "#f0f0f0",
+                            fontWeight: "bold",
+                          }}
+                        >
+                          <IconButton
+                            aria-label="delete"
+                            size="small"
+                            onClick={() => deleteReview(index)}
+                          >
+                            <DeleteIcon fontSize="small" />
+                          </IconButton>
                         </TableCell>
                       </TableRow>
                     ))}
@@ -135,7 +173,7 @@ const Reviews = () => {
             </Table>
           </TableContainer>
           <TablePagination
-            rowsPerPageOptions={[5, 10, 25]}
+            rowsPerPageOptions={[5, 10]}
             component="div"
             count={reviewsData ? reviewsData.length : 0}
             rowsPerPage={rowsPerPage}
