@@ -6,7 +6,6 @@ import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
 import { useParams } from "react-router-dom";
 import useFetch from "../../hooks/useFetch";
-import PreviousSessions from "../../components/sessionComponents/PreviousSessions";
 import { AuthContext } from "../../context/AuthContext";
 
 const LearnerProfilePage = () => {
@@ -43,7 +42,6 @@ const LearnerProfilePage = () => {
             <>
               <PersonalInfoLearner data={learnerData} />
               <LanguageInfoLearner data={learnerData} />
-              <PreviousSessions data={learnerData} />
             </>
           )) || (
             <>
