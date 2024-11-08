@@ -148,7 +148,7 @@ const ScheduledSessions = () => {
             </Table>
           </TableContainer>
           <TablePagination
-            rowsPerPageOptions={[5, 10, 25]}
+            rowsPerPageOptions={[5]}
             component="div"
             count={sessionsData ? sessionsData.length : 0}
             rowsPerPage={rowsPerPage}

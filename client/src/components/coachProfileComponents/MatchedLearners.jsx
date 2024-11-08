@@ -130,7 +130,7 @@ const MatchedLearners = () => {
             </Grid>
           </Grid>
           <TablePagination
-            rowsPerPageOptions={[5, 10, 25]}
+            rowsPerPageOptions={[5]}
             component="div"
             count={matchedLearners.length}
             page={page}
