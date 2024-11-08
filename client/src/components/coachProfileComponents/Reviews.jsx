@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Grid from "@mui/material/Grid2";
 import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
+import Rating from "@mui/material/Rating";
 import { Card, Typography } from "@mui/material";
 import { useParams } from "react-router-dom";
 import Table from "@mui/material/Table";
@@ -18,7 +19,7 @@ const Reviews = () => {
   const { id } = useParams();
   const [reviewsData, setReviewsData] = useState();
   const [page, setPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(5);
+  const [rowsPerPage, setRowsPerPage] = useState(10);
 
   const { performFetch, cancelFetch } = useFetch(
     `/review/coach/${id}`,
@@ -54,7 +55,7 @@ const Reviews = () => {
           mt: 4,
           mb: 1,
           width: 800,
-          height: 500,
+          height: 760,
         }}
         variant="elevation"
         elevation={20}
@@ -84,6 +85,7 @@ const Reviews = () => {
                       color: "#ffffff",
                       fontWeight: "bold",
                       width: 4,
+                      textAlign: "center",
                     }}
                   >
                     Rating
@@ -124,7 +126,13 @@ const Reviews = () => {
                             fontWeight: "bold",
                           }}
                         >
-                          {row.rating}
+                          <Rating
+                            name="read-only"
+                            value={row.rating}
+                            precision={0.5}
+                            size="small"
+                            readOnly
+                          />
                         </TableCell>
                         <TableCell sx={{ bgcolor: "#f0f0f0" }}>
                           {row.comments}
@@ -135,7 +143,7 @@ const Reviews = () => {
             </Table>
           </TableContainer>
           <TablePagination
-            rowsPerPageOptions={[5, 10, 25]}
+            rowsPerPageOptions={[5, 10]}
             component="div"
             count={reviewsData ? reviewsData.length : 0}
             rowsPerPage={rowsPerPage}

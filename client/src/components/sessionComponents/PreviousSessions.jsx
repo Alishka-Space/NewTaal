@@ -2,6 +2,8 @@ import React, { useEffect, useState, useContext } from "react";
 import Grid from "@mui/material/Grid2";
 import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
+import Rating from "@mui/material/Rating";
+import SendIcon from "@mui/icons-material/Send";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -16,13 +18,12 @@ import {
   DialogActions,
   DialogContent,
   DialogTitle,
-  MenuItem,
-  Select,
   TextField,
 } from "@mui/material";
 import TablePagination from "@mui/material/TablePagination";
 import useFetch from "../../hooks/useFetch";
 import { AuthContext } from "../../context/AuthContext";
+import { Link } from "react-router-dom";
 
 const PreviousSessions = () => {
   const { authState } = useContext(AuthContext);
@@ -32,7 +33,7 @@ const PreviousSessions = () => {
   const [editRowIndex, setEditRowIndex] = useState(-1);
   const [reviewDialogOpen, setReviewDialogOpen] = useState(false);
   const [selectedSession, setSelectedSession] = useState();
-  const [rating, setRating] = useState(1);
+  const [rating, setRating] = useState();
   const [comments, setComments] = useState("");
   const [session_id, setSessionId] = useState();
 
@@ -133,7 +134,11 @@ const PreviousSessions = () => {
                   <TableCell sx={{ fontWeight: "bold" }}>
                     Session Status
                   </TableCell>
-                  <TableCell sx={{ fontWeight: "bold" }}>Add Review</TableCell>
+                  {authState.role === "learner" && (
+                    <TableCell sx={{ fontWeight: "bold" }}>
+                      Add Review
+                    </TableCell>
+                  )}
                 </TableRow>
               </TableHead>
               <TableBody>
@@ -151,23 +156,33 @@ const PreviousSessions = () => {
                           {row.name}
                         </TableCell>
                         <TableCell>
-                          {authState.role === "coach"
-                            ? row.learner_name
-                            : row.coach_name}
+                          {authState.role === "coach" ? (
+                            <Link to={`/learnerProfile/${row.learner_id}`}>
+                              {" "}
+                              {row.learner_name}{" "}
+                            </Link>
+                          ) : (
+                            <Link to={`/coachProfile/${row.coach_id}`}>
+                              {" "}
+                              {row.coach_name}{" "}
+                            </Link>
+                          )}
                         </TableCell>
                         <TableCell>{row.day}</TableCell>
                         <TableCell>{row.time}</TableCell>
                         <TableCell>{row.status}</TableCell>
                         <TableCell>
                           <strong>
-                            <Button
-                              color="secondary"
-                              variant="contained"
-                              size="small"
-                              onClick={() => handleButtonAction(index)}
-                            >
-                              {editRowIndex === index ? "Edit" : "Add"}
-                            </Button>
+                            {authState.role === "learner" && (
+                              <Button
+                                color="secondary"
+                                variant="contained"
+                                size="small"
+                                onClick={() => handleButtonAction(index)}
+                              >
+                                {editRowIndex === index ? "Edit" : "Add"}
+                              </Button>
+                            )}
                           </strong>
                         </TableCell>
                       </TableRow>
@@ -177,7 +192,7 @@ const PreviousSessions = () => {
           </TableContainer>
 
           <TablePagination
-            rowsPerPageOptions={[5, 10, 25]}
+            rowsPerPageOptions={[5]}
             component="div"
             count={sessionsData ? sessionsData.length : 0}
             rowsPerPage={rowsPerPage}
@@ -190,75 +205,125 @@ const PreviousSessions = () => {
           open={reviewDialogOpen}
           onClose={() => setReviewDialogOpen(false)}
           aria-labelledby="responsive-dialog-title"
-          style={{ minWidth: "500px", height: "500px" }}
+          style={{ minWidth: "500px", height: "600px" }}
         >
-          <DialogTitle id="responsive-dialog-title">
-            Session Feedback and Ratings
+          <DialogTitle
+            id="responsive-dialog-title"
+            style={{ textAlign: "center", fontWeight: "bold" }}
+          >
+            Session Feedback
           </DialogTitle>
           <DialogContent
             style={{
               display: "flex",
               flexDirection: "column",
-              gap: "1rem",
               minWidth: "400px",
             }}
           >
-            <div style={{ border: "1px solid #ccc", padding: "0.5rem" }}>
-              <span>Coach Name : </span>
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                border: "1px solid #ccc",
+                padding: "0.5rem",
+                backgroundColor: "#add8e6",
+              }}
+            >
+              <span style={{ fontWeight: "bold", minWidth: "120px" }}>
+                Coach Name
+              </span>
               <span>{selectedSession?.coach_name}</span>
-            </div>
-            <div style={{ border: "1px solid #ccc", padding: "0.5rem" }}>
-              <span>Session Day:</span>
-              <span>{selectedSession?.day}</span>
-            </div>
-            <div style={{ border: "1px solid #ccc", padding: "0.5rem" }}>
-              <span>Learner Name</span>
-              <span>{selectedSession?.learner_name}</span>
             </div>
             <div
               style={{
-                border: "1px solid #ccc",
-                padding: "0.5rem",
                 display: "flex",
                 alignItems: "center",
+                border: "1px solid #ccc",
+                padding: "0.5rem",
+                backgroundColor: "#add8e6",
               }}
             >
-              <span style={{ marginRight: "1rem" }}>Rating</span>
-              <Select
-                style={{ flex: 1 }}
+              <span style={{ fontWeight: "bold", minWidth: "120px" }}>
+                Session Day
+              </span>
+              <span>{selectedSession?.day}</span>
+            </div>
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                border: "1px solid #ccc",
+                padding: "0.5rem",
+                backgroundColor: "#add8e6",
+              }}
+            >
+              <span style={{ fontWeight: "bold", minWidth: "120px" }}>
+                Learner Name
+              </span>
+              <span>{selectedSession?.learner_name}</span>
+            </div>
+
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                border: "1px solid #ccc",
+                padding: "0.5rem",
+                marginTop: "1.5rem",
+                backgroundColor: "#f0f0f0",
+              }}
+            >
+              <span
+                style={{
+                  fontWeight: "bold",
+                  minWidth: "120px",
+                  marginRight: "1rem",
+                }}
+              >
+                Rate this session:
+              </span>
+              <Rating
+                name="half-rating"
+                defaultValue={1}
+                precision={0.5}
                 value={rating}
                 label="Rating"
                 onChange={handleChange}
-              >
-                <MenuItem value={1}>1</MenuItem>
-                <MenuItem value={2}>2</MenuItem>
-                <MenuItem value={3}>3</MenuItem>
-                <MenuItem value={4}>4</MenuItem>
-                <MenuItem value={5}>5</MenuItem>
-              </Select>
+              />
             </div>
             <TextField
-              style={{ width: "100%", marginTop: "0.5rem" }}
-              label="Review"
+              style={{
+                width: "100%",
+                backgroundColor: "#f0f0f0",
+                marginTop: "1rem",
+              }}
+              label="Share your review"
               value={comments}
               onChange={(event) => {
                 setComments(event.target.value);
               }}
               multiline
-              rows={4}
+              rows={7}
             />
           </DialogContent>
           <DialogActions>
-            <Button autoFocus onClick={() => setReviewDialogOpen(false)}>
+            <Button
+              size="small"
+              autoFocus
+              onClick={() => setReviewDialogOpen(false)}
+            >
               Cancel
             </Button>
             <Button
+              endIcon={<SendIcon />}
+              variant="contained"
+              size="small"
               onClick={() => {
                 handleSubmitReview();
               }}
               autoFocus
             >
-              Add Review
+              Send
             </Button>
           </DialogActions>
         </Dialog>
