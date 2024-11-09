@@ -20,17 +20,6 @@ const Item = styled(Paper)(({ theme }) => ({
 
 const ProfileHeaderCoach = (props) => {
   const { data } = props;
-  // const [value, setValue] = useState(0);
-
-  // useEffect(() => {
-  //   if (data.rating) {
-  //     setValue(data.rating);
-  //   }
-  // }, [data.rating]);
-
-  // const handleRatingChange = (event, newValue) => {
-  //   setValue(newValue);
-  // };
 
   return (
     <Grid container>
@@ -41,7 +30,7 @@ const ProfileHeaderCoach = (props) => {
           p: 2,
           mt: 4,
           mb: 1,
-          minWidth: 800,
+          width: 800,
           height: 300,
           bgcolor: "#C0C0C0",
         }}
@@ -85,7 +74,11 @@ const ProfileHeaderCoach = (props) => {
               </Item>
 
               <Item
-                sx={{ height: 60, backgroundColor: "#E1D5E7", borderRadius: 2 }}
+                sx={{
+                  height: 100,
+                  backgroundColor: "#E1D5E7",
+                  borderRadius: 2,
+                }}
               >
                 <Typography width="100%" fontWeight="bold" variant="h8">
                   {props?.data?.bio}

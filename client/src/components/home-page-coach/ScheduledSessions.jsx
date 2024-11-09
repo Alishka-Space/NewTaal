@@ -20,9 +20,7 @@ const ScheduledSessions = () => {
   const navigate = useNavigate();
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
-
   const [sessionsData, setSessionsData] = useState();
-  //const [editRowIndex, setEditRowIndex] = useState(null);
 
   const { performFetch, cancelFetch } = useFetch(
     `/session/user/${authState.id}`,
@@ -106,14 +104,12 @@ const ScheduledSessions = () => {
                         </TableCell>
                         <TableCell>
                           <Typography
-                            variant="body2"
+                            fontSize={15}
+                            fontWeight="bold"
                             onClick={() =>
                               navigate(`/learnerProfile/${row.learner_id}`)
                             }
                             sx={{
-                              fontSize: 14,
-                              fontWeight: "normal",
-                              color: "text.primary",
                               textAlign: "left",
                               paddingTop: 1,
                             }}

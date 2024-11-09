@@ -2,19 +2,25 @@ import React, { useEffect, useState } from "react";
 import Grid from "@mui/material/Grid2";
 import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
+import Rating from "@mui/material/Rating";
 import { Card, Typography } from "@mui/material";
 import { useParams } from "react-router-dom";
+import IconButton from "@mui/material/IconButton";
+import DeleteIcon from "@mui/icons-material/Delete";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
+import TablePagination from "@mui/material/TablePagination";
 import useFetch from "../../hooks/useFetch";
 
 const Reviews = () => {
   const { id } = useParams();
   const [reviewsData, setReviewsData] = useState();
+  const [page, setPage] = useState(0);
+  const [rowsPerPage, setRowsPerPage] = useState(10);
 
   const { performFetch, cancelFetch } = useFetch(
     `/review/coach/${id}`,
@@ -31,6 +37,20 @@ const Reviews = () => {
     return cancelFetch;
   }, []);
 
+  const handleChangePage = (event, newPage) => {
+    setPage(newPage);
+  };
+
+  const handleChangeRowsPerPage = (event) => {
+    setRowsPerPage(parseInt(event.target.value, 10));
+    setPage(0);
+  };
+
+  const deleteReview = (index) => {
+    const updatedReviews = reviewsData.filter((review, i) => i !== index);
+    setReviewsData(updatedReviews);
+  };
+
   return (
     <Grid container>
       <Paper
@@ -40,44 +60,127 @@ const Reviews = () => {
           p: 2,
           mt: 4,
           mb: 1,
-          minWidth: 800,
-          height: 500,
+          width: 800,
+          height: 820,
         }}
         variant="elevation"
         elevation={20}
       >
-        <Card sx={{ p: 1, borderRadius: "10px", bgcolor: "#f0f0f0", my: 2 }}>
+        <Card sx={{ p: 1, borderRadius: "10px", bgcolor: "#f0f0f0", mb: 4 }}>
           <Typography fontWeight="bold">Reviews</Typography>
         </Card>
+
         <Box>
           <TableContainer component={Paper}>
             <Table sx={{ minWidth: 650 }} aria-label="simple table">
               <TableHead>
                 <TableRow>
-                  <TableCell></TableCell>
-                  <TableCell>Learner Name</TableCell>
-                  <TableCell>Rating</TableCell>
-                  <TableCell>Comments</TableCell>
+                  <TableCell
+                    sx={{
+                      bgcolor: "#333333",
+                      color: "#ffffff",
+                      fontWeight: "bold",
+                      width: 180,
+                    }}
+                  >
+                    Learner Name
+                  </TableCell>
+                  <TableCell
+                    sx={{
+                      bgcolor: "#333333",
+                      color: "#ffffff",
+                      fontWeight: "bold",
+                      width: 4,
+                      textAlign: "center",
+                    }}
+                  >
+                    Rating
+                  </TableCell>
+                  <TableCell
+                    sx={{
+                      bgcolor: "#333333",
+                      color: "#ffffff",
+                      fontWeight: "bold",
+                    }}
+                  >
+                    Comments
+                  </TableCell>
+                  <TableCell
+                    sx={{
+                      bgcolor: "#333333",
+                      color: "#ffffff",
+                      fontWeight: "bold",
+                      width: 4,
+                      textAlign: "center",
+                    }}
+                  ></TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
                 {reviewsData &&
-                  reviewsData.map((row, index) => (
-                    <TableRow
-                      key={index}
-                      sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-                    >
-                      <TableCell component="th" scope="row">
-                        {row.name}
-                      </TableCell>
-                      <TableCell>{row.learner_name}</TableCell>
-                      <TableCell>{row.rating}</TableCell>
-                      <TableCell>{row.comments}</TableCell>
-                    </TableRow>
-                  ))}
+                  reviewsData
+                    .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                    .map((row, index) => (
+                      <TableRow
+                        key={index}
+                        sx={{
+                          "&:last-child td, &:last-child th": { border: 0 },
+                        }}
+                      >
+                        <TableCell
+                          sx={{
+                            bgcolor: "#f0f0f0",
+                          }}
+                        >
+                          {row.learner_name}
+                        </TableCell>
+                        <TableCell
+                          sx={{
+                            textAlign: "center",
+                            bgcolor: "#f0f0f0",
+                            fontWeight: "bold",
+                          }}
+                        >
+                          <Rating
+                            name="read-only"
+                            value={row.rating}
+                            precision={0.5}
+                            size="small"
+                            readOnly
+                          />
+                        </TableCell>
+                        <TableCell sx={{ bgcolor: "#f0f0f0" }}>
+                          {row.comments}
+                        </TableCell>
+                        <TableCell
+                          sx={{
+                            textAlign: "center",
+                            bgcolor: "#f0f0f0",
+                            fontWeight: "bold",
+                          }}
+                        >
+                          <IconButton
+                            aria-label="delete"
+                            size="small"
+                            onClick={() => deleteReview(index)}
+                          >
+                            <DeleteIcon fontSize="small" />
+                          </IconButton>
+                        </TableCell>
+                      </TableRow>
+                    ))}
               </TableBody>
             </Table>
           </TableContainer>
+          <TablePagination
+            rowsPerPageOptions={[5, 10]}
+            component="div"
+            count={reviewsData ? reviewsData.length : 0}
+            rowsPerPage={rowsPerPage}
+            page={page}
+            onPageChange={handleChangePage}
+            onRowsPerPageChange={handleChangeRowsPerPage}
+          />
         </Box>
       </Paper>
     </Grid>

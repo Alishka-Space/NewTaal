@@ -11,31 +11,27 @@ import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
 import MuiCard from "@mui/material/Card";
-import PropTypes from "prop-types";
 import { createTheme, ThemeProvider, styled } from "@mui/material/styles";
 import getSignUpTheme from "../shared-theme/getSignUpTheme";
 import ForgotPassword from "./ForgotPassword";
 import useFetch from "../../hooks/useFetch";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Card = styled(MuiCard)(({ theme }) => ({
   display: "flex",
   flexDirection: "column",
   alignSelf: "center",
   width: "100%",
+  height: "500px",
   padding: theme.spacing(4),
   gap: theme.spacing(2),
   margin: "auto",
   [theme.breakpoints.up("sm")]: {
     maxWidth: "450px",
   },
-  boxShadow:
-    "hsla(220, 30%, 5%, 0.05) 0px 5px 15px 0px, hsla(220, 25%, 10%, 0.05) 0px 15px 35px -5px",
-  ...theme.applyStyles("dark", {
-    boxShadow:
-      "hsla(220, 30%, 5%, 0.5) 0px 5px 15px 0px, hsla(220, 25%, 10%, 0.08) 0px 15px 35px -5px",
-  }),
 }));
 
 const SignInContainer = styled(Stack)(({ theme }) => ({
@@ -44,33 +40,12 @@ const SignInContainer = styled(Stack)(({ theme }) => ({
   [theme.breakpoints.up("sm")]: {
     padding: theme.spacing(4),
   },
-  "&::before": {
-    content: "''",
-    display: "block",
-    position: "absolute",
-    zIndex: -1,
-    inset: 0,
-    backgroundImage:
-      "radial-gradient(ellipse at 50% 50%, hsl(210, 100%, 97%), hsl(0, 0%, 100%))",
-    backgroundRepeat: "no-repeat",
-    ...theme.applyStyles("dark", {
-      backgroundImage:
-        "radial-gradient(at 50% 50%, hsla(210, 100%, 16%, 0.5), hsl(220, 30%, 5%))",
-    }),
-  },
+  backgroundColor: "#e6e6fa",
+  backgroundRepeat: "no-repeat",
 }));
-
-function TemplateFrame({ children }) {
-  return children;
-}
-
-TemplateFrame.propTypes = {
-  children: PropTypes.node,
-};
 
 export default function SignIn() {
   const SignUpTheme = createTheme(getSignUpTheme());
-
   const { login } = React.useContext(AuthContext);
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
@@ -79,7 +54,6 @@ export default function SignIn() {
   const [passwordError, setPasswordError] = React.useState(false);
   const [passwordErrorMessage, setPasswordErrorMessage] = React.useState("");
   const [open, setOpen] = React.useState(false);
-
   const navigate = useNavigate();
 
   const onSuccess = (response) => {
@@ -87,9 +61,7 @@ export default function SignIn() {
     const user = response.userInformation.name;
     const role = response.userInformation.role;
     const id = response.userInformation._id;
-
     login(token, user, role, id);
-
     if (role === "learner") navigate("/userhome");
     else navigate("/coachhome");
   };
@@ -107,12 +79,12 @@ export default function SignIn() {
   const validateInputs = () => {
     const email = document.getElementById("email");
     const password = document.getElementById("password");
-
     let isValid = true;
 
     if (!email.value || !/\S+@\S+\.\S+/.test(email.value)) {
       setEmailError(true);
-      setEmailErrorMessage("Please enter a valid email address.");
+      setEmailErrorMessage("Invalid email format");
+      toast.error("Invalid email format");
       isValid = false;
     } else {
       setEmailError(false);
@@ -121,7 +93,8 @@ export default function SignIn() {
 
     if (!password.value || password.value.length < 6) {
       setPasswordError(true);
-      setPasswordErrorMessage("Password must be at least 6 characters long.");
+      setPasswordErrorMessage("Password must be at least 6 characters");
+      toast.error("Password must be at least 6 characters long");
       isValid = false;
     } else {
       setPasswordError(false);
@@ -144,12 +117,11 @@ export default function SignIn() {
     }
   };
 
-  if (error) {
-    alert(error);
-  }
+  if (error) toast.error(error);
 
   return (
-    <TemplateFrame>
+    <>
+      <ToastContainer theme="colored" />
       <ThemeProvider theme={SignUpTheme}>
         <CssBaseline />
         <SignInContainer direction="column" justifyContent="space-between">
@@ -213,7 +185,6 @@ export default function SignIn() {
                   type="password"
                   id="password"
                   autoComplete="current-password"
-                  autoFocus
                   required
                   fullWidth
                   variant="outlined"
@@ -228,12 +199,7 @@ export default function SignIn() {
                 label="Remember me"
               />
               <ForgotPassword open={open} handleClose={handleClose} />
-              <Button
-                type="submit"
-                fullWidth
-                variant="contained"
-                onClick={validateInputs}
-              >
+              <Button type="submit" fullWidth variant="contained">
                 Sign in
               </Button>
               <Typography sx={{ textAlign: "center" }}>
@@ -252,6 +218,6 @@ export default function SignIn() {
           </Card>
         </SignInContainer>
       </ThemeProvider>
-    </TemplateFrame>
+    </>
   );
 }

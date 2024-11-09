@@ -10,18 +10,24 @@ const Features = () => {
       <div className="features">
         <b className="feature-title">Our Features</b>
         <div className="feature">
-          <span>1-on-1 Language Coaching</span>
+          <div className="feature-text">
+            <span>Individual sessions</span>
+            <p>Learn & Speak at your own pace</p>
+          </div>
           <img src={about} alt="about-img" className="about-img" />
         </div>
         <div className="feature">
           <div className="feature-text">
             <span>Flexible Scheduling</span>
-            <p>Learn / Speak at your own pace</p>
+            <p>TaalCoach platform`s flexible scheduling</p>
           </div>
           <img src={abouta} alt="about-img" className="about-img" />
         </div>
         <div className="feature">
-          <span>Professional Language Coaches</span>
+          <div className="feature-text">
+            <span>Professional Coaches</span>
+            <p>designed to be as unique as individual</p>
+          </div>
           <img src={aboutb} alt="about-img" className="about-img" />
         </div>
       </div>

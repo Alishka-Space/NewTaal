@@ -60,9 +60,23 @@ const ProfileHeaderLearner = (props) => {
                   {props?.data?.username}
                 </Typography>
               </Item>
-
               <Item
-                sx={{ height: 60, backgroundColor: "#E1D5E7", borderRadius: 2 }}
+                sx={{
+                  height: 40,
+                  backgroundColor: "#E1D5E7",
+                  borderRadius: 1,
+                }}
+              >
+                <Typography fontWeight="bold" width="100%" variant="h6">
+                  {data?.purpose}
+                </Typography>
+              </Item>
+              <Item
+                sx={{
+                  height: 100,
+                  backgroundColor: "#E1D5E7",
+                  borderRadius: 2,
+                }}
               >
                 <Typography width="100%" fontWeight="bold" variant="h8">
                   {props?.data?.bio}
@@ -80,6 +94,7 @@ ProfileHeaderLearner.propTypes = {
   data: PropTypes.shape({
     image: PropTypes.string,
     username: PropTypes.string,
+    purpose: PropTypes.string,
     bio: PropTypes.string,
   }).isRequired,
 };

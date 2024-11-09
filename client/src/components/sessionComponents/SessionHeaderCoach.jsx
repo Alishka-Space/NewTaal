@@ -21,7 +21,6 @@ const Item = styled(Paper)(({ theme }) => ({
 
 const SessionHeaderCoach = () => {
   const { authState } = useContext(AuthContext);
-
   const [data, setData] = useState(null);
 
   const { performFetch, cancelFetch } = useFetch(
@@ -50,22 +49,12 @@ const SessionHeaderCoach = () => {
             mt: 4,
             mb: 1,
             minWidth: 800,
-            height: 230,
+            height: 300,
             bgcolor: "#C0C0C0",
           }}
           variant="elevation"
           elevation={20}
         >
-          <Typography
-            textAlign="center"
-            fontWeight="bold"
-            variant="h5"
-            color="secondary"
-          >
-            {" "}
-            Coach Profile
-          </Typography>
-
           <div>
             <Grid container p={2} alignItems={"center"} spacing={2}>
               <Stack direction="row">
@@ -102,7 +91,7 @@ const SessionHeaderCoach = () => {
 
                 <Item
                   sx={{
-                    height: 60,
+                    height: 100,
                     backgroundColor: "#E1D5E7",
                     borderRadius: 2,
                   }}

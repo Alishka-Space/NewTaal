@@ -58,7 +58,7 @@ const PersonalInfoCoach = (props) => {
           p: 2,
           mt: 4,
           mb: 1,
-          minWidth: 800,
+          width: 800,
           height: 460,
         }}
         variant="elevation"
@@ -70,7 +70,7 @@ const PersonalInfoCoach = (props) => {
 
         <div>
           <Grid container p={4} spacing={2}>
-            <Grid item>
+            <Grid>
               <Box
                 sx={{
                   width: 200,
@@ -92,10 +92,10 @@ const PersonalInfoCoach = (props) => {
               </Box>
             </Grid>
 
-            <Grid item>
+            <Grid>
               <Box
                 sx={{
-                  width: 500,
+                  width: 480,
                 }}
               >
                 <Stack spacing={2}>
@@ -214,7 +214,7 @@ const PersonalInfoCoach = (props) => {
             </Grid>
           </Grid>
           <Grid container justifyContent="flex-end">
-            <Grid item>
+            <Grid>
               <Button
                 color="secondary"
                 variant="contained"

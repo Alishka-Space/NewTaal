@@ -8,6 +8,7 @@ import { Card, Typography } from "@mui/material";
 import { AuthContext } from "../../context/AuthContext";
 import useFetch from "../../hooks/useFetch";
 import { Link } from "react-router-dom";
+import TablePagination from "@mui/material/TablePagination";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: "#fff",
@@ -23,6 +24,8 @@ const Item = styled(Paper)(({ theme }) => ({
 const MatchedLearners = () => {
   const [matchedLearners, setMatchedLearners] = useState([]);
   const { authState } = useContext(AuthContext);
+  const [page, setPage] = useState(0);
+  const [rowsPerPage, setRowsPerPage] = useState(5);
   const { performFetch, cancelFetch } = useFetch(
     `/session/user/${authState.id}`,
     (response) => {
@@ -47,6 +50,15 @@ const MatchedLearners = () => {
     return cancelFetch;
   }, []);
 
+  const handleChangePage = (event, newPage) => {
+    setPage(newPage);
+  };
+
+  const handleChangeRowsPerPage = (event) => {
+    setRowsPerPage(parseInt(event.target.value, 10));
+    setPage(0);
+  };
+
   return (
     <Grid container>
       <Paper
@@ -56,7 +68,7 @@ const MatchedLearners = () => {
           p: 2,
           mt: 4,
           mb: 1,
-          minWidth: 800,
+          width: 800,
           height: 460,
         }}
         variant="elevation"
@@ -68,16 +80,24 @@ const MatchedLearners = () => {
 
         <div>
           <Grid container p={4} spacing={2}>
-            <Grid item>
+            <Grid>
               <Box
                 sx={{
-                  width: 200,
+                  width: 180,
                 }}
               >
                 <Stack spacing={2}>
                   {matchedLearners.map((learner, index) => (
-                    <Item sx={{ height: 45, fontWeight: "bold" }} key={index}>
-                      <Typography width="100%" variant="h8">
+                    <Item
+                      sx={{
+                        height: 45,
+                        textAlign: "center",
+                        bgcolor: "#333333",
+                        color: "#ffffff",
+                      }}
+                      key={index}
+                    >
+                      <Typography width="100%" fontSize={15} fontWeight="bold">
                         Learner {index + 1}
                       </Typography>
                     </Item>
@@ -86,16 +106,19 @@ const MatchedLearners = () => {
               </Box>
             </Grid>
 
-            <Grid item>
+            <Grid>
               <Box
                 sx={{
-                  width: 500,
+                  width: 480,
                 }}
               >
                 <Stack spacing={2}>
                   {matchedLearners.map((learner) => (
-                    <Item sx={{ height: 45 }} key={learner.learner_id}>
-                      <Typography width="100%" variant="h8">
+                    <Item
+                      sx={{ height: 45, bgcolor: "#f0f0f0" }}
+                      key={learner.learner_id}
+                    >
+                      <Typography width="100%" fontSize={15} fontWeight="bold">
                         <Link to={`/learnerprofile/${learner.learner_id}`}>
                           {learner.learner_name}
                         </Link>
@@ -106,6 +129,15 @@ const MatchedLearners = () => {
               </Box>
             </Grid>
           </Grid>
+          <TablePagination
+            rowsPerPageOptions={[5]}
+            component="div"
+            count={matchedLearners.length}
+            page={page}
+            onPageChange={handleChangePage}
+            rowsPerPage={rowsPerPage}
+            onRowsPerPageChange={handleChangeRowsPerPage}
+          />
         </div>
       </Paper>
     </Grid>

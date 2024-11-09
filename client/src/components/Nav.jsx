@@ -17,17 +17,19 @@ const Nav = () => {
     localStorage.removeItem("id");
     logout();
   };
+  const handleLinkClick = () => {
+    setToggle(false);
+  };
 
   return (
     <header className="header">
       <div className="logo">
-        <Link to="/" className="navbar-link">
+        <Link to="/">
           <img src={TallLogo} alt="logo" className="logo-img" />
         </Link>
         <div className="logo-text">
-          <Link to="/" className="navbar-link">
-            <b>Taal</b>
-            <b>Coach</b>
+          <Link to="/" onClick={handleLinkClick}>
+            <b>TaalCoach</b>
           </Link>
         </div>
       </div>
@@ -73,23 +75,33 @@ const Nav = () => {
             </>
           ) : (
             <>
-              <Link to="/" className="navbar-link">
+              <Link to="/" className="navbar-link" onClick={handleLinkClick}>
                 Home
               </Link>
-              <Link to="/about" className="navbar-link">
+              <Link
+                to="/about"
+                className="navbar-link"
+                onClick={handleLinkClick}
+              >
                 About us
               </Link>
             </>
           )}
           {!authState.token ? (
             <>
-              <Link to="/signin" className="navbar-link">
-                <i className="bi bi-arrow-right-square-fill"></i>
+              <Link
+                to="/signin"
+                className="navbar-link"
+                onClick={handleLinkClick}
+              >
                 Log-in
               </Link>
-              <Link to="/signup" className="navbar-link">
-                <i className="bi bi-arrow-right-square-fill"></i>
-                sign-up
+              <Link
+                to="/signup"
+                className="navbar-link"
+                onClick={handleLinkClick}
+              >
+                Sign-up
               </Link>
             </>
           ) : (
