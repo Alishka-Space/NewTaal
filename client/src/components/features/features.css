@@ -73,11 +73,11 @@
   height: 100%;
   object-fit: cover;
   position: absolute;
-  bottom: -110px;
+  bottom: -130px;
 }
 
 .feature-text {
-  width: 90%;
+  width: 95%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -96,7 +96,7 @@
 
   .feature-text {
     width: 90%;
-    /* margin: 5px; */
+    margin: 5px;
     /* background-color: black; */
     display: flex;
     flex-direction: column;
@@ -107,24 +107,32 @@
 
 /* Mobile View */
 @media (max-width: 720px) {
+  .features-div {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    top: -70px;
+  }
+
   .feature-title {
-    font-size: 1.6rem;
+    font-size: 1.5em;
     padding: 10px 0;
     top: 0px;
     right: 55%;
   }
 
   .features {
-    height: 900px;
+    height: 100%;
     display: flex;
     flex-direction: column;
-    padding: 20px;
+    padding: 10px;
     background-size: contain;
   }
 
   .feature {
-    width: 90%;
-    margin: 30px 0;
+    width: 100%;
+    margin: 25px 0;
   }
 
   .feature span {
@@ -136,7 +144,7 @@
   }
 
   .about-img {
-    min-width: 450px;
+    min-width: 400px;
     margin-top: 15px;
     object-fit: cover;
     position: absolute;

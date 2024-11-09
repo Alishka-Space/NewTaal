@@ -19,7 +19,7 @@ const Features = () => {
         <div className="feature">
           <div className="feature-text">
             <span>Flexible Scheduling</span>
-            <p>TaalCoach platform`s flexible scheduling</p>
+            <p>TaalCoach`s flexible scheduling</p>
           </div>
           <img src={abouta} alt="about-img" className="about-img" />
         </div>
