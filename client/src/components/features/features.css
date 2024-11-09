@@ -136,7 +136,7 @@
   }
 
   .about-img {
-    min-width: 450px;
+    min-width: 380px;
     margin-top: 15px;
     object-fit: cover;
     position: absolute;
