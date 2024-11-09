@@ -35,7 +35,7 @@ const Footer = () => {
             <i style={{ color: "#95a5a6" }} className="bi bi-github"></i>
           </div>
         </div>
-        <div className="footer-copy-right">Copyright &copy; TallCoach</div>
+        <div className="footer-copy-right">Copyright &copy; TaalCoach</div>
       </div>
     </footer>
   );

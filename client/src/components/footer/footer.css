@@ -30,14 +30,14 @@
 .footer-icons {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 
 .footer-icons .icon {
   width: 30px;
   height: 30px;
   background-color: rgb(15, 4, 4);
-  border-radius: 50px;
+  border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -46,7 +46,6 @@
 
 .footer-icons .icon i {
   font-size: 22px;
-  margin: 5px;
 }
 
 .footer-copy-right {
