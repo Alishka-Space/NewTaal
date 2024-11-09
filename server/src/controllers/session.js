@@ -29,7 +29,6 @@ export const createSession = async (req, res) => {
   try {
     const existingSession = await Session.findOne({
       coach_id,
-      learner_id,
       day,
       time,
     });
