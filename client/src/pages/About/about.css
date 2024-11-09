@@ -26,7 +26,7 @@
 .about-text {
   position: relative;
   max-width: 400px;
-  margin: 30px;
+  margin: 20px;
   font-size: 1.1rem;
   line-height: 1.5;
   margin-bottom: 15px;
@@ -78,6 +78,6 @@
   .about-text {
     font-size: 0.9rem;
     max-width: 80%;
-    margin: 20px;
+    margin: 15px;
   }
 }
