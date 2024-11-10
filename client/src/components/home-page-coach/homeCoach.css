@@ -1,12 +1,10 @@
 .coach-homepage-search {
-  padding: 20px 0;
+  text-align: center;
+  background-image: url("../../../public/photo/coach1.webp");
+  background-repeat: no-repeat;
+  background-size: contain;
   height: 300px;
   width: 100%;
-  text-align: center;
-  background-image: url("../../../public/photo/cach2.webp");
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: bottom;
 }
 
 .greeting-coach {
