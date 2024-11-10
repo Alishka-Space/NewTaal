@@ -84,3 +84,61 @@ export const getAvailabilityByCoachId = async (req, res) => {
     });
   }
 };
+
+export const updateAvailability = async (req, res) => {
+  try {
+    const { daysOfWeek, timeSlots, toggleAvailability } = req.body;
+    const { id } = req.params;
+
+    if (daysOfWeek == null) {
+      res.status(400).json({ success: false, msg: "daysOfWeek is required" });
+    }
+
+    if (timeSlots == null) {
+      res.status(400).json({ success: false, msg: "timeSlots is required" });
+    }
+
+    if (toggleAvailability == null) {
+      res
+        .status(400)
+        .json({ success: false, msg: "toggleAvailability is required" });
+    }
+
+    const availability = {
+      daysOfWeek,
+      timeSlots,
+      toggleAvailability,
+    };
+
+    const errorList = validateAvailability(availability);
+
+    if (errorList.length > 0) {
+      res
+        .status(400)
+        .json({ success: false, msg: validationErrorMessage(errorList) });
+    } else {
+      const updatedAvailability = await Availability.findOneAndUpdate(
+        { coach_id: id },
+        availability,
+        { new: true },
+      );
+
+      if (!updatedAvailability) {
+        res.status(404).json({
+          success: false,
+          msg: `Availability for a coach with the id ${id} not found`,
+        });
+      } else {
+        res
+          .status(200)
+          .json({ success: true, availability: updatedAvailability });
+      }
+    }
+  } catch (error) {
+    logError(error);
+    res.status(500).json({
+      success: false,
+      msg: "Unable to update availability, try again later",
+    });
+  }
+};

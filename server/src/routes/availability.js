@@ -3,6 +3,7 @@ import {
   createAvailability,
   getAvailability,
   getAvailabilityByCoachId,
+  updateAvailability,
 } from "../controllers/availability.js";
 
 const availabilityRouter = express.Router();
@@ -10,5 +11,6 @@ const availabilityRouter = express.Router();
 availabilityRouter.get("/", getAvailability);
 availabilityRouter.post("/create/:id", createAvailability);
 availabilityRouter.get("/coach/:id", getAvailabilityByCoachId);
+availabilityRouter.patch("/update/:id", updateAvailability);
 
 export default availabilityRouter;
