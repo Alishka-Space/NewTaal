@@ -6,6 +6,7 @@ import jwt from "jsonwebtoken";
 
 import { createCoach } from "./coach.js";
 import { createLearner } from "./learner.js";
+import { createAvailability } from "./availability.js";
 
 export const getUsers = async (req, res) => {
   try {
@@ -50,6 +51,7 @@ export const createUser = async (req, res) => {
 
       if (user.role === "coach") {
         await createCoach(newUser, req, res);
+        await createAvailability(newUser, req, res);
       }
 
       res.status(201).json({ success: true, user: newUser });
