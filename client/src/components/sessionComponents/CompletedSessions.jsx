@@ -47,7 +47,9 @@ const CompletedSessions = () => {
     },
   );
 
-  const createReview = useFetch(`/review/create/${session_id}`, () => {});
+  const createReview = useFetch(`/review/create/${session_id}`, () => {
+    setReviewDialogOpen(false);
+  });
 
   const handleButtonAction = (rowIndex) => {
     setEditRowIndex((prevEditIndex) =>
@@ -71,7 +73,10 @@ const CompletedSessions = () => {
         comments: comments,
       }),
     });
-    setReviewDialogOpen(false);
+
+    if (createReview.error) {
+      alert(`Error: ${createReview.error}`);
+    }
   };
 
   useEffect(() => {
