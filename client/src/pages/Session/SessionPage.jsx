@@ -6,6 +6,7 @@ import SessionHeaderLearner from "../../components/sessionComponents/SessionHead
 import ScheduledSessions from "../../components/sessionComponents/ScheduledSessions";
 import PreviousSessions from "../../components/sessionComponents/PreviousSessions";
 import { AuthContext } from "../../context/AuthContext";
+import CompletedSessions from "../../components/sessionComponents/CompletedSessions";
 
 const SessionPage = () => {
   const { authState } = React.useContext(AuthContext);
@@ -25,6 +26,7 @@ const SessionPage = () => {
             <SessionHeaderCoach />
           )}
           <ScheduledSessions />
+          <CompletedSessions />
           <PreviousSessions />
         </Box>
       </Container>
