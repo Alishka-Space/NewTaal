@@ -32,7 +32,9 @@ const Availability = (props) => {
 
   const availabilityFetch = useFetch(
     `/availability/update/${props.data.user_id}`,
-    () => {},
+    () => {
+      alert("Availability updated successfully");
+    },
   );
 
   const handleDayChange = (days) => {
