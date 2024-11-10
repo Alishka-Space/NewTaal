@@ -54,15 +54,19 @@ export const updateAvailability = async (req, res) => {
     const { id } = req.params;
 
     if (daysOfWeek == null) {
-      res.status(400).json({ success: false, msg: "daysOfWeek is required" });
+      return res
+        .status(400)
+        .json({ success: false, msg: "daysOfWeek is required" });
     }
 
     if (timeSlots == null) {
-      res.status(400).json({ success: false, msg: "timeSlots is required" });
+      return res
+        .status(400)
+        .json({ success: false, msg: "timeSlots is required" });
     }
 
     if (toggleAvailability == null) {
-      res
+      return res
         .status(400)
         .json({ success: false, msg: "toggleAvailability is required" });
     }
@@ -70,13 +74,13 @@ export const updateAvailability = async (req, res) => {
     const availability = {
       daysOfWeek,
       timeSlots,
-      toggleAvailability,
+      toggleAvailability: true,
     };
 
     const errorList = validateAvailability(availability);
 
     if (errorList.length > 0) {
-      res
+      return res
         .status(400)
         .json({ success: false, msg: validationErrorMessage(errorList) });
     } else {
@@ -87,19 +91,19 @@ export const updateAvailability = async (req, res) => {
       );
 
       if (!updatedAvailability) {
-        res.status(404).json({
+        return res.status(404).json({
           success: false,
           msg: `Availability for a coach with the id ${id} not found`,
         });
       } else {
-        res
+        return res
           .status(200)
           .json({ success: true, availability: updatedAvailability });
       }
     }
   } catch (error) {
     logError(error);
-    res.status(500).json({
+    return res.status(500).json({
       success: false,
       msg: "Unable to update availability, try again later",
     });

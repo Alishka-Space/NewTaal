@@ -10,6 +10,8 @@ import Stack from "@mui/material/Stack";
 import { styled } from "@mui/material/styles";
 import Checkbox from "@mui/material/Checkbox";
 import Chip from "@mui/material/Chip";
+import useFetch from "../../hooks/useFetch";
+import PropTypes from "prop-types";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: "#fff",
@@ -22,11 +24,16 @@ const Item = styled(Paper)(({ theme }) => ({
   }),
 }));
 
-const Availability = () => {
+const Availability = (props) => {
   const [selectedSlot, setSelectedSlot] = useState([[], []]);
   const [selectedDays, selectedTimes] = selectedSlot;
   const [, setDayDropdownOpen] = useState(true);
   const [timeDropdownOpen, setTimeDropdownOpen] = useState(false);
+
+  const availabilityFetch = useFetch(
+    `/availability/update/${props.data.user_id}`,
+    () => {},
+  );
 
   const handleDayChange = (days) => {
     setSelectedSlot([days, []]);
@@ -39,7 +46,15 @@ const Availability = () => {
   };
 
   const handleSubmit = () => {
-    //console.log("Selected Days and Time Slots:", selectedSlot);
+    availabilityFetch.performFetch({
+      method: "PATCH",
+      params: { id: props.data.user_id },
+      body: JSON.stringify({
+        daysOfWeek: selectedDays,
+        timeSlots: selectedTimes,
+        toggleAvailability: true,
+      }),
+    });
   };
 
   return (
@@ -322,6 +337,10 @@ const Availability = () => {
       </Paper>
     </Grid>
   );
+};
+
+Availability.propTypes = {
+  data: PropTypes.object,
 };
 
 export default Availability;
