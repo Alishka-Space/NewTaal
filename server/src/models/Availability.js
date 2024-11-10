@@ -3,16 +3,37 @@ import mongoose from "mongoose";
 import validateAllowedFields from "../util/validateAllowedFields.js";
 
 const availabilitySchema = new mongoose.Schema({
-  availability_id: {
-    type: String,
-    required: true,
-    unique: true,
-    default: () => new mongoose.Types.ObjectId().toString(),
-  },
   coach_id: { type: String, required: true, ref: "coaches" },
-  day_of_week: { type: String, required: true },
-  time: { type: String, required: true },
-  availability_toggled: { type: Boolean, required: true, default: true },
+  daysOfWeek: {
+    type: [String],
+    required: true,
+    validate: {
+      validator: function (v) {
+        const daysOfWeek = [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+          "Saturday",
+          "Sunday",
+        ];
+        return v.every((day) => daysOfWeek.includes(day));
+      },
+      message: (props) => `${props.value} is not a valid day of the week!`,
+    },
+  },
+  timeSlots: {
+    type: [String],
+    required: true,
+    validate: {
+      validator: function (v) {
+        return v.every((time) => typeof time === "string");
+      },
+      message: (props) => `${props.value} is not a valid time slot!`,
+    },
+  },
+  toggleAvailability: { type: Boolean, required: true, default: true },
 });
 
 const Availability = mongoose.model("availability", availabilitySchema);
@@ -21,9 +42,9 @@ export const validateAvailability = (availabilityObject) => {
   const errorList = [];
   const allowedKeys = [
     "coach_id",
-    "day_of_week",
-    "time",
-    "availability_toggled",
+    "daysOfWeek",
+    "timeSlots",
+    "toggleAvailability",
   ];
 
   const validatedKeysMessage = validateAllowedFields(
@@ -34,14 +55,14 @@ export const validateAvailability = (availabilityObject) => {
   if (validatedKeysMessage.length > 0) {
     errorList.push(validatedKeysMessage);
   }
-  if (availabilityObject.day_of_week == null) {
-    errorList.push("day_of_week is a required field");
+  if (availabilityObject.daysOfWeek == null) {
+    errorList.push("daysOfWeek is a required field");
   }
-  if (availabilityObject.time == null) {
-    errorList.push("time is a required field");
+  if (availabilityObject.timeSlots == null) {
+    errorList.push("timeSlots is a required field");
   }
-  if (availabilityObject.availability_toggled == null) {
-    errorList.push("availability_toggled is a required field");
+  if (availabilityObject.toggleAvailability == null) {
+    errorList.push("toggleAvailability is a required field");
   }
 
   return errorList;
