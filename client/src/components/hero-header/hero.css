@@ -13,9 +13,9 @@
 .hero-btn {
   background: linear-gradient(
     90deg,
-    rgba(2, 0, 36, 1) 0%,
-    rgba(39, 167, 243, 1) 35%,
-    rgb(39, 39, 153) 100%
+    rgb(166, 51, 200) 0%,
+    rgb(100, 28, 101) 35%,
+    rgb(73, 7, 127) 100%
   );
   vertical-align: middle;
   line-height: 1.1em;
@@ -26,7 +26,7 @@
   text-decoration: none;
   font-weight: 800;
   padding: 20px 40px;
-  border: 2px solid #1c1d17;
+  /* border: 2px solid #1c1d17; */
   border-radius: 30px;
   cursor: pointer;
   font-family: bauhaus;
@@ -37,10 +37,16 @@
 }
 
 .hero-btn:hover {
-  cursor: pointer;
-  transform: scale(1.1);
-  border-color: #2b1872;
-  background: #a62eb6;
+  background: linear-gradient(
+    90deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgb(61, 45, 188) 35%,
+    rgb(162, 29, 177) 100%
+  );
+  color: #fffdff;
+  transform: translate(0.2em, -0.2em);
+  transition: all 0.25s ease;
+  box-shadow: -0.2em 0.5em 0 #333333d5;
 }
 
 @media (max-width: 720px) {
