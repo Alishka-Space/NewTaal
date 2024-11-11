@@ -40,17 +40,17 @@
   text-shadow:
     1px 1px 1px #5e0967,
     1px 2px 1px #9a26c1,
-    /* 1px 3px 1px #e8dcee,
-    1px 4px 1px #e8dcee, */
-      /* 1px 5px 1px #e8dcee,
-    1px 6px 1px #e8dcee, */ 1px 7px 1px #919191,
+    1px 3px 1px #e8dcee;
+  /* 1px 4px 1px #e8dcee, 
+      1px 5px 1px #e8dcee,
+    1px 6px 1px #e8dcee, 1px 7px 1px #919191,
     1px 8px 1px #919191,
-    9px 1px #919191,
+    9px 1px #919191, 
     1px 10px 1px #919191,
     1px 18px 6px rgba(16, 16, 16, 0.4),
     1px 22px 10px rgba(16, 16, 16, 0.2),
-    1px 25px 35px rgba(16, 16, 16, 0.2),
-    1px 30px 60px rgba(16, 16, 16, 0.4);
+    1px 25px 35px rgba(16, 16, 16, 0.2),  
+    1px 30px 60px rgba(16, 16, 16, 0.4);  */
   transition: 0.3s linear;
 }
 
@@ -89,9 +89,9 @@
   text-align: center;
   background: linear-gradient(
     90deg,
-    rgba(2, 0, 36, 1) 0%,
-    rgba(39, 167, 243, 1) 35%,
-    rgb(39, 39, 153) 100%
+    rgb(166, 51, 200) 0%,
+    rgb(100, 28, 101) 35%,
+    rgb(73, 7, 127) 100%
   );
   vertical-align: middle;
   line-height: 1.4em;
@@ -106,9 +106,9 @@
     90deg,
     rgba(2, 0, 36, 1) 0%,
     rgb(61, 45, 188) 35%,
-    rgb(0, 212, 255, 1) 100%
+    rgb(162, 29, 177) 100%
   );
-  color: #d96acc;
+  color: #fffdff;
   transform: translate(0.2em, -0.2em);
   transition: all 0.25s ease;
   box-shadow: -0.2em 0.5em 0 #333333d5;

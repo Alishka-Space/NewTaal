@@ -8,7 +8,11 @@
 }
 
 .greeting-coach {
-  color: #0c0c0c;
+  color: #f6e2e2;
+  text-shadow:
+    1px 1px 1px #5e0967,
+    1px 2px 1px #9a26c1,
+    1px 3px 1px #e8dcee;
   padding: 30px;
   border-radius: 8px;
   margin-bottom: 40px;
@@ -38,13 +42,19 @@
 /* Button Styles */
 .button-group-coach button {
   width: 200px;
-  background-color: #9c5be7;
+  background: linear-gradient(
+    90deg,
+    rgb(166, 51, 200) 0%,
+    rgb(100, 28, 101) 35%,
+    rgb(73, 7, 127) 100%
+  );
   font-size: 17px;
   font-weight: bold;
   padding: 10px 20px;
   border-radius: 8px;
   cursor: pointer;
   transition: all 0.3s;
+  color: #f6e2e2;
 }
 
 .search-filter-coach {
