@@ -13,14 +13,19 @@
     1px 1px 1px #5e0967,
     1px 2px 1px #9a26c1,
     1px 3px 1px #e8dcee;
-  padding: 30px;
+  padding-top: 50px;
   border-radius: 8px;
   margin-bottom: 40px;
+  font-size: 1.3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .greeting h1 {
   font-size: 2.5em;
   font-weight: 600;
+  margin-bottom: 30px;
 }
 
 /* Search and Filter Section */
@@ -48,7 +53,7 @@
     rgb(100, 28, 101) 35%,
     rgb(73, 7, 127) 100%
   );
-  font-size: 17px;
+  font-size: 19px;
   font-weight: bold;
   padding: 10px 20px;
   border-radius: 8px;
