@@ -77,14 +77,14 @@
 
 .navbar-link {
   margin: 0 5px;
-  font-size: 1.3em;
+  font-size: 1.2em;
   font-weight: 500;
   border-radius: 14px;
   color: #e8dcee;
   cursor: pointer;
   text-decoration: none;
   padding: 7px;
-  width: 5.5em;
+  width: 5.4em;
   height: 2em;
   text-align: center;
   background: linear-gradient(
@@ -94,7 +94,7 @@
     rgb(73, 7, 127) 100%
   );
   vertical-align: middle;
-  line-height: 1.4em;
+  line-height: 1.1em;
   border-bottom: 2px solid #060606;
   position: relative;
   box-shadow: -0.2em 0.2em 0 #333333a8;
