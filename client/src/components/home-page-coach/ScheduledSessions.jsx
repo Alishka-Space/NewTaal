@@ -60,7 +60,7 @@ const ScheduledSessions = () => {
           mt: 4,
           mb: 1,
           minWidth: 800,
-          height: 500,
+          height: 540,
         }}
         variant="elevation"
         elevation={20}
@@ -104,8 +104,7 @@ const ScheduledSessions = () => {
                         </TableCell>
                         <TableCell>
                           <Typography
-                            fontSize={15}
-                            fontWeight="bold"
+                            fontSize={14}
                             onClick={() =>
                               navigate(`/learnerProfile/${row.learner_id}`)
                             }
@@ -114,7 +113,9 @@ const ScheduledSessions = () => {
                               paddingTop: 1,
                             }}
                           >
-                            <Link href="#">{row.learner_name}</Link>
+                            <Link href="#" sx={{ color: "purple" }}>
+                              {row.learner_name}
+                            </Link>
                           </Typography>
                         </TableCell>
                         <TableCell>{row.day}</TableCell>
@@ -125,7 +126,7 @@ const ScheduledSessions = () => {
             </Table>
           </TableContainer>
           <TablePagination
-            rowsPerPageOptions={[5, 10, 25]}
+            rowsPerPageOptions={[5]}
             component="div"
             count={sessionsData ? sessionsData.length : 0}
             rowsPerPage={rowsPerPage}

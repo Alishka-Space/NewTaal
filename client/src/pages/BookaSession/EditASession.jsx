@@ -11,7 +11,7 @@ import { styled } from "@mui/material/styles";
 import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
 import useFetch from "../../hooks/useFetch";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const Card = styled(MuiCard)(({ theme }) => ({
   display: "flex",
@@ -29,6 +29,7 @@ const Card = styled(MuiCard)(({ theme }) => ({
 }));
 
 const EditASession = () => {
+  const navigate = useNavigate();
   const location = useLocation();
   const session = location.state.session || {};
 
@@ -41,7 +42,6 @@ const EditASession = () => {
 
   const [day, setDay] = useState(session.day || "");
   const [time, setTime] = useState(session.time || "");
-  // const [status, setStatus] = useState(session.status || "");
 
   const handleDayChange = (e) => {
     setDay(e.target.value);
@@ -51,18 +51,21 @@ const EditASession = () => {
     setTime(e.target.value);
   };
 
-  // const handleStatusChange = (e) => {
-  //   setStatus(e.target.value);
-  // };
+  const handleSubmit = async () => {
+    try {
+      await performFetch({
+        method: "PATCH",
+        body: JSON.stringify({
+          day,
+          time,
+        }),
+      });
 
-  const handleSubmit = () => {
-    performFetch({
-      method: "PATCH",
-      body: JSON.stringify({
-        day,
-        time,
-      }),
-    });
+      navigate(`/session/${id}`);
+      window.location.reload();
+    } catch (error) {
+      alert("Error: " + error);
+    }
   };
 
   if (isLoading) {
