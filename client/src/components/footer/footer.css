@@ -34,8 +34,9 @@
 }
 
 .footer-icons .icon {
-  width: 30px;
+  width: 35px;
   height: 30px;
+  padding: 10px;
   background-color: rgb(250, 248, 248);
   border-radius: 10px;
   display: flex;
@@ -45,11 +46,12 @@
 }
 
 .footer-icons .icon i {
-  font-size: 22px;
+  font-size: 1.6rem;
 }
 
 .footer-copy-right {
   color: #f5f2e7;
+  width: 220px;
   font-size: 1.2rem;
   font-weight: 600;
   margin-top: 15px;
