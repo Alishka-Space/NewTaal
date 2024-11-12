@@ -33,7 +33,7 @@
 .logo-text b {
   margin-left: 5px;
   color: #e8dcee;
-  font-weight: 700;
+  font-weight: 600;
   font-size: 2.1em;
   font-family: bauhaus;
   letter-spacing: 2px;
@@ -42,15 +42,14 @@
     1px 2px 1px #9a26c1,
     1px 3px 1px #e8dcee,
     /* 1px 4px 1px #e8dcee, 
-      1px 5px 1px #e8dcee,
-    1px 6px 1px #e8dcee, 1px 7px 1px #919191,
-    1px 8px 1px #919191,
-    9px 1px #919191, 
-    1px 10px 1px #919191, */
-      /* 1px 18px 6px rgba(16, 16, 16, 0.4),
+      1px 5px 1px #e8dcee, */ 1px 6px 1px #5e0967,
+    1px 7px 1px #919191,
+    1px 8px 1px #5e0967,
+    /* 9px 1px #5e0967,  */ /* 1px 10px 1px #5e0967, */ 1px 18px 6px
+      rgba(16, 16, 16, 0.4),
     1px 22px 10px rgba(16, 16, 16, 0.2),
-    1px 25px 35px rgba(16, 16, 16, 0.2),   */
-      1px 30px 60px rgba(16, 16, 16, 0.4);
+    1px 25px 35px rgba(16, 16, 16, 0.2),
+    1px 30px 60px rgba(16, 16, 16, 0.4);
   transition: 0.3s linear;
 }
 
