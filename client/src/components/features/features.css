@@ -44,15 +44,20 @@
 }
 
 .feature span {
-  width: 80%;
+  width: 70%;
   font-size: 1rem;
   font-weight: 700;
   color: #e3d5f1;
   padding: 10px 10px;
   margin: 20px 0;
   font-family: bauhaus;
-  background-color: rgba(90, 42, 187, 0.585);
-  line-height: 1.2;
+  background: linear-gradient(
+    90deg,
+    rgb(166, 51, 200) 0%,
+    rgb(100, 28, 101) 35%,
+    rgba(73, 7, 127, 0.52) 100%
+  );
+  line-height: 1;
   border-radius: 5px;
   letter-spacing: 2px;
 }
@@ -70,8 +75,8 @@
 
 .feature .about-img {
   width: 100%;
-  height: 100%;
-  object-fit: contain;
+  height: 450px;
+  object-fit: cover;
   position: absolute;
   bottom: -130px;
 }
@@ -81,7 +86,6 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  border: 2px solid #111012;
 }
 
 @media (max-width: 1024px) {
@@ -96,7 +100,7 @@
 
   .feature-text {
     width: 90%;
-    margin: 5px;
+    margin-top: -50px;
     /* background-color: black; */
     display: flex;
     flex-direction: column;
@@ -131,8 +135,7 @@
   }
 
   .feature {
-    width: 100%;
-    margin: 25px 0;
+    margin-top: 90px;
   }
 
   .feature span {
@@ -145,15 +148,16 @@
 
   .about-img {
     min-width: 400px;
-    margin-top: 15px;
+    margin-top: 5px;
     object-fit: cover;
     position: absolute;
-    top: 45px;
+    top:5px;
   }
 
   .feature-text {
     width: 100%;
     height: 30%;
     border: none;
+    margin-top: 5px;
   }
 }
