@@ -13,7 +13,7 @@
 
 .footer-item-title {
   margin-bottom: 10px;
-  color: #e5c962;
+  color: rgb(25, 22, 26);
 }
 .footer-item-link {
   font-size: 17px;
@@ -36,7 +36,7 @@
 .footer-icons .icon {
   width: 30px;
   height: 30px;
-  background-color: rgb(15, 4, 4);
+  background-color: rgb(250, 248, 248);
   border-radius: 10px;
   display: flex;
   align-items: center;
@@ -49,10 +49,19 @@
 }
 
 .footer-copy-right {
-  color: #e5c962;
-  font-size: 17px;
-  margin-top: 5px;
+  color: #f5f2e7;
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-top: 15px;
+  font-family: bauhaus;
   padding: 10px;
+  background: linear-gradient(
+    90deg,
+    rgb(166, 51, 200) 0%,
+    rgb(100, 28, 101) 35%,
+    rgb(73, 7, 127) 100%
+  );
+  border-radius: 15px;
 }
 
 @media (max-width: 720px) {
