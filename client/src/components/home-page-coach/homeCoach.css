@@ -2,15 +2,13 @@
   background-image: url("../../../public/photo/coach1.webp");
   background-repeat: no-repeat;
   background-size: cover;
-  background-position: center;
   width: 100%;
-  min-height: 220px;
+  /* min-height: 250px; */
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-
-  padding: 20px;
+  padding: 40px 20px;
 }
 
 .greeting-coach {
