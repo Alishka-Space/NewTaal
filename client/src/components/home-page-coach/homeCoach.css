@@ -4,7 +4,7 @@
   background-size: cover;
   background-position: center;
   width: 100%;
-  min-height: 250px; /* Adjusts based on screen */
+  min-height: 220px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -22,19 +22,18 @@
   padding-top: 50px;
   border-radius: 8px;
   margin-bottom: 40px;
-  font-size: 1.3rem;
+  font-size: 1rem;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.greeting h1 {
+/* .greeting h1 {
   font-size: 2.5em;
   font-weight: 600;
   margin-bottom: 30px;
-}
+} */
 
-/* Search and Filter Section */
 .search-section-coach {
   display: flex;
   flex-direction: column;
@@ -42,7 +41,6 @@
   gap: 20px;
 }
 
-/* Button Group for Three Primary Buttons */
 .button-group-coach {
   display: flex;
   justify-content: center;
@@ -50,7 +48,6 @@
   gap: 20px;
 }
 
-/* Button Styles */
 .button-group-coach button {
   width: 200px;
   background: linear-gradient(
@@ -59,7 +56,7 @@
     rgb(100, 28, 101) 35%,
     rgb(73, 7, 127) 100%
   );
-  font-size: 19px;
+  font-size: 17px;
   font-weight: bold;
   padding: 10px 20px;
   border-radius: 8px;
@@ -106,7 +103,6 @@
   background-color: #c9302c;
 }
 
-/* Responsive layout for smaller screens */
 @media screen and (max-width: 768px) {
   .button-group-coach,
   .filter-search-group-coach {
@@ -116,6 +112,9 @@
 
   button {
     width: 100%;
-    max-width: 320px;
+    max-width: 300px;
+  }
+  .greeting-coach {
+    font-size: 1.2;
   }
 }
