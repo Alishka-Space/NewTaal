@@ -54,8 +54,11 @@ const ScheduledSessions = () => {
   return (
     <Grid container className="scheduled-container">
       <Paper className="scheduled-paper">
-        <Card className="scheduled-card">
-          <Typography className="scheduled-title">
+        <Card
+          className="scheduled-card"
+          sx={{ p: 1, borderRadius: "10px", bgcolor: "#f0f0f0", my: 2 }}
+        >
+          <Typography className="scheduled-title" fontWeight="bold">
             Scheduled Sessions
           </Typography>
         </Card>
@@ -67,13 +70,19 @@ const ScheduledSessions = () => {
                 <TableRow>
                   <TableCell></TableCell>
                   <TableCell className="scheduled-table-header">
-                    Learner Name
+                    <Typography variant="body2" fontWeight="bold">
+                      Learner Name
+                    </Typography>
                   </TableCell>
                   <TableCell className="scheduled-table-header">
-                    Day of Sessions
+                    <Typography variant="body2" fontWeight="bold">
+                      Day of Sessions
+                    </Typography>
                   </TableCell>
                   <TableCell className="scheduled-table-header">
-                    Time of Sessions
+                    <Typography variant="body2" fontWeight="bold">
+                      Time of Sessions
+                    </Typography>
                   </TableCell>
                 </TableRow>
               </TableHead>
