@@ -11,6 +11,7 @@ import Rating from "@mui/material/Rating";
 import PropTypes from "prop-types";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import "./coachList.css";
 
 const CoachList = ({ coachList }) => {
   const navigate = useNavigate();
@@ -24,29 +25,15 @@ const CoachList = ({ coachList }) => {
   }
 
   return (
-    <div
-      className="coaches-list"
-      style={{
-        padding: "30px",
-        display: "flex",
-        justifyContent: "space-around",
-        flexWrap: "wrap",
-      }}
-    >
+    <div className="coaches-list">
       {coachList.map((coach, id) => (
-        <Card sx={{ width: 345 }} key={id}>
+        <Card className="coach-card" key={id}>
           <CardMedia
-            sx={{ height: 300 }}
+            className="coach-image"
             image={coach.image}
             title={coach.username}
           />
-          <CardContent
-            sx={{
-              color: "text.secondary",
-              height: "250px",
-              overflow: "hidden",
-            }}
-          >
+          <CardContent className="coach-content">
             <Typography variant="h6" component="div">
               <b>Coach:</b>{" "}
               <Link to={`/coachProfile/${coach.user_id}`}>
@@ -72,7 +59,7 @@ const CoachList = ({ coachList }) => {
               <strong>From ${coach.rate}</strong> per class
             </Typography>
           </CardContent>
-          <CardActions sx={{ justifyContent: "center", margin: 1 }}>
+          <CardActions className="coach-actions">
             <Button
               onClick={() => handleBookASession(coach)}
               size="small"

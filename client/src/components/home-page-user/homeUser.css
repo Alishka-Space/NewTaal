@@ -36,13 +36,19 @@
 /* Button Styles */
 .button-group button {
   width: 200px;
-  background-color: #9c5be7;
+  background: linear-gradient(
+    90deg,
+    rgb(166, 51, 200) 0%,
+    rgb(100, 28, 101) 35%,
+    rgb(73, 7, 127) 100%
+  );
   font-size: 17px;
   font-weight: bold;
   padding: 10px 20px;
-  border-radius: 10px;
+  border-radius: 8px;
   cursor: pointer;
   transition: all 0.3s;
+  color: #f6e2e2;
 }
 
 .button-group .button:hover {
