@@ -1,10 +1,16 @@
 .coach-homepage-search {
-  text-align: center;
   background-image: url("../../../public/photo/coach1.webp");
   background-repeat: no-repeat;
-  background-size: contain;
-  height: 300px;
+  background-size: cover;
+  background-position: center;
   width: 100%;
+  min-height: 250px; /* Adjusts based on screen */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  padding: 20px;
 }
 
 .greeting-coach {
