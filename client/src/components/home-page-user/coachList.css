@@ -2,13 +2,15 @@
   padding: 20px;
   display: flex;
   justify-content: space-around;
+  align-items: center;
+  text-align: start;
   flex-wrap: wrap;
   gap: 10px;
 }
 
 .coach-card {
   width: 100%;
-  max-width: 345px;
+  max-width: 350px;
   margin: 10px;
   transition: transform 0.2s ease-in-out;
 }
