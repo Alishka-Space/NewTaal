@@ -13,9 +13,8 @@ const HomeUser = () => {
   const [sortItem, setSortItem] = useState("recommended");
   const [coaches, setCoaches] = useState([]);
 
-  const COACHES_PER_PAGE = 4;
+  const COACHES_PER_PAGE = 6;
 
-  // Fetch coaches from backend
   const { performFetch } = useFetch("/coach", (response) => {
     setCoaches(response.result);
   });
@@ -24,7 +23,6 @@ const HomeUser = () => {
     performFetch();
   }, []);
 
-  // Sorting Logic based on sortItem
   const sortedCoaches = [...coaches].sort((a, b) => {
     if (sortItem === "low") return a.rate - b.rate;
     if (sortItem === "high") return b.rate - a.rate;

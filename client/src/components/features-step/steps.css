@@ -8,7 +8,6 @@
 .steps {
   display: grid;
   grid-template-columns: 1fr 1fr;
-
   width: 100%;
 }
 
@@ -20,15 +19,12 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  border-radius: 12px;
-  color: white;
   font-weight: bold;
   text-align: center;
   background-position: center;
   background-repeat: no-repeat;
-  width: 100%;
-  height: 250px;
-  padding: 10px;
+  width: 95%;
+  height: 230px;
   transition: transform 0.3s ease;
 }
 
@@ -56,88 +52,96 @@
 
 /* Title Styling */
 .steps span {
-  font-size: 1.1rem;
   margin: 40px;
-  color: black;
+  color: rgb(29, 15, 37);
+  font-size: 1.5rem;
+  font-family: fantasy;
+  font-weight: 700;
 }
 
 .steps p {
   font-size: 1rem;
   font-weight: normal;
-  margin: 30px;
-  padding: 5px 10px;
+  margin: 15px;
+  padding: 5px;
   line-height: 1.2;
-  background-color: rgba(0, 0, 0, 0.294);
+  background: linear-gradient(
+    90deg,
+    rgba(165, 51, 200, 0.588) 0%,
+    rgb(100, 28, 101) 35%,
+    rgba(73, 7, 127, 0.479) 100%
+  );
   border-radius: 8px;
   color: #f0f0f0;
-  max-width: 50%;
+  width: 310px;
 }
 
 .steps div:hover {
-  transform: scale(1.05);
+  transform: scale(1.04);
 }
 
 .steps .step-one span {
   position: absolute;
-  top: 20px;
+  top: 15px;
   left: 150px;
-  font-size: 1.2rem;
-  text-decoration: underline;
 }
 .steps .step-one p {
   position: absolute;
-  bottom: 40px;
-  left: 30px;
-  font-size: 1rem;
+  bottom: 25px;
+  left: 20px;
 }
 
 .steps .step-two span {
   position: absolute;
   top: 20px;
-  left: 160px;
-  font-size: 1.2rem;
-  text-decoration: underline;
+  left: 110px;
 }
 
 .steps .step-two p {
   position: absolute;
   bottom: 40px;
   left: 40px;
-  font-size: 1rem;
 }
 
 .steps .step-three span {
-  position: absolute;
-  top: 10px;
-  left: 210px;
-  font-size: 1.2rem;
-  text-decoration: underline;
+  position: relative;
+  top: -55px;
+  left: 1px;
 }
 .steps .step-three p {
   position: absolute;
-  bottom: 20px;
-  left: 190px;
-  font-size: 1rem;
+  bottom: 50px;
+  left: 90px;
 }
 
 .steps .step-four span {
-  position: absolute;
-  top: 0px;
-  left: 170px;
-  font-size: 1.2rem;
-  text-decoration: underline;
+  position: relative;
+  top: -60px;
+  right: 70px;
+  width: 170px;
 }
 
 .steps .step-four p {
   position: absolute;
-  bottom: 20px;
-  left: 130px;
-  font-size: 1rem;
+  bottom: 50px;
+  left: 50px;
 }
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .steps {
     grid-template-columns: 1fr;
+  }
+  .steps .step-three span {
+    position: relative;
+    top: -55px;
+    left: 15px;
+  }
+  .steps span {
+    font-size: 1rem;
+  }
+  .steps p {
+    font-size: 0.8rem;
+    width: 250px;
   }
 }

@@ -39,6 +39,16 @@ export const createReview = async (req, res) => {
       comments,
     };
 
+    const existingReview = await Review.findOne({
+      session_id: id,
+    });
+    if (existingReview) {
+      return res.status(400).json({
+        success: false,
+        msg: "Review already exists for this session",
+      });
+    }
+
     const errors = validateReview(reviewObject);
     if (errors.length > 0) {
       return res.status(400).json({

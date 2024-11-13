@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import TallLogo from "../images/logo-1.png";
+import TallLogo from "../images/logosh.png";
 import { useState } from "react";
 import "./nav.css";
 import { AuthContext } from "../context/AuthContext";

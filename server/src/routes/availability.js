@@ -9,7 +9,7 @@ import {
 const availabilityRouter = express.Router();
 
 availabilityRouter.get("/", getAvailability);
-availabilityRouter.post("/create/:id", createAvailability);
+availabilityRouter.post("/create", createAvailability);
 availabilityRouter.get("/coach/:id", getAvailabilityByCoachId);
 availabilityRouter.patch("/update/:id", updateAvailability);
 
