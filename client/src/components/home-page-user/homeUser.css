@@ -1,14 +1,13 @@
 /* General Styling for User Homepage */
 .user-homepage-search {
   padding: 40px 20px;
-  height: 50vh;
-  background-image: url("../../../public/photo/trainees1.webp");
+  background-image: url("../../../public/photo/learner1.webp");
   background-size: cover;
   text-align: center;
 }
 
 .greeting {
-  color: #0c0c0c;
+  color: #f0e7e7;
   padding: 30px;
   border-radius: 8px;
   margin-bottom: 40px;

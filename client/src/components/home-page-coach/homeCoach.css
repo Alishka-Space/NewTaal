@@ -1,26 +1,39 @@
 .coach-homepage-search {
-  padding: 60px 0;
-  height: 45vh;
-  text-align: center;
-  background-image: url("../../../public/photo/cach2.webp");
+  background-image: url("../../../public/photo/coach1.webp");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
+  width: 100%;
+  min-height: 220px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  padding: 20px;
 }
 
 .greeting-coach {
-  color: #0c0c0c;
-  padding: 30px;
+  color: #f6e2e2;
+  text-shadow:
+    1px 1px 1px #5e0967,
+    1px 2px 1px #9a26c1,
+    1px 3px 1px #e8dcee;
+  padding-top: 50px;
   border-radius: 8px;
   margin-bottom: 40px;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.greeting h1 {
+/* .greeting h1 {
   font-size: 2.5em;
   font-weight: 600;
-}
+  margin-bottom: 30px;
+} */
 
-/* Search and Filter Section */
 .search-section-coach {
   display: flex;
   flex-direction: column;
@@ -28,7 +41,6 @@
   gap: 20px;
 }
 
-/* Button Group for Three Primary Buttons */
 .button-group-coach {
   display: flex;
   justify-content: center;
@@ -36,16 +48,21 @@
   gap: 20px;
 }
 
-/* Button Styles */
 .button-group-coach button {
   width: 200px;
-  background-color: #9c5be7;
+  background: linear-gradient(
+    90deg,
+    rgb(166, 51, 200) 0%,
+    rgb(100, 28, 101) 35%,
+    rgb(73, 7, 127) 100%
+  );
   font-size: 17px;
   font-weight: bold;
   padding: 10px 20px;
   border-radius: 8px;
   cursor: pointer;
   transition: all 0.3s;
+  color: #f6e2e2;
 }
 
 .search-filter-coach {
@@ -86,7 +103,6 @@
   background-color: #c9302c;
 }
 
-/* Responsive layout for smaller screens */
 @media screen and (max-width: 768px) {
   .button-group-coach,
   .filter-search-group-coach {
@@ -96,6 +112,9 @@
 
   button {
     width: 100%;
-    max-width: 320px;
+    max-width: 300px;
+  }
+  .greeting-coach {
+    font-size: 1.2;
   }
 }

@@ -1,11 +1,10 @@
 .coaches-list {
-  padding: 30px;
-
   display: flex;
   align-items: center;
   justify-content: space-around;
   flex-wrap: wrap;
   background-color: #442fb80d;
+  padding: "30px";
 }
 
 .coach-item {

@@ -14,6 +14,7 @@ import TablePagination from "@mui/material/TablePagination";
 import { useNavigate } from "react-router-dom";
 import useFetch from "../../hooks/useFetch";
 import { AuthContext } from "../../context/AuthContext";
+import "./ScheduledSessions.css";
 
 const ScheduledSessions = () => {
   const { authState } = useContext(AuthContext);
@@ -51,39 +52,27 @@ const ScheduledSessions = () => {
   };
 
   return (
-    <Grid container>
-      <Paper
-        sx={{
-          userSelect: "none",
-          borderRadius: 6,
-          p: 2,
-          mt: 4,
-          mb: 1,
-          minWidth: 800,
-          height: 500,
-        }}
-        variant="elevation"
-        elevation={20}
-      >
-        <Card sx={{ p: 1, borderRadius: "10px", bgcolor: "#f0f0f0", my: 2 }}>
-          <Typography fontWeight="bold" textAlign="center">
+    <Grid container className="scheduled-container">
+      <Paper className="scheduled-paper">
+        <Card className="scheduled-card">
+          <Typography className="scheduled-title">
             Scheduled Sessions
           </Typography>
         </Card>
 
         <Box>
           <TableContainer component={Paper}>
-            <Table sx={{ minWidth: 650 }} aria-label="sticky table">
+            <Table className="scheduled-table" aria-label="sticky table">
               <TableHead>
                 <TableRow>
                   <TableCell></TableCell>
-                  <TableCell sx={{ fontWeight: "bold" }}>
+                  <TableCell className="scheduled-table-header">
                     Learner Name
                   </TableCell>
-                  <TableCell sx={{ fontWeight: "bold" }}>
+                  <TableCell className="scheduled-table-header">
                     Day of Sessions
                   </TableCell>
-                  <TableCell sx={{ fontWeight: "bold" }}>
+                  <TableCell className="scheduled-table-header">
                     Time of Sessions
                   </TableCell>
                 </TableRow>
@@ -93,38 +82,33 @@ const ScheduledSessions = () => {
                   sessionsData
                     .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                     .map((row, index) => (
-                      <TableRow
-                        key={index}
-                        sx={{
-                          "&:last-child td, &:last-child th": { border: 0 },
-                        }}
-                      >
+                      <TableRow key={index}>
                         <TableCell component="th" scope="row">
                           {row.name}
                         </TableCell>
                         <TableCell>
                           <Typography
-                            fontSize={15}
-                            fontWeight="bold"
+                            className="scheduled-table-link"
                             onClick={() =>
                               navigate(`/learnerProfile/${row.learner_id}`)
                             }
-                            sx={{
-                              textAlign: "left",
-                              paddingTop: 1,
-                            }}
                           >
                             <Link href="#">{row.learner_name}</Link>
                           </Typography>
                         </TableCell>
-                        <TableCell>{row.day}</TableCell>
-                        <TableCell>{row.time}</TableCell>
+                        <TableCell className="scheduled-table-cell">
+                          {row.day}
+                        </TableCell>
+                        <TableCell className="scheduled-table-cell">
+                          {row.time}
+                        </TableCell>
                       </TableRow>
                     ))}
               </TableBody>
             </Table>
           </TableContainer>
           <TablePagination
+            className="scheduled-pagination"
             rowsPerPageOptions={[5, 10, 25]}
             component="div"
             count={sessionsData ? sessionsData.length : 0}
