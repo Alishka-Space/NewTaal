@@ -1,6 +1,6 @@
 .features-div {
   width: 100%;
-  min-height: 600px;
+  min-height: 500px;
 }
 
 .feature-title {
@@ -154,6 +154,7 @@
 
   .feature {
     margin-top: 90px;
+
   }
 
   .feature span {
