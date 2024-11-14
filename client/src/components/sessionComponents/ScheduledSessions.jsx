@@ -20,9 +20,7 @@ const ScheduledSessions = () => {
   const navigate = useNavigate();
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
-
   const [sessionsData, setSessionsData] = useState();
-  //const [editRowIndex, setEditRowIndex] = useState(null);
 
   const { performFetch, cancelFetch } = useFetch(
     `/session/user/${authState.id}`,
