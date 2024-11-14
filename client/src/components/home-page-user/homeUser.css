@@ -85,7 +85,6 @@
   cursor: pointer;
   transition: all 0.3s;
   flex: 1;
-  /* Make the Search Coaches button wider */
 }
 
 .search-filter:hover {

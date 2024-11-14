@@ -29,7 +29,6 @@ const HomeUser = () => {
     return b.rating - a.rating;
   });
 
-  // Pagination Logic
   const pages = Math.ceil(sortedCoaches.length / COACHES_PER_PAGE);
   const startIndex = (currentPage - 1) * COACHES_PER_PAGE;
   const orderedCoachList = sortedCoaches.slice(

@@ -213,7 +213,6 @@ const ScheduledSessions = () => {
             <Button
               onClick={() => {
                 setReviewDialogOpen(false);
-                // Call the endpoint later to create review
               }}
               autoFocus
             >
