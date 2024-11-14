@@ -15,7 +15,6 @@
   position: absolute;
   top: 5px;
   right: 62%;
-  /* transform: translateX(-50%); */
 }
 
 .features {
@@ -61,6 +60,7 @@
   border-radius: 5px;
   letter-spacing: 2px;
 }
+
 .feature p {
   font-size: 1rem;
   font-weight: 500;
@@ -119,7 +119,6 @@
   .feature-text {
     width: 90%;
     margin-top: -50px;
-    /* background-color: black; */
     display: flex;
     flex-direction: column;
     align-items: center;

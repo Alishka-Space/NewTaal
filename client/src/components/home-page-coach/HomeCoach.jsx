@@ -23,12 +23,10 @@ const HomeCoach = () => {
       }}
     >
       <div className="coach-homepage-search">
-        {/* Greeting Section */}
         <header className="greeting-coach">
           <h1>Hello, {authState.user}</h1>
         </header>
 
-        {/* Primary Buttons */}
         <section className="button-group-coach">
           <button className="visit-profile-coach" onClick={handleVisitProfile}>
             Visit Profile
