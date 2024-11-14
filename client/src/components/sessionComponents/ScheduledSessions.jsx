@@ -22,7 +22,6 @@ const ScheduledSessions = () => {
   const [rowsPerPage, setRowsPerPage] = useState(5);
 
   const [sessionsData, setSessionsData] = useState();
-  //const [editRowIndex, setEditRowIndex] = useState(null);
 
   const { performFetch, cancelFetch } = useFetch(
     `/session/user/${authState.id}`,
@@ -57,7 +56,7 @@ const ScheduledSessions = () => {
   };
 
   return (
-    <Grid container>
+    <Grid container justifyContent="center">
       <Paper
         sx={{
           userSelect: "none",
@@ -65,19 +64,34 @@ const ScheduledSessions = () => {
           p: 2,
           mt: 4,
           mb: 1,
-          minWidth: 800,
-          height: 540,
+          minWidth: { xs: "100%", md: 800 },
+          width: { xs: "100%", sm: "90%", md: "80%" },
+          height: "auto",
         }}
         variant="elevation"
         elevation={20}
       >
-        <Card sx={{ p: 1, borderRadius: "10px", bgcolor: "#f0f0f0", my: 2 }}>
+        <Card
+          sx={{
+            p: 1,
+            borderRadius: "10px",
+            bgcolor: "#f0f0f0",
+            my: 2,
+            textAlign: "center",
+          }}
+        >
           <Typography fontWeight="bold">Scheduled Sessions</Typography>
         </Card>
 
         <Box>
           <TableContainer component={Paper}>
-            <Table sx={{ minWidth: 650 }} aria-label="sticky table">
+            <Table
+              sx={{
+                minWidth: { xs: 300, sm: 500, md: 650 },
+                overflowX: "auto",
+              }}
+              aria-label="sticky table"
+            >
               <TableHead>
                 <TableRow>
                   <TableCell></TableCell>
@@ -86,7 +100,6 @@ const ScheduledSessions = () => {
                       ? "Coach Name"
                       : "Learner Name"}
                   </TableCell>
-
                   <TableCell sx={{ fontWeight: "bold" }}>
                     Day of Sessions
                   </TableCell>
@@ -116,31 +129,26 @@ const ScheduledSessions = () => {
                         <TableCell>
                           {authState.role === "coach" ? (
                             <Link to={`/learnerProfile/${row.learner_id}`}>
-                              {" "}
-                              {row.learner_name}{" "}
+                              {row.learner_name}
                             </Link>
                           ) : (
                             <Link to={`/coachProfile/${row.coach_id}`}>
-                              {" "}
-                              {row.coach_name}{" "}
+                              {row.coach_name}
                             </Link>
                           )}
                         </TableCell>
                         <TableCell>{row.day}</TableCell>
                         <TableCell>{row.time}</TableCell>
                         <TableCell>{row.status}</TableCell>
-
                         <TableCell>
-                          <strong>
-                            <Button
-                              color="secondary"
-                              variant="contained"
-                              size="small"
-                              onClick={() => handleEditASession(row)}
-                            >
-                              Edit
-                            </Button>
-                          </strong>
+                          <Button
+                            color="secondary"
+                            variant="contained"
+                            size="small"
+                            onClick={() => handleEditASession(row)}
+                          >
+                            Edit
+                          </Button>
                         </TableCell>
                       </TableRow>
                     ))}
