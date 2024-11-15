@@ -12,7 +12,7 @@ import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
 import { AuthContext } from "../../context/AuthContext";
 import useFetch from "../../hooks/useFetch";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const Card = styled(MuiCard)(({ theme }) => ({
   display: "flex",
@@ -32,12 +32,17 @@ const Card = styled(MuiCard)(({ theme }) => ({
 const BookASession = () => {
   const { authState } = useContext(AuthContext);
 
+  const navigate = useNavigate();
+
   const location = useLocation();
   const coach = location.state.coach || {};
 
   const { error, isLoading, performFetch } = useFetch(
     "/session/create",
-    () => {},
+    (response) => {
+      navigate(`/session/${response.result._id}`);
+      window.location.reload();
+    },
   );
 
   const [day, setDay] = useState(coach.day || "");
