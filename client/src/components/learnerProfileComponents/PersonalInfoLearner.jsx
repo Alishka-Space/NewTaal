@@ -7,6 +7,7 @@ import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import { Button, Card, TextField, Typography } from "@mui/material";
 import useFetch from "../../hooks/useFetch";
+import { formatDate } from "../../util/dateUtils";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: "#fff",
@@ -167,7 +168,7 @@ const PersonalInfoLearner = (props) => {
                     {" "}
                     {!isEdit && (
                       <Typography width="100%" variant="h8">
-                        {props?.data?.dateOfBirth}
+                        {formatDate(props?.data?.dateOfBirth)}
                       </Typography>
                     )}
                     {isEdit && (

@@ -24,6 +24,7 @@ export const createLearner = async (user, req, res) => {
       nationality: user.nationality,
       purpose: "",
       bio: "",
+      dateOfBirth: user.dateOfBirth,
     });
   } catch (error) {
     logError(error);
