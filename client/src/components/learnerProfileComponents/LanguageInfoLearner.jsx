@@ -28,7 +28,7 @@ const LanguageInfoLearner = (props) => {
 
   const { performFetch } = useFetch(
     `/learner/update/${props.data._id}`,
-    () => {}
+    () => {},
   );
 
   const [isEdit, setIsEdit] = useState(false);
@@ -60,12 +60,7 @@ const LanguageInfoLearner = (props) => {
         </Card>
 
         <Grid container p={4} spacing={2}>
-          <Grid
-            item
-            xs={12}
-            sm={4}
-            className="proficiency-grid"
-          >
+          <Grid item xs={12} sm={4} className="proficiency-grid">
             <Box className="proficiency-box">
               <Stack spacing={2}>
                 <Item className="proficiency-item">Proficiency</Item>
@@ -74,12 +69,7 @@ const LanguageInfoLearner = (props) => {
             </Box>
           </Grid>
 
-          <Grid
-            item
-            xs={12}
-            sm={8}
-            className="purpose-grid"
-          >
+          <Grid item xs={12} sm={8} className="purpose-grid">
             <Box className="purpose-box">
               <Stack spacing={2}>
                 <Item className="proficiency-info">
