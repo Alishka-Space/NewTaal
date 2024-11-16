@@ -53,13 +53,13 @@ const LanguageInfoCoach = (props) => {
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
 
   return (
-    <Grid container justifyContent="center">
+    <Grid container>
       <Paper
         sx={{
           userSelect: "none",
           borderRadius: 6,
-          p: 2,
-          mt: 4,
+          p: 4,
+          mt: 3,
           mb: 1,
           width: isSmallScreen ? "100%" : 800,
           height: "auto",
