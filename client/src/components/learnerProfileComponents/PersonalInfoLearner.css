@@ -68,19 +68,19 @@
   }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 720px) {
   .personal-info-title {
-    font-size: 1.3rem;
+    font-size: 1rem;
   }
 
   .personal-info-box {
-    max-width: 90px;
+    max-width: 70px;
   }
   .personal-info-data-box {
-    max-width: 200px;
+    max-width: 190px;
   }
   .personal-info-item {
-    width: 100px;
+    width: 80px;
     height: 45px;
     display: flex;
     flex-direction: column;
@@ -91,7 +91,7 @@
   }
 
   .personal-info-paper {
-    padding: 12px;
+    padding: 9px;
     margin-top: 12px;
   }
 }
