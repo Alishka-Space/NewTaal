@@ -64,7 +64,7 @@ const MatchedLearners = () => {
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
 
   return (
-    <Grid container justifyContent="center">
+    <Grid container>
       <Paper
         sx={{
           userSelect: "none",

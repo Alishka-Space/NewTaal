@@ -51,15 +51,15 @@ const PersonalInfoCoach = (props) => {
   };
 
   return (
-    <Grid container>
+    <Grid container justifyContent="center">
       <Paper
         sx={{
           userSelect: "none",
           borderRadius: 6,
           p: 2,
-          mt: 4,
+          mt: 3,
           mb: 1,
-          width: 800,
+          width: 700,
           height: 450,
         }}
         variant="elevation"
@@ -74,7 +74,7 @@ const PersonalInfoCoach = (props) => {
             <Grid>
               <Box
                 sx={{
-                  width: 200,
+                  width: 150,
                 }}
               >
                 <Stack spacing={2}>
@@ -96,11 +96,11 @@ const PersonalInfoCoach = (props) => {
             <Grid>
               <Box
                 sx={{
-                  width: 380,
+                  width: 90,
                 }}
               >
                 <Stack spacing={2}>
-                  <Item sx={{ height: 45 }}>
+                  <Item sx={{ height: 45, width: 200 }}>
                     {" "}
                     {!isEdit && (
                       <Typography width="100%" variant="h8">
@@ -123,7 +123,7 @@ const PersonalInfoCoach = (props) => {
                     )}
                   </Item>
 
-                  <Item sx={{ height: 45 }}>
+                  <Item sx={{ height: 45, width: 200 }}>
                     {" "}
                     {!isEdit && (
                       <Typography width="100%" variant="h8">
@@ -144,7 +144,7 @@ const PersonalInfoCoach = (props) => {
                       </Stack>
                     )}
                   </Item>
-                  <Item sx={{ height: 45 }}>
+                  <Item sx={{ height: 45, width: 200 }}>
                     {!isEdit && (
                       <Typography width="100%" variant="h8">
                         {props?.data?.nationality}
@@ -166,7 +166,7 @@ const PersonalInfoCoach = (props) => {
                       </Stack>
                     )}
                   </Item>
-                  <Item sx={{ height: 45 }}>
+                  <Item sx={{ height: 45, width: 200 }}>
                     {" "}
                     {!isEdit && (
                       <Typography width="100%" variant="h8">
@@ -189,7 +189,7 @@ const PersonalInfoCoach = (props) => {
                       </Stack>
                     )}
                   </Item>
-                  <Item sx={{ height: 45 }}>
+                  <Item sx={{ height: 45, width: 200 }}>
                     {" "}
                     {!isEdit && (
                       <Typography width="100%" variant="h8">
