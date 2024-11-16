@@ -72,7 +72,7 @@ const Reviews = () => {
 
         <Box>
           <TableContainer component={Paper}>
-            <Table sx={{ minWidth: 450 }} aria-label="simple table">
+            <Table sx={{ minWidth: 150 }} aria-label="simple table">
               <TableHead>
                 <TableRow>
                   <TableCell
@@ -80,7 +80,7 @@ const Reviews = () => {
                       bgcolor: "#333333",
                       color: "#ffffff",
                       fontWeight: "bold",
-                      width: 180,
+                      width: 80,
                     }}
                   >
                     Learner Name
