@@ -24,7 +24,7 @@
 }
 
 .personal-info-box {
-  width: 150px;
+  width: 140px;
   max-width: 600px;
 }
 
@@ -73,13 +73,27 @@
     font-size: 1.3rem;
   }
 
-  .personal-info-box,
-  .personal-info-data-box {
-    max-width: 170px;
-    margin-bottom: 12px;
+
+.personal-info-box{
+  max-width: 90px;
+} 
+.personal-info-data-box{
+  max-width: 200px;
+} 
+.personal-info-item {
+  width: 100px;
+  height: 45px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  text-align: center;
+}
+
+  .personal-info-paper {
+    padding: 12px;
+    margin-top: 12px;
   }
 
-  .personal-info-item {
-    font-size: 0.9rem;
-  }
 }
