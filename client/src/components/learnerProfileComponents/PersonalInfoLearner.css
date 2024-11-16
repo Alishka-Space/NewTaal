@@ -95,3 +95,24 @@
     margin-top: 12px;
   }
 }
+@media screen and (max-width: 420px) {
+  .personal-info-title {
+    font-size: 1rem;
+  }
+
+  .personal-info-box {
+    max-width: 70px;
+  }
+  .personal-info-data-box {
+    max-width: 175px;
+  }
+  .personal-info-item {
+    width: 80px;
+    height: 45px;
+  }
+
+  .personal-info-paper {
+    padding: 9px;
+    margin-top: 12px;
+  }
+}
