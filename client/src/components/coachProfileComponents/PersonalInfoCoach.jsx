@@ -60,7 +60,7 @@ const PersonalInfoCoach = (props) => {
           mt: 4,
           mb: 1,
           width: 800,
-          height: 460,
+          height: 450,
         }}
         variant="elevation"
         elevation={20}
@@ -96,7 +96,7 @@ const PersonalInfoCoach = (props) => {
             <Grid>
               <Box
                 sx={{
-                  width: 480,
+                  width: 380,
                 }}
               >
                 <Stack spacing={2}>
