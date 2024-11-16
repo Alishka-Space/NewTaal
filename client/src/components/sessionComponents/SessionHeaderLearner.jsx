@@ -20,7 +20,6 @@ const Item = styled(Paper)(({ theme }) => ({
 
 const SessionHeaderLearner = () => {
   const { authState } = useContext(AuthContext);
-
   const [data, setData] = useState(null);
 
   const { performFetch, cancelFetch } = useFetch(
@@ -40,66 +39,90 @@ const SessionHeaderLearner = () => {
 
   return (
     data && (
-      <Grid container>
+      <Grid container justifyContent="center">
         <Paper
           sx={{
             userSelect: "none",
-            borderRadius: 20,
-            p: 2,
+            borderRadius: 8,
+            p: 1,
             mt: 4,
             mb: 1,
-            minWidth: 800,
-            height: 300,
+            width: "100%",
+            maxWidth: 1200,
             bgcolor: "#C0C0C0",
+            overflow: "hidden",
           }}
           variant="elevation"
           elevation={20}
         >
-          <div>
-            <Grid container p={2} alignItems={"center"} spacing={2}>
-              <Stack direction="row">
-                <Avatar sx={{ width: 150, height: 150 }} src={data.image} />
-              </Stack>
+          <Grid
+            container
+            spacing={1}
+            p={1}
+            alignItems="center"
+            justifyContent="center"
+          >
+            <Stack
+              direction={{ xs: "column", sm: "row" }}
+              alignItems="center"
+              spacing={2}
+            >
+              <Avatar
+                sx={{
+                  width: { xs: 100, sm: 150 },
+                  height: { xs: 100, sm: 150 },
+                  mb: { xs: 2, sm: 0 },
+                }}
+                src={data.image}
+              />
 
-              <Stack width={500} spacing={1} justifyContent="center">
+              <Stack
+                width={{ xs: "100%", sm: 500 }}
+                spacing={2}
+                justifyContent="center"
+              >
                 <Item
                   sx={{
-                    height: 40,
                     backgroundColor: "#E1D5E7",
                     borderRadius: 1,
+                    height: "auto",
                   }}
                 >
-                  <Typography fontWeight="bold" width="100%" variant="h6">
+                  <Typography fontWeight="bold" variant="h6" textAlign="center">
                     {data?.username}
                   </Typography>
                 </Item>
 
                 <Item
                   sx={{
-                    height: 40,
                     backgroundColor: "#E1D5E7",
                     borderRadius: 1,
+                    height: "auto",
                   }}
                 >
-                  <Typography fontWeight="bold" width="100%" variant="h6">
+                  <Typography fontWeight="bold" variant="h6" textAlign="center">
                     {data?.purpose}
                   </Typography>
                 </Item>
 
                 <Item
                   sx={{
-                    height: 100,
                     backgroundColor: "#E1D5E7",
                     borderRadius: 2,
+                    height: "auto",
                   }}
                 >
-                  <Typography width="100%" fontWeight="bold" variant="h8">
+                  <Typography
+                    fontWeight="bold"
+                    variant="body1"
+                    textAlign="center"
+                  >
                     {data?.bio}
                   </Typography>
                 </Item>
               </Stack>
-            </Grid>
-          </div>
+            </Stack>
+          </Grid>
         </Paper>
       </Grid>
     )
