@@ -3,11 +3,12 @@ import PropTypes from "prop-types";
 import Grid from "@mui/material/Grid2";
 import Paper from "@mui/material/Paper";
 import Stack from "@mui/material/Stack";
-import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import { Button, Card, TextField, Typography } from "@mui/material";
 import useFetch from "../../hooks/useFetch";
 import { formatDate } from "../../util/dateUtils";
+import { styled } from "@mui/material/styles";
+import "./PersonalInfoLearner.css";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: "#fff",
@@ -50,58 +51,37 @@ const PersonalInfoLearner = (props) => {
   };
 
   return (
-    <Grid container>
-      <Paper
-        sx={{
-          userSelect: "none",
-          borderRadius: 6,
-          p: 2,
-          mt: 4,
-          mb: 1,
-          minWidth: 800,
-          height: 400,
-        }}
-        variant="elevation"
-        elevation={20}
-      >
-        <Card sx={{ p: 1, borderRadius: "10px", bgcolor: "#f0f0f0" }}>
-          <Typography fontWeight="bold"> Personal Information</Typography>
+    <Grid container justifyContent="center">
+      <Paper className="personal-info-paper" variant="elevation" elevation={20}>
+        <Card className="personal-info-card">
+          <Typography className="personal-info-title" fontWeight="bold">
+            Personal Information
+          </Typography>
         </Card>
 
         <div>
           <Grid container p={4} spacing={2}>
             <Grid>
-              <Box
-                sx={{
-                  width: 200,
-                }}
-              >
+              <Box className="personal-info-box">
                 <Stack spacing={2}>
-                  <Item sx={{ height: 45, fontWeight: "bold" }}>Name</Item>
-                  <Item sx={{ height: 45, fontWeight: "bold" }}>E-mail</Item>
-                  <Item sx={{ height: 45, fontWeight: "bold" }}>
-                    {" "}
-                    Nationality{" "}
-                  </Item>
-                  <Item sx={{ height: 45, fontWeight: "bold" }}>
-                    {" "}
-                    Date of Birth{" "}
-                  </Item>
+                  <Item className="personal-info-item">Name</Item>
+                  <Item className="personal-info-item">E-mail</Item>
+                  <Item className="personal-info-item">Nationality</Item>
+                  <Item className="personal-info-item">Date of Birth</Item>
                 </Stack>
               </Box>
             </Grid>
 
             <Grid>
-              <Box
-                sx={{
-                  width: 500,
-                }}
-              >
+              <Box className="personal-info-data-box">
                 <Stack spacing={2}>
-                  <Item sx={{ height: 45 }}>
-                    {" "}
+                  <Item className="personal-info-value">
                     {!isEdit && (
-                      <Typography width="100%" variant="h8">
+                      <Typography
+                        width="100%"
+                        variant="body1"
+                        className="personal-info-text"
+                      >
                         {props?.data?.username}
                       </Typography>
                     )}
@@ -121,10 +101,13 @@ const PersonalInfoLearner = (props) => {
                     )}
                   </Item>
 
-                  <Item sx={{ height: 45 }}>
-                    {" "}
+                  <Item className="personal-info-value">
                     {!isEdit && (
-                      <Typography width="100%" variant="h8">
+                      <Typography
+                        width="100%"
+                        variant="body1"
+                        className="personal-info-text"
+                      >
                         {props?.data?.email}
                       </Typography>
                     )}
@@ -142,9 +125,14 @@ const PersonalInfoLearner = (props) => {
                       </Stack>
                     )}
                   </Item>
-                  <Item sx={{ height: 45 }}>
+
+                  <Item className="personal-info-value">
                     {!isEdit && (
-                      <Typography width="100%" variant="h8">
+                      <Typography
+                        width="100%"
+                        variant="body1"
+                        className="personal-info-text"
+                      >
                         {props?.data?.nationality}
                       </Typography>
                     )}
@@ -164,10 +152,14 @@ const PersonalInfoLearner = (props) => {
                       </Stack>
                     )}
                   </Item>
-                  <Item sx={{ height: 45 }}>
-                    {" "}
+
+                  <Item className="personal-info-value">
                     {!isEdit && (
-                      <Typography width="100%" variant="h8">
+                      <Typography
+                        width="100%"
+                        variant="body1"
+                        className="personal-info-text"
+                      >
                         {formatDate(props?.data?.dateOfBirth)}
                       </Typography>
                     )}
@@ -194,6 +186,7 @@ const PersonalInfoLearner = (props) => {
           <Grid container justifyContent="flex-end">
             <Grid>
               <Button
+                className="edit-save-button"
                 color="secondary"
                 variant="contained"
                 size="small"

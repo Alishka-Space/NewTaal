@@ -21,7 +21,7 @@ const ProfileHeaderLearner = (props) => {
   const { data } = props;
 
   return (
-    <Grid container>
+    <Grid container justifyContent="center">
       <Paper
         sx={{
           userSelect: "none",
@@ -29,8 +29,8 @@ const ProfileHeaderLearner = (props) => {
           p: 2,
           mt: 4,
           mb: 1,
-          minWidth: 800,
-          height: 300,
+          width: { xs: "100%", sm: "80%", md: 800 }, // Responsive width adjustment
+          height: { xs: "auto", md: 300 }, // Adjust height for smaller screens
           bgcolor: "#C0C0C0",
         }}
         variant="elevation"
@@ -47,9 +47,19 @@ const ProfileHeaderLearner = (props) => {
         </Typography>
 
         <div>
-          <Grid container p={2} alignItems={"center"} spacing={2}>
-            <Stack direction="row">
-              <Avatar sx={{ width: 150, height: 150 }} src={data.image} />
+          <Grid
+            container
+            spacing={1}
+            p={1}
+            alignItems="center"
+            justifyContent="center"
+          >
+            <Stack
+              direction={{ xs: "column", sm: "row" }}
+              alignItems="center"
+              spacing={2}
+            >
+              <Avatar sx={{ width: 160, height: 160 }} src={data.image} />
             </Stack>
 
             <Stack width={500} spacing={1} justifyContent="center">
