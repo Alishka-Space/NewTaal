@@ -60,7 +60,7 @@ const Reviews = () => {
           p: 2,
           mt: 4,
           mb: 1,
-          width: 800,
+          width: 700,
           height: 820,
         }}
         variant="elevation"

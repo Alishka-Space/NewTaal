@@ -72,7 +72,7 @@ const MatchedLearners = () => {
           p: 2,
           mt: 2,
           mb: 9,
-          width: isSmallScreen ? "100%" : 700,
+          width: isSmallScreen ? "100%" : 600,
           height: isSmallScreen ? "auto" : 360,
         }}
         variant="elevation"

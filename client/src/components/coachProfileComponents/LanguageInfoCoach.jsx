@@ -61,7 +61,7 @@ const LanguageInfoCoach = (props) => {
           p: 4,
           mt: 3,
           mb: 1,
-          width: isSmallScreen ? "100%" : 700,
+          width: isSmallScreen ? "100%" : 600,
           height: "auto",
         }}
         variant="elevation"

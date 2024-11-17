@@ -59,8 +59,8 @@ const PersonalInfoCoach = (props) => {
           p: 2,
           mt: 3,
           mb: 1,
-          width: 700,
-          height: 450,
+          width: { xs: "100%", sm: "80%", md: 650 },
+          height: 470,
         }}
         variant="elevation"
         elevation={20}
@@ -74,7 +74,7 @@ const PersonalInfoCoach = (props) => {
             <Grid>
               <Box
                 sx={{
-                  width: 150,
+                  width: 110,
                 }}
               >
                 <Stack spacing={2}>
@@ -96,11 +96,16 @@ const PersonalInfoCoach = (props) => {
             <Grid>
               <Box
                 sx={{
-                  width: 90,
+                  width: 230,
                 }}
               >
                 <Stack spacing={2}>
-                  <Item sx={{ height: 45, width: 200 }}>
+                  <Item
+                    sx={{
+                      height: 45,
+                      width: { xs: "90%", sm: "90%", md: 450 },
+                    }}
+                  >
                     {" "}
                     {!isEdit && (
                       <Typography width="100%" variant="h8">
@@ -123,7 +128,12 @@ const PersonalInfoCoach = (props) => {
                     )}
                   </Item>
 
-                  <Item sx={{ height: 45, width: 200 }}>
+                  <Item
+                    sx={{
+                      height: 45,
+                      width: { xs: "90%", sm: "90%", md: 450 },
+                    }}
+                  >
                     {" "}
                     {!isEdit && (
                       <Typography width="100%" variant="h8">
@@ -144,7 +154,12 @@ const PersonalInfoCoach = (props) => {
                       </Stack>
                     )}
                   </Item>
-                  <Item sx={{ height: 45, width: 200 }}>
+                  <Item
+                    sx={{
+                      height: 45,
+                      width: { xs: "90%", sm: "90%", md: 450 },
+                    }}
+                  >
                     {!isEdit && (
                       <Typography width="100%" variant="h8">
                         {props?.data?.nationality}
@@ -166,7 +181,12 @@ const PersonalInfoCoach = (props) => {
                       </Stack>
                     )}
                   </Item>
-                  <Item sx={{ height: 45, width: 200 }}>
+                  <Item
+                    sx={{
+                      height: 45,
+                      width: { xs: "90%", sm: "90%", md: 450 },
+                    }}
+                  >
                     {" "}
                     {!isEdit && (
                       <Typography width="100%" variant="h8">
@@ -189,7 +209,12 @@ const PersonalInfoCoach = (props) => {
                       </Stack>
                     )}
                   </Item>
-                  <Item sx={{ height: 45, width: 200 }}>
+                  <Item
+                    sx={{
+                      height: 45,
+                      width: { xs: "90%", sm: "90%", md: 450 },
+                    }}
+                  >
                     {" "}
                     {!isEdit && (
                       <Typography width="100%" variant="h8">
