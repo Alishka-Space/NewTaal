@@ -5,8 +5,8 @@ import Box from "@mui/material/Box";
 import Rating from "@mui/material/Rating";
 import { Card, Typography } from "@mui/material";
 import { useParams } from "react-router-dom";
-import IconButton from "@mui/material/IconButton";
-import DeleteIcon from "@mui/icons-material/Delete";
+// import IconButton from "@mui/material/IconButton";
+// import DeleteIcon from "@mui/icons-material/Delete";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -46,10 +46,10 @@ const Reviews = () => {
     setPage(0);
   };
 
-  const deleteReview = (index) => {
-    const updatedReviews = reviewsData.filter((review, i) => i !== index);
-    setReviewsData(updatedReviews);
-  };
+  // const deleteReview = (index) => {
+  //   const updatedReviews = reviewsData.filter((review, i) => i !== index);
+  //   setReviewsData(updatedReviews);
+  // };
 
   return (
     <Grid container justifyContent="center">
@@ -158,13 +158,13 @@ const Reviews = () => {
                             fontWeight: "bold",
                           }}
                         >
-                          <IconButton
+                          {/* <IconButton
                             aria-label="delete"
                             size="small"
                             onClick={() => deleteReview(index)}
                           >
                             <DeleteIcon fontSize="small" />
-                          </IconButton>
+                          </IconButton> */}
                         </TableCell>
                       </TableRow>
                     ))}
