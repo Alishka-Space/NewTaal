@@ -22,7 +22,7 @@ const ProfileHeaderCoach = (props) => {
   const { data } = props;
 
   return (
-    <Grid container>
+    <Grid container justifyContent="center">
       <Paper
         sx={{
           userSelect: "none",

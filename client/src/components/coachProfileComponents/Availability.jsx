@@ -60,7 +60,7 @@ const Availability = (props) => {
   };
 
   return (
-    <Grid container>
+    <Grid container justifyContent="center">
       <Paper
         sx={{
           userSelect: "none",
@@ -68,7 +68,7 @@ const Availability = (props) => {
           p: 2,
           mt: 4,
           mb: 1,
-          width: 800,
+          width: 700,
           height: 500,
         }}
         variant="elevation"
