@@ -68,8 +68,9 @@ const Availability = (props) => {
           p: 2,
           mt: 4,
           mb: 1,
-          width: 700,
+          width: { xs: "100%", sm: "80%", md: 750 },
           height: 500,
+          
         }}
         variant="elevation"
         elevation={20}
@@ -78,20 +79,23 @@ const Availability = (props) => {
           <Typography fontWeight="bold">Availability</Typography>
         </Card>
 
-        <Box
+        <Box 
           sx={{
             height: 320,
+            width: { xs: "90%", sm: "80%", md: 680 },
+            
             bgcolor: "#f0f0f0",
-            margin: 4,
+            margin:2,
             display: "flex",
             justifyContent: "center",
           }}
+
         >
           <Stack direction="row">
             <Stack spacing={0} p={4}>
               <Item
                 sx={{
-                  width: 290,
+                  width: { xs: "70%", sm: "80%", md: 200 },
                   fontWeight: "bold",
                   textAlign: "center",
                   bgcolor: "#333333",
@@ -100,14 +104,16 @@ const Availability = (props) => {
               >
                 Choose day(s)
               </Item>
-              <FormControl sx={{ width: 290 }}>
-                <Select
+              <FormControl sx={{ width: { xs: "70%", sm: "80%", md: 200 } }}>
+                <Select 
                   value={selectedDays}
                   onChange={(e) => handleDayChange(e.target.value)}
                   variant="outlined"
                   multiple
                   renderValue={(selected) => (
-                    <Box sx={{ display: "flex", flexWrap: "wrap", gap: 0.5 }}>
+                    <Box sx={{ display: "flex", flexWrap: "wrap", gap: 0.5 ,
+                   
+                    }}>
                       {selected.map((value) => (
                         <Chip key={value} label={value} />
                       ))}
@@ -150,7 +156,7 @@ const Availability = (props) => {
               <Stack spacing={0} p={4}>
                 <Item
                   sx={{
-                    width: 290,
+                    width: { xs: "100%", sm: "80%", md: 200 } ,
                     fontWeight: "bold",
                     textAlign: "center",
                     bgcolor: "#333333",
@@ -159,7 +165,7 @@ const Availability = (props) => {
                 >
                   Choose time slot(s)
                 </Item>
-                <FormControl sx={{ width: 290 }}>
+                <FormControl  sx={{ width: { xs: "100%", sm: "80%", md: 200 } }}>
                   <Select
                     value={selectedTimes}
                     onChange={(e) => handleTimeChange(e.target.value)}
