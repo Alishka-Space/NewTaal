@@ -63,7 +63,7 @@ const ScheduledSessions = () => {
           p: 2,
           mt: 4,
           mb: 1,
-          minWidth: { xs: "100%", md: 800 },
+          minWidth: { xs: "100%", md: 700 },
           width: { xs: "100%", sm: "80%", md: 750 },
           height: "auto",
         }}
