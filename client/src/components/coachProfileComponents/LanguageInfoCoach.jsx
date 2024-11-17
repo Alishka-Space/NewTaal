@@ -58,11 +58,11 @@ const LanguageInfoCoach = (props) => {
         sx={{
           userSelect: "none",
           borderRadius: 6,
-          p: 4,
+          p: 2,
           mt: 3,
           mb: 1,
-          width: isSmallScreen ? "100%" : 600,
-          height: "auto",
+          width: { xs: "100%", sm: "100%", md: 700 },
+          height: 270,
         }}
         variant="elevation"
         elevation={20}
@@ -76,28 +76,45 @@ const LanguageInfoCoach = (props) => {
             <Grid item xs={12} sm={4}>
               <Box
                 sx={{
-                  width: "100%",
+                  width: 150,
                 }}
               >
                 <Stack spacing={2}>
-                  <Item sx={{ height: 45, fontWeight: "bold" }}>
+                  <Item
+                    sx={{
+                      height: 45,
+                      width: { xs: "80%", sm: "80%", md: 150 },
+                      fontWeight: "bold",
+                    }}
+                  >
                     Proficiency
                   </Item>
-                  <Item sx={{ height: 45, fontWeight: "bold" }}>
+                  <Item
+                    sx={{
+                      height: 45,
+                      width: { xs: "80%", sm: "80%", md: 150 },
+                      fontWeight: "bold",
+                    }}
+                  >
                     Teach Level(s)
                   </Item>
                 </Stack>
               </Box>
             </Grid>
 
-            <Grid item xs={12} sm={8}>
+            <Grid item xs={2} sm={1}>
               <Box
                 sx={{
-                  width: "100%",
+                  width: 200,
                 }}
               >
                 <Stack spacing={2}>
-                  <Item sx={{ height: 45 }}>
+                  <Item
+                    sx={{
+                      height: 45,
+                      width: { xs: "100%", sm: "100%", md: 270 },
+                    }}
+                  >
                     {!isEdit && (
                       <Typography width="100%" variant="h8">
                         {props?.data?.languageProficiency}
@@ -121,7 +138,12 @@ const LanguageInfoCoach = (props) => {
                       </Stack>
                     )}
                   </Item>
-                  <Item sx={{ height: 45 }}>
+                  <Item
+                    sx={{
+                      height: 45,
+                      width: { xs: "100%", sm: "100%", md: 270 },
+                    }}
+                  >
                     {!isEdit && (
                       <Typography width="100%" variant="h8">
                         {props?.data?.teachingLevel}

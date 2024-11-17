@@ -57,9 +57,9 @@ const PersonalInfoCoach = (props) => {
           userSelect: "none",
           borderRadius: 6,
           p: 2,
-          mt: 3,
+          mt: 4,
           mb: 1,
-          width: { xs: "100%", sm: "80%", md: 650 },
+          width: { xs: "100%", sm: "80%", md: 700 },
           height: 470,
         }}
         variant="elevation"
@@ -74,7 +74,7 @@ const PersonalInfoCoach = (props) => {
             <Grid>
               <Box
                 sx={{
-                  width: 110,
+                  width: { xs: "80%", sm: "90%", md: 110 },
                 }}
               >
                 <Stack spacing={2}>
@@ -96,14 +96,14 @@ const PersonalInfoCoach = (props) => {
             <Grid>
               <Box
                 sx={{
-                  width: 230,
+                  width: 135,
                 }}
               >
                 <Stack spacing={2}>
                   <Item
                     sx={{
                       height: 45,
-                      width: { xs: "90%", sm: "90%", md: 450 },
+                      width: { xs: "100%", sm: "90%", md: 450 },
                     }}
                   >
                     {" "}
@@ -131,7 +131,7 @@ const PersonalInfoCoach = (props) => {
                   <Item
                     sx={{
                       height: 45,
-                      width: { xs: "90%", sm: "90%", md: 450 },
+                      width: { xs: "100%", sm: "90%", md: 450 },
                     }}
                   >
                     {" "}
@@ -157,7 +157,7 @@ const PersonalInfoCoach = (props) => {
                   <Item
                     sx={{
                       height: 45,
-                      width: { xs: "90%", sm: "90%", md: 450 },
+                      width: { xs: "100%", sm: "90%", md: 450 },
                     }}
                   >
                     {!isEdit && (
@@ -184,7 +184,7 @@ const PersonalInfoCoach = (props) => {
                   <Item
                     sx={{
                       height: 45,
-                      width: { xs: "90%", sm: "90%", md: 450 },
+                      width: { xs: "100%", sm: "100%", md: 450 },
                     }}
                   >
                     {" "}
@@ -212,7 +212,7 @@ const PersonalInfoCoach = (props) => {
                   <Item
                     sx={{
                       height: 45,
-                      width: { xs: "90%", sm: "90%", md: 450 },
+                      width: { xs: "100%", sm: "100%", md: 450 },
                     }}
                   >
                     {" "}
