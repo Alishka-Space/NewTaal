@@ -72,7 +72,7 @@ const MatchedLearners = () => {
           p: 2,
           mt: 2,
           mb: 9,
-          width: isSmallScreen ? "100%" : 600,
+          width: isSmallScreen ? "100%" : 750,
           height: isSmallScreen ? "auto" : 360,
         }}
         variant="elevation"
@@ -94,6 +94,7 @@ const MatchedLearners = () => {
                   {matchedLearners.map((learner, index) => (
                     <Item
                       sx={{
+                        width: { xs: "100%", sm: "80%", md: 150 },
                         height: 45,
                         textAlign: "center",
                         bgcolor: "#333333",
@@ -113,7 +114,7 @@ const MatchedLearners = () => {
             <Grid item xs={12} sm={8}>
               <Box
                 sx={{
-                  width: "100%",
+                  width: { xs: "100%", sm: "80%", md: 450 },
                 }}
               >
                 <Stack spacing={2}>
