@@ -52,7 +52,7 @@ const Reviews = () => {
   };
 
   return (
-    <Grid container>
+    <Grid container justifyContent="center">
       <Paper
         sx={{
           userSelect: "none",
