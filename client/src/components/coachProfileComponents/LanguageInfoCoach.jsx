@@ -61,7 +61,7 @@ const LanguageInfoCoach = (props) => {
           p: 2,
           mt: 3,
           mb: 1,
-          width: { xs: "100%", sm: "100%", md: 700 },
+          width: { xs: "100%", sm: "100%", md: 750 },
           height: 270,
         }}
         variant="elevation"
@@ -76,14 +76,14 @@ const LanguageInfoCoach = (props) => {
             <Grid item xs={12} sm={4}>
               <Box
                 sx={{
-                  width: 150,
+                  width: 100,
                 }}
               >
                 <Stack spacing={2}>
                   <Item
                     sx={{
                       height: 45,
-                      width: { xs: "80%", sm: "80%", md: 150 },
+                      width: { xs: "100%", sm: "80%", md: 100 },
                       fontWeight: "bold",
                     }}
                   >
@@ -92,7 +92,7 @@ const LanguageInfoCoach = (props) => {
                   <Item
                     sx={{
                       height: 45,
-                      width: { xs: "80%", sm: "80%", md: 150 },
+                      width: { xs: "100%", sm: "80%", md: 100 },
                       fontWeight: "bold",
                     }}
                   >
@@ -102,17 +102,17 @@ const LanguageInfoCoach = (props) => {
               </Box>
             </Grid>
 
-            <Grid item xs={2} sm={1}>
+            <Grid item xs={8} sm={1}>
               <Box
                 sx={{
-                  width: 200,
+                  width: 150,
                 }}
               >
                 <Stack spacing={2}>
                   <Item
                     sx={{
                       height: 45,
-                      width: { xs: "100%", sm: "100%", md: 270 },
+                      width: { xs: "120%", sm: "100%", md: 450 },
                     }}
                   >
                     {!isEdit && (
@@ -141,7 +141,7 @@ const LanguageInfoCoach = (props) => {
                   <Item
                     sx={{
                       height: 45,
-                      width: { xs: "100%", sm: "100%", md: 270 },
+                      width: { xs: "120%", sm: "100%", md: 450 },
                     }}
                   >
                     {!isEdit && (
