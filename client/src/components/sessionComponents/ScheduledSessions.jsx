@@ -64,7 +64,7 @@ const ScheduledSessions = () => {
           mt: 4,
           mb: 1,
           minWidth: { xs: "100%", md: 800 },
-          width: { xs: "100%", sm: "90%", md: "80%" },
+          width: { xs: "100%", sm: "80%", md: 750 },
           height: "auto",
         }}
         variant="elevation"
