@@ -49,7 +49,7 @@ const PreviousSessions = () => {
   };
 
   return (
-    <Grid container>
+    <Grid container justifyContent="center">
       <Paper
         sx={{
           userSelect: "none",
@@ -57,21 +57,31 @@ const PreviousSessions = () => {
           p: 2,
           mt: 4,
           mb: 1,
-          minWidth: 800,
-          height: 500,
+          width: "100%",
+          maxWidth: 1200,
+          bgcolor: "#f8f8f8",
+          overflow: "auto",
         }}
         variant="elevation"
         elevation={20}
       >
         <Card sx={{ p: 1, borderRadius: "10px", bgcolor: "#f0f0f0", my: 2 }}>
-          <Typography fontWeight="bold">
+          <Typography fontWeight="bold" textAlign="center">
             Previous and Cancelled Sessions
           </Typography>
         </Card>
 
         <Box>
           <TableContainer component={Paper}>
-            <Table sx={{ minWidth: 650 }} aria-label="sticky table">
+            <Table
+              sx={{
+                minWidth: 300,
+                "@media (max-width: 600px)": {
+                  fontSize: "0.8rem",
+                },
+              }}
+              aria-label="sticky table"
+            >
               <TableHead>
                 <TableRow>
                   <TableCell></TableCell>
@@ -80,7 +90,6 @@ const PreviousSessions = () => {
                       ? "Coach Name"
                       : "Learner Name"}
                   </TableCell>
-
                   <TableCell sx={{ fontWeight: "bold" }}>
                     Day of Sessions
                   </TableCell>
@@ -109,13 +118,11 @@ const PreviousSessions = () => {
                         <TableCell>
                           {authState.role === "coach" ? (
                             <Link to={`/learnerProfile/${row.learner_id}`}>
-                              {" "}
-                              {row.learner_name}{" "}
+                              {row.learner_name}
                             </Link>
                           ) : (
                             <Link to={`/coachProfile/${row.coach_id}`}>
-                              {" "}
-                              {row.coach_name}{" "}
+                              {row.coach_name}
                             </Link>
                           )}
                         </TableCell>
@@ -136,6 +143,17 @@ const PreviousSessions = () => {
             page={page}
             onPageChange={handleChangePage}
             onRowsPerPageChange={handleChangeRowsPerPage}
+            sx={{
+              "@media (max-width: 600px)": {
+                ".MuiTablePagination-toolbar": {
+                  padding: "0 8px",
+                  fontSize: "0.8rem",
+                },
+                ".MuiTablePagination-actions": {
+                  marginRight: "8px",
+                },
+              },
+            }}
           />
         </Box>
       </Paper>

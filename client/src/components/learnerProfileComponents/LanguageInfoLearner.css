@@ -1,0 +1,51 @@
+.language-info-paper {
+  user-select: none;
+  border-radius: 6px;
+  padding: 16px;
+  margin-top: 16px;
+  margin-bottom: 8px;
+  width: 100%;
+  max-width: 800px;
+}
+
+.language-info-card {
+  padding: 8px;
+  border-radius: 10px;
+  background-color: #f0f0f0;
+}
+
+.language-info-title {
+  font-weight: bold;
+}
+
+.proficiency-grid,
+.purpose-grid {
+  display: flex;
+  justify-content: center;
+}
+
+.proficiency-box,
+.purpose-box {
+  width: 100%;
+  max-width: 500px;
+}
+
+.proficiency-item {
+  height: 45px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.proficiency-info,
+.purpose-info {
+  height: 45px;
+}
+
+.proficiency-text,
+.purpose-text {
+  text-align: center;
+}
+
+.edit-save-button {
+  margin-top: 8px;
+}

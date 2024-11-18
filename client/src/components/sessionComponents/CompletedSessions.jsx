@@ -98,7 +98,7 @@ const CompletedSessions = () => {
   };
 
   return (
-    <Grid container>
+    <Grid container justifyContent="center">
       <Paper
         sx={{
           userSelect: "none",
@@ -106,19 +106,31 @@ const CompletedSessions = () => {
           p: 2,
           mt: 4,
           mb: 1,
-          minWidth: 800,
-          height: 500,
+          width: "100%",
+          maxWidth: 1200,
+          bgcolor: "#f8f8f8",
+          overflow: "auto",
         }}
         variant="elevation"
         elevation={20}
       >
         <Card sx={{ p: 1, borderRadius: "10px", bgcolor: "#f0f0f0", my: 2 }}>
-          <Typography fontWeight="bold">Completed Sessions</Typography>
+          <Typography fontWeight="bold" textAlign="center">
+            Completed Sessions
+          </Typography>
         </Card>
 
         <Box>
           <TableContainer component={Paper}>
-            <Table sx={{ minWidth: 650 }} aria-label="sticky table">
+            <Table
+              sx={{
+                minWidth: 300,
+                "@media (max-width: 600px)": {
+                  fontSize: "0.8rem",
+                },
+              }}
+              aria-label="sticky table"
+            >
               <TableHead>
                 <TableRow>
                   <TableCell></TableCell>
@@ -127,7 +139,6 @@ const CompletedSessions = () => {
                       ? "Coach Name"
                       : "Learner Name"}
                   </TableCell>
-
                   <TableCell sx={{ fontWeight: "bold" }}>
                     Day of Sessions
                   </TableCell>
@@ -161,33 +172,29 @@ const CompletedSessions = () => {
                         <TableCell>
                           {authState.role === "coach" ? (
                             <Link to={`/learnerProfile/${row.learner_id}`}>
-                              {" "}
-                              {row.learner_name}{" "}
+                              {row.learner_name}
                             </Link>
                           ) : (
                             <Link to={`/coachProfile/${row.coach_id}`}>
-                              {" "}
-                              {row.coach_name}{" "}
+                              {row.coach_name}
                             </Link>
                           )}
                         </TableCell>
                         <TableCell>{row.day}</TableCell>
                         <TableCell>{row.time}</TableCell>
                         <TableCell>{row.status}</TableCell>
-                        <TableCell>
-                          <strong>
-                            {authState.role === "learner" && (
-                              <Button
-                                color="secondary"
-                                variant="contained"
-                                size="small"
-                                onClick={() => handleButtonAction(index)}
-                              >
-                                {editRowIndex === index ? "Edit" : "Add"}
-                              </Button>
-                            )}
-                          </strong>
-                        </TableCell>
+                        {authState.role === "learner" && (
+                          <TableCell>
+                            <Button
+                              color="secondary"
+                              variant="contained"
+                              size="small"
+                              onClick={() => handleButtonAction(index)}
+                            >
+                              {editRowIndex === index ? "Edit" : "Add"}
+                            </Button>
+                          </TableCell>
+                        )}
                       </TableRow>
                     ))}
               </TableBody>
@@ -202,129 +209,121 @@ const CompletedSessions = () => {
             page={page}
             onPageChange={handleChangePage}
             onRowsPerPageChange={handleChangeRowsPerPage}
+            sx={{
+              "@media (max-width: 600px)": {
+                ".MuiTablePagination-toolbar": {
+                  padding: "0 8px",
+                  fontSize: "0.8rem",
+                },
+                ".MuiTablePagination-actions": {
+                  marginRight: "8px",
+                },
+              },
+            }}
           />
         </Box>
         <Dialog
           open={reviewDialogOpen}
           onClose={() => setReviewDialogOpen(false)}
+          maxWidth="sm"
+          fullWidth
           aria-labelledby="responsive-dialog-title"
-          style={{ minWidth: "500px", height: "600px" }}
         >
           <DialogTitle
             id="responsive-dialog-title"
-            style={{ textAlign: "center", fontWeight: "bold" }}
+            sx={{ textAlign: "center", fontWeight: "bold" }}
           >
             Session Feedback
           </DialogTitle>
           <DialogContent
-            style={{
+            sx={{
               display: "flex",
               flexDirection: "column",
-              minWidth: "400px",
+              gap: 2,
             }}
           >
-            <div
-              style={{
+            <Box
+              sx={{
                 display: "flex",
                 alignItems: "center",
                 border: "1px solid #ccc",
-                padding: "0.5rem",
+                p: 1,
                 backgroundColor: "#add8e6",
               }}
             >
-              <span style={{ fontWeight: "bold", minWidth: "120px" }}>
-                Coach Name
-              </span>
-              <span>{selectedSession?.coach_name}</span>
-            </div>
-            <div
-              style={{
+              <Typography fontWeight="bold" sx={{ minWidth: 120 }}>
+                Coach Name:
+              </Typography>
+              <Typography>{selectedSession?.coach_name}</Typography>
+            </Box>
+            <Box
+              sx={{
                 display: "flex",
                 alignItems: "center",
                 border: "1px solid #ccc",
-                padding: "0.5rem",
+                p: 1,
                 backgroundColor: "#add8e6",
               }}
             >
-              <span style={{ fontWeight: "bold", minWidth: "120px" }}>
-                Session Day
-              </span>
-              <span>{selectedSession?.day}</span>
-            </div>
-            <div
-              style={{
+              <Typography fontWeight="bold" sx={{ minWidth: 120 }}>
+                Session Day:
+              </Typography>
+              <Typography>{selectedSession?.day}</Typography>
+            </Box>
+            <Box
+              sx={{
                 display: "flex",
                 alignItems: "center",
                 border: "1px solid #ccc",
-                padding: "0.5rem",
+                p: 1,
                 backgroundColor: "#add8e6",
               }}
             >
-              <span style={{ fontWeight: "bold", minWidth: "120px" }}>
-                Learner Name
-              </span>
-              <span>{selectedSession?.learner_name}</span>
-            </div>
-
-            <div
-              style={{
+              <Typography fontWeight="bold" sx={{ minWidth: 120 }}>
+                Learner Name:
+              </Typography>
+              <Typography>{selectedSession?.learner_name}</Typography>
+            </Box>
+            <Box
+              sx={{
                 display: "flex",
                 alignItems: "center",
-                border: "1px solid #ccc",
-                padding: "0.5rem",
-                marginTop: "1.5rem",
+                p: 1,
+                mt: 2,
                 backgroundColor: "#f0f0f0",
+                borderRadius: 1,
               }}
             >
-              <span
-                style={{
-                  fontWeight: "bold",
-                  minWidth: "120px",
-                  marginRight: "1rem",
-                }}
-              >
+              <Typography fontWeight="bold" sx={{ minWidth: 120, mr: 2 }}>
                 Rate this session:
-              </span>
+              </Typography>
               <Rating
                 name="half-rating"
                 defaultValue={1}
                 precision={0.5}
                 value={rating}
-                label="Rating"
                 onChange={handleChange}
               />
-            </div>
+            </Box>
             <TextField
-              style={{
-                width: "100%",
-                backgroundColor: "#f0f0f0",
-                marginTop: "1rem",
-              }}
+              fullWidth
               label="Share your review"
               value={comments}
-              onChange={(event) => {
-                setComments(event.target.value);
-              }}
+              onChange={(event) => setComments(event.target.value)}
               multiline
-              rows={7}
+              rows={4}
+              sx={{
+                mt: 2,
+                backgroundColor: "#f0f0f0",
+              }}
             />
           </DialogContent>
           <DialogActions>
-            <Button
-              size="small"
-              autoFocus
-              onClick={() => setReviewDialogOpen(false)}
-            >
-              Cancel
-            </Button>
+            <Button onClick={() => setReviewDialogOpen(false)}>Cancel</Button>
             <Button
               endIcon={<SendIcon />}
               variant="contained"
-              size="small"
-              onClick={() => {
-                handleSubmitReview();
-              }}
-              autoFocus
+              onClick={handleSubmitReview}
             >
               Send
             </Button>

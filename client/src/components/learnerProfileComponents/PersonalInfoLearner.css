@@ -1,0 +1,118 @@
+.personal-info-paper {
+  user-select: none;
+  border-radius: 6px;
+  padding: 16px;
+  margin-top: 16px;
+  margin-bottom: 8px;
+  width: 100%;
+  max-width: 800px;
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+
+.personal-info-card {
+  padding: 8px;
+  border-radius: 10px;
+  background-color: #f0f0f0;
+}
+
+.personal-info-title {
+  font-weight: bold;
+}
+
+.personal-info-box {
+  width: 140px;
+  max-width: 600px;
+}
+
+.personal-info-data-box {
+  width: 300px;
+  max-width: 500px;
+}
+
+.personal-info-item {
+  width: 150px;
+  height: 45px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  text-align: center;
+}
+
+.personal-info-value {
+  height: 45px;
+}
+
+.personal-info-text {
+  text-align: center;
+}
+
+.edit-save-button {
+  margin-top: 8px;
+}
+
+@media screen and (max-width: 1024px) {
+  .personal-info-box,
+  .personal-info-data-box {
+    max-width: 100%;
+  }
+
+  .personal-info-paper {
+    padding: 12px;
+    margin-top: 12px;
+  }
+}
+
+@media screen and (max-width: 720px) {
+  .personal-info-title {
+    font-size: 1rem;
+  }
+
+  .personal-info-box {
+    max-width: 70px;
+  }
+  .personal-info-data-box {
+    max-width: 190px;
+  }
+  .personal-info-item {
+    width: 80px;
+    height: 45px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    text-align: center;
+  }
+
+  .personal-info-paper {
+    padding: 9px;
+    margin-top: 12px;
+  }
+}
+@media screen and (max-width: 420px) {
+  .personal-info-title {
+    font-size: 1rem;
+  }
+
+  .personal-info-box {
+    max-width: 70px;
+  }
+  .personal-info-data-box {
+    max-width: 175px;
+  }
+  .personal-info-item {
+    width: 80px;
+    height: 45px;
+  }
+
+  .personal-info-paper {
+    padding: 9px;
+    margin-top: 12px;
+  }
+}

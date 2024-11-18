@@ -40,69 +40,86 @@ const SessionHeaderCoach = () => {
 
   return (
     data && (
-      <Grid container>
+      <Grid container justifyContent="center">
         <Paper
           sx={{
             userSelect: "none",
             borderRadius: 20,
-            p: 2,
-            mt: 4,
-            mb: 1,
-            minWidth: 800,
-            height: 300,
+            p: { xs: 1, md: 1 },
+            mt: { xs: 2, md: 4 },
+            mb: 2,
             bgcolor: "#C0C0C0",
           }}
           variant="elevation"
           elevation={20}
         >
-          <div>
-            <Grid container p={2} alignItems={"center"} spacing={2}>
-              <Stack direction="row">
-                <Avatar sx={{ width: 150, height: 150 }} src={data.image} />
-              </Stack>
+          <Grid
+            container
+            p={3}
+            alignItems="center"
+            spacing={3}
+            direction={{ xs: "column", md: "row" }}
+          >
+            <Stack
+              direction="row"
+              justifyContent="space-around"
+              mb={{ xs: 1, md: 3 }}
+            >
+              <Avatar
+                sx={{
+                  width: { xs: 190, md: 250 },
+                  height: { xs: 190, md: 230 },
+                }}
+                src={data.image}
+              />
+            </Stack>
 
-              <Stack width={500} spacing={1} justifyContent="center">
-                <Item
-                  sx={{
-                    height: 40,
-                    backgroundColor: "#E1D5E7",
-                    borderRadius: 1,
-                  }}
-                >
-                  <Rating
-                    name="read-only"
-                    value={data.rating}
-                    precision={0.5}
-                    readOnly
-                  />
-                </Item>
+            <Stack
+              width={{ xs: 300, md: 400 }}
+              spacing={1}
+              justifyContent="center"
+              alignContent="center"
+            >
+              <Item
+                sx={{
+                  height: 40,
+                  backgroundColor: "#E1D5E7",
+                  borderRadius: 3,
+                }}
+              >
+                <Rating
+                  name="read-only"
+                  value={data.rating}
+                  precision={0.5}
+                  readOnly
+                />
+              </Item>
 
-                <Item
-                  sx={{
-                    height: 40,
-                    backgroundColor: "#E1D5E7",
-                    borderRadius: 1,
-                  }}
-                >
-                  <Typography fontWeight="bold" width="100%" variant="h6">
-                    {data?.username}
-                  </Typography>
-                </Item>
+              <Item
+                sx={{
+                  height: 40,
+                  backgroundColor: "#E1D5E7",
+                  borderRadius: 3,
+                }}
+              >
+                <Typography fontWeight="bold" width="100%" variant="h6">
+                  {data?.username}
+                </Typography>
+              </Item>
 
-                <Item
-                  sx={{
-                    height: 100,
-                    backgroundColor: "#E1D5E7",
-                    borderRadius: 2,
-                  }}
-                >
-                  <Typography width="100%" fontWeight="bold" variant="h8">
-                    {data?.bio}
-                  </Typography>
-                </Item>
-              </Stack>
-            </Grid>
-          </div>
+              <Item
+                sx={{
+                  minHeight: { xs: 90, md: 100 },
+                  backgroundColor: "#E1D5E7",
+                  borderRadius: 5,
+                }}
+              >
+                <Typography width="100%" variant="body3">
+                  {data?.bio}
+                </Typography>
+              </Item>
+            </Stack>
+          </Grid>
         </Paper>
       </Grid>
     )
