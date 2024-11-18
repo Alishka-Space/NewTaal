@@ -66,9 +66,9 @@ const Nav = () => {
               <Link to="/about" className="navbar-link">
                 About us
               </Link>
-              {/* <Link to={`coachProfile/${authState.id}`} className="navbar-link">
+              <Link to={`coachProfile/${authState.id}`} className="navbar-link">
                 Profile
-              </Link> */}
+              </Link>
               <Link to={`/session/${authState.id}`} className="navbar-link">
                 Sessions
               </Link>
