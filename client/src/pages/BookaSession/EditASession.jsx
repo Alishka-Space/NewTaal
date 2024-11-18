@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
@@ -42,6 +42,25 @@ const EditASession = () => {
 
   const [day, setDay] = useState(session.day || "");
   const [time, setTime] = useState(session.time || "");
+
+  const [days, setDays] = useState([]);
+  const [times, setTimes] = useState([]);
+
+  const daysOfWeek = useFetch(
+    `/availability/coach/${session.coach_id}`,
+    (response) => {
+      setDays(response.result[0].daysOfWeek);
+      setTimes(response.result[0].timeSlots);
+    },
+  );
+
+  useEffect(() => {
+    daysOfWeek.performFetch({
+      method: "GET",
+      params: { id: session.coach_id },
+    });
+    return daysOfWeek.cancelFetch;
+  }, []);
 
   const handleDayChange = (e) => {
     setDay(e.target.value);
@@ -124,13 +143,11 @@ const EditASession = () => {
                   onChange={handleDayChange}
                   variant="outlined"
                 >
-                  <MenuItem value="monday">Monday</MenuItem>
-                  <MenuItem value="tuesday">Tuesday</MenuItem>
-                  <MenuItem value="wednesday">Wednesday</MenuItem>
-                  <MenuItem value="thursday">Thursday</MenuItem>
-                  <MenuItem value="friday">Friday</MenuItem>
-                  <MenuItem value="saturday">Saturday</MenuItem>
-                  <MenuItem value="sunday">Sunday</MenuItem>
+                  {days.map((day) => (
+                    <MenuItem key={day} value={day}>
+                      {day}
+                    </MenuItem>
+                  ))}
                 </Select>
               </FormControl>
 
@@ -142,30 +159,11 @@ const EditASession = () => {
                   onChange={handleTimeChange}
                   variant="outlined"
                 >
-                  <MenuItem value="00:00 - 01:00">00:00 - 01:00</MenuItem>
-                  <MenuItem value="01:00 - 02:00">01:00 - 02:00</MenuItem>
-                  <MenuItem value="02:00 - 03:00">02:00 - 03:00</MenuItem>
-                  <MenuItem value="03:00 - 04:00">03:00 - 04:00</MenuItem>
-                  <MenuItem value="04:00 - 05:00">04:00 - 05:00</MenuItem>
-                  <MenuItem value="05:00 - 06:00">05:00 - 06:00</MenuItem>
-                  <MenuItem value="06:00 - 07:00">06:00 - 07:00</MenuItem>
-                  <MenuItem value="07:00 - 08:00">07:00 - 08:00</MenuItem>
-                  <MenuItem value="08:00 - 09:00">08:00 - 09:00</MenuItem>
-                  <MenuItem value="09:00 - 10:00">09:00 - 10:00</MenuItem>
-                  <MenuItem value="10:00 - 11:00">10:00 - 11:00</MenuItem>
-                  <MenuItem value="11:00 - 12:00">11:00 - 12:00</MenuItem>
-                  <MenuItem value="12:00 - 13:00">12:00 - 13:00</MenuItem>
-                  <MenuItem value="13:00 - 14:00">13:00 - 14:00</MenuItem>
-                  <MenuItem value="14:00 - 15:00">14:00 - 15:00</MenuItem>
-                  <MenuItem value="15:00 - 16:00">15:00 - 16:00</MenuItem>
-                  <MenuItem value="16:00 - 17:00">16:00 - 17:00</MenuItem>
-                  <MenuItem value="17:00 - 18:00">17:00 - 18:00</MenuItem>
-                  <MenuItem value="18:00 - 19:00">18:00 - 19:00</MenuItem>
-                  <MenuItem value="19:00 - 20:00">19:00 - 20:00</MenuItem>
-                  <MenuItem value="20:00 - 21:00">20:00 - 21:00</MenuItem>
-                  <MenuItem value="21:00 - 22:00">21:00 - 22:00</MenuItem>
-                  <MenuItem value="22:00 - 23:00">22:00 - 23:00</MenuItem>
-                  <MenuItem value="23:00 - 00:00">23:00 - 00:00</MenuItem>
+                  {times.map((time) => (
+                    <MenuItem key={time} value={time}>
+                      {time}
+                    </MenuItem>
+                  ))}
                 </Select>
               </FormControl>
 
