@@ -41,19 +41,18 @@ const SessionHeaderLearner = () => {
     data && (
       <Grid container justifyContent="center">
         <Paper
-          sx={{
-            userSelect: "none",
-            borderRadius: 8,
-            p: 1,
-            mt: 4,
-            mb: 1,
-            width: "100%",
-            maxWidth: 1200,
-            bgcolor: "#C0C0C0",
-            overflow: "hidden",
-          }}
-          variant="elevation"
-          elevation={20}
+        sx={{
+          userSelect: "none",
+          borderRadius: 20,
+          p: 2,
+          mt: 4,
+          mb: 1,
+          width: { xs: "100%", sm: "80%", md: 800 },
+          height: { xs: "auto", md: 300 },
+          bgcolor: "#C0C0C0",
+        }}
+        variant="elevation"
+        elevation={20}
         >
           <Grid
             container
