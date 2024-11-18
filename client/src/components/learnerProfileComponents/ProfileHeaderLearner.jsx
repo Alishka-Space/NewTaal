@@ -29,8 +29,8 @@ const ProfileHeaderLearner = (props) => {
           p: 2,
           mt: 4,
           mb: 1,
-          width: { xs: "100%", sm: "80%", md: 800 }, // Responsive width adjustment
-          height: { xs: "auto", md: 300 }, // Adjust height for smaller screens
+          width: { xs: "100%", sm: "80%", md: 800 },
+          height: { xs: "auto", md: 300 },
           bgcolor: "#C0C0C0",
         }}
         variant="elevation"

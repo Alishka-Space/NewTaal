@@ -4,11 +4,12 @@ import Paper from "@mui/material/Paper";
 import Stack from "@mui/material/Stack";
 import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
-import { Card, Typography } from "@mui/material";
+import { Card, Typography, useMediaQuery } from "@mui/material";
 import { AuthContext } from "../../context/AuthContext";
 import useFetch from "../../hooks/useFetch";
 import { Link } from "react-router-dom";
 import TablePagination from "@mui/material/TablePagination";
+import { useTheme } from "@mui/material/styles";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: "#fff",
@@ -59,17 +60,20 @@ const MatchedLearners = () => {
     setPage(0);
   };
 
+  const theme = useTheme();
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
+
   return (
-    <Grid container>
+    <Grid container justifyContent="center">
       <Paper
         sx={{
           userSelect: "none",
           borderRadius: 6,
           p: 2,
-          mt: 4,
-          mb: 1,
-          width: 800,
-          height: 460,
+          mt: 2,
+          mb: 9,
+          width: isSmallScreen ? "100%" : 750,
+          height: isSmallScreen ? "auto" : 360,
         }}
         variant="elevation"
         elevation={20}
@@ -79,17 +83,18 @@ const MatchedLearners = () => {
         </Card>
 
         <div>
-          <Grid container p={4} spacing={2}>
-            <Grid>
+          <Grid container p={isSmallScreen ? 2 : 4} spacing={2}>
+            <Grid item xs={12} sm={4}>
               <Box
                 sx={{
-                  width: 180,
+                  width: "100%",
                 }}
               >
                 <Stack spacing={2}>
                   {matchedLearners.map((learner, index) => (
                     <Item
                       sx={{
+                        width: { xs: "100%", sm: "80%", md: 150 },
                         height: 45,
                         textAlign: "center",
                         bgcolor: "#333333",
@@ -106,10 +111,10 @@ const MatchedLearners = () => {
               </Box>
             </Grid>
 
-            <Grid>
+            <Grid item xs={12} sm={8}>
               <Box
                 sx={{
-                  width: 480,
+                  width: { xs: "100%", sm: "80%", md: 450 },
                 }}
               >
                 <Stack spacing={2}>
