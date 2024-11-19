@@ -1,22 +1,7 @@
-.personal-info-paper {
-  user-select: none;
-  border-radius: 6px;
-  padding: 16px;
-  margin-top: 16px;
-  margin-bottom: 8px;
-  width: 100%;
-  max-width: 800px;
-  height: 400px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: center;
-}
-
 .personal-info-card {
   padding: 8px;
   border-radius: 10px;
-  background-color: #f0f0f0;
+  background: #d60909;
 }
 
 .personal-info-title {
@@ -24,17 +9,20 @@
 }
 
 .personal-info-box {
-  width: 140px;
+  width: 100%;
   max-width: 600px;
+  box-sizing: border-box;
 }
 
 .personal-info-data-box {
-  width: 300px;
+  width: 100%;
   max-width: 500px;
+  box-sizing: border-box;
 }
 
 .personal-info-item {
-  width: 150px;
+  width: 100%;
+  max-width: 150px;
   height: 45px;
   display: flex;
   flex-direction: column;
@@ -42,6 +30,7 @@
   align-items: center;
   font-weight: bold;
   text-align: center;
+  margin: 0 auto; /* Center items */
 }
 
 .personal-info-value {
@@ -62,9 +51,8 @@
     max-width: 100%;
   }
 
-  .personal-info-paper {
-    padding: 12px;
-    margin-top: 12px;
+  .personal-info-item {
+    max-width: 100%; /* Make sure items are full width */
   }
 }
 
@@ -74,45 +62,28 @@
   }
 
   .personal-info-box {
-    max-width: 70px;
+    max-width: 100%;
   }
   .personal-info-data-box {
-    max-width: 190px;
+    max-width: 100%;
   }
   .personal-info-item {
-    width: 80px;
-    height: 45px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    font-weight: bold;
-    text-align: center;
-  }
-
-  .personal-info-paper {
-    padding: 9px;
-    margin-top: 12px;
+    max-width: 100%;
+    height: 40px;
   }
 }
+
 @media screen and (max-width: 420px) {
   .personal-info-title {
-    font-size: 1rem;
+    font-size: 0.9rem;
   }
 
-  .personal-info-box {
-    max-width: 70px;
-  }
+  .personal-info-box,
   .personal-info-data-box {
-    max-width: 175px;
+    max-width: 100%;
   }
   .personal-info-item {
-    width: 80px;
-    height: 45px;
-  }
-
-  .personal-info-paper {
-    padding: 9px;
-    margin-top: 12px;
+    max-width: 100%;
+    height: 35px;
   }
 }
