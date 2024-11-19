@@ -208,7 +208,7 @@ const EditASession = () => {
                     onChange={handleStatusChange}
                     variant="outlined"
                   >
-                    <MenuItem value="canceled">Canceled</MenuItem>
+                    <MenuItem value="cancelled">Cancelled</MenuItem>
                     <MenuItem value="completed">Completed</MenuItem>
                   </Select>
                 )}
