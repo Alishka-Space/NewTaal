@@ -77,20 +77,34 @@ const LanguageInfoLearner = (props) => {
 
         <Grid container p={4} spacing={2}>
           <Grid item xs={12} sm={4} className="proficiency-grid">
-            <Box className="proficiency-box" sx={{
-                  width: 100,
-                }}>
+            <Box
+              className="proficiency-box"
+              sx={{
+                width: 100,
+              }}
+            >
               <Stack spacing={2}>
-                <Item className="proficiency-item" sx={{
-                      height: 45,
-                      width: { xs: "100%", sm: "80%", md: 100 },
-                      fontWeight: "bold",
-                    }}>Proficiency</Item>
-                <Item className="proficiency-item"  sx={{
-                      height: 45,
-                      width: { xs: "100%", sm: "80%", md: 100 },
-                      fontWeight: "bold",
-                    }}> Purpose</Item>
+                <Item
+                  className="proficiency-item"
+                  sx={{
+                    height: 45,
+                    width: { xs: "100%", sm: "80%", md: 100 },
+                    fontWeight: "bold",
+                  }}
+                >
+                  Proficiency
+                </Item>
+                <Item
+                  className="proficiency-item"
+                  sx={{
+                    height: 45,
+                    width: { xs: "100%", sm: "80%", md: 100 },
+                    fontWeight: "bold",
+                  }}
+                >
+                  {" "}
+                  Purpose
+                </Item>
               </Stack>
             </Box>
           </Grid>
@@ -98,16 +112,19 @@ const LanguageInfoLearner = (props) => {
           <Grid item xs={12} sm={8} className="purpose-grid">
             <Box className="purpose-box">
               <Stack spacing={2}>
-                <Item className="proficiency-info" sx={{
-                      height: 45,
-                      width: { xs: "120%", sm: "100%", md: 450 },
-                    }}>
+                <Item
+                  className="proficiency-info"
+                  sx={{
+                    height: 45,
+                    width: { xs: "120%", sm: "100%", md: 450 },
+                  }}
+                >
                   {!isEdit && (
                     <Typography
-                    sx={{
-                      height: 45,
-                      width: { xs: "120%", sm: "100%", md: 450 },
-                    }}
+                      sx={{
+                        height: 45,
+                        width: { xs: "120%", sm: "100%", md: 450 },
+                      }}
                       className="proficiency-text"
                     >
                       {props?.data?.languageProficiency}
@@ -135,10 +152,13 @@ const LanguageInfoLearner = (props) => {
                     </Stack>
                   )}
                 </Item>
-                <Item className="purpose-info" sx={{
-                      height: 45,
-                      width: { xs: "120%", sm: "100%", md: 450 },
-                    }}>
+                <Item
+                  className="purpose-info"
+                  sx={{
+                    height: 45,
+                    width: { xs: "120%", sm: "100%", md: 450 },
+                  }}
+                >
                   {!isEdit && (
                     <Typography
                       width="100%"
