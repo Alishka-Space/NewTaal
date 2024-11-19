@@ -22,7 +22,7 @@ const ProfileHeaderCoach = (props) => {
   const { data } = props;
 
   return (
-    <Grid container>
+    <Grid container justifyContent="center">
       <Paper
         sx={{
           userSelect: "none",
@@ -30,8 +30,8 @@ const ProfileHeaderCoach = (props) => {
           p: 2,
           mt: 4,
           mb: 1,
-          width: 800,
-          height: 300,
+          width: { xs: "100%", sm: "90%", md: 800 },
+          height: { xs: "auto", md: 300 },
           bgcolor: "#C0C0C0",
         }}
         variant="elevation"
@@ -48,7 +48,13 @@ const ProfileHeaderCoach = (props) => {
         </Typography>
 
         <div>
-          <Grid container p={2} alignItems={"center"} spacing={2}>
+          <Grid
+            container
+            spacing={1}
+            p={1}
+            alignItems="center"
+            justifyContent="center"
+          >
             <Stack direction="row">
               <Avatar sx={{ width: 150, height: 150 }} src={data.image} />
             </Stack>

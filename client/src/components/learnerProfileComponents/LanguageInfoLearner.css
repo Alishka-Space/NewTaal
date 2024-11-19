@@ -16,6 +16,8 @@
 
 .language-info-title {
   font-weight: bold;
+  display: flex;
+  justify-content: center;
 }
 
 .proficiency-grid,
@@ -31,6 +33,7 @@
 }
 
 .proficiency-item {
+  width: 150px;
   height: 45px;
   font-weight: bold;
   text-align: center;
@@ -38,12 +41,14 @@
 
 .proficiency-info,
 .purpose-info {
+  width: 400px;
   height: 45px;
 }
 
 .proficiency-text,
 .purpose-text {
   text-align: center;
+  width: 350px;
 }
 
 .edit-save-button {

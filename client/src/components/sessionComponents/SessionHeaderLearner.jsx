@@ -43,14 +43,13 @@ const SessionHeaderLearner = () => {
         <Paper
           sx={{
             userSelect: "none",
-            borderRadius: 8,
-            p: 1,
+            borderRadius: 20,
+            p: 2,
             mt: 4,
             mb: 1,
-            width: "100%",
-            maxWidth: 1200,
+            width: { xs: "100%", sm: "80%", md: 800 },
+            height: { xs: "auto", md: 300 },
             bgcolor: "#C0C0C0",
-            overflow: "hidden",
           }}
           variant="elevation"
           elevation={20}
@@ -67,14 +66,7 @@ const SessionHeaderLearner = () => {
               alignItems="center"
               spacing={2}
             >
-              <Avatar
-                sx={{
-                  width: { xs: 100, sm: 150 },
-                  height: { xs: 100, sm: 150 },
-                  mb: { xs: 2, sm: 0 },
-                }}
-                src={data.image}
-              />
+              <Avatar sx={{ width: 160, height: 160 }} src={data.image} />
 
               <Stack
                 width={{ xs: "100%", sm: 500 }}

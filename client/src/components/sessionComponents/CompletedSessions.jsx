@@ -106,7 +106,7 @@ const CompletedSessions = () => {
           p: 2,
           mt: 4,
           mb: 1,
-          width: "100%",
+          width: { xs: "100%", sm: "80%", md: 750 },
           maxWidth: 1200,
           bgcolor: "#f8f8f8",
           overflow: "auto",

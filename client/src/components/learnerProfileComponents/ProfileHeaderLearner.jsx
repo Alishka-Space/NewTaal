@@ -29,72 +29,74 @@ const ProfileHeaderLearner = (props) => {
           p: 2,
           mt: 4,
           mb: 1,
-          width: { xs: "100%", sm: "80%", md: 800 }, // Responsive width adjustment
-          height: { xs: "auto", md: 300 }, // Adjust height for smaller screens
+          width: { xs: "100%", sm: "80%", md: 800 },
+          height: { xs: "auto", md: 300 },
           bgcolor: "#C0C0C0",
         }}
         variant="elevation"
         elevation={20}
       >
-        <Typography
-          textAlign="center"
-          fontWeight="bold"
-          variant="h5"
-          color="secondary"
+        <Grid
+          container
+          spacing={1}
+          p={1}
+          alignItems="center"
+          justifyContent="center"
         >
-          {" "}
-          Learner Profile
-        </Typography>
-
-        <div>
-          <Grid
-            container
-            spacing={1}
-            p={1}
+          <Stack
+            direction={{ xs: "column", sm: "row" }}
             alignItems="center"
-            justifyContent="center"
+            spacing={2}
           >
-            <Stack
-              direction={{ xs: "column", sm: "row" }}
-              alignItems="center"
-              spacing={2}
-            >
-              <Avatar sx={{ width: 160, height: 160 }} src={data.image} />
-            </Stack>
+            <Avatar sx={{ width: 160, height: 160 }} src={data.image} />
 
-            <Stack width={500} spacing={1} justifyContent="center">
-              <Item
-                sx={{ height: 40, backgroundColor: "#E1D5E7", borderRadius: 1 }}
-              >
-                <Typography fontWeight="bold" width="100%" variant="h6">
-                  {props?.data?.username}
-                </Typography>
-              </Item>
+            <Stack
+              width={{ xs: "100%", sm: 500 }}
+              spacing={2}
+              justifyContent="center"
+            >
               <Item
                 sx={{
-                  height: 40,
                   backgroundColor: "#E1D5E7",
                   borderRadius: 1,
+                  height: "auto",
                 }}
               >
-                <Typography fontWeight="bold" width="100%" variant="h6">
+                <Typography fontWeight="bold" variant="h6" textAlign="center">
+                  {data?.username}
+                </Typography>
+              </Item>
+
+              <Item
+                sx={{
+                  backgroundColor: "#E1D5E7",
+                  borderRadius: 1,
+                  height: "auto",
+                }}
+              >
+                <Typography fontWeight="bold" variant="h6" textAlign="center">
                   {data?.purpose}
                 </Typography>
               </Item>
+
               <Item
                 sx={{
-                  height: 100,
                   backgroundColor: "#E1D5E7",
                   borderRadius: 2,
+                  height: "auto",
                 }}
               >
-                <Typography width="100%" fontWeight="bold" variant="h8">
-                  {props?.data?.bio}
+                <Typography
+                  fontWeight="bold"
+                  variant="body1"
+                  textAlign="center"
+                >
+                  {data?.bio}
                 </Typography>
               </Item>
             </Stack>
-          </Grid>
-        </div>
+          </Stack>
+        </Grid>
       </Paper>
     </Grid>
   );
