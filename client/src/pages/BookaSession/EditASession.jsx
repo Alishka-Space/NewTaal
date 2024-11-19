@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
@@ -12,6 +12,7 @@ import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
 import useFetch from "../../hooks/useFetch";
 import { useLocation, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../context/AuthContext";
 
 const Card = styled(MuiCard)(({ theme }) => ({
   display: "flex",
@@ -33,6 +34,8 @@ const EditASession = () => {
   const location = useLocation();
   const session = location.state.session || {};
 
+  const { authState } = useContext(AuthContext);
+
   const id = session._id;
 
   const { error, isLoading, performFetch } = useFetch(
@@ -46,6 +49,8 @@ const EditASession = () => {
   const [days, setDays] = useState([]);
   const [times, setTimes] = useState([]);
 
+  const [sessionStatus, setSessionStatus] = useState(session.status);
+
   const daysOfWeek = useFetch(
     `/availability/coach/${session.coach_id}`,
     (response) => {
@@ -53,6 +58,8 @@ const EditASession = () => {
       setTimes(response.result[0].timeSlots);
     },
   );
+
+  const updateSession = useFetch(`/session/update/${id}`, () => {});
 
   useEffect(() => {
     daysOfWeek.performFetch({
@@ -70,20 +77,36 @@ const EditASession = () => {
     setTime(e.target.value);
   };
 
-  const handleSubmit = async () => {
-    try {
-      await performFetch({
-        method: "PATCH",
-        body: JSON.stringify({
-          day,
-          time,
-        }),
-      });
+  const handleStatusChange = (e) => {
+    setSessionStatus(e.target.value);
+  };
 
+  const handleSubmit = async () => {
+    if (authState.role === "learner") {
+      try {
+        await performFetch({
+          method: "PATCH",
+          body: JSON.stringify({
+            day,
+            time,
+          }),
+        });
+      } catch (error) {
+        alert("Error: " + error);
+      }
+    } else {
+      try {
+        await updateSession.performFetch({
+          method: "PATCH",
+          body: JSON.stringify({
+            status: sessionStatus,
+          }),
+        });
+      } catch (error) {
+        alert("Error: " + error);
+      }
       navigate(`/session/${id}`);
       window.location.reload();
-    } catch (error) {
-      alert("Error: " + error);
     }
   };
 
@@ -169,14 +192,34 @@ const EditASession = () => {
 
               <FormControl>
                 <FormLabel htmlFor="coachName">Session Status</FormLabel>
-                <TextField
+                {authState.role === "learner" ? (
+                  <TextField
+                    value={sessionStatus}
+                    name="name"
+                    id="name"
+                    InputProps={{
+                      readOnly: true,
+                    }}
+                  />
+                ) : (
+                  <Select
+                    id="status"
+                    value={sessionStatus}
+                    onChange={handleStatusChange}
+                    variant="outlined"
+                  >
+                    <MenuItem value="canceled">Canceled</MenuItem>
+                    <MenuItem value="completed">Completed</MenuItem>
+                  </Select>
+                )}
+                {/* <TextField
                   value={session.status}
                   name="name"
                   id="name"
                   InputProps={{
                     readOnly: true,
                   }}
-                />
+                /> */}
               </FormControl>
 
               <Button
