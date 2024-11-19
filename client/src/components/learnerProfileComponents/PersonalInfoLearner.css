@@ -1,20 +1,15 @@
-
-
 .personal-info-card {
   padding: 8px;
   border-radius: 10px;
-  
 }
 
 .personal-info-title {
   font-weight: bold;
-
 }
 
 .personal-info-box {
   width: 140px;
   max-width: 600px;
-  
 }
 
 .personal-info-data-box {

@@ -52,26 +52,31 @@ const PersonalInfoLearner = (props) => {
 
   return (
     <Grid container justifyContent="center">
-      <Paper className="personal-info-paper" variant="elevation" elevation={20} 
-              sx={{
-                userSelect: "none",
-                borderRadius: 6,
-                p: 2,
-                mt: 4,
-                mb: 1,
-                width: { xs: "100%", sm: "80%", md: 750 },
-                height: 470,
-              }}
-
+      <Paper
+        className="personal-info-paper"
+        variant="elevation"
+        elevation={20}
+        sx={{
+          userSelect: "none",
+          borderRadius: 6,
+          p: 2,
+          mt: 4,
+          mb: 1,
+          width: { xs: "100%", sm: "80%", md: 750 },
+          height: 470,
+        }}
       >
-        <Card className="personal-info-card"           sx={{
+        <Card
+          className="personal-info-card"
+          sx={{
             p: 1,
             borderRadius: "10px",
             bgcolor: "#f0f0f0",
             my: 2,
             textAlign: "center",
-          }}  >
-          <Typography className="personal-info-title" fontWeight="bold"  >
+          }}
+        >
+          <Typography className="personal-info-title" fontWeight="bold">
             Personal Information
           </Typography>
         </Card>
@@ -79,11 +84,14 @@ const PersonalInfoLearner = (props) => {
         <div>
           <Grid container p={4} spacing={2}>
             <Grid>
-              <Box className="personal-info-box" sx={{
+              <Box
+                className="personal-info-box"
+                sx={{
                   width: { xs: "90%", sm: "90%", md: 110 },
-                }}>
+                }}
+              >
                 <Stack spacing={2}>
-                <Item sx={{ height: 45, fontWeight: "bold" }}>Name</Item>
+                  <Item sx={{ height: 45, fontWeight: "bold" }}>Name</Item>
                   <Item sx={{ height: 45, fontWeight: "bold" }}>E-mail</Item>
                   <Item sx={{ height: 45, fontWeight: "bold" }}>
                     Nationality
