@@ -70,8 +70,8 @@ const MatchedLearners = () => {
           userSelect: "none",
           borderRadius: 6,
           p: 2,
-          mt: 2,
-          mb: 9,
+          mt: 3,
+          mb: 1,
           width: isSmallScreen ? "100%" : 750,
           height: isSmallScreen ? "auto" : 360,
         }}

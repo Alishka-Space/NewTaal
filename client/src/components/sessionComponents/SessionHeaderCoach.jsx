@@ -45,81 +45,74 @@ const SessionHeaderCoach = () => {
           sx={{
             userSelect: "none",
             borderRadius: 20,
-            p: { xs: 1, md: 1 },
-            mt: { xs: 2, md: 4 },
-            mb: 2,
+            p: 2,
+            mt: 4,
+            mb: 1,
+            width: { xs: "100%", sm: "80%", md: 800 },
+            height: { xs: "auto", md: 300 },
             bgcolor: "#C0C0C0",
           }}
           variant="elevation"
           elevation={20}
         >
-          <Grid
-            container
-            p={3}
-            alignItems="center"
-            spacing={3}
-            direction={{ xs: "column", md: "row" }}
-          >
-            <Stack
-              direction="row"
-              justifyContent="space-around"
-              mb={{ xs: 1, md: 3 }}
-            >
-              <Avatar
-                sx={{
-                  width: { xs: 190, md: 250 },
-                  height: { xs: 190, md: 230 },
-                }}
-                src={data.image}
-              />
-            </Stack>
-
-            <Stack
-              width={{ xs: 300, md: 400 }}
+          <div>
+            <Grid
+              container
               spacing={1}
+              p={1}
+              alignItems="center"
               justifyContent="center"
-              alignContent="center"
             >
-              <Item
-                sx={{
-                  height: 40,
-                  backgroundColor: "#E1D5E7",
-                  borderRadius: 3,
-                }}
+              <Stack
+                direction={{ xs: "column", sm: "row" }}
+                alignItems="center"
+                spacing={2}
               >
-                <Rating
-                  name="read-only"
-                  value={data.rating}
-                  precision={0.5}
-                  readOnly
-                />
-              </Item>
+                <Avatar sx={{ width: 160, height: 160 }} src={data.image} />
+              </Stack>
 
-              <Item
-                sx={{
-                  height: 40,
-                  backgroundColor: "#E1D5E7",
-                  borderRadius: 3,
-                }}
-              >
-                <Typography fontWeight="bold" width="100%" variant="h6">
-                  {data?.username}
-                </Typography>
-              </Item>
+              <Stack width={500} spacing={1} justifyContent="center">
+                <Item
+                  sx={{
+                    height: 40,
+                    backgroundColor: "#E1D5E7",
+                    borderRadius: 2,
+                  }}
+                >
+                  <Rating
+                    name="read-only"
+                    value={data.rating}
+                    precision={0.5}
+                    readOnly
+                  />
+                </Item>
 
-              <Item
-                sx={{
-                  minHeight: { xs: 90, md: 100 },
-                  backgroundColor: "#E1D5E7",
-                  borderRadius: 5,
-                }}
-              >
-                <Typography width="100%" variant="body3">
-                  {data?.bio}
-                </Typography>
-              </Item>
-            </Stack>
-          </Grid>
+                <Item
+                  sx={{
+                    height: 40,
+                    backgroundColor: "#E1D5E7",
+                    borderRadius: 2,
+                  }}
+                >
+                  <Typography fontWeight="bold" width="100%" variant="h6">
+                    {data?.username}
+                  </Typography>
+                </Item>
+
+                <Item
+                  sx={{
+                    minHeight: { xs: 90, md: 100 },
+                    backgroundColor: "#E1D5E7",
+                    borderRadius: 2,
+                  }}
+                >
+                  <Typography width="100%" fontWeight="bold" variant="h8">
+                    {data?.bio}
+                  </Typography>
+                </Item>
+              </Stack>
+            </Grid>
+          </div>
         </Paper>
       </Grid>
     )

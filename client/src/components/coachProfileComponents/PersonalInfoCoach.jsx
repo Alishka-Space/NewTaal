@@ -74,7 +74,7 @@ const PersonalInfoCoach = (props) => {
             <Grid>
               <Box
                 sx={{
-                  width: { xs: "90%", sm: "90%", md: 110 },
+                  width: { xs: "90%", sm: "90%", md: 140 },
                 }}
               >
                 <Stack spacing={2}>
@@ -96,14 +96,13 @@ const PersonalInfoCoach = (props) => {
             <Grid>
               <Box
                 sx={{
-                  width: 135,
+                  width: { xs: "100%", sm: "100%", md: 470 },
                 }}
               >
                 <Stack spacing={2}>
                   <Item
                     sx={{
                       height: 45,
-                      width: { xs: "100%", sm: "100%", md: 450 },
                     }}
                   >
                     {" "}
@@ -131,7 +130,6 @@ const PersonalInfoCoach = (props) => {
                   <Item
                     sx={{
                       height: 45,
-                      width: { xs: "100%", sm: "100%", md: 450 },
                     }}
                   >
                     {" "}
@@ -157,7 +155,6 @@ const PersonalInfoCoach = (props) => {
                   <Item
                     sx={{
                       height: 45,
-                      width: { xs: "100%", sm: "100%", md: 450 },
                     }}
                   >
                     {!isEdit && (
@@ -184,7 +181,6 @@ const PersonalInfoCoach = (props) => {
                   <Item
                     sx={{
                       height: 45,
-                      width: { xs: "100%", sm: "100%", md: 450 },
                     }}
                   >
                     {" "}
@@ -212,7 +208,6 @@ const PersonalInfoCoach = (props) => {
                   <Item
                     sx={{
                       height: 45,
-                      width: { xs: "100%", sm: "100%", md: 450 },
                     }}
                   >
                     {" "}

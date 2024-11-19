@@ -46,11 +46,6 @@ const Reviews = () => {
     setPage(0);
   };
 
-  // const deleteReview = (index) => {
-  //   const updatedReviews = reviewsData.filter((review, i) => i !== index);
-  //   setReviewsData(updatedReviews);
-  // };
-
   return (
     <Grid container justifyContent="center">
       <Paper
@@ -58,7 +53,7 @@ const Reviews = () => {
           userSelect: "none",
           borderRadius: 6,
           p: 2,
-          mt: 4,
+          mt: 3,
           mb: 1,
           width: { xs: "100%", sm: "80%", md: 750 },
         }}
@@ -157,22 +152,14 @@ const Reviews = () => {
                             bgcolor: "#f0f0f0",
                             fontWeight: "bold",
                           }}
-                        >
-                          {/* <IconButton
-                            aria-label="delete"
-                            size="small"
-                            onClick={() => deleteReview(index)}
-                          >
-                            <DeleteIcon fontSize="small" />
-                          </IconButton> */}
-                        </TableCell>
+                        ></TableCell>
                       </TableRow>
                     ))}
               </TableBody>
             </Table>
           </TableContainer>
           <TablePagination
-            rowsPerPageOptions={[5, 10]}
+            rowsPerPageOptions={[5]}
             component="div"
             count={reviewsData ? reviewsData.length : 0}
             rowsPerPage={rowsPerPage}

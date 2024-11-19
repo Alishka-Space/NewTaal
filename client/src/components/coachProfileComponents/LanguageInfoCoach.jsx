@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import Grid from "@mui/material/Grid2";
+import FormControl from "@mui/material/FormControl";
+import NativeSelect from "@mui/material/NativeSelect";
 import Paper from "@mui/material/Paper";
 import Stack from "@mui/material/Stack";
 import { styled } from "@mui/material/styles";
@@ -35,9 +37,11 @@ const LanguageInfoCoach = (props) => {
   const [isEdit, setIsEdit] = useState(false);
   const [proficiency, setProficiency] = useState("");
   const [teachLevel, setTeachLevel] = useState("");
+
   const handleEdit = () => {
     setIsEdit(true);
   };
+
   const handleSave = () => {
     performFetch({
       method: "PATCH",
@@ -76,14 +80,13 @@ const LanguageInfoCoach = (props) => {
             <Grid item xs={12} sm={4}>
               <Box
                 sx={{
-                  width: 100,
+                  width: { xs: "90%", sm: "90%", md: 140 },
                 }}
               >
                 <Stack spacing={2}>
                   <Item
                     sx={{
                       height: 45,
-                      width: { xs: "100%", sm: "80%", md: 100 },
                       fontWeight: "bold",
                     }}
                   >
@@ -92,7 +95,6 @@ const LanguageInfoCoach = (props) => {
                   <Item
                     sx={{
                       height: 45,
-                      width: { xs: "100%", sm: "80%", md: 100 },
                       fontWeight: "bold",
                     }}
                   >
@@ -105,14 +107,13 @@ const LanguageInfoCoach = (props) => {
             <Grid item xs={8} sm={1}>
               <Box
                 sx={{
-                  width: 150,
+                  width: { xs: "120%", sm: "100%", md: 470 },
                 }}
               >
                 <Stack spacing={2}>
                   <Item
                     sx={{
                       height: 45,
-                      width: { xs: "120%", sm: "100%", md: 450 },
                     }}
                   >
                     {!isEdit && (
@@ -122,26 +123,29 @@ const LanguageInfoCoach = (props) => {
                     )}
                     {isEdit && (
                       <Stack>
-                        <TextField
-                          hiddenLabel
-                          fullWidth
-                          variant="standard"
-                          color="secondary"
-                          size="small"
-                          value={
-                            proficiency
-                              ? proficiency
-                              : props?.data?.languageProficiency
-                          }
-                          onChange={(e) => setProficiency(e.target.value)}
-                        ></TextField>
+                        <FormControl fullWidth hiddenLabel>
+                          <NativeSelect
+                            value={
+                              proficiency
+                                ? proficiency
+                                : props?.data?.languageProficiency
+                            }
+                            onChange={(e) => setProficiency(e.target.value)}
+                            variant="standard"
+                            color="secondary"
+                            size="small"
+                          >
+                            <option value="beginner">Beginner</option>
+                            <option value="intermediate">Intermediate</option>
+                            <option value="advanced">Advanced</option>
+                          </NativeSelect>
+                        </FormControl>
                       </Stack>
                     )}
                   </Item>
                   <Item
                     sx={{
                       height: 45,
-                      width: { xs: "120%", sm: "100%", md: 450 },
                     }}
                   >
                     {!isEdit && (
