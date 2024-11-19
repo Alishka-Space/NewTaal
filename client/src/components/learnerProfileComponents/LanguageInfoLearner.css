@@ -16,6 +16,8 @@
 
 .language-info-title {
   font-weight: bold;
+  display: flex;
+  justify-content: center;
 }
 
 .proficiency-grid,

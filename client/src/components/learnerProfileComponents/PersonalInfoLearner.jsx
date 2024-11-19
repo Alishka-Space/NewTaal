@@ -106,7 +106,13 @@ const PersonalInfoLearner = (props) => {
             <Grid>
               <Box className="personal-info-data-box">
                 <Stack spacing={2}>
-                  <Item className="personal-info-value">
+                  <Item
+                    className="personal-info-value"
+                    sx={{
+                      height: 45,
+                      width: { xs: "100%", sm: "100%", md: 450 },
+                    }}
+                  >
                     {!isEdit && (
                       <Typography
                         width="100%"
@@ -132,7 +138,13 @@ const PersonalInfoLearner = (props) => {
                     )}
                   </Item>
 
-                  <Item className="personal-info-value">
+                  <Item
+                    className="personal-info-value"
+                    sx={{
+                      height: 45,
+                      width: { xs: "100%", sm: "100%", md: 450 },
+                    }}
+                  >
                     {!isEdit && (
                       <Typography
                         width="100%"
@@ -157,7 +169,13 @@ const PersonalInfoLearner = (props) => {
                     )}
                   </Item>
 
-                  <Item className="personal-info-value">
+                  <Item
+                    className="personal-info-value"
+                    sx={{
+                      height: 45,
+                      width: { xs: "100%", sm: "100%", md: 450 },
+                    }}
+                  >
                     {!isEdit && (
                       <Typography
                         width="100%"
@@ -184,7 +202,13 @@ const PersonalInfoLearner = (props) => {
                     )}
                   </Item>
 
-                  <Item className="personal-info-value">
+                  <Item
+                    className="personal-info-value"
+                    sx={{
+                      height: 45,
+                      width: { xs: "100%", sm: "100%", md: 450 },
+                    }}
+                  >
                     {!isEdit && (
                       <Typography
                         width="100%"

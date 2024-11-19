@@ -52,8 +52,24 @@ const LanguageInfoLearner = (props) => {
 
   return (
     <Grid container justifyContent="center">
-      <Paper className="language-info-paper" variant="elevation" elevation={20}>
-        <Card className="language-info-card">
+      <Paper
+        className="language-info-paper"
+        sx={{
+          userSelect: "none",
+          borderRadius: 6,
+          p: 2,
+          mt: 3,
+          mb: 1,
+          width: { xs: "100%", sm: "100%", md: 750 },
+          height: 270,
+        }}
+        variant="elevation"
+        elevation={20}
+      >
+        <Card
+          className="language-info-card"
+          sx={{ p: 1, borderRadius: "10px", bgcolor: "#f0f0f0" }}
+        >
           <Typography className="language-info-title" fontWeight="bold">
             Language Information
           </Typography>
