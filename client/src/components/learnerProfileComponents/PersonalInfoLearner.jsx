@@ -63,31 +63,19 @@ const PersonalInfoLearner = (props) => {
           mt: 4,
           mb: 1,
           width: { xs: "100%", sm: "80%", md: 750 },
-          height: 470,
+          height: 400,
         }}
       >
-        <Card
-          className="personal-info-card"
-          sx={{
-            p: 1,
-            borderRadius: "10px",
-            bgcolor: "#f0f0f0",
-            my: 2,
-            textAlign: "center",
-          }}
-        >
-          <Typography className="personal-info-title" fontWeight="bold">
-            Personal Information
-          </Typography>
+        <Card sx={{ p: 1, borderRadius: "10px", bgcolor: "#f0f0f0" }}>
+          <Typography fontWeight="bold"> Personal Information</Typography>
         </Card>
 
         <div>
           <Grid container p={4} spacing={2}>
             <Grid>
               <Box
-                className="personal-info-box"
                 sx={{
-                  width: { xs: "90%", sm: "90%", md: 110 },
+                  width: { xs: "90%", sm: "90%", md: 140 },
                 }}
               >
                 <Stack spacing={2}>
@@ -104,21 +92,20 @@ const PersonalInfoLearner = (props) => {
             </Grid>
 
             <Grid>
-              <Box className="personal-info-data-box">
+              <Box
+                sx={{
+                  width: { xs: "100%", sm: "100%", md: 470 },
+                }}
+              >
                 <Stack spacing={2}>
                   <Item
-                    className="personal-info-value"
                     sx={{
                       height: 45,
-                      width: { xs: "100%", sm: "100%", md: 450 },
                     }}
                   >
+                    {" "}
                     {!isEdit && (
-                      <Typography
-                        width="100%"
-                        variant="body1"
-                        className="personal-info-text"
-                      >
+                      <Typography width="100%" variant="h8">
                         {props?.data?.username}
                       </Typography>
                     )}
@@ -133,24 +120,19 @@ const PersonalInfoLearner = (props) => {
                           size="small"
                           value={name ? name : props?.data?.username}
                           onChange={(e) => setName(e.target.value)}
-                        />
+                        ></TextField>
                       </Stack>
                     )}
                   </Item>
 
                   <Item
-                    className="personal-info-value"
                     sx={{
                       height: 45,
-                      width: { xs: "100%", sm: "100%", md: 450 },
                     }}
                   >
+                    {" "}
                     {!isEdit && (
-                      <Typography
-                        width="100%"
-                        variant="body1"
-                        className="personal-info-text"
-                      >
+                      <Typography width="100%" variant="h8">
                         {props?.data?.email}
                       </Typography>
                     )}
@@ -164,24 +146,17 @@ const PersonalInfoLearner = (props) => {
                           size="small"
                           value={email ? email : props?.data?.email}
                           onChange={(e) => setEmail(e.target.value)}
-                        />
+                        ></TextField>
                       </Stack>
                     )}
                   </Item>
-
                   <Item
-                    className="personal-info-value"
                     sx={{
                       height: 45,
-                      width: { xs: "100%", sm: "100%", md: 450 },
                     }}
                   >
                     {!isEdit && (
-                      <Typography
-                        width="100%"
-                        variant="body1"
-                        className="personal-info-text"
-                      >
+                      <Typography width="100%" variant="h8">
                         {props?.data?.nationality}
                       </Typography>
                     )}
@@ -194,27 +169,21 @@ const PersonalInfoLearner = (props) => {
                           color="secondary"
                           size="small"
                           value={
-                            nationality ? nationality : props?.data?.nationality
+                            nationality ? nationality : props?.data.nationality
                           }
                           onChange={(e) => setNationality(e.target.value)}
-                        />
+                        ></TextField>
                       </Stack>
                     )}
                   </Item>
-
                   <Item
-                    className="personal-info-value"
                     sx={{
                       height: 45,
-                      width: { xs: "100%", sm: "100%", md: 450 },
                     }}
                   >
+                    {" "}
                     {!isEdit && (
-                      <Typography
-                        width="100%"
-                        variant="body1"
-                        className="personal-info-text"
-                      >
+                      <Typography width="100%" variant="h8">
                         {formatDate(props?.data?.dateOfBirth)}
                       </Typography>
                     )}
@@ -227,10 +196,10 @@ const PersonalInfoLearner = (props) => {
                           color="secondary"
                           size="small"
                           value={
-                            dateOfBirth ? dateOfBirth : props?.data?.dateOfBirth
+                            dateOfBirth ? dateOfBirth : props?.data.dateOfBirth
                           }
                           onChange={(e) => setDateOfBirth(e.target.value)}
-                        />
+                        ></TextField>
                       </Stack>
                     )}
                   </Item>

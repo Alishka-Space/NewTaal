@@ -30,7 +30,7 @@ const ProfileHeaderCoach = (props) => {
           p: 2,
           mt: 4,
           mb: 1,
-          width: { xs: "100%", sm: "90%", md: 800 },
+          width: { xs: "100%", sm: "80%", md: 800 },
           height: { xs: "auto", md: 300 },
           bgcolor: "#C0C0C0",
         }}
@@ -50,18 +50,21 @@ const ProfileHeaderCoach = (props) => {
         <div>
           <Grid
             container
-            spacing={1}
+            spacing={2}
             p={1}
             alignItems="center"
             justifyContent="center"
           >
-            <Stack direction="row">
-              <Avatar sx={{ width: 150, height: 150 }} src={data.image} />
+            <Stack
+              direction={{ xs: "column", sm: "row" }}
+              alignItems="center"
+              spacing={2}
+            >
+              <Avatar sx={{ width: 160, height: 160 }} src={data.image} />
             </Stack>
-
             <Stack width={500} spacing={1} justifyContent="center">
               <Item
-                sx={{ height: 40, backgroundColor: "#E1D5E7", borderRadius: 1 }}
+                sx={{ height: 40, backgroundColor: "#E1D5E7", borderRadius: 2 }}
               >
                 <Rating
                   name="read-only"
@@ -72,7 +75,7 @@ const ProfileHeaderCoach = (props) => {
               </Item>
 
               <Item
-                sx={{ height: 40, backgroundColor: "#E1D5E7", borderRadius: 1 }}
+                sx={{ height: 40, backgroundColor: "#E1D5E7", borderRadius: 2 }}
               >
                 <Typography fontWeight="bold" width="100%" variant="h6">
                   {props?.data?.username}

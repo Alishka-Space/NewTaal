@@ -44,7 +44,7 @@ const SessionHeaderLearner = () => {
           sx={{
             userSelect: "none",
             borderRadius: 20,
-            p: 2,
+            p: 4,
             mt: 4,
             mb: 1,
             width: { xs: "100%", sm: "80%", md: 800 },
@@ -54,67 +54,59 @@ const SessionHeaderLearner = () => {
           variant="elevation"
           elevation={20}
         >
-          <Grid
-            container
-            spacing={1}
-            p={1}
-            alignItems="center"
-            justifyContent="center"
-          >
-            <Stack
-              direction={{ xs: "column", sm: "row" }}
+          <div>
+            <Grid
+              container
+              spacing={1}
+              p={1}
               alignItems="center"
-              spacing={2}
+              justifyContent="center"
             >
-              <Avatar sx={{ width: 160, height: 160 }} src={data.image} />
-
               <Stack
-                width={{ xs: "100%", sm: 500 }}
+                direction={{ xs: "column", sm: "row" }}
+                alignItems="center"
                 spacing={2}
-                justifyContent="center"
               >
+                <Avatar sx={{ width: 160, height: 160 }} src={data.image} />
+              </Stack>
+
+              <Stack width={500} spacing={1} justifyContent="center">
                 <Item
                   sx={{
+                    height: 40,
                     backgroundColor: "#E1D5E7",
-                    borderRadius: 1,
-                    height: "auto",
+                    borderRadius: 2,
                   }}
                 >
-                  <Typography fontWeight="bold" variant="h6" textAlign="center">
+                  <Typography fontWeight="bold" width="100%" variant="h6">
                     {data?.username}
                   </Typography>
                 </Item>
-
                 <Item
                   sx={{
+                    height: 40,
                     backgroundColor: "#E1D5E7",
-                    borderRadius: 1,
-                    height: "auto",
+                    borderRadius: 2,
                   }}
                 >
-                  <Typography fontWeight="bold" variant="h6" textAlign="center">
+                  <Typography fontWeight="bold" width="100%" variant="h7">
                     {data?.purpose}
                   </Typography>
                 </Item>
-
                 <Item
                   sx={{
+                    height: 100,
                     backgroundColor: "#E1D5E7",
                     borderRadius: 2,
-                    height: "auto",
                   }}
                 >
-                  <Typography
-                    fontWeight="bold"
-                    variant="body1"
-                    textAlign="center"
-                  >
+                  <Typography width="100%" fontWeight="bold" variant="h8">
                     {data?.bio}
                   </Typography>
                 </Item>
               </Stack>
-            </Stack>
-          </Grid>
+            </Grid>
+          </div>
         </Paper>
       </Grid>
     )

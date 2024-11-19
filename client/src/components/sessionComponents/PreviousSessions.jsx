@@ -67,7 +67,7 @@ const PreviousSessions = () => {
       >
         <Card sx={{ p: 1, borderRadius: "10px", bgcolor: "#f0f0f0", my: 2 }}>
           <Typography fontWeight="bold" textAlign="center">
-            Previous and Cancelled Sessions
+            Rescheduled and Cancelled Sessions
           </Typography>
         </Card>
 
