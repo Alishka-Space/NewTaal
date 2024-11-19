@@ -1,31 +1,20 @@
-.personal-info-paper {
-  user-select: none;
-  border-radius: 6px;
-  padding: 16px;
-  margin-top: 16px;
-  margin-bottom: 8px;
-  width: 100%;
-  max-width: 800px;
-  height: 400px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: center;
-}
+
 
 .personal-info-card {
   padding: 8px;
   border-radius: 10px;
-  background-color: #f0f0f0;
+  
 }
 
 .personal-info-title {
   font-weight: bold;
+
 }
 
 .personal-info-box {
   width: 140px;
   max-width: 600px;
+  
 }
 
 .personal-info-data-box {
